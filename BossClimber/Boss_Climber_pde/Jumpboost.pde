@@ -1,4 +1,4 @@
-class Jumpboost {
+/*class Jumpboost {
   //variable
   Cube[] cube = new Cube[1];
   PVector timerJB = new PVector(0,0);;
@@ -60,4 +60,4 @@ class Cube {
     Location = new PVector(200, 200);
     rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
   }
-}
+}*/

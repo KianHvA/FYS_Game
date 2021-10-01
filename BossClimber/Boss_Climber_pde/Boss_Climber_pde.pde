@@ -9,8 +9,8 @@ void setup()
 {
   size(800, 600);
   rectMode(CENTER);
-  player = new Player(new PVector(width/2, height / 2), 20);
-  platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 20, 0);
+  player = new Player();
+  platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
   platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
   collisionHandler = new CollisionHandler();
   
@@ -19,7 +19,7 @@ void setup()
 void update()
 {
   collisionHandler.update();
-  player.update();
+  player.movementUpdate();
 }
 
 void draw()
