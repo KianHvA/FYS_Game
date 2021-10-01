@@ -1,4 +1,4 @@
-Player player;//Hallo
+Player player;
 CollisionHandler collisionHandler;
 BaseLevelSegment[] platforms = new BaseLevelSegment[2];
 
