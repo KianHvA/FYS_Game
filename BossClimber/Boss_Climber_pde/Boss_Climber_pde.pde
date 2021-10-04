@@ -1,6 +1,7 @@
 Player player;
 CollisionHandler collisionHandler;
 BaseLevelSegment[] platforms = new BaseLevelSegment[2];
+HealthBar healthbar;
 
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
@@ -25,6 +26,7 @@ void update()
 void draw()
 {
   update();   
+  healthbar.draw();
   background(0);
   for (int i = 0; i < platforms.length; i++)
     {
