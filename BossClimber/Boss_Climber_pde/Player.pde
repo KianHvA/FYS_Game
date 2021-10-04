@@ -28,15 +28,18 @@ class Player {
     }
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
-
-    if (keysPressed[LEFT])
-    {
-      velocity.x = -1;
-    } else if (keysPressed[RIGHT])
-    {
-      velocity.x = 1;
-    } else
-    {
+    if (!hasCollision) {
+      if (keysPressed[LEFT])
+      {
+        velocity.x = -1;
+      } else if (keysPressed[RIGHT])
+      {
+        velocity.x = 1;
+      } else
+      {
+        velocity.x = lerp(velocity.x, 0, 0.01);
+      }
+    } else {
       velocity.x = 0;
     }
 
