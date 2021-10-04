@@ -43,7 +43,7 @@ class Player {
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0)
     {
-      velocity.y = -5;
+      velocity.y = -2;
       hasDoubleJumped = true;
     }
   }
