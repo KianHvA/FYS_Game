@@ -18,9 +18,13 @@ class Player {
   }
   void movementUpdate()
   {
+    checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+    hasCollision = collisionHandler.hit;
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
+    } else {
+      player.collideWithPlatform();
     }
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
@@ -46,6 +50,10 @@ class Player {
       velocity.y = -2;
       hasDoubleJumped = true;
     }
+  }
+
+  void checkCollision(float objectX, float objectY, float objectRadius) {
+    collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
 
   void collideWithPlatform()

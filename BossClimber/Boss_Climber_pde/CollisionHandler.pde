@@ -1,21 +1,29 @@
-class CollisionHandler //<>//
+/* //<>//
+  Welkom bij de Collision Class, dit is hoe je hem gebruikt:
+  
+  1. maak een collision boolean aan in de global variables:
+  boolean hasCollision = false;
+  2. Roep deze functie en variable aan in de update loop:
+  checkCollision(float objectX, float objectY, float objectRadius);
+  hasCollision = collisionHandler.hit;
+  3. vervang "float objectX, float objectY, float objectRadius" 
+  in de functie checkCollision met de positie X en Y en de hoogte/radius van het object.
+  4. gebruik nu de hasCollision boolean in jou code om te bepalen wat er gebeurt als het object collide
+
+  De collision is nu alleen nog voor de platforms, als je wilt dat het ook met andere objecten gaat werken stuur me even je code en ik zal proberen het 
+  ook te laten werken met die code.
+*/
+class CollisionHandler
 {
   boolean hit = false;
   PVector platformHitPos;
   float platformHeight;
   boolean[] hitPlatform = new boolean[platforms.length];
   PVector posBeforeCollision;
-  //player && floor
-  void update()
-  {  
-    checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
-    if (hit)
-    {
-      player.collideWithPlatform();
-    } else { 
-      player.hasCollision = false;
-    }
-  }
+  //void update()
+  //{  
+  //  //niet in gebruik 
+  //}
 
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
