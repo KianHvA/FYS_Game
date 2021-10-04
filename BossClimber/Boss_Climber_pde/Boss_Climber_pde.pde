@@ -18,7 +18,6 @@ void setup()
 
 void update()
 {
-  collisionHandler.update();
   player.movementUpdate();
 }
 
