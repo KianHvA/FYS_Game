@@ -6,7 +6,7 @@ HealthBar healthbar;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 
-void setup()
+void setup() 
 {
   size(800, 600);
   rectMode(CENTER);
@@ -14,6 +14,7 @@ void setup()
   platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
   platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
   collisionHandler = new CollisionHandler();//hallo
+  healthbar = new HealthBar();
   
 }
 
