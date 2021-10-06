@@ -11,13 +11,11 @@ class Dragon {
     this.diameter = diameter;
     startx = x;
     starty = y;
-    
-   
-    
   }
-}
 
 
 
-void update() {
+
+  void update() {
+  }
 }
