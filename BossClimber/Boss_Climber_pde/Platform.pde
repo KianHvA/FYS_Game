@@ -1,12 +1,13 @@
-int NPLATFORMS = 100;
+
 class Platform { 
+  int NPLATFORMS = 100;
   Platform [] platforms = new Platform[NPLATFORMS];
   float x = random(200, 550); 
   float y = random(200, 550); 
   float w = 200;
   float h = 15; 
   float rGet = random(1, 5);
-
+  
   void teken() {
     //linksboven = 1 
     //links onder = 2 

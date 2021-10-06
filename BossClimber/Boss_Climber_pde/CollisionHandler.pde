@@ -17,45 +17,46 @@ class CollisionHandler
 {
   boolean hit = false;
   boolean hitPlayer = false;
+  boolean hitLadder = false;
   PVector platformHitPos;
   float platformHeight;
-  boolean[] hitPlatform = new boolean[platforms.length];
+  boolean[] hitPlatform = new boolean[level.platform.length];
   PVector posBeforeCollision;
 
   //object met player collision
 
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x,  player.sizePlayer.y);
+    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
   }
-
 
 
 
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    for (int i = 0; i < platforms.length; i++)
+    for (int i = 0; i < level.platform.length; i++)
     {
-      BaseLevelSegment platform = platforms[i];
-      hit = circleRect(objectX, objectY, objectRadius, platform.platformPos.x, platform.platformPos.y, platform.sizeX, platform.sizeY);
+      Platform platform = level.platform[i];
+      hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
+
       if (hit) {
-        swap(platforms, 0, i);
+        swap(level.platform, 0, i);
       } else {
-        swap(platforms, i, 0);
+        swap(level.platform, i, 0);
       }
     }
   }
 
   void checkPlatformUnderground(float objectX, float objectY, float objectRadius)
   {
-    for (int i = 0; i < platforms.length; i++)
+    for (int i = 0; i < level.platform.length; i++)
     {
-      BaseLevelSegment platform = platforms[i];
-      hit = circleRect(objectX, objectY, objectRadius, platform.platformPos.x, platform.platformPos.y, platform.sizeX, platform.sizeY);
+      Platform platform = level.platform[i];
+      hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
       if (hit) {
-        swap(platforms, 0, i);
+        swap(level.platform, 0, i);
       } else {
-        swap(platforms, i, 0);
+        swap(level.platform, i, 0);
       }
     }
   }
@@ -86,8 +87,8 @@ class CollisionHandler
       return false;
     }
   }
-  void swap(BaseLevelSegment[] input, int index_A, int index_B) {
-    BaseLevelSegment temp = input[index_A];
+  void swap(Platform[] input, int index_A, int index_B) {
+    Platform temp = input[index_A];
 
     input[index_A] = input[index_B];
     input[index_B] = temp;
