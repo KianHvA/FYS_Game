@@ -36,7 +36,6 @@ class Jumpboost {
 
   void jumpboostEq() {
     if (pickedUp) {
-      player.velocity.y = -10;
       Location = new PVector(width * 2, height * 2);
       GRAVITYJB = 0;
       timerJB.x++;
@@ -44,7 +43,6 @@ class Jumpboost {
     }
     if (timerJB.x == 600) {
       println("hoi");
-      player.velocity.y = -5;
       timerJB.x = 0;
       pickedUp = false;
     }

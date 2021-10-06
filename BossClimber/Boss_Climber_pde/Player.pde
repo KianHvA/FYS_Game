@@ -48,7 +48,7 @@ class Player {
       hasCollision = false;
       velocity.y = -5;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && jumpboost.pickedUp)
     {
       velocity.y = -2;
       hasDoubleJumped = true;

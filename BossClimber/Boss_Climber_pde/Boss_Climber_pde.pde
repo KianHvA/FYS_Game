@@ -3,6 +3,7 @@ CollisionHandler collisionHandler;
 BaseLevelSegment[] platforms = new BaseLevelSegment[2];
 HealthBar healthbar;
 Jumpboost jumpboost;
+Level level;
 
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
@@ -11,10 +12,11 @@ void setup()
 {
   size(800, 600);
   rectMode(CENTER);
+  level = new Level();
   player = new Player();
   platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
   platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
-  collisionHandler = new CollisionHandler();//hallo
+  collisionHandler = new CollisionHandler();//hallo. hi.
   healthbar = new HealthBar();
   jumpboost = new Jumpboost();
   
@@ -22,6 +24,7 @@ void setup()
 
 void update()
 {
+  level.setup();
   player.movementUpdate();
   jumpboost.update();
 }
@@ -36,7 +39,7 @@ void draw()
          BaseLevelSegment platform = platforms[i];
          platform.draw();
     }
-    
+    level.draw();
     player.draw();
     jumpboost.draw();
 }
