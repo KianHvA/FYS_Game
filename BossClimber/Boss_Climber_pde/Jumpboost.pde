@@ -16,20 +16,20 @@ class Jumpboost {
   }
   void draw() {
     jumpboostEq();
-    GRAVITYJB = 0.98;
+    GRAVITYJB = 0.98; 
     Location.y += GRAVITYJB;
     rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
 
     size = 50;
   }
   void update() {
-    //collisionHandler.checkCollision(Location.x, Location.y, size);
-    //{
-    //  hasCollision = collisionHandler.hit;
-    //  if (hasCollision) {
-    //    pickedUp = true;
-    //  }
-    //}
+    collisionHandler.checkCollisionPlayer(Location.x, Location.y, size);
+    {
+      hasCollision = collisionHandler.hitPlayer;
+      if (hasCollision) {
+        pickedUp = true;
+      }
+    }
   }
 
 
