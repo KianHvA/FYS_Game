@@ -66,28 +66,4 @@ class Player {
     hasDoubleJumped = false;
     posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
   }
-
-
-  //void movementUpdate() {
-  //  //bewegen
-  //  if(!co.hasCollision) {
-  //    velocity.y += gravity;
-  //    }
-  //  posPlayer.x += velocity.x;
-  //  posPlayer.y += velocity.y;
-  //  if (keysPressed[LEFT]) {
-  //    velocity.x = -10;
-  //  } else if (keysPressed[RIGHT]) {
-  //    velocity.x = 10;
-  //  } else if (co.hasCollision && keysPressed[UP]) {
-  //    println(velocity.y);
-  //    velocity.y -= 40;
-  //    co.hasCollision = false;
-  //  } else if (keysPressed[DOWN]) {
-  //    println("hoi");
-  //  } else { 
-  //    velocity.x = 0; 
-  //    velocity.y = 0;
-  //  };
-  //}
 }
