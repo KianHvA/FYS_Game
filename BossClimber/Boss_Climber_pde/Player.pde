@@ -53,6 +53,13 @@ class Player {
       velocity.y = -2;
       hasDoubleJumped = true;
     }
+    if (collisionHandler.hitLadder && keysPressed[UP]) {
+      velocity.y = -2;
+    } else if (collisionHandler.hitLadder && keysPressed[DOWN]) {
+      velocity.y = 2;
+    } else if (collisionHandler.hitLadder) {
+     velocity.y = 0; 
+    }
   }
 
   void checkCollision(float objectX, float objectY, float objectRadius) {
