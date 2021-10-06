@@ -12,7 +12,7 @@ void setup()
   player = new Player();
   platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
   platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
-  collisionHandler = new CollisionHandler();
+  collisionHandler = new CollisionHandler();//hallo
   
 }
 
