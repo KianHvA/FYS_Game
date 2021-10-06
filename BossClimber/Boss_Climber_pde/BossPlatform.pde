@@ -9,6 +9,7 @@ float qh = ry+rh;
 void Bossplatform() {
   fill(147, 147, 147);
   noStroke();
+  rectMode(CORNER);
   rect(x1, ry, rw, rh);
 quad(qx1, ry, qx1, qh, width/2+120,qh+rh, width/2+120,qh);    
 }
