@@ -16,8 +16,8 @@ void setup()
   player = new Player();
   platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
   platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
-  collisionHandler = new CollisionHandler();//hallo. hi.
-  healthbar = new HealthBar();
+  collisionHandler = new CollisionHandler();
+  healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   jumpboost = new Jumpboost();
   
 }
@@ -32,7 +32,7 @@ void update()
 void draw()
 {
   update();   
-  healthbar.draw();
+  
   background(0);
   for (int i = 0; i < platforms.length; i++)
     {
@@ -42,6 +42,7 @@ void draw()
     level.draw();
     player.draw();
     jumpboost.draw();
+    healthbar.draw();
 }
 
 void keyPressed()
