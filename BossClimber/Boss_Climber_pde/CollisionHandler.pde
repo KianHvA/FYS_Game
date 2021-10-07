@@ -1,4 +1,4 @@
-/* //<>//
+/* //<>// //<>//
   Welkom bij de Collision Class, dit is hoe je hem gebruikt: 
  
  1. maak een collision boolean aan in de global variables:
@@ -77,7 +77,7 @@ class CollisionHandler
     float distY = objectY-testY;
     float distance = sqrt( (distX*distX) + (distY*distY) );
     println( rh + " " + distance +  " " + radius );
-    // if the distance is less than the radius, collision!
+    //als distanse kleiner is dan de radus dan heb je collision
     if (distance <= radius) {
       platformHitPos = new PVector(rx, ry);
       posBeforeCollision = new PVector(objectX, objectY);
