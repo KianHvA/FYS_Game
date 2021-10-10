@@ -1,6 +1,6 @@
 Player player;
 CollisionHandler collisionHandler;
-BaseLevelSegment[] platforms = new BaseLevelSegment[2];
+Platform platforms;
 HealthBar healthbar;
 Jumpboost jumpboost;
 Level level;
@@ -14,12 +14,10 @@ void setup()
   rectMode(CENTER);
   level = new Level();
   player = new Player();
-  platforms[0] = new BaseLevelSegment(new PVector(width /3, height-100), 100, 10, 0);
-  platforms[1] = new BaseLevelSegment(new PVector(width /2, height-200), 100, 10, 0);
+  platforms = new Platform();
   collisionHandler = new CollisionHandler();
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   jumpboost = new Jumpboost();
-  
 }
 
 void update()
@@ -32,27 +30,23 @@ void update()
 void draw()
 {
   update();   
-  
+
   background(0);
-  for (int i = 0; i < platforms.length; i++)
-    {
-         BaseLevelSegment platform = platforms[i];
-         platform.draw();
-    }
-    level.draw();
-    player.draw();
-    jumpboost.draw();
-    healthbar.draw();
+  platforms.draw();
+  level.draw();
+  player.draw();
+  jumpboost.draw();
+  healthbar.draw();
 }
 
 void keyPressed()
 {
-    //we hebben een toets ingedrukt.
-    keysPressed[keyCode] = true;
+  //we hebben een toets ingedrukt.
+  keysPressed[keyCode] = true;
 }
 
 void keyReleased()
 {
-    //we hebben een toets losgelaten.
-    keysPressed[keyCode] = false;
+  //we hebben een toets losgelaten.
+  keysPressed[keyCode] = false;
 }

@@ -1,14 +1,14 @@
-
 class Platform { 
   int NPLATFORMS = 100;
-  Platform [] platforms = new Platform[NPLATFORMS];
+  Platform platforms;
   float x = random(200, 550); 
   float y = random(200, 550); 
   float w = 200;
   float h = 15; 
   float rGet = random(1, 5);
-  
-  void teken() {
+  PVector[] Vertexes = new PVector[64];
+
+  void draw() {
     //linksboven = 1 
     //links onder = 2 
     //rechtsonder = 3 
@@ -22,6 +22,12 @@ class Platform {
       int y2 = y1 + 25;
       noStroke();
       quad(x1, y, x1, y1, x2+120, y2+25, x2+120, y1+25);
+      for (int i = 0; i < Vertexes.length; i = i + 4) {
+        Vertexes[i] = new PVector(x1, y);
+        Vertexes[i + 1] = new PVector(x1, y1);
+        Vertexes[i + 2] = new PVector(x2+120, y2+25);
+        Vertexes[i + 3] = new PVector(x2+120, y1+25);
+      }
       for (int z = 801; z>0; z = z- 200) {//rechterplatform
         quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
       }

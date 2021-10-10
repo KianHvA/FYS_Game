@@ -31,7 +31,7 @@ class Player {
     if (!hasCollision) {
       if (keysPressed[LEFT])
       {
-        velocity.x = -1;
+        velocity.x = -5;
       } else if (keysPressed[RIGHT])
       {
         velocity.x = 1;
