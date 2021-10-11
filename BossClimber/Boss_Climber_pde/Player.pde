@@ -28,17 +28,16 @@ class Player {
     }
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
-    if (!hasCollision) {
-      if (keysPressed[LEFT])
-      {
-        velocity.x = -5;
-      } else if (keysPressed[RIGHT])
-      {
-        velocity.x = 1;
-      } else
-      {
-        velocity.x = lerp(velocity.x, 0, 0.01);
-      }
+
+    if (keysPressed[LEFT])
+    {
+      velocity.x = -5;
+    } else if (keysPressed[RIGHT])
+    {
+      velocity.x = 1;
+    } else if (!hasCollision)
+    {
+      velocity.x = lerp(velocity.x, 0, 0.01);
     } else {
       velocity.x = 0;
     }
@@ -50,7 +49,7 @@ class Player {
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && jumpboost.pickedUp)
     {
-      velocity.y = -2;
+      velocity.y = -5;
       hasDoubleJumped = true;
     }
     if (collisionHandler.hitLadder && keysPressed[UP]) {
@@ -58,7 +57,7 @@ class Player {
     } else if (collisionHandler.hitLadder && keysPressed[DOWN]) {
       velocity.y = 2;
     } else if (collisionHandler.hitLadder) {
-     velocity.y = 0; 
+      velocity.y = 0;
     }
   }
 
