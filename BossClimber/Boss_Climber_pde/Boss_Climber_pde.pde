@@ -37,6 +37,7 @@ void draw()
   player.draw();
   jumpboost.draw();
   healthbar.draw();
+  ellipse(collisionHandler.closestX, collisionHandler.closestY, 20, 20);
 }
 
 void keyPressed()

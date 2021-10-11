@@ -22,6 +22,9 @@ class CollisionHandler
   float platformHeight;
   boolean[] hitPlatform = new boolean[100];
   PVector posBeforeCollision;
+  
+  float closestX;
+    float closestY;
 
   //object met player collision
 
@@ -117,8 +120,8 @@ class CollisionHandler
     float dot = ( ((cx-x1)*(x2-x1)) + ((cy-y1)*(y2-y1)) ) / pow(len, 2);
 
     // find the closest point on the line
-    float closestX = x1 + (dot * (x2-x1));
-    float closestY = y1 + (dot * (y2-y1));
+    /*float*/ closestX = x1 + (dot * (x2-x1));
+    /*float*/ closestY = y1 + (dot * (y2-y1));
     platformHitPos = new PVector(closestX, closestY);
     platformHeight = 10;
     // is this point actually on the line segment?
