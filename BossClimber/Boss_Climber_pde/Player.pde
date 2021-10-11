@@ -1,7 +1,7 @@
 class Player {
 
   //variables
-  PVector posPlayer = new PVector(width/2, height/2);
+  PVector posPlayer = new PVector(width/2, height/1.5);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
