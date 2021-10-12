@@ -1,7 +1,7 @@
 class Player {
 
   //variables
-  PVector posPlayer = new PVector(width/2, height/1.5);
+  PVector posPlayer = new PVector(width/2, height/2);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
@@ -31,7 +31,7 @@ class Player {
 
     if (keysPressed[LEFT])
     {
-      velocity.x = -5;
+      velocity.x = -1;
     } else if (keysPressed[RIGHT])
     {
       velocity.x = 1;

@@ -23,21 +23,23 @@ void setup()
 void update()
 {
   level.setup();
+  
   player.movementUpdate();
   jumpboost.update();
+  collisionHandler.update();
 }
 
 void draw()
 {
+  background(0);
   update();   
 
-  background(0);
+  
   platforms.draw();
   level.draw();
   player.draw();
   jumpboost.draw();
   healthbar.draw();
-  ellipse(collisionHandler.closestX, collisionHandler.closestY, 20, 20);
 }
 
 void keyPressed()

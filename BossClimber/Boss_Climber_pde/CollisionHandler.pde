@@ -22,14 +22,13 @@ class CollisionHandler
   float platformHeight;
   boolean[] hitPlatform = new boolean[100];
   PVector posBeforeCollision;
-  
-  float closestX;
-    float closestY;
+  void update() {
+    hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) || polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+  }
 
   //object met player collision
-
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
+    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y) || polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
   }
 
 
@@ -37,7 +36,7 @@ class CollisionHandler
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    hit = polyCircle(platforms.Vertexes, objectX, objectY, objectRadius);
+    hit = polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius);
     //for (int i = 0; i < level.platform.length; i++)
     //{
     //  Platform platform = level.platform[i];
@@ -50,19 +49,19 @@ class CollisionHandler
     //}
   }
 
-  void checkPlatformUnderground(float objectX, float objectY, float objectRadius)
-  {
-    //for (int i = 0; i < level.platform.length; i++)
-    //{
-    //  Platform platform = level.platform[i];
-    //  hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
-    //  if (hit) {
-    //    swap(level.platform, 0, i);
-    //  } else {
-    //    swap(level.platform, i, 0);
-    //  }
-    //}
-  }
+  //void checkPlatformUnderground(float objectX, float objectY, float objectRadius)
+  //{
+  //for (int i = 0; i < level.platform.length; i++)
+  //{
+  //  Platform platform = level.platform[i];
+  //  hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
+  //  if (hit) {
+  //    swap(level.platform, 0, i);
+  //  } else {
+  //    swap(level.platform, i, 0);
+  //  }
+  //}
+  //}
 
   // POLYGON/CIRCLE
   boolean polyCircle(PVector[] vertices, float cx, float cy, float r) {
@@ -120,8 +119,9 @@ class CollisionHandler
     float dot = ( ((cx-x1)*(x2-x1)) + ((cy-y1)*(y2-y1)) ) / pow(len, 2);
 
     // find the closest point on the line
-    /*float*/ closestX = x1 + (dot * (x2-x1));
-    /*float*/ closestY = y1 + (dot * (y2-y1));
+    float closestX = x1 + (dot * (x2-x1));
+    float closestY = y1 + (dot * (y2-y1));
+    ellipse(closestX, closestY, 20, 20);
     platformHitPos = new PVector(closestX, closestY);
     platformHeight = 10;
     // is this point actually on the line segment?
@@ -249,8 +249,14 @@ class CollisionHandler
     }
   }
 }
-void swap(Platform[] input, int index_A, int index_B) {
+void swapPlatform(Platform[] input, int index_A, int index_B) {
   Platform temp = input[index_A];
+
+  input[index_A] = input[index_B];
+  input[index_B] = temp;
+}
+void swapPVector(PVector[] input, int index_A, int index_B) {
+  PVector temp = input[index_A];
 
   input[index_A] = input[index_B];
   input[index_B] = temp;
