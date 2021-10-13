@@ -18,6 +18,7 @@ class Player {
   }
   void movementUpdate()
   {
+    
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
     hasCollision = collisionHandler.hit;
     if (!hasCollision)

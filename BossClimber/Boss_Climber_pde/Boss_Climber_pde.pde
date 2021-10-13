@@ -12,6 +12,7 @@ void setup()
 {
   size(800, 600);
   rectMode(CENTER);
+  frameRate(60);
   level = new Level();
   player = new Player();
   platforms = new Platform();

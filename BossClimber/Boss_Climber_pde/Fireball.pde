@@ -1,10 +1,11 @@
-class Fireball{
+class Fireball {
 
   //variables
   PVector posFireball = new PVector(width/2, height/2);
   PVector sizeFireball = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
+  private float timer = 0;
   boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false;
 
   void draw() {
@@ -28,8 +29,11 @@ class Fireball{
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
+    timer += 1;
+      if (timer >= frameRate * 5) {
+    }
   }
-    
+
 
   void checkCollision(float objectX, float objectY, float objectRadius) {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
