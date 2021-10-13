@@ -74,7 +74,7 @@ class Player {
     //if (collisionHandler.platformHitPos.y > posPlayer.y) {
     //  posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //} else {
-      //if(posPlayer.y == null)
+      //if(posPlayer.y != match(posPlayer.y, "<tag>(.*?)</tag>");)
       //float preY = posPlayer.y;
       posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //}
