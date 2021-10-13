@@ -3,7 +3,7 @@ class Fireball {
   //variables
   PVector posFireball = new PVector(200, 50);
   PVector sizeFireball = new PVector(20, 20);
-  PVector newPosFireball = new PVector(posFireball.x, posFireball.y);
+  PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
   private float timer = 0;
@@ -32,12 +32,21 @@ class Fireball {
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
-    timer += 1;
-      if (timer >= frameRate * 5) {
+    timer ++;
+    println(timer);
+      if (timer >= 300) {
         //spawn fireBall
-        newPosFireball.x = posFireball.x;
-        newPosFireball.y = posFireball.y;
+        posFireball.x = newPosFireball.x;
+        posFireball.y = newPosFireball.y;
+        timer = 0;
+        respawn();
     }
+  }
+  
+  void respawn() {
+    //Fireball
+    fill(255, 0, 0);
+    ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
   }
 
 
