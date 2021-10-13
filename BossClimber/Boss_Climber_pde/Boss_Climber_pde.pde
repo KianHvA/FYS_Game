@@ -21,12 +21,11 @@ void setup()
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   jumpboost = new Jumpboost();
   fireballs = new Fireball();
+  level.setup();
 }
 
 void update()
 {
-  level.setup();
-  
   player.movementUpdate();
   jumpboost.update();
   collisionHandler.update();
@@ -38,7 +37,7 @@ void draw()
   background(0);
   update();   
 
-  
+
   platforms.draw();
   level.draw();
   player.draw();

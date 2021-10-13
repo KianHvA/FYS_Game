@@ -16,19 +16,25 @@
 class CollisionHandler
 {
   boolean hit = false;
+  boolean hitWall = false;
   boolean hitPlayer = false;
   boolean hitLadder = false;
   PVector platformHitPos;
   float platformHeight;
   boolean[] hitPlatform = new boolean[100];
   PVector posBeforeCollision;
+  int wallThickness = width/12;
+  
   void update() {
-    hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) || polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+    hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
+      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
+      polyCircle(vertexesBossPlatform, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
   }
 
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
+     hitWall = wallCollider(objectX, objectRadius, wallThickness);
   }
 
 
@@ -36,36 +42,12 @@ class CollisionHandler
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) == true || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) == true) {
+    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) == true || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) == true || polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) {
       hit = true;
     } else {
       hit = false;
     }
-    //for (int i = 0; i < level.platform.length; i++)
-    //{
-    //  Platform platform = level.platform[i];
-    //hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
-
-    //if (hit) {
-    //  swap(level.platform, 0, i);
-    //} else {
-    //  swap(level.platform, i, 0);
-    //}
   }
-
-  //void checkPlatformUnderground(float objectX, float objectY, float objectRadius)
-  //{
-  //for (int i = 0; i < level.platform.length; i++)
-  //{
-  //  Platform platform = level.platform[i];
-  //  hit = circleRect(objectX, objectY, objectRadius, platform.x, platform.y, platform.w, platform.h);
-  //  if (hit) {
-  //    swap(level.platform, 0, i);
-  //  } else {
-  //    swap(level.platform, i, 0);
-  //  }
-  //}
-  //}
 
   // POLYGON/CIRCLE
   boolean polyCircle(PVector[] vertices, float cx, float cy, float r) {
@@ -74,7 +56,7 @@ class CollisionHandler
     // the next vertex in the list
     int next = 0;
     for (int current=0; current < vertices.length; current++) {
-      
+
       // get next vertex in list
       // if we've hit the end, wrap around to 0
       next = current+1;
@@ -250,6 +232,13 @@ class CollisionHandler
       return false;
     }
   }
+}
+
+boolean wallCollider(float objectX, float radius, float wallThickness) {
+  if (objectX >  66|| objectX - radius > width - wallThickness) {
+    return true;
+  }
+  return false;
 }
 void swapPlatform(Platform[] input, int index_A, int index_B) {
   Platform temp = input[index_A];

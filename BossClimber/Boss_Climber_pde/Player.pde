@@ -1,11 +1,11 @@
-class Player {
+class Player { //<>//
 
   //variables
   PVector posPlayer = new PVector(width/2, height/2);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
-  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false;
+  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
 
   void draw() {
     //modes
@@ -21,11 +21,15 @@ class Player {
     println(posPlayer);
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
     hasCollision = collisionHandler.hit;
+    wallCollison = collisionHandler.hitWall;
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
       player.collideWithPlatform();
+    }
+    if (wallCollison) {
+      velocity.x = -velocity.x; //werkt alleen als ik niet op een platform sta.
     }
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
@@ -65,8 +69,7 @@ class Player {
   void checkCollision(float objectX, float objectY, float objectRadius) {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
-
-  void collideWithPlatform() //<>//
+  void collideWithPlatform()
   {
     velocity.y = 0;
     hasCollision = true;
@@ -74,10 +77,9 @@ class Player {
     //if (collisionHandler.platformHitPos.y > posPlayer.y) {
     //  posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //} else {
-      //if(posPlayer.y != match(posPlayer.y, "<tag>(.*?)</tag>");)
-      //float preY = posPlayer.y;
-      posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    //if(posPlayer.y != match(posPlayer.y, "<tag>(.*?)</tag>");)
+    //float preY = posPlayer.y;
+    posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //}
-    
   }
 }

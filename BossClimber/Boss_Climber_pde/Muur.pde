@@ -1,5 +1,3 @@
-
-
 void muur() {
   noStroke();
   int breedte = width/12; // breedte van de muur
