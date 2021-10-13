@@ -31,6 +31,7 @@ class Fireball {
     posFireball.y += velocity.y;
     timer += 1;
       if (timer >= frameRate * 5) {
+        //spawn fireBall
     }
   }
 

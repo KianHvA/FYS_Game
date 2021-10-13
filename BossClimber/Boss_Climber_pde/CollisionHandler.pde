@@ -124,7 +124,7 @@ class CollisionHandler
     // find the closest point on the line
     float closestX = x1 + (dot * (x2-x1));
     float closestY = y1 + (dot * (y2-y1));
-    ellipse(closestX, closestY, 20, 20);
+    //ellipse(closestX, closestY, 20, 20);
     platformHitPos = new PVector(closestX, closestY);
     platformHeight = 10;
     // is this point actually on the line segment?
@@ -136,7 +136,7 @@ class CollisionHandler
     // on the line
     fill(255, 0, 0);
     noStroke();
-    ellipse(closestX, closestY, 20, 20);
+    //ellipse(closestX, closestY, 20, 20);
 
     // get distance to closest point
     distX = closestX - cx;

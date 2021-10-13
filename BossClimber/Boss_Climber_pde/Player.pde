@@ -18,7 +18,7 @@ class Player {
   }
   void movementUpdate()
   {
-    
+    println(posPlayer);
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
     hasCollision = collisionHandler.hit;
     if (!hasCollision)
@@ -74,6 +74,8 @@ class Player {
     //if (collisionHandler.platformHitPos.y > posPlayer.y) {
     //  posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //} else {
+      //if(posPlayer.y == null)
+      //float preY = posPlayer.y;
       posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     //}
     
