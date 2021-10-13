@@ -7,12 +7,8 @@ class Fireball {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
   private float timer = 0;
-<<<<<<< HEAD
   boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
-=======
   float damageFireball = 33;
-  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false;
->>>>>>> 5acd962044d4507b1aecf43936a2755e76b87db4
 
   void draw() {
     //modes
@@ -37,14 +33,6 @@ class Fireball {
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
-    timer ++;
-<<<<<<< HEAD
-      if (timer >= frameRate * 5) {
-        //spawn fireBall
-        newPosFireball.x = posFireball.x;
-        newPosFireball.y = posFireball.y;
-        timer = 0;
-=======
     println(timer);
       if (timer >= 300) {
         //spawn fireBall
@@ -58,7 +46,6 @@ class Fireball {
         //spawn fireBall
         posFireball.x  = newPosFireball.x;
         posFireball.y  = newPosFireball.y;
->>>>>>> 5acd962044d4507b1aecf43936a2755e76b87db4
     }
   }
   

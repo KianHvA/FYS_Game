@@ -44,14 +44,10 @@ void update()
 void draw()
 {
   background(0);
-  update();   
-
-<<<<<<< HEAD
-=======
+  update();
   for (int i =0; i < fireballs.length; i++) { 
     fireballs[i].draw();
   }
->>>>>>> 5acd962044d4507b1aecf43936a2755e76b87db4
 
   platforms.draw();
   level.draw();
