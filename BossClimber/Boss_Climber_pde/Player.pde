@@ -65,11 +65,16 @@ class Player {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
 
-  void collideWithPlatform()
+  void collideWithPlatform() //<>//
   {
     velocity.y = 0;
     hasCollision = true;
     hasDoubleJumped = false;
-    posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    //if (collisionHandler.platformHitPos.y > posPlayer.y) {
+    //  posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    //} else {
+      posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    //}
+    
   }
 }

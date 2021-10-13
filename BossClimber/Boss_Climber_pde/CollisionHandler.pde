@@ -28,7 +28,7 @@ class CollisionHandler
 
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y) || polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
   }
 
 
@@ -36,7 +36,11 @@ class CollisionHandler
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    hit = polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius);
+    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) == true || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) == true) {
+      hit = true;
+    } else {
+      hit = false;
+    }
     //for (int i = 0; i < level.platform.length; i++)
     //{
     //  Platform platform = level.platform[i];
@@ -70,7 +74,7 @@ class CollisionHandler
     // the next vertex in the list
     int next = 0;
     for (int current=0; current < vertices.length; current++) {
-
+      
       // get next vertex in list
       // if we've hit the end, wrap around to 0
       next = current+1;
@@ -80,7 +84,6 @@ class CollisionHandler
       // this makes our if statement a little cleaner
       PVector vc = vertices[current];    // c for "current"
       PVector vn = vertices[next];       // n for "next"
-
       // check for collision between the circle and
       // a line formed between the two vertices
       boolean collision = lineCircle(vc.x, vc.y, vn.x, vn.y, cx, cy, r);
@@ -237,7 +240,6 @@ class CollisionHandler
     float distX = objectX-testX;
     float distY = objectY-testY;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-    println( rh + " " + distance +  " " + radius );
     //als distanse kleiner is dan de radus dan heb je collision
     if (distance <= radius) {
       platformHitPos = new PVector(rx, ry);
