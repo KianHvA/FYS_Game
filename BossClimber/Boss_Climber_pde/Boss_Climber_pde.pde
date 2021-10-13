@@ -4,7 +4,7 @@ Platform platforms;
 HealthBar healthbar;
 Jumpboost jumpboost;
 Level level;
-Fireball fireballs;
+Fireball[] fireballs;
 
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
@@ -20,8 +20,12 @@ void setup()
   collisionHandler = new CollisionHandler();
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   jumpboost = new Jumpboost();
-  fireballs = new Fireball();
+  fireballs = new Fireball[20];
+  
   level.setup();
+  for (int i =0; i != fireballs.length; i++) { 
+    fireballs[i] = new Fireball();
+  }
 }
 
 void update()
@@ -29,7 +33,12 @@ void update()
   player.movementUpdate();
   jumpboost.update();
   collisionHandler.update();
-  fireballs.movementUpdate();
+  for (int i =0; i != fireballs.length; i++) { 
+    fireballs[i].movementUpdate();
+  }
+  for (int i = 0; i != fireballs.length; i++) {
+    fireballs[i].respawn();
+  }
 }
 
 void draw()
@@ -37,13 +46,18 @@ void draw()
   background(0);
   update();   
 
+<<<<<<< HEAD
+=======
+  for (int i =0; i < fireballs.length; i++) { 
+    fireballs[i].draw();
+  }
+>>>>>>> 5acd962044d4507b1aecf43936a2755e76b87db4
 
   platforms.draw();
   level.draw();
   player.draw();
   jumpboost.draw();
   healthbar.draw();
-  fireballs.draw();
 }
 
 void keyPressed()
