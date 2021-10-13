@@ -39,16 +39,16 @@ class Jumpboost {
       Location = new PVector(width * 2, height * 2);
       GRAVITYJB = 0;
       timerJB.x++;
-      println(timerJB.x);
+      //println(timerJB.x);
     }
     if (timerJB.x == 600) {
-      println("hoi");
+      //println("hoi");
       timerJB.x = 0;
       pickedUp = false;
     }
     if (!pickedUp) {
       timerJB.y++;
-      println(timerJB.y);
+      //println(timerJB.y);
     }
     if (timerJB.y == 600) {
       reset();
