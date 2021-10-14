@@ -33,7 +33,6 @@ class Fireball {
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
-    println(timer);
       if (timer >= 300) {
         //spawn fireBall
         posFireball.x = newPosFireball.x;

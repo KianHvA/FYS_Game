@@ -18,18 +18,20 @@ class Player { //<>//
   }
   void movementUpdate()
   {
-    println(posPlayer);
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
     hasCollision = collisionHandler.hit;
     wallCollison = collisionHandler.hitWall;
+    if (wallCollison) {
+      
+    }
+    posPlayer.x += velocity.x;
+    posPlayer.y += velocity.y;
+
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
       player.collideWithPlatform();
-    }
-    if (wallCollison) {
-      velocity.x = -velocity.x; //werkt alleen als ik niet op een platform sta.
     }
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
@@ -37,10 +39,12 @@ class Player { //<>//
     if (keysPressed[LEFT])
     {
       velocity.x = -1;
-    } else if (keysPressed[RIGHT])
+    } else 
+    if (keysPressed[RIGHT])
     {
       velocity.x = 1;
-    } else if (!hasCollision)
+    } else 
+    if (!hasCollision)
     {
       velocity.x = lerp(velocity.x, 0, 0.01);
     } else {
@@ -50,11 +54,11 @@ class Player { //<>//
     if (hasCollision && keysPressed[UP])
     {
       hasCollision = false;
-      velocity.y = -5;
+      velocity.y = -2;
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && jumpboost.pickedUp)
     {
-      velocity.y = -5;
+      velocity.y = -2;
       hasDoubleJumped = true;
     }
     if (collisionHandler.hitLadder && keysPressed[UP]) {
@@ -74,12 +78,6 @@ class Player { //<>//
     velocity.y = 0;
     hasCollision = true;
     hasDoubleJumped = false;
-    //if (collisionHandler.platformHitPos.y > posPlayer.y) {
-    //  posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
-    //} else {
-    //if(posPlayer.y != match(posPlayer.y, "<tag>(.*?)</tag>");)
-    //float preY = posPlayer.y;
     posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
-    //}
   }
 }
