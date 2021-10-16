@@ -33,12 +33,12 @@ void update()
   player.movementUpdate();
   jumpboost.update();
   collisionHandler.update();
-  for (int i =0; i != fireballs.length; i++) { 
-    fireballs[i].movementUpdate();
-  }
-  for (int i = 0; i != fireballs.length; i++) {
-    fireballs[i].respawn();
-  }
+  //for (int i =0; i != fireballs.length; i++) { 
+  //  fireballs[i].movementUpdate();
+  //}
+  //for (int i = 0; i != fireballs.length; i++) {
+  //  fireballs[i].respawn();
+  //}
 }
 
 void draw()

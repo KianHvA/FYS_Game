@@ -1,7 +1,7 @@
 class Player { //<>//
 
   //variables
-  PVector posPlayer = new PVector(width/2, height/2);
+  PVector posPlayer = new PVector(width/2, height/2 - 10);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.098f;
@@ -22,10 +22,8 @@ class Player { //<>//
     hasCollision = collisionHandler.hit;
     wallCollison = collisionHandler.hitWall;
     if (wallCollison) {
-      
     }
-    posPlayer.x += velocity.x;
-    posPlayer.y += velocity.y;
+
 
     if (!hasCollision)
     {
@@ -33,16 +31,14 @@ class Player { //<>//
     } else {
       player.collideWithPlatform();
     }
-    posPlayer.x += velocity.x;
-    posPlayer.y += velocity.y;
 
     if (keysPressed[LEFT])
     {
-      velocity.x = -1;
+      velocity.x = -3;
     } else 
     if (keysPressed[RIGHT])
     {
-      velocity.x = 1;
+      velocity.x = 3;
     } else 
     if (!hasCollision)
     {
@@ -54,11 +50,11 @@ class Player { //<>//
     if (hasCollision && keysPressed[UP])
     {
       hasCollision = false;
-      velocity.y = -2;
+      velocity.y = -5;
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && jumpboost.pickedUp)
     {
-      velocity.y = -2;
+      velocity.y = -5;
       hasDoubleJumped = true;
     }
     if (collisionHandler.hitLadder && keysPressed[UP]) {
@@ -68,16 +64,26 @@ class Player { //<>//
     } else if (collisionHandler.hitLadder) {
       velocity.y = 0;
     }
+    posPlayer.x += velocity.x;
+    posPlayer.y += velocity.y;
   }
 
   void checkCollision(float objectX, float objectY, float objectRadius) {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
+  
   void collideWithPlatform()
   {
     velocity.y = 0;
     hasCollision = true;
     hasDoubleJumped = false;
-    posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    if (collisionHandler.platformHitPos.y > posPlayer.y) {
+      posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    } else {
+      hasCollision = false;
+      posPlayer.y = posPlayer.y + 1;
+    }
+
+    println(collisionHandler.closestHitPos);
   }
 }

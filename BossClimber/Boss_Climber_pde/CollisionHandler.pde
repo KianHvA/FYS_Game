@@ -19,12 +19,17 @@ class CollisionHandler
   boolean hitWall = false;
   boolean hitPlayer = false;
   boolean hitLadder = false;
+  boolean hitUndersidePlatform = false;
+  
+  float closestDistance;
+  PVector closestHitPos;
   PVector platformHitPos;
+  float closestPointY;
   float platformHeight;
-  boolean[] hitPlatform = new boolean[100];
   PVector posBeforeCollision;
+  
   int wallThickness = 200;
-
+  
   void update() {
     hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
       polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
@@ -36,8 +41,6 @@ class CollisionHandler
     hitWall = wallCollider(objectX, objectRadius, wallThickness);
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
   }
-
-
 
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
@@ -55,14 +58,15 @@ class CollisionHandler
     // go through each of the vertices, plus
     // the next vertex in the list
     int next = 0;
+    closestDistance = 0;
     for (int current=0; current < vertices.length; current++) {
-      
+
       next = current+1;
       if (next == vertices.length) next = 0;
 
       PVector vc = vertices[current];
       PVector vn = vertices[next];
-      
+
       boolean collision = lineCircle(vc.x, vc.y, vn.x, vn.y, cx, cy, r);
       if (collision) return true;
     }
@@ -72,7 +76,6 @@ class CollisionHandler
 
     return false;
   }
-
 
   // LINE/CIRCLE
   boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {
@@ -90,30 +93,33 @@ class CollisionHandler
 
     float closestX = x1 + (dot * (x2-x1));
     float closestY = y1 + (dot * (y2-y1));
-    //ellipse(closestX, closestY, 20, 20);
-    platformHitPos = new PVector(closestX, closestY);
     platformHeight = 10;
-    
+
     boolean onSegment = linePoint(x1, y1, x2, y2, closestX, closestY);
     if (!onSegment) return false;
 
 
     fill(255, 0, 0);
     noStroke();
-    //ellipse(closestX, closestY, 20, 20);
-
+    
+    platformHitPos = new PVector(closestX, closestY);
     // get distance to closest point
     distX = closestX - cx;
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-
+    if (distance > closestDistance) {
+       closestDistance = distance; 
+       closestHitPos = new PVector(closestX, closestY);
+       platformHitPos = closestHitPos;
+       ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
+   }
     // is the circle on the line?
     if (distance <= r) {
       return true;
     }
+    
     return false;
   }
-
 
   // LINE/POINT
   boolean linePoint(float x1, float y1, float x2, float y2, float px, float py) {
@@ -139,7 +145,6 @@ class CollisionHandler
     return false;
   }
 
-
   // POINT/CIRCLE
   boolean pointCircle(float px, float py, float cx, float cy, float r) {
 
@@ -148,9 +153,6 @@ class CollisionHandler
     float distX = px - cx;
     float distY = py - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-
-    // if the distance is less than the circle's 
-    // radius the point is inside!
     if (distance <= r) {
       return true;
     }
@@ -159,8 +161,6 @@ class CollisionHandler
 
 
   // POLYGON/POINT
-  // only needed if you're going to check if the circle
-  // is INSIDE the polygon
   boolean polygonPoint(PVector[] vertices, float px, float py) {
     boolean collision = false;
 
@@ -174,13 +174,9 @@ class CollisionHandler
       next = current+1;
       if (next == vertices.length) next = 0;
 
-      // get the PVectors at our current position
-      // this makes our if statement a little cleaner
-      PVector vc = vertices[current];    // c for "current"
-      PVector vn = vertices[next];       // n for "next"
+      PVector vc = vertices[current];
+      PVector vn = vertices[next];
 
-      // compare position, flip 'collision' variable
-      // back and forth
       if (((vc.y > py && vn.y < py) || (vc.y < py && vn.y > py)) &&
         (px < (vn.x-vc.x)*(py-vc.y) / (vn.y-vc.y)+vc.x)) {
         collision = !collision;
@@ -195,16 +191,21 @@ class CollisionHandler
     float testX = objectX;
     float testY = objectY;
 
-    if (objectX < rx-rw/2)         testX = rx-rw/2;      // compare left edge
-    else if (objectX > rx+rw/2) testX = rx+rw/2;   // right edge
-    if (objectY < ry)         testY = ry;      // top edge
-    else if (objectY > ry+rh) testY = ry+rh;   // bottoobjectXm edge
+    if (objectX < rx-rw/2) { // compare left edge
+      testX = rx-rw/2;
+    } else if (objectX > rx+rw/2) {// right edge
+      testX = rx+rw/2;
+    }  
+    if (objectY < ry) {// top edge
+      testY = ry;
+    } else if (objectY > ry+rh) { // bottom objectX edge
+      testY = ry+rh;
+    }   
 
-    // get distance from closest edges
     float distX = objectX-testX;
     float distY = objectY-testY;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-    //als distanse kleiner is dan de radus dan heb je collision
+    
     if (distance <= radius) {
       platformHitPos = new PVector(rx, ry);
       posBeforeCollision = new PVector(objectX, objectY);
@@ -221,16 +222,4 @@ boolean wallCollider(float objectX, float radius, float wallThickness) {
     return true;
   }
   return false;
-}
-void swapPlatform(Platform[] input, int index_A, int index_B) {
-  Platform temp = input[index_A];
-
-  input[index_A] = input[index_B];
-  input[index_B] = temp;
-}
-void swapPVector(PVector[] input, int index_A, int index_B) {
-  PVector temp = input[index_A];
-
-  input[index_A] = input[index_B];
-  input[index_B] = temp;
 }
