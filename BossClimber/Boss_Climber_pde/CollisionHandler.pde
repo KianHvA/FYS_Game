@@ -108,7 +108,8 @@ class CollisionHandler
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
     if (distance > closestDistance) {
-       closestDistance = distance;
+       closestDistance = distance; 
+       closestHitPos = new PVector(closestX, closestY);
        platformHitPos = closestHitPos;
        ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
    }
@@ -206,6 +207,9 @@ class CollisionHandler
     float distance = sqrt( (distX*distX) + (distY*distY) );
     
     if (distance <= radius) {
+      platformHitPos = new PVector(rx, ry);
+      posBeforeCollision = new PVector(objectX, objectY);
+      platformHeight = rh;
       return true;
     } else {
       return false;

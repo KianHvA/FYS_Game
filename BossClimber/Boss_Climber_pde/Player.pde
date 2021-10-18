@@ -84,6 +84,6 @@ class Player { //<>//
       posPlayer.y = posPlayer.y + 1;
     }
 
-    println(collisionHandler.platformHitPos.y);
+    println(collisionHandler.closestHitPos);
   }
 }
