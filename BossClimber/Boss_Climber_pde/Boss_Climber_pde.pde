@@ -6,7 +6,7 @@ Jumpboost jumpboost;
 Level level;
 Fireball[] fireballs;
 Vlammenwerper vlammenwerper;
-
+Dragon Dragon1;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 
@@ -23,7 +23,7 @@ void setup()
   jumpboost = new Jumpboost();
   fireballs = new Fireball[20];
   vlammenwerper = new Vlammenwerper();
-
+  Dragon1 = new Dragon(152,50,46);
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -58,6 +58,7 @@ void draw()
   player.draw();
   jumpboost.draw();
   healthbar.draw();
+  Dragon1.draw();
 }
 
 void keyPressed()
