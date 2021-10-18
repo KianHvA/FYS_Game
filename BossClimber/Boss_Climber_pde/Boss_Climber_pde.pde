@@ -6,7 +6,7 @@ Jumpboost jumpboost;
 Level level;
 Fireball[] fireballs;
 Vlammenwerper vlammenwerper;
-
+Dragon Dragon1;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 
