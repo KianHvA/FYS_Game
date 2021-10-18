@@ -23,7 +23,7 @@ void setup()
   jumpboost = new Jumpboost();
   fireballs = new Fireball[20];
   vlammenwerper = new Vlammenwerper();
-  
+  Dragon1 = new Dragon(152,50,46);
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -57,6 +57,7 @@ void draw()
   player.draw();
   jumpboost.draw();
   healthbar.draw();
+  Dragon1.draw();
 }
 
 void keyPressed()
