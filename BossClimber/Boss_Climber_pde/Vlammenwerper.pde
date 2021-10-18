@@ -7,12 +7,12 @@ class Vlammenwerper {
   PVector sizeVlam = new PVector(15, 60);
   float timer1 = 0, timer2 = 0;
   int distance = 660, from = 150, minus = 7;
-  int  distBetween = 250;
+  int  distBetween = 200;
 
   void setup() {
     //links
     for (int y = distance; y >from; y = y - distBetween) {
-      int y1= y + minus;
+      int y1 = y + minus;
       int y2 = y1 + minus;
       noStroke();
       fill(255);
@@ -31,7 +31,7 @@ class Vlammenwerper {
   void draw() {
     //links
     for (int y = distance; y >from; y = y - distBetween) {
-      int y1= y + minus;
+      int y1 = y + minus;
       int y2 = y1 + minus;
       noStroke();
       fill(255);
@@ -40,8 +40,8 @@ class Vlammenwerper {
   }
 
   void update() {
-    for (int y = 660; y>150; y = y- 250) {
-      int y1= y -6;
+    for (int y = distance; y>from; y = y- distBetween) {
+      int y1= y - 6;
       noStroke();
       if (timer2 == 0) {
         timer1++;
