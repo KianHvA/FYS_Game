@@ -16,20 +16,21 @@
 class CollisionHandler
 {
   boolean hit = false;
-  boolean hitWall = false;
+  boolean hitWallLeft = false;
+  boolean hitWallRight = false;
   boolean hitPlayer = false;
   boolean hitLadder = false;
   boolean hitUndersidePlatform = false;
-  
+
   float closestDistance;
   PVector closestHitPos;
   PVector platformHitPos;
   float closestPointY;
   float platformHeight;
   PVector posBeforeCollision;
-  
-  int wallThickness = 200;
-  
+
+  int wallThickness = width/12;
+
   void update() {
     hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
       polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
@@ -38,7 +39,8 @@ class CollisionHandler
 
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitWall = wallCollider(objectX, objectRadius, wallThickness);
+    hitWallLeft = wallColliderLeft(objectX, objectRadius, wallThickness);
+    hitWallRight = wallColliderLeft(objectX, objectRadius, wallThickness);
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
   }
 
@@ -50,6 +52,9 @@ class CollisionHandler
     } else {
       hit = false;
     }
+
+    hitWallLeft = wallColliderLeft(objectX, objectRadius, wallThickness); //check collision with left wall
+    hitWallRight = wallColliderRight(objectX, objectRadius, wallThickness); //chack collision with right wall
   }
 
   // POLYGON/CIRCLE
@@ -101,23 +106,23 @@ class CollisionHandler
 
     fill(255, 0, 0);
     noStroke();
-    
+
     platformHitPos = new PVector(closestX, closestY);
     // get distance to closest point
     distX = closestX - cx;
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
     if (distance > closestDistance) {
-       closestDistance = distance; 
-       closestHitPos = new PVector(closestX, closestY);
-       platformHitPos = closestHitPos;
-       ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
-   }
+      closestDistance = distance; 
+      closestHitPos = new PVector(closestX, closestY);
+      platformHitPos = closestHitPos;
+      ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
+    }
     // is the circle on the line?
     if (distance <= r) {
       return true;
     }
-    
+
     return false;
   }
 
@@ -205,7 +210,7 @@ class CollisionHandler
     float distX = objectX-testX;
     float distY = objectY-testY;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-    
+
     if (distance <= radius) {
       platformHitPos = new PVector(rx, ry);
       posBeforeCollision = new PVector(objectX, objectY);
@@ -217,8 +222,14 @@ class CollisionHandler
   }
 }
 
-boolean wallCollider(float objectX, float radius, float wallThickness) {
-  if (objectX < wallThickness || objectX > width - wallThickness) {
+boolean wallColliderLeft(float objectX, float radius, float wallThickness) {
+  if (objectX - radius/2 < wallThickness) {
+    return true;
+  }
+  return false;
+}
+boolean wallColliderRight(float objectX, float radius, float wallThickness) {
+  if (objectX + radius/2 > width - wallThickness) {
     return true;
   }
   return false;
