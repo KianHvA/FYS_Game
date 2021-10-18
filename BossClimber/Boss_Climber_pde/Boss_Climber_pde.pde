@@ -5,6 +5,7 @@ HealthBar healthbar;
 Jumpboost jumpboost;
 Level level;
 Fireball[] fireballs;
+Vlammenwerper vlammenwerper;
 
 final int maxToetsen = 1024; //kan niet worden aangepast.
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
@@ -21,11 +22,13 @@ void setup()
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   jumpboost = new Jumpboost();
   fireballs = new Fireball[20];
+  vlammenwerper = new Vlammenwerper();
   
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
   }
+  vlammenwerper.setup();
 }
 
 void update()
