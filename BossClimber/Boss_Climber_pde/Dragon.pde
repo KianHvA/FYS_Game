@@ -13,7 +13,11 @@ class Dragon {
     starty = y;
   }
 
-
+ void draw() {
+     stroke(0);
+     fill(185,185,182);
+     rect(152,50,46,48);
+ }
 
 
   void update() {
