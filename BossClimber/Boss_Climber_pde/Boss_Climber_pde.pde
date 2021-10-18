@@ -23,7 +23,7 @@ void setup()
   jumpboost = new Jumpboost();
   fireballs = new Fireball[20];
   vlammenwerper = new Vlammenwerper();
-  
+
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -33,6 +33,7 @@ void setup()
 
 void update()
 {
+  vlammenwerper.update();
   player.movementUpdate();
   jumpboost.update();
   collisionHandler.update();
@@ -51,7 +52,7 @@ void draw()
   for (int i =0; i < fireballs.length; i++) { 
     fireballs[i].draw();
   }
-
+  vlammenwerper.draw();
   platforms.draw();
   level.draw();
   player.draw();
