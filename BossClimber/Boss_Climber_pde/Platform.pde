@@ -11,6 +11,8 @@ class Platform {  //<>//
   PVector[] vertexesR = new PVector[20];
   int i = 0;
   int j = 0;
+  int ySpeed = 10;
+  int z = 801;
 
   void draw() {
     //linksboven = 1 
@@ -28,6 +30,9 @@ class Platform {  //<>//
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       if (i == vertexesL.length) {
         i = 0;
+         quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
+         if (y == 0){y=y+300;}//work in progress bewegende platformen
+        
       }
       vertexesL[i] = new PVector(x1, y);
       vertexesL[i + 1] = new PVector(x1, y1);
@@ -38,8 +43,6 @@ class Platform {  //<>//
       for (int z = 801; z>0; z = z- 200) {//rechterplatform
         quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
 
-
-
         if (j == vertexesR.length) {
           j = 0;
         }
@@ -49,7 +52,12 @@ class Platform {  //<>//
         vertexesR[j + 3] = new PVector(width-66, z);
         vertexesR[j + 4] = new PVector(width-66, z-platformThickness);
         j += 5;
+      
       }
     }
   }
+  void update() {
+    //if (posPlayer.x < 300 && posplayer.y >100){
+  //}
+}
 }
