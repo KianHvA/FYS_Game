@@ -1,4 +1,4 @@
-class Player { //<>//
+class Player {
 
   //variables
   PVector posPlayer = new PVector(width/2, height/2 - 10);

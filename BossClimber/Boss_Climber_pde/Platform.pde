@@ -1,4 +1,4 @@
-class Platform {  //<>//
+class Platform { 
   int NPLATFORMS = 100;
   Platform platforms;
   float x = random(200, 550); 
