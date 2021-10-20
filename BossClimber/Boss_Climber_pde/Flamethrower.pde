@@ -1,4 +1,4 @@
-class Vlammenwerper {
+class Flamethrower {
   //PVector source = new PVector(platforms.x/random(1, 5), platforms.y + platforms.platformThickness/2);
   //PVector[] spawn = new PVector[20];
   float x1 = width/6, x2 = width/6;

@@ -23,7 +23,7 @@ class Menu {
     text("Play (a)", placement1.x + 70, placement1.y + 60);
     drawn = true;
     
-    if (keysPressed[65]) {
+    if (keysPressed[65]) { //If you press the key 'A' (keyCode = 65) the menu will disapear and the game will start
       start = true;
     }
     if (start == true) {

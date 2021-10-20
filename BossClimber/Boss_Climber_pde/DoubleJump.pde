@@ -1,4 +1,4 @@
-class Jumpboost {
+class DoubleJump {
   PVector timerJB = new PVector(0, 0);
   boolean pickedUp = false;
   boolean hasCollision = false;
