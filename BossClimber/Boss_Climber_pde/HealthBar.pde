@@ -1,7 +1,7 @@
 class Health {  
-  PFont f = createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on;
-  float invincible;
-  boolean hit;
+  PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
+  float invincible; //Using invincibility to make sure you cannot one shot yourself
+  boolean hit; //Idem
 
   void update() {
     if (hit == true) invincible++;
@@ -16,12 +16,12 @@ class Health {
 
   void draw() {
     if (healthbar.health < 1) {
-      println("hoi");
-      rectMode(CENTER);
+      //println("hoi"); Used for checks
+      rectMode(CENTER); 
       fill(0);
-      rect(width/2, height/2, width, height);
-      textFont(f, 36);
-      fill(255);
+      rect(width/2, height/2, width, height); //Black screen if you know a better way pleaso do it
+      textFont(f, 36); //size of the texts
+      fill(255); //color
       text("GAME OVER", width/2, height/2);
     }
   }

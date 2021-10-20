@@ -17,7 +17,7 @@ class Vlammenwerper {
       int y2 = y1 + minus;
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10);
+      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the FireDispencer(Vlammenwerper) (If you want to swap it all to English pleaso do)
     }
     //rechts 
     //for (int y = 660; y>150; y = y+ 200) {
@@ -36,11 +36,11 @@ class Vlammenwerper {
       int y2 = y1 + minus;
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10);
+      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the FireDispencer(Vlammenwerper)
     }
   }
 
-  void update() {
+  void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time
     for (int y = distance; y>from; y = y- distBetween) {
       int y1= y - 6;
       noStroke();
@@ -51,8 +51,8 @@ class Vlammenwerper {
       if (timer1 > 900) {
         rectMode(CENTER);
         fill(#FA9108);
-        rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y);
-        live = true;
+        rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y); //Making the Fire come out
+        live = true; //Collision check activate
         timer2++;
         timer1 = 910;
         //println(timer2);
@@ -60,13 +60,13 @@ class Vlammenwerper {
       if (timer2 == 180) {
         timer1 = 0;
         timer2 = 0;
-        live = false;
+        live = false; //Collision check de-activate
       }
-      if (live) {
+      if (live) { //Checking the collision
         collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.x);
         hasCollision = collisionHandler.hit;
       }
-      if (hasCollision) idk++;
+      if (hasCollision) idk++; //Uhm we don't talk about it (Otherwise it doesn't detect that hasCollision == true. I don't know why)
     }
   }
 }
