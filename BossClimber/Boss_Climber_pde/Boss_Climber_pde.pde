@@ -1,3 +1,4 @@
+Menu menu;
 Player player;
 CollisionHandler collisionHandler;
 Platform platforms;
@@ -16,6 +17,7 @@ void setup()
   size(800, 600);
   rectMode(CENTER);
   frameRate(60);
+  menu = new Menu();
   level = new Level();
   player = new Player();
   platforms = new Platform();
@@ -25,7 +27,8 @@ void setup()
   jumpboost = new Jumpboost();
   fireballs = new Fireball[20];
   vlammenwerper = new Vlammenwerper();
-  Dragon1 = new Dragon(152,50,46);
+  Dragon1 = new Dragon(152, 50, 46);
+  menu.setup();
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -51,18 +54,24 @@ void update()
 void draw()
 {
   background(0);
-  update();
-  for (int i =0; i < fireballs.length; i++) { 
-    fireballs[i].draw();
+  if (menu.start ==false) {
+    level.draw();
+    menu.draw();
   }
-  vlammenwerper.draw();
-  platforms.draw();
-  level.draw();
-  player.draw();
-  jumpboost.draw();
-  healthbar.draw();
-  Dragon1.draw();
-  health.draw();
+  if (menu.start == true) {
+    update();
+    for (int i =0; i < fireballs.length; i++) { 
+      fireballs[i].draw();
+    }
+    vlammenwerper.draw();
+    platforms.draw();
+    level.draw();
+    player.draw();
+    jumpboost.draw();
+    healthbar.draw();
+    Dragon1.draw();
+    health.draw();
+  }
 }
 
 void keyPressed()
