@@ -116,7 +116,7 @@ class CollisionHandler
       closestDistance = distance; 
       closestHitPos = new PVector(closestX, closestY);
       platformHitPos = closestHitPos;
-      ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
+      //ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
     }
     // is the circle on the line?
     if (distance <= r) {
