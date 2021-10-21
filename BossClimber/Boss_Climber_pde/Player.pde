@@ -13,7 +13,7 @@ class Player {
     rectMode(CENTER);
 
     //player
-    fill(255);
+    fill(menu.player);
     ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
   void movementUpdate()
@@ -54,7 +54,7 @@ class Player {
       hasCollision = false;
       velocity.y = -5;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && jumpboost.pickedUp)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp)
     {
       velocity.y = -5;
       hasDoubleJumped = true;

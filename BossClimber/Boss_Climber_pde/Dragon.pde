@@ -32,7 +32,7 @@ class Dragon {
       //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
       //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
       
-      //als de spelers zijn positie kleiner word dan x = 80 dan gebeurt het onderste gedeelte.
+      //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
       break;
     } 
     //ga terug naar begin positie

@@ -18,6 +18,7 @@ class DoubleJump {
     jumpboostEq();
     GRAVITYJB = 0.98; 
     Location.y += GRAVITYJB;
+    fill(255);
     rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
 
     size = 50;

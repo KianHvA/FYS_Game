@@ -28,7 +28,6 @@ void setup()
   fireballs = new Fireball[20];
   Flamethrower = new Flamethrower();
   Dragon1 = new Dragon(152, 50, 46);
-  menu.setup();
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -57,6 +56,7 @@ void draw()
   if (menu.start ==false) {
     level.draw();
     menu.draw();
+    menu.highlight();
   }
   if (menu.start == true) {
     update();
