@@ -1,4 +1,6 @@
 class Dragon {
+  int savedTime;
+  int totalTime = 5000;
   float startx;
   float starty;
   float diameter;
@@ -20,6 +22,11 @@ class Dragon {
     stroke(0);
     fill(185, 185, 182);
     rect(startx, starty, 46, 48);
+    int passedTime = millis() - savedTime;
+   if (passedTime > totalTime) {
+     println("5 seconds have passed!");
+     savedTime = millis();
+      rect(629, 152, 46, 48);
   }
 
 
