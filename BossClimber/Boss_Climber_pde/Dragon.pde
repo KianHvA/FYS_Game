@@ -26,7 +26,7 @@ class Dragon {
    if (passedTime > totalTime) {
      println("5 seconds have passed!");
      savedTime = millis();
-      rect(629, 152, 46, 48);
+      rect(629, 152, 46, 48);}
   }
 
 

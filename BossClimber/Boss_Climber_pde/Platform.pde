@@ -23,15 +23,18 @@ class Platform {
     float x2 = width/2;
     fill(147, 147, 147);
     Bossplatform();
-    for (int y = 660; y>150; y = y- 200) {
+    for (int y = 260; y>=260; y = y+ 200) {
+      if(mouseY<100){y++;}
       int y1= y + 25;
       int y2 = y1 + 25;
+    //if(mouseY<100){y=y+10;}
       noStroke();
+      if (y<1000){
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       if (i == vertexesL.length) {
         i = 0;
          quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
-         if (y == 0){y=y+300;}//work in progress bewegende platformen
+        //if(mouseY<100){y=y+10;}
         
       }
       vertexesL[i] = new PVector(x1, y);
@@ -40,8 +43,9 @@ class Platform {
       vertexesL[i + 3] = new PVector(x2+120, y1+platformThickness);
       vertexesL[i + 4] = new PVector(x1, y);
       i += 5;
-      for (int z = 801; z>0; z = z- 200) {//rechterplatform
-        quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
+      for (int z = 1; z>0; z = z+ 200) {//rechterplatform
+      if (z<1000){
+        quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);}
 
         if (j == vertexesR.length) {
           j = 0;
@@ -54,10 +58,8 @@ class Platform {
         j += 5;
       
       }
-    }
+    }}
   }
-  void update() {
-    //if (posPlayer.x < 300 && posplayer.y >100){
-  //}
-}
+  void platforms() {
+    }
 }
