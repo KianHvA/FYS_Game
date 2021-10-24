@@ -28,6 +28,12 @@ class Dragon {
       savedTime = millis();
       rect(629, 152, 46, 48);
     }
+    if (a) {
+    //ga naar volgende positie in array
+    
+    
+    //zet a weer naar false;
+      a = false;
   }
 
 
