@@ -43,7 +43,7 @@ class Flamethrower {
   void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time
     for (int y = distance; y>from; y = y- distBetween) {
       int y1= y - 6;
-      collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.y);
+
       noStroke();
       if (timer2 == 0) {
         timer1++;
@@ -59,6 +59,7 @@ class Flamethrower {
         //println(timer2);
       } 
       if (live) { //Checking the collision
+        collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.y);
         hasCollision = collisionHandler.hitPlayer;
       } else {
         hasCollision = false;
@@ -68,7 +69,6 @@ class Flamethrower {
         timer2 = 0;
         live = false; //Collision check de-activate
       }
-      println(hasCollision);
       if (hasCollision) idk++; //Uhm we don't talk about it (Otherwise it doesn't detect that hasCollision == true. I don't know why)
     }
   }

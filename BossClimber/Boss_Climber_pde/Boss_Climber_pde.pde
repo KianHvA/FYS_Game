@@ -7,7 +7,7 @@ HealthBar healthbar;
 DoubleJump Doublejump;
 Level level;
 Fireball[] fireballs;
-Flamethrower Flamethrower;
+Flamethrower flamethrower;
 Dragon Dragon1;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
@@ -30,20 +30,20 @@ void setup()
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   Doublejump = new DoubleJump();
   fireballs = new Fireball[20];
-  Flamethrower = new Flamethrower();
+  flamethrower = new Flamethrower();
   Dragon1 = new Dragon(152, 50, 46);
   level.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
   }
-  Flamethrower.setup();
+  flamethrower.setup();
   waterfles = new Waterfles();
   druppels = new ArrayList<Druppel>();
 }
 
 void update()
 {
-  Flamethrower.update();
+  flamethrower.update();
   player.movementUpdate();
   Doublejump.update();
   collisionHandler.update();
@@ -85,7 +85,7 @@ void draw()
     for (int i =0; i < fireballs.length; i++) { 
       fireballs[i].draw();
     }
-    Flamethrower.draw();
+    flamethrower.draw();
     platforms.draw();
     level.draw();
     player.draw();
