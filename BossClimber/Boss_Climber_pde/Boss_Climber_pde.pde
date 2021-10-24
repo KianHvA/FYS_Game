@@ -63,13 +63,13 @@ void update()
     waterfles.druppelOn = false;
     cooldown = 100;
   }
-  println(spawnCountDruppel);
-  //for (int i =0; i != fireballs.length; i++) { 
-  //  fireballs[i].movementUpdate();
-  //}
-  //for (int i = 0; i != fireballs.length; i++) {
-  //  fireballs[i].respawn();
-  //}
+  //println(spawnCountDruppel);
+  for (int i =0; i != fireballs.length; i++) { 
+    fireballs[i].movementUpdate();
+  }
+  for (int i = 0; i != fireballs.length; i++) {
+    fireballs[i].respawn();
+  }
 }
 
 void draw()

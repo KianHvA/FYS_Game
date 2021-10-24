@@ -7,20 +7,27 @@ class Health {
   float regenTimer; //It takes 5 seconds of no damage until you're health regeneration starts
 
   void update() {
-    if (dead) {
+    if (!dead) {
       regenTimer++;
       if (healthbar.health == 100) regen = false;
       if (hit == true) invincible++;
       if (invincible == 90) hit = false;
       for (int i =0; i != fireballs.length; i++) {
-        if (Flamethrower.hasCollision && !hit || fireballs[i].hasCollision && !hit) {
+        if (fireballs[i].hasCollision && !hit) {
           hit = true;
-          regen = true;
-          healthbar.health -= 50;
+          //regen = true;
+          healthbar.health -= 1;
           regenTimer = 0;
         }
       }
-      if (regenTimer > 300 && regen) healthbar.health++;
+      if (Flamethrower.hasCollision && !hit) {
+        println("auw");
+        hit = true;
+        //regen = true;
+        healthbar.health -= 50;
+        regenTimer = 0;
+      }
+      //if (regenTimer > 300 && regen) healthbar.health++;
     }
   }
 
@@ -37,10 +44,6 @@ class Health {
     }
   }
 }
-
-
-
-
 
 class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 
