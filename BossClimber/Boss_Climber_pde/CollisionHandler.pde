@@ -223,13 +223,13 @@ class CollisionHandler
 }
 
 boolean wallColliderLeft(float objectX, float radius, float wallThickness) {
-  if (objectX - radius/2 < wallThickness) {
+  if (objectX - radius < wallThickness) {
     return true;
   }
   return false;
 }
 boolean wallColliderRight(float objectX, float radius, float wallThickness) {
-  if (objectX + radius/2 > width - wallThickness) {
+  if (objectX + radius > width - wallThickness) {
     return true;
   }
   return false;

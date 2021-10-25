@@ -19,6 +19,7 @@ class Dragon {
   }
 
   void draw() {
+  boolean a = false;
     stroke(0);
     fill(185, 185, 182);
     rect(startx, starty, 46, 48);
@@ -29,13 +30,13 @@ class Dragon {
       rect(629, 152, 46, 48);
     }
     if (a) {
-    //ga naar volgende positie in array
-    
-    
-    //zet a weer naar false;
-      a = false;
-  }
+      //ga naar volgende positie in array
 
+
+      //zet a weer naar false;
+      a = false;
+    }
+  }
 
   void update() {
     while (player.posPlayer.y < 80) {
