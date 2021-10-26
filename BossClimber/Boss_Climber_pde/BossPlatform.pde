@@ -4,12 +4,14 @@ float rw = 200;
 float rh = 25;
 float ry = 75;
 float qx1 = x1+rw;
-float qh = ry+rh;
+float qh;
 PVector[] vertexesBossPlatform = new PVector[8];
 
 void Bossplatform() {
   fill(147, 147, 147);
   noStroke();
+  ry = 75 + platforms.levelMove;
+  qh = ry+rh;
   quad(x1, ry, qx1, ry, qx1, qh, x1, qh);
   quad(qx1, ry, qx1, qh, width/2+120, qh+rh, width/2+120, qh);
   int i = 0;
