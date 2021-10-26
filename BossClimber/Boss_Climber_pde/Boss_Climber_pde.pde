@@ -8,9 +8,10 @@ DoubleJump Doublejump;
 Level level;
 Fireball[] fireballs;
 Flamethrower flamethrower;
-Dragon Dragon1;
+Dragon dragon;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
+ScoreHandler scoreHandler;
 int cooldown = 100;
 int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
@@ -31,8 +32,10 @@ void setup()
   Doublejump = new DoubleJump();
   fireballs = new Fireball[20];
   flamethrower = new Flamethrower();
-  Dragon1 = new Dragon(152, 50, 46);
+  dragon = new Dragon(152, 50, 46);
+  scoreHandler = new ScoreHandler();
   level.setup();
+  scoreHandler.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
   }
@@ -91,8 +94,7 @@ void draw()
     player.draw();
     Doublejump.draw();
     healthbar.draw();
-    Dragon1.draw();
-    health.draw();
+    dragon.draw();
     waterfles.draw();
 
     for (int d = druppels.size() - 1; d >= 0; d--) {
@@ -105,6 +107,9 @@ void draw()
       druppel.druppelUpdate();
       druppel.draw();
     }
+    //teken alle UI hier zodat het op de voorgrond komt
+    scoreHandler.draw();
+    health.draw();
   }
 }
 
