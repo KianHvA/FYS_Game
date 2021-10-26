@@ -51,19 +51,19 @@ class Fireball {
     
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
-    if (timer >= 300) {
+    //if (timer >= 300) {
       //spawn fireBall
-      posFireball.x = newPosFireball.x;
-      posFireball.y = newPosFireball.y;
-      timer = 0;
-      respawn();
-    }
+      //posFireball.x = newPosFireball.x;
+     // posFireball.y = newPosFireball.y;
+      //timer = 0;
+     // respawn();
+   // }
 
-    if (timer >= frameRate * 5) {
+   // if (timer >= frameRate * 5) {
       //spawn fireBall
-      posFireball.x  = newPosFireball.x;
-      posFireball.y  = newPosFireball.y;
-    }
+     // posFireball.x  = newPosFireball.x;
+     // posFireball.y  = newPosFireball.y;
+    //}
   }
 
   void respawn() {
