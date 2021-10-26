@@ -1,11 +1,11 @@
 class Fireball {
 
   //variables
-  PVector posFireball = new PVector(200, 50);
+  PVector posFireball = new PVector(400, 50);
   PVector sizeFireball = new PVector(20, 20);
   PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
-  final float GRAVITY = 0.098f;
+  final float GRAVITY = 0.1f;
   private float timer = 0;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
   float damageFireball = 33;
@@ -48,6 +48,7 @@ class Fireball {
       }
       velocity.y = 2;
     }
+    
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
     if (timer >= 300) {
@@ -80,6 +81,8 @@ class Fireball {
   {
     velocity.y = 0;
     hasCollision = true;
-    posFireball.y = collisionHandler.platformHitPos.y - 10 * 2;
+    if (collisionHandler.platformHitPos.y > posFireball.y) {
+      posFireball.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    }
   }
 }
