@@ -15,7 +15,10 @@ class Platform {
   int ySpeed = 10;
 
   void draw() {
-    levelMove = 0;
+     
+    
+     if (mouseY <= 50){levelMove++;}
+     if (levelMove >= 400){levelMove = 400;}
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
     //linksboven = 1 
@@ -30,11 +33,12 @@ class Platform {
       int y1= y + 25;
       int y2 = y1 + 25;
       noStroke();
+      //if (mouseY <= 50){levelMove = 200;}
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       if (i == vertexesL.length) {
         i = 0;
          quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
-         if (y == 0){y=y+300;}//work in progress bewegende platformen
+         //if (mouseY <= 50){y = newZ;}//work in progress bewegende platformen
         
       }
       vertexesL[i] = new PVector(x1, y);
