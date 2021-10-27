@@ -1,3 +1,5 @@
+//platforms hoger laten spawnen
+
 class Platform { 
   int NPLATFORMS = 100;
   Platform platforms;
@@ -16,8 +18,8 @@ class Platform {
 
   void draw() {
      
-    
-     if (mouseY <= 50){levelMove++;}
+   
+     if (player.posPlayer.y <= 50){levelMove++;}
      if (levelMove >= 400){levelMove = 400;}
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
@@ -28,16 +30,17 @@ class Platform {
     float x1 = width/12;
     float x2 = width/2;
     fill(147, 147, 147);
-    for (int y = newY; y>100; y = y- 200) {
+    for (int y = newY; y>0; y = y- 200) {
       int y1= y + 25;
       int y2 = y1 + 25;
       noStroke();
       //if (mouseY <= 50){levelMove = 200;}
+      fill(147, 147, 147);
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       if (i == vertexesL.length) {
         i = 0;
          quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
-         //if (mouseY <= 50){y = newZ;}//work in progress bewegende platformen
+     
         
       }
       vertexesL[i] = new PVector(x1, y);
@@ -47,6 +50,7 @@ class Platform {
       vertexesL[i + 4] = new PVector(x1, y);
       i += 5;
       for (int z = newZ; z>0; z = z- 200) {//rechterplatform
+      fill(147, 147, 147);
         quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
 
         if (j == vertexesR.length) {
@@ -58,7 +62,9 @@ class Platform {
         vertexesR[j + 3] = new PVector(width-66, z);
         vertexesR[j + 4] = new PVector(width-66, z-platformThickness);
         j += 5;
-      
+        fill(147, 147, 147);
+        
+      Bossplatform();
       }
     }
   }
