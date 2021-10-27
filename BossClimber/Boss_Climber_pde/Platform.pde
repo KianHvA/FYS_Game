@@ -19,7 +19,7 @@ class Platform {
   void draw() {
      
    
-     if (player.posPlayer.y <= BossPlatform.y){levelMove++;}
+     if (player.posPlayer.y <= bpY){levelMove++;}
      if (levelMove >= 400){levelMove = 400;}
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
