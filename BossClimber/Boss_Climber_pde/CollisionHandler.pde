@@ -163,6 +163,18 @@ class CollisionHandler
     }
     return false;
   }
+  
+  //CIRCLE/CIRCLE
+  boolean circleCircle(float circleX, float circleY, float circleDia, float oCircleX, float oCircleY, float oCircleDia){
+    float afstX = circleX - oCircleX;
+    float afstY = circleY - oCircleY;
+    float afstand = ( (afstX * afstX) + (afstY * afstY) );
+    
+    if (afstand <= circleDia + oCircleDia){
+      return true;
+    }
+    return false;
+  }
 
 
   // POLYGON/POINT

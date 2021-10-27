@@ -23,6 +23,20 @@ class Health {
         regenTimer = 0;
       }
       
+      if (fireballs[0].playerCollision && !hit|| fireballs[1].playerCollision && !hit || fireballs[2].playerCollision && !hit){//Fireball hits player and get some damage!
+        hit = true;
+        //regen = true;
+        healthbar.health -= 10;
+        regenTimer = 0;
+      }
+      else{
+        hit = false;
+        fireballs[0].playerCollision = false;
+        fireballs[1].playerCollision = false;
+        fireballs[2].playerCollision = false;
+      }
+        
+      
       //for (int i =0; i != fireballs.length; i++) {
       //  if (fireballs[i].hasCollision && !hit) {
       //    println("b");

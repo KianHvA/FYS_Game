@@ -8,7 +8,7 @@ class Fireball {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.1f;
   private float timer = 0;
-  boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
+  boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false;
   float damageFireball = 33;
   
   void setup(){
@@ -28,8 +28,10 @@ class Fireball {
   void movementUpdate()
   {
     checkCollision(posFireball.x, posFireball.y, sizeFireball.y);
+    collisionHandler.checkCollisionPlayer(posFireball.x, posFireball.y, sizeFireball.x);
 
     hasCollision = collisionHandler.hit;
+    playerCollision = collisionHandler.hitPlayer;
     wallCollisonR = collisionHandler.hitWallRight;
     wallCollisonL = collisionHandler.hitWallLeft;
     if (!hasCollision)
