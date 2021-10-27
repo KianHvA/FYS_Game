@@ -63,7 +63,7 @@ void update()
   waterfles.updateWaterfles();
   sword.updateSword();
   menu.restart();
-  
+  Randomizer(3); //3 is amount off power-ups need change later
     if (fireballCount >= 0){
     fireballCount--;
   }
@@ -194,4 +194,27 @@ void keyReleased()
 {
   //we hebben een toets losgelaten.
   keysPressed[keyCode] = false;
+}
+
+void Randomizer(float Amount) {
+  float timerA = 0, timerB = 0;
+  float number = 1;
+  boolean timer1 = true, timer2 = false;
+  if(timer1) timerA++;
+  if(timerA > 900) {
+    number = random(0, Amount);
+    timer2 = true;
+  }
+  if(timer2) timerB++;
+  if(number == 1) {
+    
+    
+  } else if (number == 2) {
+    
+    
+  } else if (number == 3) {
+    
+    
+  }
+  
 }
