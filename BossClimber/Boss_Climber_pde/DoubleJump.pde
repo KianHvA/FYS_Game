@@ -6,6 +6,7 @@ class DoubleJump {
   PVector sizePowerup = new PVector(50, 50);
   float GRAVITYJB = 0.98;
   float size = 50;
+  float cooldown = 0;
 
 
 
@@ -22,6 +23,11 @@ class DoubleJump {
     rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
 
     size = 50;
+    if(player.hasDoubleJumped) cooldown++;
+    if(cooldown == 300) {
+     player.hasDoubleJumped = false;
+     cooldown = 0;
+    }
   }
   void update() {
     collisionHandler.checkCollisionPlayer(Location.x, Location.y, size);
@@ -42,7 +48,7 @@ class DoubleJump {
       timerJB.x++;
       //println(timerJB.x);
     }
-    if (timerJB.x == 600) {
+    if (timerJB.x == 900) {
       //println("hoi");
       timerJB.x = 0;
       pickedUp = false;
@@ -51,7 +57,7 @@ class DoubleJump {
       timerJB.y++;
       //println(timerJB.y);
     }
-    if (timerJB.y == 600) {
+    if (timerJB.y == 900) {
       reset();
       timerJB.y = 0;
     }
