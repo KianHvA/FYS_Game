@@ -1,3 +1,7 @@
+// groene button maken om platforms te bewegen
+float bpX, bpY, bpW, bpH;
+
+
 //int x1 = width/12;
 //int x2 = width/2;
 //int rw = 200;
@@ -10,7 +14,16 @@
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
 
-//void Bossplatform() {
+void Bossplatform() {
+  bpX = 40;
+  bpY = 50;
+  bpW = 60;
+  bpH = 10;
+  rectMode(CORNER);
+  fill(#64ED16);
+  rect(bpX, bpY, bpW, bpH);
+}
+//fill(#64ED16);
 //  fill(147, 147, 147);
 //  noStroke();
 //  if (mouseY <= 50) {

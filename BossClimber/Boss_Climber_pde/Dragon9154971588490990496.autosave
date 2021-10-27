@@ -1,6 +1,6 @@
 class Dragon {
   int savedTime;
-  int totalTime = 1000;
+  int totalTime = 5000;
   float startx;
   float starty;
   float diameter;
@@ -47,9 +47,9 @@ class Dragon {
       //1. maak een timer van bvb 5 seconden
 
       //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
-      //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
       startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
       starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
+      
       //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
       break;
     } 

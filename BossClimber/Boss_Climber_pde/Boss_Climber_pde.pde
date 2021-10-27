@@ -9,6 +9,7 @@ Level level;
 Fireball[] fireballs;
 Flamethrower flamethrower;
 Dragon dragon;
+Sword sword;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
@@ -16,6 +17,8 @@ int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
+float halfX = width/2;
+float halfY = height/2;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -47,6 +50,7 @@ void setup()
   flamethrower.setup();
   waterfles = new Waterfles();
   druppels = new ArrayList<Druppel>();
+  sword = new Sword();
 }
 
 void update()
@@ -57,6 +61,8 @@ void update()
   collisionHandler.update();
   health.update();
   waterfles.updateWaterfles();
+  sword.updateSword();
+  menu.restart();
   
     if (fireballCount >= 0){
     fireballCount--;
@@ -119,6 +125,7 @@ void update()
     waterfles.druppelOn = false;
     cooldown = 100;
   }
+  dragon.update();
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
    // fireballs[i].movementUpdate();
