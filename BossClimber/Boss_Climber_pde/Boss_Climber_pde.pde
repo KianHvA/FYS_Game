@@ -61,6 +61,7 @@ void update()
   waterfles.updateWaterfles();
   schild.update();
   
+<<<<<<< Updated upstream
     if (fireballCount >= 0){
     fireballCount--;
   }
@@ -98,6 +99,8 @@ void update()
     fireballs[1].respawn();
     fireballs[2].respawn();
   }
+=======
+>>>>>>> Stashed changes
   
   if (cooldown > 0) {
     cooldown--;
@@ -153,8 +156,8 @@ void draw()
     healthbar.draw();
     dragon.draw();
     waterfles.draw();
-
     schild.draw();
+    fireUpdate();
     for (int d = druppels.size() - 1; d >= 0; d--) {
       if (druppels.size() >= 3) {
         waterfles.druppelOff = true;
