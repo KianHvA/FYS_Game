@@ -10,6 +10,7 @@ Fireball[] fireballs;
 Flamethrower flamethrower;
 Dragon dragon;
 Waterfles waterfles;
+Schild schild;
 ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
 int cooldown = 100;
@@ -46,6 +47,7 @@ void setup()
   }
   flamethrower.setup();
   waterfles = new Waterfles();
+  schild = new Schild();
   druppels = new ArrayList<Druppel>();
 }
 
@@ -57,6 +59,7 @@ void update()
   collisionHandler.update();
   health.update();
   waterfles.updateWaterfles();
+  schild.update();
   
     if (fireballCount >= 0){
     fireballCount--;
@@ -151,6 +154,7 @@ void draw()
     dragon.draw();
     waterfles.draw();
 
+    schild.draw();
     for (int d = druppels.size() - 1; d >= 0; d--) {
       if (druppels.size() >= 3) {
         waterfles.druppelOff = true;
