@@ -1,6 +1,6 @@
 class Dragon {
   int savedTime;
-  int totalTime = 5;
+  int totalTime = 5000;
   float startx;
   float starty;
   float diameter;
