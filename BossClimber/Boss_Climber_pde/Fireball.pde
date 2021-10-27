@@ -1,13 +1,13 @@
 class Fireball {
 
   //variables
-  PVector posFireball = new PVector(200, 50);
+  PVector posFireball = new PVector(400, 50);
   PVector sizeFireball = new PVector(20, 20);
   PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
-  final float GRAVITY = 0.098f;
+  final float GRAVITY = 0.1f;
   private float timer = 0;
-  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
+  boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
   float damageFireball = 33;
 
   void draw() {
@@ -22,32 +22,50 @@ class Fireball {
   void movementUpdate()
   {
     checkCollision(posFireball.x, posFireball.y, sizeFireball.y);
+
     hasCollision = collisionHandler.hit;
+    wallCollisonR = collisionHandler.hitWallRight;
+    wallCollisonL = collisionHandler.hitWallLeft;
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
       collideWithPlatform();
-      velocity.x = 2;
+      println(wallCollisonR + "  " + wallCollisonL);
+      if (wallCollisonR && !switchDirection) {
+        switchDirection = true;
+      } else if (wallCollisonL && switchDirection) {
+        switchDirection = false;
+      } else {
+        velocity.x = 2;
+      }
+
+      if (switchDirection) {
+        velocity.x = -2;
+      }
+      else {
+        velocity.x = 2;
+      }
       velocity.y = 2;
     }
+    
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
-      if (timer >= 300) {
-        //spawn fireBall
-        posFireball.x = newPosFireball.x;
-        posFireball.y = newPosFireball.y;
-        timer = 0;
-        respawn();
-      }
-    
-     if (timer >= frameRate * 5) {
-        //spawn fireBall
-        posFireball.x  = newPosFireball.x;
-        posFireball.y  = newPosFireball.y;
-    }
+    //if (timer >= 300) {
+      //spawn fireBall
+      //posFireball.x = newPosFireball.x;
+     // posFireball.y = newPosFireball.y;
+      //timer = 0;
+     // respawn();
+   // }
+
+   // if (timer >= frameRate * 5) {
+      //spawn fireBall
+     // posFireball.x  = newPosFireball.x;
+     // posFireball.y  = newPosFireball.y;
+    //}
   }
-  
+
   void respawn() {
     //Fireball
     fill(255, 0, 0);
@@ -63,7 +81,8 @@ class Fireball {
   {
     velocity.y = 0;
     hasCollision = true;
-    hasDoubleJumped = false;
-    posFireball.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    if (collisionHandler.platformHitPos.y > posFireball.y) {
+      posFireball.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+    }
   }
 }

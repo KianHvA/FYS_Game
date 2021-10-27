@@ -8,12 +8,17 @@ DoubleJump Doublejump;
 Level level;
 Fireball[] fireballs;
 Flamethrower flamethrower;
-Dragon Dragon1;
+Dragon dragon;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
+ScoreHandler scoreHandler;
 int cooldown = 100;
+int fireballCount = 300;
 int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
+boolean fire = false;
+boolean fire2 = false;
+boolean fire3 = false;
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 
 void setup() 
@@ -29,10 +34,12 @@ void setup()
   health = new Health();
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   Doublejump = new DoubleJump();
-  fireballs = new Fireball[20];
+  fireballs = new Fireball[3];
   flamethrower = new Flamethrower();
-  Dragon1 = new Dragon(152, 50, 46);
+  dragon = new Dragon(152, 50, 46);
+  scoreHandler = new ScoreHandler();
   level.setup();
+  scoreHandler.setup();
   for (int i =0; i != fireballs.length; i++) { 
     fireballs[i] = new Fireball();
   }
@@ -50,26 +57,63 @@ void update()
   health.update();
   waterfles.updateWaterfles();
   
-  if (cooldown > 0){
+  if (fireballCount == 200){//Counter fireballs
+    fire = true;
+  }
+  if (fireballCount == 100){
+    fire2 = true;
+  }
+  if (fireballCount == 0){
+    fire3 = true;
+  }
+  
+  if (fire == true){//Boolean fires == true ---> movementUpdate();
+    fireballs[0].movementUpdate();
+  }
+  if (fire2 == true){
+    fireballs[1].movementUpdate();
+  }
+  if (fire3 == true){
+    fireballs[2].movementUpdate();
+  }
+  
+  if (fireballs[0].posFireball.y >= height){//Fires = false, last statement = reset of fireballs
+    fire = false;
+  }
+  if (fireballs[1].posFireball.y >= height){
+    fire2 = false;
+  }
+  if (fireballs[2].posFireball.y >= height){
+    fire3 = false;
+    fireballs[0].respawn();
+    fireballs[1].respawn();
+    fireballs[2].respawn();
+    fireballCount = 300;
+  }
+   fireballCount--;
+  
+  if (cooldown > 0) {
     cooldown--;
   }
-  
-  if (spawnCountDruppel > 0){
+
+  if (spawnCountDruppel > 0) {
     spawnCountDruppel--;
   }
-  
-  if (waterfles.druppelOn && spawnCountDruppel == 0){//Moet nog worden aangepast!
+
+  if (waterfles.druppelOn && spawnCountDruppel == 0) {//Moet nog worden aangepast!
     druppels.add(new Druppel());
     waterfles.druppelOn = false;
     cooldown = 100;
   }
   //println(spawnCountDruppel);
-  for (int i =0; i != fireballs.length; i++) { 
-    fireballs[i].movementUpdate();
-  }
-  for (int i = 0; i != fireballs.length; i++) {
-    fireballs[i].respawn();
-  }
+  //for (int i =0; i != fireballs.length; i++) { 
+   // fireballs[i].movementUpdate();
+  //}
+  //for (int i = 0; i != fireballs.length; i++) {
+    //fireballs[i].respawn();
+  //}
+  
+  println(fireballCount);
 }
 
 void draw()
@@ -82,29 +126,40 @@ void draw()
   }
   if (menu.start == true) {
     update();
-    for (int i =0; i < fireballs.length; i++) { 
-      fireballs[i].draw();
+    
+    if (fire == true){
+      fireballs[0].draw();
     }
+    if (fire2 == true){  
+      fireballs[1].draw();
+    }
+  
+    if (fire3 == true){  
+      fireballs[2].draw();
+    }
+    
     flamethrower.draw();
     platforms.draw();
     level.draw();
     player.draw();
     Doublejump.draw();
     healthbar.draw();
-    Dragon1.draw();
-    health.draw();
+    dragon.draw();
     waterfles.draw();
-    
-    for (int d = druppels.size() - 1 ; d >= 0; d--){
-    if (druppels.size() >= 3){
-      waterfles.druppelOff = true;
-      waterfles.druppelOn = true;
-      spawnCountDruppel = 500;
+
+    for (int d = druppels.size() - 1; d >= 0; d--) {
+      if (druppels.size() >= 3) {
+        waterfles.druppelOff = true;
+        waterfles.druppelOn = true;
+        spawnCountDruppel = 500;
+      }
+      Druppel druppel = druppels.get(d);
+      druppel.druppelUpdate();
+      druppel.draw();
     }
-     Druppel druppel = druppels.get(d);
-     druppel.druppelUpdate();
-     druppel.draw();
-    }
+    //teken alle UI hier zodat het op de voorgrond komt
+    scoreHandler.draw();
+    health.draw();
   }
 }
 

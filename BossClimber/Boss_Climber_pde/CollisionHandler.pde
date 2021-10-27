@@ -25,7 +25,6 @@ class CollisionHandler
   float closestDistance;
   PVector closestHitPos;
   PVector platformHitPos;
-  float closestPointY;
   float platformHeight;
   PVector posBeforeCollision;
 
@@ -39,15 +38,14 @@ class CollisionHandler
 
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitWallLeft = wallColliderLeft(objectX, objectRadius, wallThickness);
-    hitWallRight = wallColliderLeft(objectX, objectRadius, wallThickness);
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
   }
 
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) == true || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) == true || polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) {
+    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) || polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) 
+    {
       hit = true;
     } else {
       hit = false;
@@ -71,7 +69,9 @@ class CollisionHandler
 
       PVector vc = vertices[current];
       PVector vn = vertices[next];
-
+      if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
+        continue;
+      }
       boolean collision = lineCircle(vc.x, vc.y, vn.x, vn.y, cx, cy, r);
       if (collision) return true;
     }
@@ -112,11 +112,11 @@ class CollisionHandler
     distX = closestX - cx;
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
+    
     if (distance > closestDistance) {
       closestDistance = distance; 
-      closestHitPos = new PVector(closestX, closestY);
+      closestHitPos = new PVector(closestX, cy - r/2);
       platformHitPos = closestHitPos;
-      //ellipse(closestHitPos.x, closestHitPos.y, 20, 20);
     }
     // is the circle on the line?
     if (distance <= r) {
@@ -223,14 +223,26 @@ class CollisionHandler
 }
 
 boolean wallColliderLeft(float objectX, float radius, float wallThickness) {
-  if (objectX - radius/2 < wallThickness) {
+  if (objectX - radius < wallThickness) {
     return true;
   }
   return false;
 }
 boolean wallColliderRight(float objectX, float radius, float wallThickness) {
-  if (objectX + radius/2 > width - wallThickness) {
+  if (objectX + radius > width - wallThickness) {
     return true;
   }
   return false;
+}
+
+double calculateDistance(
+  double x1, 
+  double y1, 
+  double x2, 
+  double y2) {
+
+  double ac = Math.abs(y2 - y1);
+  double cb = Math.abs(x2 - x1);
+
+  return Math.hypot(ac, cb);
 }
