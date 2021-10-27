@@ -69,6 +69,7 @@ class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
     this.y = Ty;
     this.w = Tw;
     this.h = Th;
+    health = 100;
   }
 
   void draw() {

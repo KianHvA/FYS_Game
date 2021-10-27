@@ -17,6 +17,8 @@ int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
+float halfX = width/2;
+float halfY = height/2;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -60,6 +62,7 @@ void update()
   health.update();
   waterfles.updateWaterfles();
   sword.updateSword();
+  menu.restart();
   
     if (fireballCount >= 0){
     fireballCount--;
