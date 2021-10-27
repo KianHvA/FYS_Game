@@ -9,6 +9,7 @@ class Health {
   float yBegin = 300; //y coordinates off the rect for dead screen
   final float RxBegin = width/2; //x coordinates off the rect for dead screen used for reseting it
   final float RyBegin = height/2; //y coordinates off the rect for dead screen used for reseting it
+  boolean invincibleB = false;
 
 
   void update() {
@@ -28,7 +29,7 @@ class Health {
         regenTimer = 0;
       }
       
-      if (fireballs[0].playerCollision && !hit|| fireballs[1].playerCollision && !hit || fireballs[2].playerCollision && !hit){//Fireball hits player and get some damage!
+      if (fireballs[0].playerCollision && !hit && !invincibleB|| fireballs[1].playerCollision && !hit && !invincibleB|| fireballs[2].playerCollision && !hit&& !invincibleB){//Fireball hits player and get some damage!
         hit = true;
         //regen = true;
         healthbar.health -= 10;
