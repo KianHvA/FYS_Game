@@ -24,7 +24,6 @@ class Dragon {
     rect(startx, starty, 46, 48);
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
-      //println("5 seconds have passed!");
       savedTime = millis();
       rect(629, 152, 46, 48);
     }
