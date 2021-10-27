@@ -12,12 +12,12 @@ class Flamethrower {
 
   void setup() {
     //links
-    for (int y = distance; y >from; y = y - distBetween) {
+    for (int y = distance; y > from; y = y - distBetween) {
       int y1 = y + minus;
       int y2 = y1 + minus;
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the FireDispencer(Vlammenwerper) (If you want to swap it all to English pleaso do)
+      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the Flamethrower
     }
     //rechts 
     //for (int y = 660; y>150; y = y+ 200) {
@@ -36,7 +36,7 @@ class Flamethrower {
       int y2 = y1 + minus;
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the FireDispencer(Vlammenwerper)
+      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the Flamethrower
     }
   }
 

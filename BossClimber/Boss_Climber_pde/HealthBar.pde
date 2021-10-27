@@ -5,16 +5,21 @@ class Health {
   boolean regen = false; //For regeneration purposes
   boolean dead = false; //To make sure you don't get resurrected because of the health regeneration 
   float regenTimer; //It takes 5 seconds of no damage until you're health regeneration starts
+  float xBegin = 400; //x coordinates off the rect for dead screen
+  float yBegin = 300; //y coordinates off the rect for dead screen
+  final float RxBegin = width/2; //x coordinates off the rect for dead screen used for reseting it
+  final float RyBegin = height/2; //y coordinates off the rect for dead screen used for reseting it
+
 
   void update() {
     if (!dead) {
       regenTimer++;
       if (healthbar.health == 100) regen = false;
-      
+
       if (hit == true) invincible++;
-      
+
       if (invincible > 90) hit = false;
-      
+
       if (flamethrower.hasCollision && !hit) {
         println("auw");
         hit = true;
@@ -22,7 +27,7 @@ class Health {
         healthbar.health -= 50;
         regenTimer = 0;
       }
-      
+
       //for (int i =0; i != fireballs.length; i++) {
       //  if (fireballs[i].hasCollision && !hit) {
       //    println("b");
@@ -32,22 +37,25 @@ class Health {
       //    regenTimer = 0;
       //  }
       //}
-      
-      
+
+
       //if (regenTimer > 300 && regen) healthbar.health++;
     }
   }
 
   void draw() {
     if (healthbar.health < 1) {
+      halfX = xBegin;
+      halfY = yBegin;
       //println("hoi"); Used for checks
       rectMode(CENTER); 
       fill(0);
-      rect(width/2, height/2, width, height); //Black screen if you know a better way pleaso do it
+      rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
       textFont(f, 36); //size of the texts
       fill(255); //color
-      text("GAME OVER", width/2, height/2);
+      text("GAME OVER", halfX, halfY);
       dead = true;
+      menu.restart = true;
     }
   }
 }

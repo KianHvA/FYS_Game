@@ -29,10 +29,18 @@ class Menu {
   PVector spawnP2 = new PVector(400, 250);
   PVector spawnP3 = new PVector(600, 250);
   PVector spawnBS = new PVector(width/2, height/2);
-  PVector Rplacement1 = new PVector(150, 250);
-  PVector Rplacement2 = new PVector(400, 250);
+  final PVector Rplacement1 = new PVector(150, 250);
+  final PVector Rplacement2 = new PVector(400, 250);
   float Check3 = 0, Timer3 = 0;
 
+
+
+
+  Menu() {
+    start = false;
+  }
+  
+  
   void draw() {
     restart = false;
     stroke(rect1);
@@ -220,6 +228,19 @@ class Menu {
     } else if (keysPressed[65] && rect5 == highlight) {
       player = rgB;
       start = true;
+    }
+  }
+
+  void restart() {
+    if (restart && keysPressed['Z']) {
+      halfX = -1000;
+      halfY = -1000;
+      //Health.xBegin = -1000;
+      //Health.yBegin = -1000;
+      placement1 = Rplacement1; 
+      placement2 = Rplacement2;
+      start = false;
+      setup();
     }
   }
 }

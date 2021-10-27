@@ -17,6 +17,8 @@ int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
+float halfX = width/2; //Needed because other function (xBegin) is non-static and can't get it to static
+float halfY = height/2; //Needed because other function (yBegin) is non-static and can't get it to static
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -41,7 +43,12 @@ void setup()
   scoreHandler = new ScoreHandler();
   level.setup();
   scoreHandler.setup();
+<<<<<<< Updated upstream
   for (int i = 0; i < fireballs.length; i++) { 
+=======
+  menu.start = false;
+  for (int i =0; i != fireballs.length; i++) { 
+>>>>>>> Stashed changes
     fireballs[i] = new Fireball();
     fireballs[i].setup();
   }
@@ -59,12 +66,16 @@ void update()
   collisionHandler.update();
   health.update();
   waterfles.updateWaterfles();
+<<<<<<< Updated upstream
   schild.update();
   
 <<<<<<< Updated upstream
     if (fireballCount >= 0){
     fireballCount--;
   }
+=======
+  menu.restart();
+>>>>>>> Stashed changes
   
   if (fireballCount == 200){//Counter fireballs
     fire = true;
