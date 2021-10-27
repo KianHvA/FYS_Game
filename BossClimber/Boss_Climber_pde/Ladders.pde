@@ -1,4 +1,4 @@
-//ladders bewegend laten maken
+//zorgen dat er nieuwe ladders en ladder lijnen spawnen.
 
 void ladders() {
   for (int z = 805; z>0; z = z- 200) {//linkerladders
@@ -27,7 +27,7 @@ void ladders() {
     
     rectMode(CORNERS);
     fill(0);
-    rect(width/2+117, i, width/2+99, i-90);//rect voor collisions
+    rect(width/2+117, newI, width/2+99, newI-90);//rect voor collisions
     
     for (int b = 600; b>110; b=b-10) {//lijnen voor de rechterladders
       if (b>100 && b<200||b>310 && b<400||b>510 && b<600) {

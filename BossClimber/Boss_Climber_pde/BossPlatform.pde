@@ -1,4 +1,4 @@
-// groene button maken om platforms te bewegen
+// groene button return maken spawn plek maken>platforms meer naar beneden 
 int bpX, bpY, bpW, bpH;
 
 
@@ -15,9 +15,10 @@ int bpX, bpY, bpW, bpH;
 //int levelMove = 0;
 
 void Bossplatform() {
-  bpX = 40;
+ 
+  bpX = width/12;
   bpY = 50+platforms.levelMove;
-  bpW = 60;
+  bpW = 30;
   bpH = 10;
   rectMode(CORNER);
   fill(#64ED16);
