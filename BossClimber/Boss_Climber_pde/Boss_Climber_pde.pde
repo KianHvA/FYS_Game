@@ -88,19 +88,29 @@ void update()
     fireballs[2].movementUpdate();
   }
   
-  if (fireballs[0].posFireball.y >= height){//Fires = false, last statement = reset of fireballs
+  if (fireballs[0].posFireball.y >= height || fireballs[0].playerCollision){//Fires = false, last statement = reset of fireballs
     fire = false;
   }
-  if (fireballs[1].posFireball.y >= height){
+  if (fireballs[0].playerCollision){//Damage fireball
+  }  
+  if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision){
     fire2 = false;
   }
-  if (fireballs[2].posFireball.y >= height){
+  if (fireballs[1].playerCollision){//Damage fireball
+  }
+  if (fireballs[2].playerCollision){
+    fire3 = false;
+  }
+  if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height){
     fire3 = false;
     fireballCount = 300;
     fireballs[0].respawn();
     fireballs[1].respawn();
     fireballs[2].respawn();
   }
+  
+  //println(fireballCount);
+  println(fireballs[0].playerCollision);
   
   if (cooldown > 0) {
     cooldown--;
@@ -124,7 +134,7 @@ void update()
     //fireballs[i].respawn();
   //}
   
-  println(fireballCount);
+  //println(fireballCount);
 }
 
 void draw()
