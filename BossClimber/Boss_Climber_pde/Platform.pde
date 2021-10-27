@@ -15,23 +15,29 @@ class Platform {
   int i = 0;
   int j = 0;
   int ySpeed = 10;
+  boolean moveStage;
+  int moveAmount;
 
   void draw() {
 
 
     if (player.posPlayer.y <= bpY) {
-      levelMove = (int)lerp(levelMove, 400, 0.01);
+      moveStage = true;
     }
-    if (levelMove >= 400) {
-      levelMove = 400;
+    if (moveStage) {
+      levelMove++;
+      println(moveAmount);
+    }
+    if (levelMove >= 600) {
+      
+      moveStage = false;
+      moveAmount++;
+      levelMove = 0;
     }
 
-    if ((player.posPlayer.y >= bpY-20) && (player.posPlayer.y <=bpY+bpH)&&(player.posPlayer.x >=bpX)&&(player.posPlayer.x<=bpX+bpW)) {
-      levelMove++;
-    }
-    if (levelMove >= 400) {
-      levelMove = 400;
-    }
+    //if ((player.posPlayer.y >= bpY-20) && (player.posPlayer.y <=bpY+bpH)&&(player.posPlayer.x >=bpX)&&(player.posPlayer.x<=bpX+bpW)) {
+    //  levelMove++;
+    //}
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
     //linksboven = 1 
