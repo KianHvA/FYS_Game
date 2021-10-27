@@ -54,7 +54,7 @@ class Player {
       hasCollision = false;
       velocity.y = -5;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown == 0)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10)
     {
       velocity.y = -5;
       hasDoubleJumped = true;
@@ -81,7 +81,6 @@ class Player {
   void collideWithPlatform()
   {
     hasCollision = true;
-    hasDoubleJumped = false;
 
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;

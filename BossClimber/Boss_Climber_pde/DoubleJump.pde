@@ -23,7 +23,7 @@ class DoubleJump {
     rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
 
     size = 50;
-    if(player.hasDoubleJumped) cooldown++;
+    if(player.hasDoubleJumped == true) cooldown++;
     if(cooldown == 300) {
      player.hasDoubleJumped = false;
      cooldown = 0;
