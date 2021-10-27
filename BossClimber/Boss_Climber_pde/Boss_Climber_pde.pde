@@ -40,8 +40,9 @@ void setup()
   scoreHandler = new ScoreHandler();
   level.setup();
   scoreHandler.setup();
-  for (int i =0; i != fireballs.length; i++) { 
+  for (int i = 0; i < fireballs.length; i++) { 
     fireballs[i] = new Fireball();
+    fireballs[i].setup();
   }
   flamethrower.setup();
   waterfles = new Waterfles();
@@ -57,6 +58,10 @@ void update()
   health.update();
   waterfles.updateWaterfles();
   
+    if (fireballCount >= 0){
+    fireballCount--;
+  }
+  
   if (fireballCount == 200){//Counter fireballs
     fire = true;
   }
@@ -64,7 +69,7 @@ void update()
     fire2 = true;
   }
   if (fireballCount == 0){
-    fire3 = true;
+    fire3 = true;    
   }
   
   if (fire == true){//Boolean fires == true ---> movementUpdate();
@@ -85,12 +90,11 @@ void update()
   }
   if (fireballs[2].posFireball.y >= height){
     fire3 = false;
+    fireballCount = 300;
     fireballs[0].respawn();
     fireballs[1].respawn();
     fireballs[2].respawn();
-    fireballCount = 300;
   }
-   fireballCount--;
   
   if (cooldown > 0) {
     cooldown--;
