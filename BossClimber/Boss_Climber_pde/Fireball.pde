@@ -2,6 +2,7 @@ class Fireball {
 
   //variables
   PVector posFireball = new PVector(400, 50);
+  PVector startFireball;
   PVector sizeFireball = new PVector(20, 20);
   PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
@@ -9,6 +10,11 @@ class Fireball {
   private float timer = 0;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
   float damageFireball = 33;
+  
+  void setup(){
+    startFireball = posFireball;
+    println(startFireball);
+  }
 
   void draw() {
     //modes
@@ -31,7 +37,7 @@ class Fireball {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
       collideWithPlatform();
-      println(wallCollisonR + "  " + wallCollisonL);
+      //println(wallCollisonR + "  " + wallCollisonL);
       if (wallCollisonR && !switchDirection) {
         switchDirection = true;
       } else if (wallCollisonL && switchDirection) {
@@ -68,8 +74,10 @@ class Fireball {
 
   void respawn() {
     //Fireball
-    fill(255, 0, 0);
-    ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
+    startFireball.x = 400;
+    startFireball.y = 50;
+    //fill(255, 0, 0);
+    //ellipse(startFireball.x, startFireball.y, sizeFireball.x, sizeFireball.y);
   }
 
 
