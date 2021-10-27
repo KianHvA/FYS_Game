@@ -9,6 +9,7 @@ Level level;
 Fireball[] fireballs;
 Flamethrower flamethrower;
 Dragon dragon;
+Sword sword;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
@@ -47,6 +48,7 @@ void setup()
   flamethrower.setup();
   waterfles = new Waterfles();
   druppels = new ArrayList<Druppel>();
+  sword = new Sword();
 }
 
 void update()
@@ -57,6 +59,7 @@ void update()
   collisionHandler.update();
   health.update();
   waterfles.updateWaterfles();
+  sword.updateSword();
   
     if (fireballCount >= 0){
     fireballCount--;

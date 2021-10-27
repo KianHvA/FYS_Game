@@ -16,7 +16,7 @@ class Sword {
     guardH = 5;
   }
 
-  void updateWaterfles(){
+  void updateSword(){
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)){
       swordW = 0;
       swordH = 0;
