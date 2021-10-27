@@ -1,5 +1,5 @@
 // groene button maken om platforms te bewegen
-float bpX, bpY, bpW, bpH;
+int bpX, bpY, bpW, bpH;
 
 
 //int x1 = width/12;
@@ -16,7 +16,7 @@ float bpX, bpY, bpW, bpH;
 
 void Bossplatform() {
   bpX = 40;
-  bpY = 50;
+  bpY = 50+platforms.levelMove;
   bpW = 60;
   bpH = 10;
   rectMode(CORNER);
