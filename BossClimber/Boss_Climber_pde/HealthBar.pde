@@ -41,7 +41,6 @@ class Health {
         fireballs[1].playerCollision = false;
         fireballs[2].playerCollision = false;
       }
-
       //for (int i =0; i != fireballs.length; i++) {
       //  if (fireballs[i].hasCollision && !hit) {
       //    println("b");
