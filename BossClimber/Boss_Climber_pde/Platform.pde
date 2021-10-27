@@ -17,10 +17,14 @@ class Platform {
   int ySpeed = 10;
 
   void draw() {
-     
-   
-     if (player.posPlayer.y <= bpY){levelMove++;}
-     if (levelMove >= 400){levelMove = 400;}
+
+
+    if (player.posPlayer.y <= bpY) {
+      levelMove = (int)lerp(levelMove, 400, 0.01);
+    }
+    if (levelMove >= 400) {
+      levelMove = 400;
+    }
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
     //linksboven = 1 
@@ -39,9 +43,7 @@ class Platform {
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       if (i == vertexesL.length) {
         i = 0;
-         quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
-     
-        
+        quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
       }
       vertexesL[i] = new PVector(x1, y);
       vertexesL[i + 1] = new PVector(x1, y1);
@@ -50,7 +52,7 @@ class Platform {
       vertexesL[i + 4] = new PVector(x1, y);
       i += 5;
       for (int z = newZ; z>0; z = z- 200) {//rechterplatform
-      fill(147, 147, 147);
+        fill(147, 147, 147);
         quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
 
         if (j == vertexesR.length) {
@@ -63,15 +65,15 @@ class Platform {
         vertexesR[j + 4] = new PVector(width-66, z-platformThickness);
         j += 5;
         fill(147, 147, 147);
-        
-      Bossplatform();
+
+        Bossplatform();
       }
     }
   }
   void update() {
     //if (posPlayer.x < 300 && posplayer.y >100){
-  //}
-}
+    //}
+  }
 }
 
 

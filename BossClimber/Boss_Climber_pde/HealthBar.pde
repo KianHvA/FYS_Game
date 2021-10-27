@@ -15,7 +15,7 @@ class Health {
   void update() {
     if (!dead) {
       regenTimer++;
-      if (healthbar.health == 100) regen = false;
+      if (healthbar.healthPlayer == 100) regen = false;
 
       if (hit == true) invincible++;
 
@@ -25,22 +25,20 @@ class Health {
         println("auw");
         hit = true;
         //regen = true;
-        healthbar.health -= 50;
+        healthbar.healthPlayer -= 50;
         regenTimer = 0;
       }
-      
-      if (fireballs[0].playerCollision && !hit && !invincibleB|| fireballs[1].playerCollision && !hit && !invincibleB|| fireballs[2].playerCollision && !hit&& !invincibleB){//Fireball hits player and get some damage!
-        hit = true;
-        //regen = true;
-        healthbar.health -= 10;
-        regenTimer = 0;
-      }
-      else{
-        hit = false;
-        fireballs[0].playerCollision = false;
-        fireballs[1].playerCollision = false;
-        fireballs[2].playerCollision = false;
-      }
+
+      //if (fireballs[0].playerCollision && !hit && !invincibleB|| fireballs[1].playerCollision && !hit && !invincibleB|| fireballs[2].playerCollision && !hit&& !invincibleB) {//Fireball hits player and get some damage!
+      //  hit = true;
+      //  //regen = true;
+      //  regenTimer = 0;
+      //} else {
+      //  hit = false;
+      //  fireballs[0].playerCollision = false;
+      //  fireballs[1].playerCollision = false;
+      //  fireballs[2].playerCollision = false;
+      //}
       //for (int i =0; i != fireballs.length; i++) {
       //  if (fireballs[i].hasCollision && !hit) {
       //    println("b");
@@ -57,7 +55,7 @@ class Health {
   }
 
   void draw() {
-    if (healthbar.health < 1) {
+    if (healthbar.healthPlayer < 1) {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
@@ -76,25 +74,31 @@ class Health {
 class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 
   float x, y, w, h;
-  float health = 100;
+  float healthPlayer = 100;
   HealthBar(float Tx, float Ty, float Tw, float Th ) {
     this.x = Tx;
     this.y = Ty;
     this.w = Tw;
     this.h = Th;
-    health = 100;
+    healthPlayer = 100;
   }
 
+
+  void doDamage(float damage) {
+    if (!health.invincibleB) {
+      healthPlayer -= damage;
+    }
+  }
   void draw() {
-    health = constrain(health, 0, 100);
+    healthPlayer = constrain(healthPlayer, 0, 100);
     noFill();
     stroke(255);
     rect(x, y, w, h);
 
     colorMode(RGB, 150);
-    float c = map(health, 0, 100, 0, w);
-    float d = map(health, 0, 100/2, 0, 255);
-    float f = map(health, 0, 100, 255, 0);
+    float c = map(healthPlayer, 0, 100, 0, w);
+    float d = map(healthPlayer, 0, 100/2, 0, 255);
+    float f = map(healthPlayer, 0, 100, 255, 0);
     fill(f, d, 0);
     noStroke();
     rect(x+1, y+1, c, h-1);
