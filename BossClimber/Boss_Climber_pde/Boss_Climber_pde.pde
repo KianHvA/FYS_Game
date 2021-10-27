@@ -110,7 +110,7 @@ void update()
   }
   
   //println(fireballCount);
-  println(fireballs[0].playerCollision);
+  //println(fireballs[0].playerCollision);
   
   if (cooldown > 0) {
     cooldown--;

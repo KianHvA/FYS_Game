@@ -13,7 +13,7 @@ class Fireball {
 
   void setup() {
     startFireball = posFireball;
-    println(startFireball);
+    //println(startFireball);
   }
 
   void draw() {

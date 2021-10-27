@@ -26,13 +26,14 @@ class Platform {
     }
     if (moveStage) {
       levelMove++;
-      println(moveAmount);
+      
     }
     if (levelMove >= 600) {
       
       moveStage = false;
       moveAmount++;
       levelMove = 0;
+      //println(moveAmount);
     }
 
     //if ((player.posPlayer.y >= bpY-20) && (player.posPlayer.y <=bpY+bpH)&&(player.posPlayer.x >=bpX)&&(player.posPlayer.x<=bpX+bpW)) {
