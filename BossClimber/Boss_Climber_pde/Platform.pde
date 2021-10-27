@@ -25,6 +25,13 @@ class Platform {
     if (levelMove >= 400) {
       levelMove = 400;
     }
+
+    if ((player.posPlayer.y >= bpY-20) && (player.posPlayer.y <=bpY+bpH)&&(player.posPlayer.x >=bpX)&&(player.posPlayer.x<=bpX+bpW)) {
+      levelMove++;
+    }
+    if (levelMove >= 400) {
+      levelMove = 400;
+    }
     newZ = 801 + levelMove; 
     newY = 660 + levelMove; 
     //linksboven = 1 

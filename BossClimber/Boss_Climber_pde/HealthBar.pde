@@ -21,7 +21,7 @@ class Health {
 
       if (invincible > 90) hit = false;
 
-      if (flamethrower.hasCollision && !hit) {
+      if (flamethrower.hasCollision && !hit && !invincibleB) {
         println("auw");
         hit = true;
         //regen = true;
