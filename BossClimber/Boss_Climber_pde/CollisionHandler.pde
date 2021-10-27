@@ -32,8 +32,8 @@ class CollisionHandler
 
   void update() {
     hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
-      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
-      polyCircle(vertexesBossPlatform, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y); 
+     //|| polyCircle(vertexesBossPlatform, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
   }
 
   //object met player collision
@@ -44,7 +44,7 @@ class CollisionHandler
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius) || polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) 
+    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius)) //|| polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) 
     {
       hit = true;
     } else {
