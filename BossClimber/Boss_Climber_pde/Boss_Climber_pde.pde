@@ -115,6 +115,7 @@ void update()
     waterfles.druppelOn = false;
     cooldown = 100;
   }
+  dragon.update();
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
    // fireballs[i].movementUpdate();
