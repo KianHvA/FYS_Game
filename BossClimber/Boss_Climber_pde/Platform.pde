@@ -28,7 +28,7 @@ class Platform {
     float x1 = width/12;
     float x2 = width/2;
     fill(147, 147, 147);
-    Bossplatform();
+    //Bossplatform();
     for (int y = newY; y>150; y = y- 200) {
       int y1= y + 25;
       int y2 = y1 + 25;
