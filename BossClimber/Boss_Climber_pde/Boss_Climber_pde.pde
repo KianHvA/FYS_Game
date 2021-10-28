@@ -55,6 +55,7 @@ void setup()
 
 void update()
 {
+  dragon.update();
   flamethrower.update();
   player.movementUpdate();
   Doublejump.update();
@@ -110,7 +111,6 @@ void update()
   }
   
   //println(fireballCount);
-  println(fireballs[0].playerCollision);
   
   if (cooldown > 0) {
     cooldown--;
@@ -125,7 +125,7 @@ void update()
     waterfles.druppelOn = false;
     cooldown = 100;
   }
-  dragon.update();
+  
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
    // fireballs[i].movementUpdate();

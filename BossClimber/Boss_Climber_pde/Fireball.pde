@@ -1,19 +1,26 @@
 class Fireball {
 
   //variables
-  PVector posFireball = new PVector(400, 50);
+  PVector posFireball = new PVector(0, 0);
   PVector startFireball;
   PVector sizeFireball = new PVector(20, 20);
   PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.1f;
   private float timer = 0;
-  boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false;
+  boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false, newPos = false;
   float damageFireball = 33;
   
+  void fireball(float fireX, float fireY){
+    posFireball.x = fireX;
+    posFireball.y = fireY;
+  }
+  
   void setup(){
+    //dragon.startx = posFireball.x;
+    //dragon.starty = posFireball.y;
     startFireball = posFireball;
-    println(startFireball);
+    println(posFireball.y);
   }
 
   void draw() {
@@ -71,13 +78,17 @@ class Fireball {
       //spawn fireBall
      // posFireball.x  = newPosFireball.x;
      // posFireball.y  = newPosFireball.y;
-    //}
+    //}  
   }
 
   void respawn() {
     //Fireball
-    startFireball.x = 400;
-    startFireball.y = 50;
+    posFireball.x = dragon.startx;
+    posFireball.y = dragon.starty;
+    println(dragon.startx);
+    println(dragon.starty);
+    //startFireball.x = 400;
+    //startFireball.y = 50;
     //fill(255, 0, 0);
     //ellipse(startFireball.x, startFireball.y, sizeFireball.x, sizeFireball.y);
   }

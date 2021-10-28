@@ -23,6 +23,7 @@ class Dragon {
     stroke(0);
     fill(185, 185, 182);
     rect(startx, starty, 46, 48);
+    
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
       savedTime = millis();
@@ -40,7 +41,7 @@ class Dragon {
   }
 
 
-  void update() {
+  void update() {      
     while (player.posPlayer.y > 80) {
       //voer vlieg routine uit
 
