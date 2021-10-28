@@ -120,12 +120,12 @@ void update()
   }
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
-    fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
-    fireballs[1].posFireball.x = fireballs[1].RposFireball.x;
-    fireballs[2].posFireball.x = fireballs[2].RposFireball.x;
-    fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
-    fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
-    fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
+    //fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
+    //fireballs[1].posFireball.x = fireballs[1].RposFireball.x;
+    //fireballs[2].posFireball.x = fireballs[2].RposFireball.x;
+    //fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
+    //fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
+    //fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
     fireballCount = 300;
     fireballs[0].respawn();
     fireballs[1].respawn();
@@ -133,12 +133,12 @@ void update()
   }
 
   //println(fireballCount);
-<<<<<<< HEAD
+
   
-=======
+
   //println(fireballs[0].playerCollision);
 
->>>>>>> 5518aaf079be1d1f61b857e667183a64761db020
+
   if (cooldown > 0) {
     cooldown--;
   }
