@@ -10,6 +10,7 @@ class Health {
   final float RxBegin = width/2; //x coordinates off the rect for dead screen used for reseting it
   final float RyBegin = height/2; //y coordinates off the rect for dead screen used for reseting it
   boolean invincibleB = false;
+  int harts = 3;
 
 
   void update() {
@@ -56,6 +57,11 @@ class Health {
 
   void draw() {
     if (healthbar.healthPlayer < 1) {
+      harts--;
+      healthbar.healthPlayer = 100;
+      println(harts);
+    } 
+    if (healthbar.healthPlayer < 1 && harts < 0) {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
