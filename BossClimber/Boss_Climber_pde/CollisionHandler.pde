@@ -98,6 +98,7 @@ class CollisionHandler
 
     float closestX = x1 + (dot * (x2-x1));
     float closestY = y1 + (dot * (y2-y1));
+    circle(closestX,closestY,10);
     platformHeight = 10;
 
     boolean onSegment = linePoint(x1, y1, x2, y2, closestX, closestY);

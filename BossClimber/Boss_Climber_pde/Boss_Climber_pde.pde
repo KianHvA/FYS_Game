@@ -195,8 +195,8 @@ void draw()
     }
 
     flamethrower.draw();
-    platforms.draw();
     player.draw();
+    platforms.draw();
     Doublejump.draw();
     healthbar.draw();
     waterfles.draw();
