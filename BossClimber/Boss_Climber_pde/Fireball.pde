@@ -8,29 +8,22 @@ class Fireball {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.1f;
   private float timer = 0;
+  PVector RposFireball;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false, newPos = false;
   float damageFireball = 33;
-<<<<<<< HEAD
-  
-  void fireball(float fireX, float fireY){
+
+  void fireball(float fireX, float fireY) {
     posFireball.x = fireX;
     posFireball.y = fireY;
   }
-  
-  void setup(){
+
+  void setup() {
     //dragon.startx = posFireball.x;
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
     println(posFireball.y);
-=======
-  PVector RposFireball = new PVector(400, 50);
-
-  void setup() {
-    startFireball = posFireball;
-    //println(startFireball);
->>>>>>> 5518aaf079be1d1f61b857e667183a64761db020
+    RposFireball = new PVector(400, 50);
   }
-
   void draw() {
     //modes
     ellipseMode(CENTER);
@@ -84,19 +77,16 @@ class Fireball {
     // respawn();
     // }
 
-<<<<<<< HEAD
-   // if (timer >= frameRate * 5) {
-      //spawn fireBall
-     // posFireball.x  = newPosFireball.x;
-     // posFireball.y  = newPosFireball.y;
+    // if (timer >= frameRate * 5) {
+    //spawn fireBall
+    // posFireball.x  = newPosFireball.x;
+    // posFireball.y  = newPosFireball.y;
     //}  
-=======
     // if (timer >= frameRate * 5) {
     //spawn fireBall
     // posFireball.x  = newPosFireball.x;
     // posFireball.y  = newPosFireball.y;
     //}
->>>>>>> 5518aaf079be1d1f61b857e667183a64761db020
   }
 
   void respawn() {

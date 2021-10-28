@@ -133,12 +133,7 @@ void update()
   }
 
   //println(fireballCount);
-<<<<<<< HEAD
-  
-=======
   //println(fireballs[0].playerCollision);
-
->>>>>>> 5518aaf079be1d1f61b857e667183a64761db020
   if (cooldown > 0) {
     cooldown--;
   }
