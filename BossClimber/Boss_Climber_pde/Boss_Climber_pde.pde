@@ -19,6 +19,8 @@ int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
+float xDragon = 152, yDragon = 50, sizeDragon = 46;
+int fireballAmount = 5;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -37,9 +39,9 @@ void setup()
   health = new Health();
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   Doublejump = new DoubleJump();
-  fireballs = new Fireball[3];
+  fireballs = new Fireball[fireballAmount];
   flamethrower = new Flamethrower();
-  dragon = new Dragon(152, 50, 46);
+  dragon = new Dragon(xDragon, yDragon, sizeDragon);
   scoreHandler = new ScoreHandler();
   level.setup();
   scoreHandler.setup();
@@ -65,18 +67,18 @@ void update()
   menu.restart();
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
-  switch(randomPowerup) {
-  case 1:
-    waterfles = new Waterfles();
-    break;
-  case 2:
-    sword = new Sword();
-    break;
-  case 3:
-    waterfles = new Waterfles();
-    break;
-    default:
-  }
+  //switch(randomPowerup) {
+  //case 1:
+  //  waterfles = new Waterfles();
+  //  break;
+  //case 2:
+  //  sword = new Sword();
+  //  break;
+  //case 3:
+  //  waterfles = new Waterfles();
+  //  break;
+  //  default:
+  //}
 
   if (fireballCount >= 0) {
     fireballCount--;
