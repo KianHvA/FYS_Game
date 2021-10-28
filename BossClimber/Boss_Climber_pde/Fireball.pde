@@ -10,6 +10,7 @@ class Fireball {
   private float timer = 0;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false;
   float damageFireball = 33;
+  PVector RposFireball = new PVector(400, 50);
 
   void setup() {
     startFireball = posFireball;

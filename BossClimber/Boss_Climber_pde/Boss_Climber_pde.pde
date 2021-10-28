@@ -20,7 +20,7 @@ final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
 float xDragon = 152, yDragon = 50, sizeDragon = 46;
-int fireballAmount = 5;
+int fireballAmount = 3;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -119,6 +119,12 @@ void update()
   }
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
+    fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
+    fireballs[1].posFireball.x = fireballs[1].RposFireball.x;
+    fireballs[2].posFireball.x = fireballs[2].RposFireball.x;
+    fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
+    fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
+    fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
     fireballCount = 300;
     fireballs[0].respawn();
     fireballs[1].respawn();

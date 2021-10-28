@@ -10,7 +10,7 @@ class Platform {
   float h = 15; 
   float platformThickness = 25;
   float rGet = random(1, 5);
-  PVector[] vertexesL = new PVector[20];
+  PVector[] vertexesL = new PVector[40];
   PVector[] vertexesR = new PVector[40];
   int i = 0;
   int j = 0;
@@ -33,7 +33,7 @@ class Platform {
       moveStage = false;
       moveAmount++;
       levelMove = 0;
-      //println(moveAmount);
+      println(moveAmount);
     }
 
     //if ((player.posPlayer.y >= bpY-20) && (player.posPlayer.y <=bpY+bpH)&&(player.posPlayer.x >=bpX)&&(player.posPlayer.x<=bpX+bpW)) {
