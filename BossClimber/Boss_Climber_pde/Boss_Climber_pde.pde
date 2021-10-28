@@ -19,6 +19,8 @@ int spawnCountDruppel = 500;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
+float xDragon = 152, yDragon = 50, sizeDragon = 46;
+int fireballAmount = 3;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -37,9 +39,9 @@ void setup()
   health = new Health();
   healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
   Doublejump = new DoubleJump();
-  fireballs = new Fireball[3];
+  fireballs = new Fireball[fireballAmount];
   flamethrower = new Flamethrower();
-  dragon = new Dragon(152, 50, 46);
+  dragon = new Dragon(xDragon, yDragon, sizeDragon);
   scoreHandler = new ScoreHandler();
   level.setup();
   scoreHandler.setup();
@@ -64,54 +66,79 @@ void update()
   waterfles.updateWaterfles();
   sword.updateSword();
   menu.restart();
-  
-    if (fireballCount >= 0){
+  //3 is amount off power-ups need change later
+  int randomPowerup = randomizer(3);
+  //switch(randomPowerup) {
+  //case 1:
+  //  waterfles = new Waterfles();
+  //  break;
+  //case 2:
+  //  sword = new Sword();
+  //  break;
+  //case 3:
+  //  waterfles = new Waterfles();
+  //  break;
+  //  default:
+  //}
+
+  if (fireballCount >= 0) {
     fireballCount--;
   }
-  
-  if (fireballCount == 200){//Counter fireballs
+
+  if (fireballCount == 200) {//Counter fireballs
     fire = true;
   }
-  if (fireballCount == 100){
+  if (fireballCount == 100) {
     fire2 = true;
   }
-  if (fireballCount == 0){
-    fire3 = true;    
+  if (fireballCount == 0) {
+    fire3 = true;
   }
-  
-  if (fire == true){//Boolean fires == true ---> movementUpdate();
+
+  if (fire == true) {//Boolean fires == true ---> movementUpdate();
     fireballs[0].movementUpdate();
   }
-  if (fire2 == true){
+  if (fire2 == true) {
     fireballs[1].movementUpdate();
   }
-  if (fire3 == true){
+  if (fire3 == true) {
     fireballs[2].movementUpdate();
   }
-  
-  if (fireballs[0].posFireball.y >= height || fireballs[0].playerCollision){//Fires = false, last statement = reset of fireballs
+
+  if (fireballs[0].posFireball.y >= height || fireballs[0].playerCollision) {//Fires = false, last statement = reset of fireballs
     fire = false;
   }
-  if (fireballs[0].playerCollision){//Damage fireball
+  if (fireballs[0].playerCollision) {//Damage fireball
   }  
-  if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision){
+  if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision) {
     fire2 = false;
   }
-  if (fireballs[1].playerCollision){//Damage fireball
+  if (fireballs[1].playerCollision) {//Damage fireball
   }
-  if (fireballs[2].playerCollision){
+  if (fireballs[2].playerCollision) {
     fire3 = false;
   }
-  if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height){
+  if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
+    fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
+    fireballs[1].posFireball.x = fireballs[1].RposFireball.x;
+    fireballs[2].posFireball.x = fireballs[2].RposFireball.x;
+    fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
+    fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
+    fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
     fireballCount = 300;
     fireballs[0].respawn();
     fireballs[1].respawn();
     fireballs[2].respawn();
   }
-  
+
   //println(fireballCount);
+<<<<<<< HEAD
   
+=======
+  //println(fireballs[0].playerCollision);
+
+>>>>>>> 5518aaf079be1d1f61b857e667183a64761db020
   if (cooldown > 0) {
     cooldown--;
   }
@@ -128,12 +155,12 @@ void update()
   
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
-   // fireballs[i].movementUpdate();
+  // fireballs[i].movementUpdate();
   //}
   //for (int i = 0; i != fireballs.length; i++) {
-    //fireballs[i].respawn();
+  //fireballs[i].respawn();
   //}
-  
+
   //println(fireballCount);
 }
 
@@ -146,27 +173,20 @@ void draw()
     menu.highlight();
   }
   if (menu.start == true) {
+
     update();
-    
-    if (fire == true){
+    level.draw();
+    if (fire == true) {
       fireballs[0].draw();
     }
-    if (fire2 == true){  
+    if (fire2 == true) {  
       fireballs[1].draw();
     }
-  
-    if (fire3 == true){  
+
+    if (fire3 == true) {  
       fireballs[2].draw();
     }
-    
-    flamethrower.draw();
-    platforms.draw();
-    level.draw();
-    player.draw();
-    Doublejump.draw();
-    healthbar.draw();
-    dragon.draw();
-    waterfles.draw();
+
 
     for (int d = druppels.size() - 1; d >= 0; d--) {
       if (druppels.size() >= 3) {
@@ -178,8 +198,18 @@ void draw()
       druppel.druppelUpdate();
       druppel.draw();
     }
+
+    flamethrower.draw();
+    player.draw();
+    platforms.draw();
+    Doublejump.draw();
+    healthbar.draw();
+    waterfles.draw();
+    dragon.draw();
+
     //teken alle UI hier zodat het op de voorgrond komt
     scoreHandler.draw();
+    healthbar.draw();
     health.draw();
   }
 }
@@ -194,4 +224,16 @@ void keyReleased()
 {
   //we hebben een toets losgelaten.
   keysPressed[keyCode] = false;
+}
+
+int randomizer(float Amount) {
+  float timerA = 0;
+  int number = 1;
+  boolean timer = true;
+  if (timer) timerA++;
+  if (timerA > 900) {
+    number = (int)random(0, Amount);
+    timer = false;
+  }
+  return number;
 }
