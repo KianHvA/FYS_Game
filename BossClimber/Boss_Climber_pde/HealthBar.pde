@@ -10,6 +10,9 @@ class Health {
   final float RxBegin = width/2; //x coordinates off the rect for dead screen used for reseting it
   final float RyBegin = height/2; //y coordinates off the rect for dead screen used for reseting it
   boolean invincibleB = false;
+  float amount = 4;
+  boolean amount2 = false, amount1 = false, amount0 = false;
+  float amount2C = 0, amount1C = 0, amount0C = 0;
 
 
   void update() {
@@ -55,7 +58,49 @@ class Health {
   }
 
   void draw() {
-    if (healthbar.healthPlayer < 1) {
+    if (healthbar.healthPlayer < 1 && amount <= 0) {
+     amount--;
+     healthbar.healthPlayer = 100;
+    }
+    if (amount == 4 /*3 but because of the mulptiplier with damage it can't get to 0*/) {
+      fill(255);
+      ellipseMode(CORNER);
+      ellipse(width - 250/2 - 10, height - 50, 10, 10);
+      ellipse(width - 75, height - 50, 10, 10);
+      ellipse(width - 25, height - 50, 10, 10);
+    } else if (amount == 3 /*2 but because of the multiplier with damage it can't get to 0*/) {
+      amount2 = true;
+      fill(255);
+      ellipseMode(CORNER);
+      ellipse(width - 250/2 - 10, height - 50, 10, 10);
+      ellipse(width - 75, height - 50, 10, 10);
+    } else if (amount == 2 /*1 but because of the multiplier with damage it can't get to 0*/) {
+      amount1 = true;
+      fill(255);
+      ellipseMode(CORNER);
+      ellipse(width - 250/2 - 10, height - 50, 10, 10);
+    } else if (amount == 1 /*0 but because of the multiplier with damage it can't get to 0*/) {
+      amount0 = true;
+    }
+    if (amount2) {
+      amount2C++;      
+    }
+    if (amount1) {
+      amount1C++;      
+    }
+    if (amount0) {
+      amount0C++;      
+    }
+    println(amount2C);
+    println(invincibleB);
+    if(amount2C > 1 && amount2C < 400) invincibleB = true;
+    else if (amount2C > 400) invincibleB = false;
+    if(amount1C > 1 && amount1C < 400) invincibleB = true;
+    else if (amount1C > 400) invincibleB = false;
+    if(amount0C > 1 && amount0C < 400) invincibleB = true;
+    else if (amount0C > 400) invincibleB = false;
+
+    if (healthbar.healthPlayer < 1 && amount >= 1) {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
@@ -86,7 +131,7 @@ class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 
   void doDamage(float damage) {
     if (!health.invincibleB) {
-      healthPlayer -= damage;
+      healthPlayer -= damage /* * health.amount work in progress it just insta kills you now */;
     }
   }
   void draw() {

@@ -76,13 +76,13 @@ class FireBallRain {
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   boolean fireBallRain = false;
   void spawn() {
-    fireBallRain = true;
-    //startx = lerp(startx, vliegPatroon[0].x, 0.01);
-    //starty = lerp(starty, vliegPatroon[0].y, 0.01);
-    for (int i = 0; i > fireballs.length; i++) {
-      fireballs[i].posFireball.x = 150;
-      fireballs[i].posFireball.y = 50;
-      fireballs[i].draw();
-    }
+    //fireBallRain = true;
+    ////startx = lerp(startx, vliegPatroon[0].x, 0.01);
+    ////starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    //for (int i = 0; i > fireballs.length; i++) {
+    //  fireballs[i].posFireball.x = 150;
+    //  fireballs[i].posFireball.y = 50;
+    //  fireballs[i].draw();
+    //}
   }
 }
