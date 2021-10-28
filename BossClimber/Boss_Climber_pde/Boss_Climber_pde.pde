@@ -109,11 +109,13 @@ void update()
     fire = false;
   }
   if (fireballs[0].playerCollision) {//Damage fireball
+  fire = false;
   }  
   if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision) {
     fire2 = false;
   }
   if (fireballs[1].playerCollision) {//Damage fireball
+    fire2 = false;
   }
   if (fireballs[2].playerCollision) {
     fire3 = false;
