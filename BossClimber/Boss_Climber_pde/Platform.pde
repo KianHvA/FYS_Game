@@ -11,6 +11,8 @@ class Platform {
   float platformThickness = 25;
   float rGet = random(1, 5);
   PVector[] vertexesL= new PVector[20];
+  PVector[] vertexesR= new PVector[20];
+  
   int i = 0;
   int j = 0;
   int ySpeed = 10;
