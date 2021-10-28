@@ -58,7 +58,7 @@ class Health {
   }
 
   void draw() {
-    if (healthbar.healthPlayer < 1 && amount <= 0) {
+    if (healthbar.healthPlayer < 1 && amount >= 0) {
      amount--;
      healthbar.healthPlayer = 100;
     }
@@ -100,7 +100,7 @@ class Health {
     if(amount0C > 1 && amount0C < 400) invincibleB = true;
     else if (amount0C > 400) invincibleB = false;
 
-    if (healthbar.healthPlayer < 1 && amount >= 1) {
+    if (healthbar.healthPlayer < 1 && amount <= 1) {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
