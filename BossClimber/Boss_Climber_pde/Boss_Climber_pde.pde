@@ -67,7 +67,7 @@ void update()
   sword.updateSword();
   menu.restart();
   //3 is amount off power-ups need change later
-  int randomPowerup = randomizer(3);
+  //int randomPowerup = randomizer(3);
   //switch(randomPowerup) {
   //case 1:
   //  waterfles = new Waterfles();
