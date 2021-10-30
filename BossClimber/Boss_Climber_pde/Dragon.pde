@@ -20,6 +20,7 @@ class Dragon {
 
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
+    bossFight = new bossFight();
     this.startx = x;
     this.starty = y;
     this.diameter = diameter;
@@ -77,6 +78,8 @@ class Dragon {
     if (platforms.moveAmount == 4 /* fightAmount*/) {
       bossFight.startFight();
     }
+    xDragon = startx;
+    yDragon = starty;
   }
 }
 
@@ -98,8 +101,8 @@ class FireBallRain {
 }
 
 class bossFight {
-  float startx = xDragon = dragon.startx;
-  float starty = yDragon = dragon.starty;
+  float startx = xDragon;
+  float starty = yDragon;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
   
@@ -110,6 +113,7 @@ class bossFight {
     dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
     startx = lerp(startx, vliegPatroon[0].x, 0.01);
     starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    waterfles = new Waterfles();
     onTheWay();
   }
 
