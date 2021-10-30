@@ -10,14 +10,13 @@ class Platform {
   float h = 15; 
   float platformThickness = 25;
   float rGet = random(1, 5);
-  PVector[] vertexesL= new PVector[20];
-  PVector[] vertexesR= new PVector[20];
-  
   int i = 0;
   int j = 0;
   int ySpeed = 10;
   boolean moveStage;
   int moveAmount = 1;
+  PVector[] vertexesL= new PVector[20 * moveAmount];
+  PVector[] vertexesR= new PVector[20 * moveAmount];
 
   void draw() {
 

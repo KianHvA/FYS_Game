@@ -9,6 +9,7 @@ class Flamethrower {
   int distance = 660, from = 150, minus = 7;
   int  distBetween = 200, idk = 0;
   boolean live = false, hasCollision = false;
+  int newY = 660;
 
   void setup() {
     //links
@@ -30,8 +31,9 @@ class Flamethrower {
   }
 
   void draw() {
+    newY = distance + platforms.levelMove;
     //links
-    for (int y = distance; y >from; y = y - distBetween) {
+    for (int y = newY; y >from; y = y - distBetween) {
       int y1 = y + minus;
       int y2 = y1 + minus;
       noStroke();
@@ -41,7 +43,7 @@ class Flamethrower {
   }
 
   void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time
-    for (int y = distance; y>from; y = y- distBetween) {
+    for (int y = newY; y>from; y = y- distBetween) {
       int y1= y - 6;
 
       noStroke();

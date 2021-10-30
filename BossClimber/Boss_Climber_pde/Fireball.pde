@@ -10,6 +10,7 @@ class Fireball {
   private float timer = 0;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false, newPos = false;
   float damageFireball = 33;
+  PVector RposFireball = new PVector(400, 50);
 
   
   void fireball(float fireX, float fireY){
@@ -21,9 +22,7 @@ class Fireball {
     //dragon.startx = posFireball.x;
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
-    println(posFireball.y);
-
-  PVector RposFireball = new PVector(400, 50);
+    //println(posFireball.y);
   }
 
 
@@ -98,8 +97,8 @@ class Fireball {
     //Fireball
     posFireball.x = dragon.startx;
     posFireball.y = dragon.starty;
-    println(dragon.startx);
-    println(dragon.starty);
+    //println(dragon.startx);
+    //println(dragon.starty);
     //startFireball.x = 400;
     //startFireball.y = 50;
     //fill(255, 0, 0);

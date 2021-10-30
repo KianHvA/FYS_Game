@@ -130,8 +130,11 @@ void update()
     //fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
     fireballCount = 300;
     fireballs[0].respawn();
+    fireballs[0].posFireball = fireballs[0].RposFireball;
     fireballs[1].respawn();
+    fireballs[1].posFireball = fireballs[1].RposFireball;
     fireballs[2].respawn();
+    fireballs[2].posFireball = fireballs[2].RposFireball;
   }
 
   //println(fireballCount);
