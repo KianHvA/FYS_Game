@@ -61,7 +61,7 @@ class Flamethrower {
         //println(timer2);
       } 
       if (live) { //Checking the collision
-        collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.y);
+        collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.x);
         hasCollision = collisionHandler.hitPlayer;
       } else {
         hasCollision = false;
