@@ -25,6 +25,8 @@ boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
+float powerUpTimer1 = 0, powerUpTimer2 = 0;
+boolean powerUpActive = false;
 
 void setup() 
 {
@@ -68,18 +70,28 @@ void update()
   menu.restart();
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
-  //switch(randomPowerup) {
-  //case 1:
-  //  waterfles = new Waterfles();
-  //  break;
-  //case 2:
-  //  sword = new Sword();
-  //  break;
-  //case 3:
-  //  waterfles = new Waterfles();
-  //  break;
-  //  default:
-  //}
+  if (powerUpTimer2 == 0 && !powerUpActive) powerUpTimer1++;
+  if (powerUpTimer1 == 300 && !powerUpActive) {
+    switch(randomPowerup) {
+    case 1:
+      waterfles = new Waterfles();
+      break;
+    case 2:
+      sword = new Sword();
+      break;
+    case 3:
+      waterfles = new Waterfles();
+      break;
+    default:
+      powerUpActive = true;
+    }
+    if (powerUpActive) powerUpTimer2++;
+    if (powerUpTimer2 > 300) {
+      powerUpTimer1 = 0; 
+      powerUpTimer2 = 0;
+      powerUpActive = false;
+    }
+  }
 
   if (fireballCount >= 0) {
     fireballCount--;
@@ -109,7 +121,7 @@ void update()
     fire = false;
   }
   if (fireballs[0].playerCollision) {//Damage fireball
-  fire = false;
+    fire = false;
   }  
   if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision) {
     fire2 = false;
@@ -139,7 +151,7 @@ void update()
 
   //println(fireballCount);
 
-  
+
 
   //println(fireballs[0].playerCollision);
 
@@ -157,7 +169,7 @@ void update()
     waterfles.druppelOn = false;
     cooldown = 100;
   }
-  
+
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
   // fireballs[i].movementUpdate();
