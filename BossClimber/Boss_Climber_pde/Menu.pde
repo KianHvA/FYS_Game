@@ -62,7 +62,7 @@ class Menu {
     rectMode(CENTER);
     textFont(f, 36); //size of the texts
     fill(255); //color
-    text("Perzonalize", placement2.x + 10, placement2.y + 60);
+    text("Personalise \u00B0", placement2.x + 10, placement2.y + 60);
     drawn = true;
   }
 
