@@ -38,7 +38,7 @@ class Fireball {
   void movementUpdate()
   {
     checkCollision(posFireball.x, posFireball.y, sizeFireball.y);
-    collisionHandler.checkCollisionPlayer(posFireball.x, posFireball.y, sizeFireball.x);
+    collisionHandler.checkCollisionPlayer(posFireball.x, posFireball.y, sizeFireball.x/2);
 
     hasCollision = collisionHandler.hit;
     playerCollision = collisionHandler.hitPlayer;

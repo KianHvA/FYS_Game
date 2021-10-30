@@ -69,6 +69,7 @@ void update()
   sword.updateSword();
   menu.restart();
   //3 is amount off power-ups need change later
+<<<<<<< HEAD
   int randomPowerup = randomizer(3);
   if (powerUpTimer2 == 0 && !powerUpActive) powerUpTimer1++;
   if (powerUpTimer1 == 300 && !powerUpActive) {
@@ -92,6 +93,21 @@ void update()
       powerUpActive = false;
     }
   }
+=======
+  //int randomPowerup = randomizer(3);
+  //switch(randomPowerup) {
+  //case 1:
+  //  waterfles = new Waterfles();
+  //  break;
+  //case 2:
+  //  sword = new Sword();
+  //  break;
+  //case 3:
+  //  waterfles = new Waterfles();
+  //  break;
+  //  default:
+  //}
+>>>>>>> 94f4ec70dfb1664e8c263ef349bfde775ff7f7ac
 
   if (fireballCount >= 0) {
     fireballCount--;
