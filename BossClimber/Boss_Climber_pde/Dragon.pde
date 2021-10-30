@@ -74,7 +74,7 @@ class Dragon {
     if (platforms.moveAmount == 3 * fightAmount) {
       FireballRain.spawn();
     }
-    if (platforms.moveAmount == 4 * fightAmount) {
+    if (platforms.moveAmount == 4 /* fightAmount*/) {
       bossFight.startFight();
     }
   }
@@ -103,7 +103,8 @@ class bossFight {
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
   
-  void startFight() {    
+  void startFight() {  
+    println("hi");
     dragon.fight = true;
     dragon.fightAmount = (platforms.moveAmount/4);
     dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);

@@ -59,8 +59,8 @@ class Health {
 
   void draw() {
     if (healthbar.healthPlayer < 1 && amount >= 0) {
-     amount--;
-     healthbar.healthPlayer = 100;
+      amount--;
+      healthbar.healthPlayer = 100;
     }
     if (amount == 4 /*3 but because of the mulptiplier with damage it can't get to 0*/) {
       fill(255);
@@ -83,24 +83,24 @@ class Health {
       amount0 = true;
     }
     if (amount2) {
-      amount2C++;      
+      amount2C++;
     }
     if (amount1) {
-      amount1C++;      
+      amount1C++;
     }
     if (amount0) {
-      amount0C++;      
+      amount0C++;
     }
     //println(amount2C);
     //println(invincibleB);
-    if(amount2C > 1 && amount2C < 400) invincibleB = true;
+    if (amount2C > 1 && amount2C < 400) invincibleB = true;
     else if (amount2C > 400) invincibleB = false;
-    if(amount1C > 1 && amount1C < 400) invincibleB = true;
+    if (amount1C > 1 && amount1C < 400) invincibleB = true;
     else if (amount1C > 400) invincibleB = false;
-    if(amount0C > 1 && amount0C < 400) invincibleB = true;
+    if (amount0C > 1 && amount0C < 400) invincibleB = true;
     else if (amount0C > 400) invincibleB = false;
 
-    if (healthbar.healthPlayer < 1 && amount <= 1) {
+    if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600) {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
