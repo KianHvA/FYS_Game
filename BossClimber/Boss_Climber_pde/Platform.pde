@@ -17,10 +17,11 @@ class Platform {
   int moveAmount = 1;
   PVector[] vertexesL= new PVector[20 * moveAmount];
   PVector[] vertexesR= new PVector[20 * moveAmount];
+  float moveY = 0;
 
   void draw() {
 
-    if (player.posPlayer.y <= bpY) {
+    if (player.posPlayer.y <= moveY && !dragon.fight) {
       moveStage = true;
     }
     if (moveStage) {

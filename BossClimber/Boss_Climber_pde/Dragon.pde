@@ -1,5 +1,6 @@
 class Dragon {
   FireBallRain FireballRain;
+  bossFight bossFight;
 
   int savedTime;
   int totalTime = 1000;
@@ -10,6 +11,10 @@ class Dragon {
   int vliegen;
   float checkCollision;
   boolean a;
+  float dragonHealth = 500;
+  float dragonHealthS = 500;
+  boolean fight = false;
+  float fightAmount = 1;
 
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
 
@@ -26,7 +31,7 @@ class Dragon {
     stroke(0);
     fill(185, 185, 182);
     rect(startx, starty, 46, 48);
-    
+
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
       savedTime = millis();
@@ -44,28 +49,33 @@ class Dragon {
   }
 
 
-  void update() {      
-    while (player.posPlayer.y > 80) {
-      //voer vlieg routine uit
+  void update() {
+    //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
+      while (player.posPlayer.y > 80) {
+        //voer vlieg routine uit
 
-      //1. maak een timer van bvb 5 seconden
+        //1. maak een timer van bvb 5 seconden
 
-      //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
-      //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
-      //if(!FireballRain.fireBallRain) {
-      startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
-      starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
-      //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
-      break;
-      //}
-    } 
+        //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
+        //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
+        //if(!FireballRain.fireBallRain) {
+        startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
+        starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
+        //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
+        break;
+        //}
+      }
+    //}
     //ga terug naar begin positie
-    if(FireballRain.fireBallRain || player.posPlayer.y < 80) {
-    startx = lerp(startx, vliegPatroon[0].x, 0.01);
-    starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    if (FireballRain.fireBallRain || player.posPlayer.y < 80 || !fight) {
+      startx = lerp(startx, vliegPatroon[0].x, 0.01);
+      starty = lerp(starty, vliegPatroon[0].y, 0.01);
     }
-    if (platforms.moveAmount == 3) {
+    if (platforms.moveAmount == 3 * fightAmount) {
       FireballRain.spawn();
+    }
+    if (platforms.moveAmount == 4 * fightAmount) {
+      bossFight.startFight();
     }
   }
 }
@@ -84,5 +94,29 @@ class FireBallRain {
       fireballs[i].posFireball.y = 50;
       fireballs[i].draw();
     }
+  }
+}
+
+class bossFight {
+  float startx = xDragon = dragon.startx;
+  float starty = yDragon = dragon.starty;
+  PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
+  //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
+  
+  void startFight() {    
+    dragon.fight = true;
+    dragon.fightAmount = (platforms.moveAmount/4);
+    dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
+    startx = lerp(startx, vliegPatroon[0].x, 0.01);
+    starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    onTheWay();
+  }
+
+  void onTheWay() {
+  }
+  
+  void End() {
+    
+    
   }
 }

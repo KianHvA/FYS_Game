@@ -34,10 +34,10 @@ class Player {
       velocity.x = 0;
     }
     //handle movement on x-axes
-    if (keysPressed[LEFT] && !collisionHandler.hitWallLeft)
+    if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
     {
       velocity.x = -3;
-    } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight)
+    } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
     {
       velocity.x = 3;
     } else 
@@ -49,12 +49,12 @@ class Player {
     }
 
     //handle jump
-    if (hasCollision && keysPressed[UP])
+    if (hasCollision && keysPressed[UP]  && !platforms.moveStage)
     {
       hasCollision = false;
       velocity.y = -5;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
     {
       velocity.y = -5;
       hasDoubleJumped = true;
