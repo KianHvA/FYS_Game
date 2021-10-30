@@ -32,8 +32,7 @@ class CollisionHandler
 
   void update() {
     hit = polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
-      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y); 
-     //|| polyCircle(vertexesBossPlatform, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
   }
 
   //object met player collision
@@ -68,6 +67,7 @@ class CollisionHandler
       if (next == vertices.length) next = 0;
 
       PVector vc = vertices[current];
+      rectMode(CENTER);
       PVector vn = vertices[next];
       if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
         continue;
