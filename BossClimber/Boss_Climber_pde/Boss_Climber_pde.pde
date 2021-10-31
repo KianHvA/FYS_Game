@@ -194,6 +194,7 @@ void update()
   if (waterfles.druppelOn && spawnCountDruppel == 0) {//Moet nog worden aangepast!
     druppels.add(new Druppel());
     waterfles.druppelOn = false;
+    waterfles.pickedUp = false;
     cooldown = 100;
   }
 

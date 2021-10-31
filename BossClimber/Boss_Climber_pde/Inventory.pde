@@ -20,8 +20,8 @@ class Inventory {
     if (waterfles.pickedUp) {
       rectMode(CORNER);
       noStroke();
-
-      rect(width-breedte, height-(hoogte * 2.5), 20, 5);
+      fill(0,0, 255);
+      rect(width-(breedte/4 * 2.8), height-(hoogte * 2.4), 10, 40);
     }
   }
 }
