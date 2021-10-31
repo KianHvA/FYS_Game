@@ -16,6 +16,7 @@ ScoreHandler scoreHandler;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
+int RspawnCountDruppel = 500; //oorspronkelijke functie
 final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
@@ -69,31 +70,32 @@ void update()
   sword.updateSword();
   menu.restart();
   //3 is amount off power-ups need change later
-<<<<<<< HEAD
   int randomPowerup = randomizer(3);
-  if (powerUpTimer2 == 0 && !powerUpActive) powerUpTimer1++;
-  if (powerUpTimer1 == 300 && !powerUpActive) {
-    switch(randomPowerup) {
-    case 1:
-      waterfles = new Waterfles();
-      break;
-    case 2:
-      sword = new Sword();
-      break;
-    case 3:
-      waterfles = new Waterfles();
-      break;
-    default:
-      powerUpActive = true;
-    }
-    if (powerUpActive) powerUpTimer2++;
-    if (powerUpTimer2 > 300) {
-      powerUpTimer1 = 0; 
-      powerUpTimer2 = 0;
-      powerUpActive = false;
+  if (!dragon.fight) {
+    if (powerUpTimer2 == 0 && !powerUpActive) powerUpTimer1++;
+    if (powerUpTimer1 == 300 && !powerUpActive) {
+      switch(randomPowerup) {
+      case 1:
+      spawnCountDruppel = RspawnCountDruppel;
+        waterfles = new Waterfles();
+        break;
+      case 2:
+        sword = new Sword();
+        break;
+      case 3:
+        waterfles = new Waterfles();
+        break;
+      default:
+        powerUpActive = true;
+      }
+      if (powerUpActive) powerUpTimer2++;
+      if (powerUpTimer2 > 300) {
+        powerUpTimer1 = 0; 
+        powerUpTimer2 = 0;
+        powerUpActive = false;
+      }
     }
   }
-=======
   //int randomPowerup = randomizer(3);
   //switch(randomPowerup) {
   //case 1:
@@ -107,7 +109,6 @@ void update()
   //  break;
   //  default:
   //}
->>>>>>> 94f4ec70dfb1664e8c263ef349bfde775ff7f7ac
 
   if (fireballCount >= 0) {
     fireballCount--;
@@ -163,6 +164,13 @@ void update()
     fireballs[1].posFireball = fireballs[1].RposFireball;
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
+  }
+  if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
+    for (int i = 0; i > fireballs.length; i++) {
+      fireballs[i].posFireball.x = 150;
+      fireballs[i].posFireball.y = 50;
+      fireballs[i].draw();
+    }
   }
 
   //println(fireballCount);
