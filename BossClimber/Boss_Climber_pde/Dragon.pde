@@ -11,12 +11,13 @@ class Dragon {
   int vliegen;
   float checkCollision;
   boolean a;
-  float dragonHealth = 500;
+  float dragonHealth = 300;
   float dragonHealthS = 500;
   boolean fight = false;
   float fightAmount = 1;
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
+  PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
 
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
@@ -31,7 +32,7 @@ class Dragon {
   void draw() {
     stroke(0);
     fill(185, 185, 182);
-    rect(startx, starty, 46, 48);
+    rect(startx, starty, diameter, diameter);
 
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
@@ -68,9 +69,9 @@ class Dragon {
     }
     //}
     //ga terug naar begin positie
-    if (fireBallRain || player.posPlayer.y < 80 || !fight) {
-      startx = lerp(startx, vliegPatroon[0].x, 0.01);
-      starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    if (fireBallRain || player.posPlayer.y < 80) {
+      startx = lerp(startx, stageMovePatroon[0].x, 0.01);
+      starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
     if (platforms.moveAmount == 3 * fightAmount) {
       FireballRain.spawn();
@@ -106,6 +107,7 @@ class bossFight {
   PVector vliegPatroonF1 = new PVector(400, -100);
   PVector vliegPatroonF2 = new PVector(400, -50);
   PVector vliegPatroonF3 = new PVector(400, 300);
+  PVector startVliegPatroon = new PVector(150, 50);
   boolean fase1 = false, fase2 = false;
   boolean lava = false;
   boolean sizeShrink = false;
@@ -113,27 +115,30 @@ class bossFight {
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
 
   void startFight() {  
-    println(dragon.fight);
-    dragon.fight = true;
-    fase1 = true;
-    dragon.fightAmount = (platforms.moveAmount/4);
-    dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
-    startx = lerp(startx, vliegPatroon[0].x, 0.01);
-    starty = lerp(starty, vliegPatroon[0].y, 0.01);
-    if (!waterFles) {
-      waterfles.flesX = player.posPlayer.x;
-      waterfles.flesY = player.posPlayer.y - 20;
-      waterfles = new Waterfles();
-      waterFles = true;
+    if (fase1) {
+      println(dragon.fight);
+      dragon.fight = true;
+      fase1 = true;
+      dragon.fightAmount = (platforms.moveAmount/4);
+      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
+      startx = lerp(startx, vliegPatroon[0].x, 0.01);
+      starty = lerp(starty, vliegPatroon[0].y, 0.01);
+      if (!waterFles) {
+        waterfles.flesX = player.posPlayer.x;
+        waterfles.flesY = player.posPlayer.y - 20;
+        waterfles = new Waterfles();
+        waterFles = true;
+      }
+      onTheWay();
     }
-    onTheWay();
   }
 
-  void onTheWay() {
+  void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
-      startx = lerp(vliegPatroon[0].x, startx, 0.01);
-      starty = lerp(vliegPatroon[0].y, starty, 0.01);
+      startx = lerp(startx, startVliegPatroon.x, 0.01);
+      starty = lerp(starty, startVliegPatroon.y, 0.01);
       fase2 = true;
+      fase1 = false;
     }
     if (fase2 && startx == 400 && starty < -100) {
       startx = lerp(startx, vliegPatroonF1.x, 0.01);
@@ -154,11 +159,10 @@ class bossFight {
 
 
   void End() {
-    if(dragon.dragonHealth < 0) {
+    if (dragon.dragonHealth < 0) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
-      
     }
   }
 }
