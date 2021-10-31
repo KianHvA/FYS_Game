@@ -13,6 +13,7 @@ Sword sword;
 Waterfles waterfles;
 ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
+Inventory inventory;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
@@ -46,6 +47,7 @@ void setup()
   flamethrower = new Flamethrower();
   dragon = new Dragon(xDragon, yDragon, sizeDragon);
   scoreHandler = new ScoreHandler();
+  inventory = new Inventory();
   level.setup();
   scoreHandler.setup();
   for (int i = 0; i < fireballs.length; i++) { 
@@ -96,6 +98,7 @@ void update()
       }
     }
   }
+  
   //int randomPowerup = randomizer(3);
   //switch(randomPowerup) {
   //case 1:
@@ -165,13 +168,13 @@ void update()
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
   }
-  if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
-    for (int i = 0; i > fireballs.length; i++) {
-      fireballs[i].posFireball.x = 150;
-      fireballs[i].posFireball.y = 50;
-      fireballs[i].draw();
-    }
-  }
+  //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
+  //  for (int i = 0; i > fireballs.length; i++) {
+  //    fireballs[i].posFireball.x = 150;
+  //    fireballs[i].posFireball.y = 50;
+  //    fireballs[i].draw();
+  //  }
+  //}
 
   //println(fireballCount);
 
@@ -252,6 +255,7 @@ void draw()
     scoreHandler.draw();
     healthbar.draw();
     health.draw();
+    inventory.draw();
   }
 }
 

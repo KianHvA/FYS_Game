@@ -3,6 +3,7 @@ class Waterfles{
   boolean druppelOn = false;
   boolean spawnWaterfles = false;
   boolean druppelOff = false;
+  boolean pickedUp = false; //Needed for inventory
   
   Waterfles(){
     flesX = random(200, 600);
@@ -15,6 +16,7 @@ class Waterfles{
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)){
       flesB = 0;
       flesH = 0;
+      pickedUp = true;
     }
     
     if (flesB == 0 && flesH == 0 && keysPressed['S'] && !druppelOff && cooldown == 0){
