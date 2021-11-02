@@ -8,7 +8,7 @@ class Level {
       platforms.draw();
   }
   void draw() {
-      ladders();
+      //ladders();
       platforms.draw();
       muur();
   }

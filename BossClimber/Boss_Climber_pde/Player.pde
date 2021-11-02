@@ -4,8 +4,8 @@ class Player {
   PVector posPlayer = new PVector(width/2, height/2 - 10);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
-  final float GRAVITY = 0.98f;
-  float jumpForce = 3;
+  final float GRAVITY = 0.4f;
+  float jumpForce = 9;
   boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
 
   void draw() {
