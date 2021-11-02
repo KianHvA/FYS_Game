@@ -23,6 +23,8 @@ class Platform {
 
     if (player.posPlayer.y <= moveY && !dragon.fight) {
       moveStage = true;
+      player.posPlayer.y = -10;
+      player.posPlayer.x = 600;
     }
     if (moveStage) {
       levelMove++;

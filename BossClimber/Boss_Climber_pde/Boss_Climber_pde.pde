@@ -41,7 +41,7 @@ void setup()
   platforms = new Platform();
   collisionHandler = new CollisionHandler();
   health = new Health();
-  healthbar = new HealthBar(width - 250/2 - 10, height - 10/2 - 10, 250, 10);
+  healthbar = new HealthBar(10, height - 20, 250, 10);
   Doublejump = new DoubleJump();
   fireballs = new Fireball[fireballAmount];
   flamethrower = new Flamethrower();
@@ -78,7 +78,7 @@ void update()
     if (powerUpTimer1 == 300 && !powerUpActive) {
       switch(randomPowerup) {
       case 1:
-      spawnCountDruppel = RspawnCountDruppel;
+        spawnCountDruppel = RspawnCountDruppel;
         waterfles = new Waterfles();
         break;
       case 2:
@@ -98,7 +98,7 @@ void update()
       }
     }
   }
-  
+
   //int randomPowerup = randomizer(3);
   //switch(randomPowerup) {
   //case 1:
@@ -254,9 +254,12 @@ void draw()
 
     //teken alle UI hier zodat het op de voorgrond komt
     scoreHandler.draw();
+    inventory.draw();
+    
+    //game overscherm
     healthbar.draw();
     health.draw();
-    inventory.draw();
+    
   }
 }
 

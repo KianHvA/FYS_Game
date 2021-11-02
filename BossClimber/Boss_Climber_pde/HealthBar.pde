@@ -10,7 +10,7 @@ class Health {
   final float RxBegin = width/2; //x coordinates off the rect for dead screen used for reseting it
   final float RyBegin = height/2; //y coordinates off the rect for dead screen used for reseting it
   boolean invincibleB = false;
-  float amount = 4;
+  int amount = 4;
   boolean amount2 = false, amount1 = false, amount0 = false;
   float amount2C = 0, amount1C = 0, amount0C = 0;
 
@@ -62,24 +62,28 @@ class Health {
       amount--;
       healthbar.healthPlayer = 100;
     }
-    if (amount == 4 /*3 but because of the mulptiplier with damage it can't get to 0*/) {
+    switch(amount) {
+    case 4:/*3 but because of the mulptiplier with damage it can't get to 0*/
       fill(255);
       ellipseMode(CORNER);
-      ellipse(width - 250/2 - 10, height - 50, 10, 10);
-      ellipse(width - 75, height - 50, 10, 10);
-      ellipse(width - 25, height - 50, 10, 10);
-    } else if (amount == 3 /*2 but because of the multiplier with damage it can't get to 0*/) {
+      ellipse(20, height - 50, 10, 10);
+      ellipse(20, height - 90, 10, 10);
+      ellipse(20, height - 130, 10, 10);
+      break;
+    case 3: /*2 but because of the multiplier with damage it can't get to 0*/
       amount2 = true;
       fill(255);
       ellipseMode(CORNER);
-      ellipse(width - 250/2 - 10, height - 50, 10, 10);
-      ellipse(width - 75, height - 50, 10, 10);
-    } else if (amount == 2 /*1 but because of the multiplier with damage it can't get to 0*/) {
+      ellipse(20, height - 50, 10, 10);
+      ellipse(20, height - 90, 10, 10);
+      break;
+    case 2: /*1 but because of the multiplier with damage it can't get to 0*/
       amount1 = true;
       fill(255);
       ellipseMode(CORNER);
-      ellipse(width - 250/2 - 10, height - 50, 10, 10);
-    } else if (amount == 1 /*0 but because of the multiplier with damage it can't get to 0*/) {
+      ellipse(20, height - 50, 10, 10);
+      break;
+    default: /*0 but because of the multiplier with damage it can't get to 0*/
       amount0 = true;
     }
     if (amount2) {

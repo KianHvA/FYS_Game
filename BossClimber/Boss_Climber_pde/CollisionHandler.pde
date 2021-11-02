@@ -43,7 +43,7 @@ class CollisionHandler
   //Object met platform collision
   void checkCollision(float objectX, float objectY, float objectRadius)
   {
-    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius)) //|| polyCircle(vertexesBossPlatform, objectX, objectY, objectRadius)) 
+    if (polyCircle(platforms.vertexesL, objectX, objectY, objectRadius) || polyCircle(platforms.vertexesR, objectX, objectY, objectRadius))
     {
       hit = true;
     } else {
@@ -112,7 +112,7 @@ class CollisionHandler
     distX = closestX - cx;
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-    
+
     if (distance > closestDistance) {
       closestDistance = distance; 
       closestHitPos = new PVector(closestX, cy - r/2);
@@ -164,13 +164,14 @@ class CollisionHandler
     return false;
   }
   
+
   //CIRCLE/CIRCLE
-  boolean circleCircle(float circleX, float circleY, float circleDia, float oCircleX, float oCircleY, float oCircleDia){
+  boolean circleCircle(float circleX, float circleY, float circleDia, float oCircleX, float oCircleY, float oCircleDia) {
     float afstX = circleX - oCircleX;
     float afstY = circleY - oCircleY;
     float afstand = ( (afstX * afstX) + (afstY * afstY) );
-    
-    if (afstand <= circleDia + oCircleDia){
+
+    if (afstand <= circleDia + oCircleDia) {
       return true;
     }
     return false;

@@ -6,7 +6,7 @@ class Player {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
-  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
+  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
 
   void draw() {
     //modes
@@ -22,8 +22,8 @@ class Player {
     //check collision and set booleans to use down the line
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
     hasCollision = collisionHandler.hit;
-    wallCollison = collisionHandler.hitWallLeft || collisionHandler.hitWallRight;
-
+    wallCollisonL = collisionHandler.hitWallLeft;
+    wallCollisonR = collisionHandler.hitWallRight;
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
@@ -31,8 +31,12 @@ class Player {
       velocity.y = 0;
       player.collideWithPlatform();
     }
-    if (wallCollison) {
+    if (wallCollisonR) {
       velocity.x = 0;
+      velocity.x -= 1;
+    } else if (wallCollisonL) {
+      velocity.x = 0;
+      velocity.x += 1;
     }
     //handle movement on x-axes
     if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
@@ -66,19 +70,18 @@ class Player {
     posPlayer.y += velocity.y;
   }
 
-  void checkCollision(float objectX, float objectY, float objectRadius) {
-    collisionHandler.checkCollision(objectX, objectY, objectRadius);
-  }
-
   void collideWithPlatform()
   {
     hasCollision = true;
-
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     } else {
       hasCollision = false;
       posPlayer.y = posPlayer.y + 1;
     }
+  }
+
+  void checkCollision(float objectX, float objectY, float objectRadius) {
+    collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
 }
