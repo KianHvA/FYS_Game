@@ -4,7 +4,8 @@ class Player {
   PVector posPlayer = new PVector(width/2, height/2 - 10);
   PVector sizePlayer = new PVector(20, 20);
   PVector velocity = new PVector(0, 0);
-  final float GRAVITY = 0.098f;
+  final float GRAVITY = 0.98f;
+  float jumpForce = 3;
   boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollison = false;
 
   void draw() {
@@ -52,21 +53,12 @@ class Player {
     if (hasCollision && keysPressed[UP]  && !platforms.moveStage)
     {
       hasCollision = false;
-      velocity.y = -5;
+      velocity.y = -jumpForce;
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
     {
-      velocity.y = -5;
+      velocity.y = -jumpForce;
       hasDoubleJumped = true;
-    }
-
-    //handle what to do if collison with ladders
-    if (collisionHandler.hitLadder && keysPressed[UP]) {
-      velocity.y = -2;
-    } else if (collisionHandler.hitLadder && keysPressed[DOWN]) {
-      velocity.y = 2;
-    } else if (collisionHandler.hitLadder) {
-      velocity.y = 0;
     }
 
     //add velocity to posPlayer
