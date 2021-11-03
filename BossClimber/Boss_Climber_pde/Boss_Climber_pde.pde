@@ -31,6 +31,7 @@ boolean fire3 = false;
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
+boolean damageDragon = false;
 
 void setup() 
 {
@@ -57,6 +58,8 @@ void setup()
     fireballs[i].setup();
   }
   flamethrower.setup();
+  health.setup();
+  dragon.setup();
   waterfles = new Waterfles();
   druppels = new ArrayList<Druppel>();
   sword = new Sword();
@@ -197,6 +200,7 @@ void update()
     druppels.add(new Druppel());
     waterfles.druppelOn = false;
     waterfles.pickedUp = false;
+    dragon.waterFles = false;
     cooldown = 100;
   }
 

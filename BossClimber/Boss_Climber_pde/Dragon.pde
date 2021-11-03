@@ -1,7 +1,7 @@
 class Dragon {
   FireBallRain FireballRain;
   bossFight bossFight;
-
+  HealthBarDragon HealthbarDragon;
   int savedTime;
   int totalTime = 1000;
   float startx;
@@ -18,10 +18,15 @@ class Dragon {
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
+  boolean waterFles = false;
+  void setup() {
+    bossFight.setup();
+  }
 
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
     bossFight = new bossFight();
+    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
     this.startx = x;
     this.starty = y;
     this.diameter = diameter;
@@ -47,6 +52,13 @@ class Dragon {
       }
       //zet a weer naar false;
       a = false;
+    }
+    if (fight) {
+      HealthbarDragon.draw();
+    }
+    if(damageDragon && fight) {
+      HealthbarDragon.doDamageDragon(20);
+     damageDragon = false;
     }
   }
 
@@ -90,17 +102,18 @@ class FireBallRain {
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   void spawn() {
     dragon.fireBallRain = true;
-    //startx = lerp(startx, vliegPatroon[0].x, 0.01);
-    //starty = lerp(starty, vliegPatroon[0].y, 0.01);
-    //for (int i = 0; i > fireballs.length; i++) {
-    //  fireballs[i].posFireball.x = 150;
-    //  fireballs[i].posFireball.y = 50;
-    //  fireballs[i].draw();
-    //}
+    startx = lerp(startx, vliegPatroon[0].x, 0.01);
+    starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    for (int i = 0; i > fireballs.length; i++) {
+      fireballs[i].posFireball.x = 150;
+      fireballs[i].posFireball.y = 50;
+      fireballs[i].draw();
+    }
   }
 }
 
 class bossFight {
+  HealthBarDragon HealthbarDragon;
   float startx = xDragon;
   float starty = yDragon;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
@@ -108,12 +121,18 @@ class bossFight {
   PVector vliegPatroonF2 = new PVector(400, -50);
   PVector vliegPatroonF3 = new PVector(400, 300);
   PVector startVliegPatroon = new PVector(150, 50);
-  boolean fase1 = false, fase2 = false;
+  PVector[] fireBallVliegPatroon = {new PVector(150, 50 + (int)random(0, 10)), new PVector(400, 65 + (int)random(0, 10)), new PVector(650, 40 + (int)random(0, 10))};
+  boolean fase1 = true, fase2 = false;
   boolean lava = false;
   boolean sizeShrink = false;
-  boolean waterFles = false;
+  float timer = 0;
+  float timerAmount = 1;
+  float fireBallAmount = 2;
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
 
+  void setup() {
+    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
+  }
   void startFight() {  
     if (fase1) {
       println(dragon.fight);
@@ -123,46 +142,65 @@ class bossFight {
       dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
       startx = lerp(startx, vliegPatroon[0].x, 0.01);
       starty = lerp(starty, vliegPatroon[0].y, 0.01);
-      if (!waterFles) {
+      if (!dragon.waterFles) {
         waterfles.flesX = player.posPlayer.x;
         waterfles.flesY = player.posPlayer.y - 20;
         waterfles = new Waterfles();
-        waterFles = true;
+        dragon.waterFles = true;
       }
+      //if (dragon.fight) HealthbarDragon.HealthBar(10, 100, 250, 10);
       onTheWay();
     }
   }
 
-  void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player
+  void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player. Komt later te weinig tijd.
+    /*
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
-      startx = lerp(startx, startVliegPatroon.x, 0.01);
-      starty = lerp(starty, startVliegPatroon.y, 0.01);
-      fase2 = true;
-      fase1 = false;
+     startx = lerp(startx, startVliegPatroon.x, 0.01);
+     starty = lerp(starty, startVliegPatroon.y, 0.01);
+     fase2 = true;
+     fase1 = false;
+     }
+     if (fase2 && startx == 400 && starty < -100) {
+     startx = lerp(startx, vliegPatroonF1.x, 0.01);
+     starty = lerp(starty, vliegPatroonF1.y, 0.01);
+     } else if (fase2 && startx == 400 && starty > -50) {
+     startx = lerp(startx, vliegPatroonF2.x, 0.01);
+     starty = lerp(starty, vliegPatroonF2.y, 0.01);
+     } else if (fase2 && startx == 400 && starty < -60) {
+     sizeShrink = true;
+     startx = lerp(startx, vliegPatroonF3.x, 0.01);
+     starty = lerp(starty, vliegPatroonF3.y, 0.01);
+     }
+     if (sizeShrink) {
+     constrain((int) sizeDragon, 1, 46);
+     sizeDragon -= 0.01;
+     }
+     */
+    if (dragon.dragonHealth < 75 * dragon.fightAmount) {
+      startx = lerp(startx, fireBallVliegPatroon[0].x, 0.01);
+      starty = lerp(starty, fireBallVliegPatroon[0].y, 0.01);
+      timer++;
     }
-    if (fase2 && startx == 400 && starty < -100) {
-      startx = lerp(startx, vliegPatroonF1.x, 0.01);
-      starty = lerp(starty, vliegPatroonF1.y, 0.01);
-    } else if (fase2 && startx == 400 && starty > -50) {
-      startx = lerp(startx, vliegPatroonF2.x, 0.01);
-      starty = lerp(starty, vliegPatroonF2.y, 0.01);
-    } else if (fase2 && startx == 400 && starty < -60) {
-      sizeShrink = true;
-      startx = lerp(startx, vliegPatroonF3.x, 0.01);
-      starty = lerp(starty, vliegPatroonF3.y, 0.01);
+    if (timer == 60 * timerAmount) {
+      for (int i = 0; i > fireballs.length * 2; i++) {
+      fireballs[i].posFireball.x = startx;
+      fireballs[i].posFireball.y = starty;
+      fireballs[i].draw();
     }
-    if (sizeShrink) {
-      constrain((int) sizeDragon, 1, 46);
-      sizeDragon -= 0.01;
+    timerAmount++;
     }
   }
 
 
   void End() {
-    if (dragon.dragonHealth < 0) {
+    if (dragon.dragonHealth < 0 || HealthbarDragon.healthDragon < 0) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
+      timer = 0;
+      timerAmount = 1;
+      dragon.dragonHealth *= dragon.fightAmount;
     }
   }
 }

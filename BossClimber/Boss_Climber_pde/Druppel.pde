@@ -18,6 +18,7 @@ class Druppel{
     
     if (hasCollision){
       waterfles.druppelOn = false;
+      damageDragon = true;
     }
   }
   

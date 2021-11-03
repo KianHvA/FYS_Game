@@ -128,7 +128,6 @@ class Health {
       textFont(f, 36); //size of the texts
       fill(255); //color
       text("GAME OVER", halfX, halfY);
-      text("Score: " + scoreHandler.score, halfX, halfY + 30);
       dead = true;
       menu.restart = true;
     }
@@ -173,7 +172,7 @@ class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
 
   float x, y, w, h;
-  float healthDragon = 150;
+  float healthDragon = 20;
   HealthBarDragon(float Tx, float Ty, float Tw, float Th ) {
     this.x = Tx;
     this.y = Ty;
