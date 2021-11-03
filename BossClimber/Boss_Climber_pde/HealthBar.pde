@@ -114,6 +114,7 @@ class Health {
       textFont(f, 36); //size of the texts
       fill(255); //color
       text("GAME OVER", halfX, halfY);
+      text("Score: " + scoreHandler.score, halfX, halfY + 30);
       dead = true;
       menu.restart = true;
     }
