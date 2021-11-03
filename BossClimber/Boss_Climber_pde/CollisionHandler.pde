@@ -19,6 +19,7 @@ class CollisionHandler
   boolean hitWallLeft = false;
   boolean hitWallRight = false;
   boolean hitPlayer = false;
+  boolean hitDragon = false;
   boolean hitLadder = false;
   boolean hitUndersidePlatform = false;
 
@@ -38,6 +39,10 @@ class CollisionHandler
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
+  }
+  //object met Dragon collision
+  void checkCollisionDragon(float objectX, float objectY, float objectRadius) {
+    hitDragon = circleRect(objectX, objectY, objectRadius, dragon.startx, dragon.starty, dragon.diameter, dragon.diameter);
   }
 
   //Object met platform collision
