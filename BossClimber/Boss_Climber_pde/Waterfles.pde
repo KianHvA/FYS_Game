@@ -17,6 +17,7 @@ class Waterfles{
       flesB = 0;
       flesH = 0;
       pickedUp = true;
+      scoreHandler.score((int)random(10,30));
     }
     
     if (flesB == 0 && flesH == 0 && keysPressed['S'] && !druppelOff && cooldown == 0){
