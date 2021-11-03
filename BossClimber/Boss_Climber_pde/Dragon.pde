@@ -11,8 +11,8 @@ class Dragon {
   int vliegen;
   float checkCollision;
   boolean a;
-  float dragonHealth = 300;
-  float dragonHealthS = 500;
+  float dragonHealth = 150;
+  float dragonHealthS = 150;
   boolean fight = false;
   float fightAmount = 1;
   boolean fireBallRain = false;
