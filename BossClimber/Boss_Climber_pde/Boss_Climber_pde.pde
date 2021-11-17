@@ -24,14 +24,18 @@ final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
 float xDragon = 152, yDragon = 50, sizeDragon = 46;
-int fireballAmount = 3;
+int fireballAmount = 6;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
+boolean fire4 = false;
+boolean fire5 = false;
+boolean fire6 = false;
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
 boolean damageDragon = false;
+boolean respawnWaterfles = false;
 
 void setup() 
 {
@@ -140,23 +144,36 @@ void update()
   }
   if (fire3 == true) {
     fireballs[2].movementUpdate();
-  }
+  }    
 
   if (fireballs[0].posFireball.y >= height || fireballs[0].playerCollision) {//Fires = false, last statement = reset of fireballs
     fire = false;
   }
-  if (fireballs[0].playerCollision) {//Damage fireball
+  if (fireballs[0].playerCollision) {//Damage fireball && respawning fireball
     fire = false;
+    fireballs[0].playerCollision = false;
+    fireballCount = 300;
+    fireballs[0].respawn();
+    fireballs[0].posFireball = fireballs[0].RposFireball;
   }  
   if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision) {
     fire2 = false;
   }
-  if (fireballs[1].playerCollision) {//Damage fireball
+  if (fireballs[1].playerCollision) {//Damage fireball && respawning fireball
     fire2 = false;
+    fireballs[1].playerCollision = false;
+    fireballCount = 300;
+    fireballs[1].respawn();
+    fireballs[1].posFireball = fireballs[1].RposFireball;
   }
-  if (fireballs[2].playerCollision) {
+  if (fireballs[2].playerCollision) {//Damage fireball && respawning fireball
     fire3 = false;
+    fireballs[2].playerCollision = false;
+    fireballCount = 300;
+    fireballs[2].respawn();
+    fireballs[2].posFireball = fireballs[2].RposFireball;
   }
+  
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
     //fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
@@ -173,6 +190,7 @@ void update()
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
   }
+  println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
   //    fireballs[i].posFireball.x = 150;
@@ -250,8 +268,13 @@ void draw()
       druppel.draw();
       
       if (d >= 2){
+        respawnWaterfles = true;
+      }
+      
+      if (respawnWaterfles){
         waterfles.resetWaterfles();
         d = 0;
+        respawnWaterfles = false;
       }
     }
 

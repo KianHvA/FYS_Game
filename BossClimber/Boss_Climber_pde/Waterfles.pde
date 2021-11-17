@@ -4,6 +4,7 @@ class Waterfles{
   boolean spawnWaterfles = false;
   boolean druppelOff = false;
   boolean pickedUp = false; //Needed for inventory
+  boolean catchWaterfles = true;
   
   Waterfles(){
     flesX = random(200, 600);
@@ -15,25 +16,29 @@ class Waterfles{
   }
   
   void updateWaterfles(){
-    if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)){
-      flesB = 0;
-      flesH = 0;
-      pickedUp = true;
-      scoreHandler.score((int)random(10,30));
+    if (catchWaterfles){
+     flesB = 10;
+     flesH = 40;
+      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)){//Collision player & waterfles
+        flesB = 0;
+        flesH = 0;
+        pickedUp = true;
+        catchWaterfles = false;
+        scoreHandler.score((int)random(10,30));
     }
+   }
     
-    if (flesB == 0 && flesH == 0 && keysPressed['S'] && !druppelOff && cooldown == 0){
+    if (!catchWaterfles && keysPressed['S'] && !druppelOff && cooldown == 0){//Schiet waterfles
       druppelOn = true;
     }
   }
   
- void resetWaterfles(){
+ void resetWaterfles(){//Reset nieuwe waterfles
     flesX = resetFlesX;
     flesY = resetFlesY;
-    flesB = 10;
-    flesH = 40;
     druppelOn = false;
     druppelOff = false;
+    catchWaterfles = true;
  }
   
   void draw(){
