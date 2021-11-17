@@ -97,7 +97,7 @@ class Platform {
         vertexesL[i] = new PVector(0, height-5);
         vertexesL[i + 1] = new PVector(0, height);
         vertexesL[i + 2] = new PVector(width, height-5);
-        vertexesL[i + 3] = new PVector(x2+120, y1+platformThickness);
+        vertexesL[i + 3] = new PVector(width, height);
         vertexesL[i + 4] = new PVector(0, height-5);
       }
     }
