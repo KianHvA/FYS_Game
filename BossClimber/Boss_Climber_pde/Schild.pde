@@ -61,7 +61,7 @@ class Schild {
       if (player.posPlayer.y < 0) {
         FlamethrowerJumping = false;
       }
-      //println("done");
+      println("done");
     }
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
@@ -73,7 +73,7 @@ class Schild {
       NewPos = false;
     }
     if (schildActivated) {
-      //println("Active");
+      println("Active");
       health.invincibleB = true;
     }
 
