@@ -58,12 +58,15 @@ class Schild {
 
     if (FlamethrowerJumping) {
       player.posPlayer.y -= 15;
+      if (player.posPlayer.y < 0) {
+        FlamethrowerJumping = false;
+      }
       println("done");
     }
 
-    if (platforms.moveAmount == LevelMoveAmountNext) {
-      FlamethrowerJumping = false;
-    }
+    //if (platforms.moveAmount == LevelMoveAmountNext) {
+    //  FlamethrowerJumping = false;
+    //}
     if (NewPos) {
       schildPos.x = random(100, 700);
       schildPos.y = random(0, 200);

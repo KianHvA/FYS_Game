@@ -193,7 +193,6 @@ void update()
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
   }
-  println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
   //    fireballs[i].posFireball.x = 150;
