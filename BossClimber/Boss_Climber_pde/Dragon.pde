@@ -86,7 +86,14 @@ class Dragon {
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
     if (platforms.moveAmount == 3 * fightAmount) {
-      FireballRain.spawn();
+      //FireballRain.spawn();
+      
+      for (int i = 0; i > fireballs.length; i++) {
+      fireballs[i].posFireball.x = 150;
+      fireballs[i].posFireball.y = 50;
+      fireballs[i].movementUpdate();
+      fireballs[i].draw();
+    }
     }
     if (platforms.moveAmount == 4 /* fightAmount*/) {
       bossFight.startFight();
@@ -107,6 +114,7 @@ class FireBallRain {
     for (int i = 0; i > fireballs.length; i++) {
       fireballs[i].posFireball.x = 150;
       fireballs[i].posFireball.y = 50;
+      fireballs[i].movementUpdate();
       fireballs[i].draw();
     }
   }
