@@ -191,35 +191,34 @@ class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
 
   float x, y, w, h;
-  float healthDragon = 150;
   HealthBarDragon(float Tx, float Ty, float Tw, float Th ) {
     this.x = Tx;
     this.y = Ty;
     this.w = Tw;
     this.h = Th;
-    //healthDragon = dragon.dragonHealth;
+    //dragon.dragonHealth = dragon.dragonHealth;
   }
 
 
   void doDamageDragon(float damage) {
     if (!health.invincibleB) {
-      healthDragon -= damage /* * health.amount work in progress it just insta kills you now */;
+      dragon.dragonHealth -= damage /* * health.amount work in progress it just insta kills you now */;
     }
   }
   void draw() {
-    healthDragon = constrain(healthDragon, 0, dragon.dragonHealth);
+    dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
     noFill();
     stroke(255);
     rect(x, y, w, h);
 
     colorMode(RGB, 150);
-    float c = map(healthDragon, 0, healthDragon, 0, w);
-    float d = map(healthDragon, 0, healthDragon/2, 0, 255);
-    float f = map(healthDragon, 0, healthDragon, 255, 0);
+    float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
+    float d = map(dragon.dragonHealth, 0, dragon.dragonHealth/2, 0, 255);
+    float f = map(dragon.dragonHealth, 0, dragon.dragonHealth, 255, 0);
     fill(f, d, 0);
     noStroke();
     rect(x+1, y+1, c, h-1);
     colorMode(RGB, 400);
-    if(healthDragon == 0) dragon.dragonHealth = 0;
+    if(dragon.dragonHealth == 0) dragon.dragonHealth = 0;
   }
 }

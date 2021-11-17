@@ -85,21 +85,18 @@ class Dragon {
       startx = lerp(startx, stageMovePatroon[0].x, 0.01);
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
+    if (platforms.moveAmount == 1){
+    }
+    
     if (platforms.moveAmount == 3 * fightAmount) {
       //FireballRain.spawn();
-      
-      for (int i = 0; i > fireballs.length; i++) {
-      fireballs[i].posFireball.x = 150;
-      fireballs[i].posFireball.y = 50;
-      fireballs[i].movementUpdate();
-      fireballs[i].draw();
-    }
     }
     if (platforms.moveAmount == 4 /* fightAmount*/) {
       bossFight.startFight();
     }
     xDragon = startx;
     yDragon = starty;
+    println(platforms.moveAmount);
   }
 }
 
@@ -143,6 +140,7 @@ class bossFight {
   }
   void startFight() {  
     if (fase1) {
+      //println(dragon.fight);
       dragon.fight = true;
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);
@@ -201,13 +199,14 @@ class bossFight {
 
 
   void End() {
-    if (dragon.dragonHealth < 0 || HealthbarDragon.healthDragon < 0) {
+    if (dragon.dragonHealth < 0) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
       timer = 0;
       timerAmount = 1;
       dragon.fightAmount += 1;
+      scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
     }
   }
