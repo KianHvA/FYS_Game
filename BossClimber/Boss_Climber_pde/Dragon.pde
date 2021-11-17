@@ -201,13 +201,14 @@ class bossFight {
 
 
   void End() {
-    if (dragon.dragonHealth < 0 || HealthbarDragon.healthDragon < 0) {
+    if (dragon.dragonHealth < 0) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
       timer = 0;
       timerAmount = 1;
       dragon.fightAmount += 1;
+      scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
     }
   }
