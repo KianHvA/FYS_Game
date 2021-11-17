@@ -96,7 +96,6 @@ class Dragon {
     }
     xDragon = startx;
     yDragon = starty;
-    println(platforms.moveAmount);
   }
 }
 
