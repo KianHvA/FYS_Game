@@ -46,7 +46,7 @@ class Dragon {
     }
     if (a) {
       //ga naar volgende positie in array
-      vliegen++;
+      //vliegen++;
       if (vliegen >= vliegPatroon.length) {
         vliegen = 0;
       }
@@ -205,6 +205,7 @@ class bossFight {
       fase1 = true;
       timer = 0;
       timerAmount = 1;
+      dragon.fightAmount += 1;
       dragon.dragonHealth *= dragon.fightAmount;
     }
   }
