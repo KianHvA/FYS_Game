@@ -248,6 +248,11 @@ void draw()
       Druppel druppel = druppels.get(d);
       druppel.druppelUpdate();
       druppel.draw();
+      
+      if (d >= 2){
+        waterfles.resetWaterfles();
+        d = 0;
+      }
     }
 
     flamethrower.draw();

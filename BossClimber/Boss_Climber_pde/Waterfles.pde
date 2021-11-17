@@ -1,5 +1,5 @@
 class Waterfles{
-  float flesX, flesY, flesB, flesH;
+  float flesX, flesY, flesB, flesH, resetFlesX, resetFlesY;
   boolean druppelOn = false;
   boolean spawnWaterfles = false;
   boolean druppelOff = false;
@@ -10,6 +10,8 @@ class Waterfles{
     flesY = random(0, 600);
     flesB = 10;
     flesH = 40;
+    resetFlesX = random(200, 600);
+    resetFlesY = random(200, 600);
   }
   
   void updateWaterfles(){
@@ -24,6 +26,15 @@ class Waterfles{
       druppelOn = true;
     }
   }
+  
+ void resetWaterfles(){
+    flesX = resetFlesX;
+    flesY = resetFlesY;
+    flesB = 10;
+    flesH = 40;
+    druppelOn = false;
+    druppelOff = false;
+ }
   
   void draw(){
     fill(0, 0, 255);
