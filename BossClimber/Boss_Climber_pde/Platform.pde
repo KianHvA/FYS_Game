@@ -14,7 +14,7 @@ class Platform {
   int j = 0;
   int ySpeed = 10;
   boolean moveStage = false;
-  int moveAmount = 2;
+  int moveAmount = 1;
   PVector[] vertexesL= new PVector[20 * moveAmount];
   PVector[] vertexesR= new PVector[20 * moveAmount];
   float moveY = 0;
