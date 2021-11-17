@@ -13,6 +13,6 @@ class ScoreHandler {
     text("Score: " + score, 0, textSize);
   }
   void score(int scoreToAdd) {
-    score += scoreToAdd;
+    score += scoreToAdd * dragon.fightAmount;
   }
 }

@@ -13,17 +13,17 @@ class Health {
   int amount = 4;
   boolean amount2 = false, amount1 = false, amount0 = false;
   float amount2C = 0, amount1C = 0, amount0C = 0;
-  //PImage img1, img2, img3;
-  //PImage dead1, dead2, dead3;
+  PImage img1, img2, img3;
+  PImage dead1, dead2, dead3;
   
   void setup() {
     /*
-   img1 = loadImage("Hart full"); 
-   img2 = loadImage("Hart full"); 
-   img3 = loadImage("Hart full"); 
-   dead1 = loadImage("Hart empty");
-   dead2 = loadImage("Hart empty");
-   dead3 = loadImage("Hart empty");
+   img1 = loadImage(".data/Hart full.png"); 
+   img2 = loadImage(".data/Hart full.png"); 
+   img3 = loadImage(".data/Hart full.png"); 
+   dead1 = loadImage(".data/Hart empty.png");
+   dead2 = loadImage(".data/Hart empty.png");
+   dead3 = loadImage(".data/Hart empty.png");
    */
   }
 
@@ -35,7 +35,10 @@ class Health {
 
       if (hit == true) invincible++;
 
-      if (invincible > 90) hit = false;
+      if (invincible > 300) {
+        invincibleB = false;
+        hit = false;
+      }
 
       if (flamethrower.hasCollision && !hit && !invincibleB) {
         println("auw");
@@ -43,6 +46,20 @@ class Health {
         //regen = true;
         healthbar.healthPlayer -= 50;
         regenTimer = 0;
+      }
+      
+      if(hit) invincibleB = true;
+      
+      if(amount2 && !hit) {
+       hit = true; 
+      }
+      
+      if(amount1 && !hit) {
+       hit = true; 
+      }
+      
+      if(amount0 && !hit) {
+       hit = true; 
       }
 
       //if (fireballs[0].playerCollision && !hit && !invincibleB|| fireballs[1].playerCollision && !hit && !invincibleB|| fireballs[2].playerCollision && !hit&& !invincibleB) {//Fireball hits player and get some damage!
@@ -137,6 +154,7 @@ class Health {
 
 class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
 
+  boolean shieldDamage;
   float x, y, w, h;
   float healthPlayer = 100;
   HealthBar(float Tx, float Ty, float Tw, float Th ) {
@@ -151,7 +169,7 @@ class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
   void doDamage(float damage) {
     if (!health.invincibleB) {
       healthPlayer -= damage /* * health.amount work in progress it just insta kills you now */;
-    }
+    } else shieldDamage = true;
   }
   void draw() {
     healthPlayer = constrain(healthPlayer, 0, 100);

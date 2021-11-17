@@ -6,7 +6,7 @@ class Player {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
-  boolean hasJumped = false, hasDoubleJumped = false, hasTripleJumped = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
+  boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
 
   void draw() {
     //modes
@@ -63,6 +63,22 @@ class Player {
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
+    }
+    
+    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
+      schild.schildLevens = 2;
+      schild.hit = true;
+      healthbar.shieldDamage = false;
+    }
+    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 2) {
+      schild.schildLevens = 1;
+      schild.hit = true;
+      healthbar.shieldDamage = false;
+    }
+    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 1) {
+      schild.schildLevens = 0;
+      schild.hit = true;
+      healthbar.shieldDamage = false;
     }
 
     //add velocity to posPlayer
