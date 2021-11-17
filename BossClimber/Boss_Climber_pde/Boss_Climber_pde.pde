@@ -16,6 +16,7 @@ Waterfles waterfles;
 ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
 Inventory inventory;
+Schild schild;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
@@ -55,6 +56,7 @@ void setup()
   dragon = new Dragon(xDragon, yDragon, sizeDragon);
   scoreHandler = new ScoreHandler();
   inventory = new Inventory();
+  schild = new Schild();
   level.setup();
   scoreHandler.setup();
   for (int i = 0; i < fireballs.length; i++) { 
@@ -80,6 +82,7 @@ void update()
   waterfles.updateWaterfles();
   sword.updateSword();
   menu.restart();
+  schild.update();
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
   if (!dragon.fight) {
@@ -284,6 +287,7 @@ void draw()
     Doublejump.draw();
     healthbar.draw();
     waterfles.draw();
+    schild.draw();
     dragon.draw();
 
     //teken alle UI hier zodat het op de voorgrond komt

@@ -207,6 +207,7 @@ class bossFight {
       fase1 = true;
       timer = 0;
       timerAmount = 1;
+      dragon.fightAmount += 1;
       dragon.dragonHealth *= dragon.fightAmount;
     }
   }
