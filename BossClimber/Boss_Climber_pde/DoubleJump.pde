@@ -16,7 +16,7 @@ class DoubleJump {
     draw();
   }
   void draw() {
-    jumpboostEq();
+    DoubleJumpEq();
     GRAVITYJB = 0.98; 
     Location.y += GRAVITYJB;
     fill(255);
@@ -41,7 +41,7 @@ class DoubleJump {
 
 
 
-  void jumpboostEq() {
+  void DoubleJumpEq() {
     if (pickedUp) {
       Location = new PVector(width * 2, height * 2);
       GRAVITYJB = 0;

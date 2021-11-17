@@ -26,7 +26,7 @@ class Dragon {
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
     bossFight = new bossFight();
-    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
+    //HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
     this.startx = x;
     this.starty = y;
     this.diameter = diameter;
@@ -64,6 +64,10 @@ class Dragon {
 
 
   void update() {
+    if(!fight) {
+     bossFight.healthbarPos.x = -1000; 
+     bossFight.healthbarPos.y = -1000; 
+    }
     //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
     while (player.posPlayer.y > 80) {
       //voer vlieg routine uit
@@ -121,6 +125,9 @@ class bossFight {
   HealthBarDragon HealthbarDragon;
   float startx = xDragon;
   float starty = yDragon;
+  PVector healthbarPos = new PVector(275, 20);
+  PVector healthbarPosStart = new PVector(275, 20);
+  PVector healthbarPosEnd = new PVector(-1000, -1000);
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector vliegPatroonF1 = new PVector(400, -100);
   PVector vliegPatroonF2 = new PVector(400, -50);
@@ -136,9 +143,11 @@ class bossFight {
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
 
   void setup() {
-    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
+    healthbarPos = healthbarPosEnd;
+    HealthbarDragon = new HealthBarDragon(healthbarPos.x, healthbarPos.y, 250, 10);
   }
   void startFight() {  
+    healthbarPos = healthbarPosStart;
     if (fase1) {
       //println(dragon.fight);
       dragon.fight = true;
@@ -208,6 +217,7 @@ class bossFight {
       dragon.fightAmount += 1;
       scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
+      healthbarPos = healthbarPosEnd;
     }
   }
 }

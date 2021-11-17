@@ -128,12 +128,12 @@ class Health {
     }
     //println(amount2C);
     //println(invincibleB);
-    if (amount2C > 1 && amount2C < 400) invincibleB = true;
-    else if (amount2C > 400) invincibleB = false;
-    if (amount1C > 1 && amount1C < 400) invincibleB = true;
-    else if (amount1C > 400) invincibleB = false;
-    if (amount0C > 1 && amount0C < 400) invincibleB = true;
-    else if (amount0C > 400) invincibleB = false;
+    //if (amount2C > 1 && amount2C < 400) invincibleB = true;
+    //else if (amount2C > 400) invincibleB = false;
+    //if (amount1C > 1 && amount1C < 400) invincibleB = true;
+    //else if (amount1C > 400) invincibleB = false;
+    //if (amount0C > 1 && amount0C < 400) invincibleB = true;
+    //else if (amount0C > 400) invincibleB = false;
 
     if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600) {
       halfX = xBegin;
