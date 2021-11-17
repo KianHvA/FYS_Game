@@ -46,7 +46,7 @@ class Dragon {
     }
     if (a) {
       //ga naar volgende positie in array
-      vliegen++;
+      //vliegen++;
       if (vliegen >= vliegPatroon.length) {
         vliegen = 0;
       }
@@ -143,7 +143,6 @@ class bossFight {
   }
   void startFight() {  
     if (fase1) {
-      println(dragon.fight);
       dragon.fight = true;
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);

@@ -8,13 +8,13 @@ class Platform {
   int levelMove;
   float w = 200;
   float h = 15; 
-  float platformThickness = 25;
+  int platformThickness = 25;
   float rGet = random(1, 5);
   int i = 0;
   int j = 0;
   int ySpeed = 10;
   boolean moveStage = false;
-  int moveAmount = 1;
+  int moveAmount = 2;
   PVector[] vertexesL= new PVector[20 * moveAmount];
   PVector[] vertexesR= new PVector[20 * moveAmount];
   float moveY = 0;
@@ -25,13 +25,12 @@ class Platform {
       moveStage = true;
       player.posPlayer.y = -10;
       player.posPlayer.x = 600;
-      
     }
     if (moveStage) {
       levelMove++;
     }
     if (levelMove >= 600) {
-      scoreHandler.score((int)random(10,30) * levelMove);
+      scoreHandler.score((int)random(10, 30) * levelMove);
       moveStage = false;
       moveAmount++;
       levelMove = 0;
@@ -43,8 +42,8 @@ class Platform {
       dragon.bossFight.startFight();
     }
 
-    newZ = 801 + levelMove; 
-    newY = 660 + levelMove; 
+    newZ = 801 + levelMove + 200; 
+    newY = 660 + levelMove + 200;
     //linksboven = 1 
     //links onder = 2 
     //rechtsonder = 3 
@@ -53,9 +52,10 @@ class Platform {
     float x2 = width/2;
 
     fill(147, 147, 147);
-    for (int y = newY; y>0; y = y- 200) {
-      int y1= y + 25;
-      int y2 = y1 + 25;
+
+    for (int y = newY; y > -200; y -= 200) {
+      int y1= y + platformThickness;
+      int y2 = y1 + platformThickness;
 
       noStroke();
       fill(147, 147, 147);
@@ -71,10 +71,11 @@ class Platform {
       vertexesL[i + 4] = new PVector(x1, y);
       i += 5;
     }
-    for (int z = newZ; z>0; z = z- 200) {//rechterplatform
+
+    for (int z = newZ; z>-200; z -= 200) {//rechterplatform
+
       fill(147, 147, 147);
       quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
-
       if (j == vertexesR.length) {
         j = 0;
       }
