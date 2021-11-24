@@ -6,11 +6,11 @@ class ScoreHandler {
   
   void setup() {
     score = 0;
-    text("Score: " + score, 0, textSize);
+    text("Score: " + score, 35, textSize);
   } 
   void draw() {
     fill(255);
-    text("Score: " + score, 0, textSize);
+    text("Score: " + score, 35, textSize);
   }
   void score(int scoreToAdd) {
     score += scoreToAdd * dragon.fightAmount;

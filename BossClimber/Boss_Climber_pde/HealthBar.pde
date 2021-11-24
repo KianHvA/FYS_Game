@@ -17,14 +17,12 @@ class Health {
   PImage dead1, dead2, dead3;
   
   void setup() {
-    /*
-   img1 = loadImage(".data/Hart full.png"); 
-   img2 = loadImage(".data/Hart full.png"); 
-   img3 = loadImage(".data/Hart full.png"); 
-   dead1 = loadImage(".data/Hart empty.png");
-   dead2 = loadImage(".data/Hart empty.png");
-   dead3 = loadImage(".data/Hart empty.png");
-   */
+   img1 = loadImage("Hart full.png"); 
+   img2 = loadImage("Hart full.png"); 
+   img3 = loadImage("Hart full.png"); 
+   dead1 = loadImage("Hart empty.png");
+   dead2 = loadImage("Hart empty.png");
+   dead3 = loadImage("Hart empty.png");
   }
 
 
@@ -95,24 +93,32 @@ class Health {
     switch(amount) {
     case 4:/*3 but because of the mulptiplier with damage it can't get to 0*/
       fill(255);
-      ellipseMode(CORNER);
-      ellipse(20, height - 50, 10, 10);
-      ellipse(20, height - 90, 10, 10);
-      ellipse(20, height - 130, 10, 10);
-      //image(img1, 20, height-50);
+      //ellipseMode(CORNER);
+      //ellipse(20, height - 50, 10, 10);
+      //ellipse(20, height - 90, 10, 10);
+      //ellipse(20, height - 130, 10, 10);
+      image(img1, 0, height-80, 50, 50);
+      image(img2, 0, height-130, 50, 50);
+      image(img3, 0, height-180, 50, 50);
       break;
     case 3: /*2 but because of the multiplier with damage it can't get to 0*/
       amount2 = true;
       fill(255);
-      ellipseMode(CORNER);
-      ellipse(20, height - 50, 10, 10);
-      ellipse(20, height - 90, 10, 10);
+      //ellipseMode(CORNER);
+      //ellipse(20, height - 50, 10, 10);
+      //ellipse(20, height - 90, 10, 10);
+      image(img1, 0, height-80, 50, 50);
+      image(img2, 0, height-130, 50, 50);
+      image(dead3, 0, height-180, 50, 50);
       break;
     case 2: /*1 but because of the multiplier with damage it can't get to 0*/
       amount1 = true;
       fill(255);
-      ellipseMode(CORNER);
-      ellipse(20, height - 50, 10, 10);
+      //ellipseMode(CORNER);
+      //ellipse(20, height - 50, 10, 10);
+      image(img1, 0, height-80, 50, 50);
+      image(dead2, 0, height-130, 50, 50);
+      image(dead3, 0, height-180, 50, 50);
       break;
     default: /*0 but because of the multiplier with damage it can't get to 0*/
       amount0 = true;

@@ -6,7 +6,7 @@ class Player {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
-  boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false;
+  boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false;
 
   void draw() {
     //modes
@@ -42,15 +42,20 @@ class Player {
     if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
     {
       velocity.x = -3;
+      moveLeft = true;
     } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
     {
       velocity.x = 3;
+      moveRight = false;
     } else 
     if (!hasCollision)
     {
       velocity.x = lerp(velocity.x, 0, 0.01);
     } else {
       velocity.x = 0;
+      moveLeft = false;
+      moveRight = false;
+      moveUp = false;
     }
 
     //handle jump
@@ -58,11 +63,13 @@ class Player {
     {
       hasCollision = false;
       velocity.y = -jumpForce;
+      moveUp = true;
     }
     if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
+      moveUp = true;
     }
     
     if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
@@ -80,9 +87,9 @@ class Player {
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    //if(hasJumped && keysPressed['A']) {
-      
-    //}
+    if(sword.pickedUp && keysPressed['A']) {
+      sword.attack();
+    }
 
     //add velocity to posPlayer
     posPlayer.x += velocity.x;

@@ -18,6 +18,7 @@ ScoreHandler scoreHandler;
 Inventory inventory;
 Schild schild;
 UI UI;
+HealthBarDragon HealthbarDragon;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
@@ -71,6 +72,7 @@ void setup()
   waterfles = new Waterfles();
   druppels = new ArrayList<Druppel>();
   sword = new Sword();
+  sword.setup();
 }
 
 void update()
@@ -348,9 +350,11 @@ void draw()
     platforms.draw();
     Doublejump.draw();
     healthbar.draw();
+    health.draw();
     waterfles.draw();
     schild.draw();
     dragon.draw();
+    sword.draw();
 
     //teken alle UI hier zodat het op de voorgrond komt
     UI.draw();
@@ -358,8 +362,8 @@ void draw()
     inventory.draw();
     
     //game overscherm
-    healthbar.draw();
-    health.draw();
+    //healthbar.draw();
+    //health.draw();
     
   }
 }
