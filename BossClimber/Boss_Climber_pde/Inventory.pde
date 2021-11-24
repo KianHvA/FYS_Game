@@ -7,8 +7,12 @@ class Inventory {
   void draw() {
     stroke(200);
     strokeWeight(4);
-    fill(0);
+    
     ellipseMode(CORNER);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("S", width-breedte, height-(hoogte * 2.5));
+    fill(0);
     ellipse(width-breedte, height-(hoogte * 2.5), 50, 50);
 
     if (Doublejump.pickedUp) {
