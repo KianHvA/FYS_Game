@@ -80,9 +80,9 @@ class Player {
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    //if(hasJumped && keysPressed['A']) {
-      
-    //}
+    if(sword.pickedUp && keysPressed['A']) {
+      sword.attack();
+    }
 
     //add velocity to posPlayer
     posPlayer.x += velocity.x;

@@ -19,6 +19,9 @@ class Dragon {
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   boolean waterFles = false;
+  PVector healthbarPos = new PVector(275, 20);
+  PVector healthbarPosStart = new PVector(275, 20);
+  PVector healthbarPosEnd = new PVector(-1000, -1000);
   void setup() {
     bossFight.setup();
   }
@@ -56,17 +59,17 @@ class Dragon {
     if (fight) {
       //HealthBarDragon.draw();
     }
-    if(damageDragon && fight) {
-      HealthbarDragon.doDamageDragon(20);
-     damageDragon = false;
+    if (damageDragon && fight) {
+      //HealthBarDragon.doDamageDragon(20);
+      damageDragon = false;
     }
   }
 
 
   void update() {
-    if(!fight) {
-     bossFight.healthbarPos.x = -1000; 
-     bossFight.healthbarPos.y = -1000; 
+    if (!fight) {
+      dragon.healthbarPos.x = -1000; 
+      dragon.healthbarPos.y = -1000;
     }
     //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
     while (player.posPlayer.y > 80) {
@@ -89,9 +92,9 @@ class Dragon {
       startx = lerp(startx, stageMovePatroon[0].x, 0.01);
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
-    if (platforms.moveAmount == 1){
+    if (platforms.moveAmount == 1) {
     }
-    
+
     if (platforms.moveAmount == 3 * fightAmount) {
       //FireballRain.spawn();
     }
@@ -124,9 +127,6 @@ class bossFight {
   HealthBarDragon HealthbarDragon;
   float startx = xDragon;
   float starty = yDragon;
-  PVector healthbarPos = new PVector(275, 20);
-  PVector healthbarPosStart = new PVector(275, 20);
-  PVector healthbarPosEnd = new PVector(-1000, -1000);
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector vliegPatroonF1 = new PVector(400, -100);
   PVector vliegPatroonF2 = new PVector(400, -50);
@@ -142,11 +142,11 @@ class bossFight {
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
 
   void setup() {
-    healthbarPos = healthbarPosEnd;
-    HealthbarDragon = new HealthBarDragon(healthbarPos.x, healthbarPos.y, 250, 10);
+    dragon.healthbarPos = dragon.healthbarPosEnd;
+    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
   void startFight() {  
-    healthbarPos = healthbarPosStart;
+    dragon.healthbarPos = dragon.healthbarPosStart;
     if (fase1) {
       //println(dragon.fight);
       dragon.fight = true;
@@ -197,11 +197,11 @@ class bossFight {
     }
     if (timer == 60 * timerAmount) {
       for (int i = 0; i > fireballs.length * 2; i++) {
-      fireballs[i].posFireball.x = startx;
-      fireballs[i].posFireball.y = starty;
-      fireballs[i].draw();
-    }
-    timerAmount++;
+        fireballs[i].posFireball.x = startx;
+        fireballs[i].posFireball.y = starty;
+        fireballs[i].draw();
+      }
+      timerAmount++;
     }
   }
 
@@ -216,7 +216,7 @@ class bossFight {
       dragon.fightAmount += 1;
       scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
-      healthbarPos = healthbarPosEnd;
+      dragon.healthbarPos = dragon.healthbarPosEnd;
     }
   }
 }
