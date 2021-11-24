@@ -87,7 +87,7 @@ class Schild {
     SchildEq();
     schildPos.y += GRAVITYSchild;
     fill(255, 0, 0);
-    circle(schildPos.x, schildPos.y, schildSize.x);
+    rect(schildPos.x, schildPos.y, schildSize.x);
   }
 
   void reset() {
