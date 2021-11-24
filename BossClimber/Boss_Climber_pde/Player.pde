@@ -93,7 +93,7 @@ class Player {
   {
     hasCollision = true;
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+      posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight * 2);
     } else {
       hasCollision = false;
       posPlayer.y = posPlayer.y + 1;
