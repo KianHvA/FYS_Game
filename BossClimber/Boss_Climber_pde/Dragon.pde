@@ -56,17 +56,17 @@ class Dragon {
     if (fight) {
       //HealthBarDragon.draw();
     }
-    if(damageDragon && fight) {
+    if (damageDragon && fight) {
       HealthbarDragon.doDamageDragon(20);
-     damageDragon = false;
+      damageDragon = false;
     }
   }
 
 
   void update() {
-    if(!fight) {
-     bossFight.healthbarPos.x = -1000; 
-     bossFight.healthbarPos.y = -1000; 
+    if (!fight) {
+      bossFight.healthbarPos.x = -1000; 
+      bossFight.healthbarPos.y = -1000;
     }
     //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
     while (player.posPlayer.y > 80) {
@@ -89,9 +89,9 @@ class Dragon {
       startx = lerp(startx, stageMovePatroon[0].x, 0.01);
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
-    if (platforms.moveAmount == 1){
+    if (platforms.moveAmount == 1) {
     }
-    
+
     if (platforms.moveAmount == 3 * fightAmount) {
       //FireballRain.spawn();
     }
@@ -167,7 +167,11 @@ class bossFight {
   }
 
   void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player. Komt later te weinig tijd.
-    /*
+    if (fase1) {
+    }
+   
+
+    
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
      startx = lerp(startx, startVliegPatroon.x, 0.01);
      starty = lerp(starty, startVliegPatroon.y, 0.01);
@@ -188,20 +192,21 @@ class bossFight {
      if (sizeShrink) {
      constrain((int) sizeDragon, 1, 46);
      sizeDragon -= 0.01;
+     println("yes");
      }
-     */
-    if (dragon.dragonHealth < 75 * dragon.fightAmount) {
+    
+      if (dragon.dragonHealth < 75 * dragon.fightAmount) {
       startx = lerp(startx, fireBallVliegPatroon[0].x, 0.01);
       starty = lerp(starty, fireBallVliegPatroon[0].y, 0.01);
       timer++;
     }
     if (timer == 60 * timerAmount) {
       for (int i = 0; i > fireballs.length * 2; i++) {
-      fireballs[i].posFireball.x = startx;
-      fireballs[i].posFireball.y = starty;
-      fireballs[i].draw();
-    }
-    timerAmount++;
+        fireballs[i].posFireball.x = startx;
+        fireballs[i].posFireball.y = starty;
+        fireballs[i].draw();
+      }
+      timerAmount++;
     }
   }
 

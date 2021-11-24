@@ -1,5 +1,6 @@
-// groene button return maken spawn plek maken>platforms meer naar beneden 
-int bpX, bpY, bpW, bpH;
+// Welkom in de bossplatform class in deze class word de boss room gemaakt.
+
+//int bpX, bpY, bpW, bpH;
 
 
 //int x1 = width/12;
@@ -15,15 +16,35 @@ int bpX, bpY, bpW, bpH;
 //int levelMove = 0;
 
 void Bossplatform() {
- 
-  bpX = width/12;
-  bpY = 50+platforms.levelMove;
-  bpW = 30;
-  bpH = 10;
-  rectMode(CORNER);
-  fill(#64ED16);
-  rect(bpX, bpY, bpW, bpH);
-}
+
+//  //if(dragon.bossFight.fase2){
+//  fill(147, 147, 147);
+//  background(0);
+//  rectMode(CORNER);
+//  rect(0, height-50, width, height);
+//  muur();
+//  boolean bossFightRoom=true;
+//  if (mousePressed){bossFightRoom=!bossFightRoom;}
+//if (bossFightRoom){println("ÿessss");}
+//if (!bossFightRoom){println("ÿes");}
+//}
+////}
+
+//if(bossFightRoom){
+  //playerpos
+  //dragonpos
+  //powerups uit
+
+
+
+//bpX = width/12;
+//bpY = 50+platforms.levelMove;
+//bpW = 30;
+//bpH = 10;
+
+//fill(#64ED16);
+//rect(bpX, bpY, bpW, bpH);
+
 //fill(#64ED16);
 //  fill(147, 147, 147);
 //  noStroke();
