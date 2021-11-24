@@ -350,6 +350,7 @@ void draw()
     platforms.draw();
     Doublejump.draw();
     healthbar.draw();
+    health.draw();
     waterfles.draw();
     schild.draw();
     dragon.draw();
@@ -361,8 +362,8 @@ void draw()
     inventory.draw();
     
     //game overscherm
-    healthbar.draw();
-    health.draw();
+    //healthbar.draw();
+    //health.draw();
     
   }
 }

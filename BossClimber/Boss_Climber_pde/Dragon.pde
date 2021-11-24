@@ -56,7 +56,8 @@ class Dragon {
       //zet a weer naar false;
       a = false;
     }
-    if (fight) {
+    if (!fight) {
+      healthbarPos = healthbarPosEnd;
       //HealthBarDragon.draw();
     }
     if (damageDragon && fight) {
