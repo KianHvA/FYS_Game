@@ -54,7 +54,7 @@ class Dragon {
       a = false;
     }
     if (fight) {
-      HealthbarDragon.draw();
+      //HealthBarDragon.draw();
     }
     if(damageDragon && fight) {
       HealthbarDragon.doDamageDragon(20);
