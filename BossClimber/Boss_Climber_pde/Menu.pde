@@ -1,7 +1,7 @@
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
   boolean start = false, drawn = false;
-  PVector placement1 = new PVector(200, 250);
+  PVector placement1 = new PVector(275, 250);
   PVector placement2 = new PVector(400, 250);
   boolean highlight1 = true, highlight2 = false;
   color normal = 125;
@@ -10,9 +10,9 @@ class Menu {
   color rect2 = 0;
   float Check = 0, Time = 0;
   boolean personalize = false;
-  PVector size = new PVector(400, 200);
+  PVector size = new PVector(275, 150);
   float timer2 = 0;
-  PVector placeBS = new PVector(400, 300);
+  PVector placeBS = new PVector(300, 150);
   PVector sizeBS = new PVector(1, 1);
   float timer3 = 0;
   color Rgb = #FF0000;
@@ -49,9 +49,9 @@ class Menu {
     //colorMode(rect1);
     rect(placement1.x, placement1.y, size.x, size.y);
     rectMode(CENTER);
-    textFont(f, 108); //size of the texts
+    textFont(f, 72); //size of the texts
     fill(255); //color
-    text("Play", placement1.x + 100, placement1.y + 130);
+    text("Play", placement1.x + 70, placement1.y + 100);
     drawn = true;
     
     if(keysPressed['A']) {
