@@ -37,10 +37,12 @@ class Platform {
       levelMove = 0;
       println(moveAmount);
     }
+    if (moveAmount % 4 == 0) {
+      //dragon.bossFight.startFight();
+      //dragon.bossFight.startFight();
+    }
     if (moveAmount % 3 == 0) {
-      //dragon.bossFight.startFight();
-      //dragon.FireballRain.spawn();
-      //dragon.bossFight.startFight();
+     //dragon.FireballRain.spawn(); 
     }
 
     newZ = 801 + levelMove; 
