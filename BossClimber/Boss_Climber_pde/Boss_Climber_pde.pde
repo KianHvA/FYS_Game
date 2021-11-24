@@ -302,9 +302,9 @@ void draw()
   if (menu.start ==false) {
     level.draw();
     menu.draw();
-    menu.highlight();
-    textSize(50);
-    text("BOSS CLIMBER", 210, 200);
+    //menu.highlight();
+    textSize(108);
+    text("BOSS CLIMBER", -3, 200);
   }
   if (menu.start == true) {
 
