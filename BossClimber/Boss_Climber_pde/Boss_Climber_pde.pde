@@ -17,6 +17,7 @@ ArrayList<Druppel> druppels;
 ScoreHandler scoreHandler;
 Inventory inventory;
 Schild schild;
+UI UI;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
@@ -57,6 +58,7 @@ void setup()
   scoreHandler = new ScoreHandler();
   inventory = new Inventory();
   schild = new Schild();
+  UI = new UI();
   level.setup();
   scoreHandler.setup();
   for (int i = 0; i < fireballs.length; i++) { 
@@ -305,6 +307,7 @@ void draw()
   if (menu.start == true) {
 
     update();
+    UI.draw();
     level.draw();
     if (fire == true) {
       fireballs[0].draw();

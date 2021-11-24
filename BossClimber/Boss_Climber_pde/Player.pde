@@ -80,6 +80,9 @@ class Player {
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
+    //if(hasJumped && keysPressed['A']) {
+      
+    //}
 
     //add velocity to posPlayer
     posPlayer.x += velocity.x;
