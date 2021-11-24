@@ -39,7 +39,7 @@ class Platform {
     }
     if (moveAmount % 3 == 0) {
       dragon.bossFight.startFight();
-      dragon.FireballRain.spawn();
+      //dragon.FireballRain.spawn();
       dragon.bossFight.startFight();
     }
 
