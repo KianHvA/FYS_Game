@@ -307,7 +307,6 @@ void draw()
   if (menu.start == true) {
 
     update();
-    UI.draw();
     level.draw();
     if (fire == true) {
       fireballs[0].draw();
@@ -352,6 +351,7 @@ void draw()
     dragon.draw();
 
     //teken alle UI hier zodat het op de voorgrond komt
+    UI.draw();
     scoreHandler.draw();
     inventory.draw();
     
