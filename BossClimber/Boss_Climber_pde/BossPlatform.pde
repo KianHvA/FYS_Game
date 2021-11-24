@@ -17,23 +17,24 @@
 
 void Bossplatform() {
 
-//  //if(dragon.bossFight.fase2){
-//  fill(147, 147, 147);
-//  background(0);
-//  rectMode(CORNER);
-//  rect(0, height-50, width, height);
-//  muur();
-//  boolean bossFightRoom=true;
-//  if (mousePressed){bossFightRoom=!bossFightRoom;}
-//if (bossFightRoom){println("ÿessss");}
-//if (!bossFightRoom){println("ÿes");}
+  //if (Platform.draw.moveAmount) {
+    fill(147, 147, 147);
+    background(0);
+    rectMode(CORNER);
+    rect(0, height-50, width, height);
+    muur();
+    boolean bossFightRoom=true;
+    if (mousePressed) {
+      bossFightRoom=!bossFightRoom;
+    }
+
+  }
 //}
-////}
 
 //if(bossFightRoom){
-  //playerpos
-  //dragonpos
-  //powerups uit
+//playerpos
+//dragonpos
+//powerups uit
 
 
 

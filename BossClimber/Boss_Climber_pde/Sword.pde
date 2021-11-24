@@ -24,7 +24,7 @@ class Sword {
   }
   
   void setup() {
-    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x,dragon.healthbarPos.y, 250 , 10);
+    //HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x,dragon.healthbarPos.y, 250 , 10);
   }
 
   void updateSword() {
