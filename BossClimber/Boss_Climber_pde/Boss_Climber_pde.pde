@@ -303,6 +303,8 @@ void draw()
     level.draw();
     menu.draw();
     menu.highlight();
+    textSize(50);
+    text("BOSS CLIMBER", 210, 200);
   }
   if (menu.start == true) {
 
