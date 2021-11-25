@@ -18,6 +18,7 @@ class Platform {
   PVector[] vertexesL= new PVector[20 * moveAmount];
   PVector[] vertexesR= new PVector[20 * moveAmount];
   float moveY = 0;
+  boolean drawBossRoom = false;
 
   void draw() {
 
@@ -25,24 +26,25 @@ class Platform {
       moveStage = true;
       player.posPlayer.y = -10;
       player.posPlayer.x = 600;
-      
     }
     if (moveStage) {
       levelMove++;
     }
     if (levelMove >= 600) {
-      scoreHandler.score((int)random(10,30) * levelMove);
+      scoreHandler.score((int)random(10, 30) * levelMove);
       moveStage = false;
       moveAmount++;
       levelMove = 0;
       println(moveAmount);
     }
     if (moveAmount % 4 == 0) {
+      drawBossRoom = true;
+      //Bossplatform();
       //dragon.bossFight.startFight();
       //dragon.bossFight.startFight();
     }
     if (moveAmount % 3 == 0) {
-     //dragon.FireballRain.spawn(); 
+      //dragon.FireballRain.spawn();
     }
 
     newZ = 801 + levelMove; 
@@ -88,7 +90,7 @@ class Platform {
       j += 5;
       fill(147, 147, 147);
 
-      Bossplatform();
+     if (drawBossRoom){ Bossplatform();}
     }
   }
 }
