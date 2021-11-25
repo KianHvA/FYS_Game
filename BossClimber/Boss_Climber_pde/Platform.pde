@@ -90,7 +90,9 @@ class Platform {
       j += 5;
       fill(147, 147, 147);
 
-     if (drawBossRoom){ Bossplatform();}
+      if (drawBossRoom) { 
+        Bossplatform();
+      }
     }
   }
 }
