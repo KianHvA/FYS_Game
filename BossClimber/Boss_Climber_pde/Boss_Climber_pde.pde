@@ -350,7 +350,7 @@ void draw()
     flamethrower.draw();
     player.draw();
     platforms.draw();
-    if (Platform.draw.drawBossRoom) {
+    if (platforms.drawBossRoom) {
       player.draw();
     }
     Doublejump.draw();
