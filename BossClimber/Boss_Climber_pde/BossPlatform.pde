@@ -79,4 +79,3 @@ void Bossplatform() {
 //  vertexesBossPlatform[i+5] = new PVector(qx1, ry);
 //  vertexesBossPlatform[i+6] = new PVector(x1, qh);
 //  vertexesBossPlatform[i+7] = new PVector(x1, ry);
-}
