@@ -6,7 +6,7 @@ class Player {
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
-  boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false;
+  boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
 
   void draw() {
     //modes
@@ -51,11 +51,16 @@ class Player {
     if (!hasCollision)
     {
       velocity.x = lerp(velocity.x, 0, 0.01);
+      moveLeft = false;
+      moveRight = false;
+      moveUp = false;
+      moveDown = true;
     } else {
       velocity.x = 0;
       moveLeft = false;
       moveRight = false;
       moveUp = false;
+      moveDown = false;
     }
 
     //handle jump

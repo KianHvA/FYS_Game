@@ -18,6 +18,9 @@ class Dragon {
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
+  PVector healthbarPos = new PVector(-1000, -1000);
+  PVector healthbarPosStart = new PVector(275, 20);
+  PVector healthbarPosEnd = new PVector(-1000, -1000);
   boolean waterFles = false;
   void setup() {
     bossFight.setup();
@@ -65,8 +68,8 @@ class Dragon {
 
   void update() {
     if (!fight) {
-      bossFight.healthbarPos.x = -1000; 
-      bossFight.healthbarPos.y = -1000;
+      dragon.healthbarPos.x = -1000; 
+      dragon.healthbarPos.y = -1000;
     }
     //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
     while (player.posPlayer.y > 80) {
@@ -124,9 +127,6 @@ class bossFight {
   HealthBarDragon HealthbarDragon;
   float startx = xDragon;
   float starty = yDragon;
-  PVector healthbarPos = new PVector(275, 20);
-  PVector healthbarPosStart = new PVector(275, 20);
-  PVector healthbarPosEnd = new PVector(-1000, -1000);
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector vliegPatroonF1 = new PVector(400, -100);
   PVector vliegPatroonF2 = new PVector(400, -50);
@@ -142,11 +142,11 @@ class bossFight {
   //float length = 5; probeerde een if loop te maken maar kreeg een error on .class terwijl er geen .class is dus ja
 
   void setup() {
-    healthbarPos = healthbarPosEnd;
-    HealthbarDragon = new HealthBarDragon(healthbarPos.x, healthbarPos.y, 250, 10);
+    dragon.healthbarPos = dragon.healthbarPosEnd;
+    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
   void startFight() {  
-    healthbarPos = healthbarPosStart;
+    dragon.healthbarPos = dragon.healthbarPosStart;
     if (fase1) {
       //println(dragon.fight);
       dragon.fight = true;
@@ -169,33 +169,33 @@ class bossFight {
   void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player. Komt later te weinig tijd.
     if (fase1) {
     }
-   
 
-    
+
+
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
-     startx = lerp(startx, startVliegPatroon.x, 0.01);
-     starty = lerp(starty, startVliegPatroon.y, 0.01);
-     fase2 = true;
-     fase1 = false;
-     }
-     if (fase2 && startx == 400 && starty < -100) {
-     startx = lerp(startx, vliegPatroonF1.x, 0.01);
-     starty = lerp(starty, vliegPatroonF1.y, 0.01);
-     } else if (fase2 && startx == 400 && starty > -50) {
-     startx = lerp(startx, vliegPatroonF2.x, 0.01);
-     starty = lerp(starty, vliegPatroonF2.y, 0.01);
-     } else if (fase2 && startx == 400 && starty < -60) {
-     sizeShrink = true;
-     startx = lerp(startx, vliegPatroonF3.x, 0.01);
-     starty = lerp(starty, vliegPatroonF3.y, 0.01);
-     }
-     if (sizeShrink) {
-     constrain((int) sizeDragon, 1, 46);
-     sizeDragon -= 0.01;
-     println("yes");
-     }
-    
-      if (dragon.dragonHealth < 75 * dragon.fightAmount) {
+      startx = lerp(startx, startVliegPatroon.x, 0.01);
+      starty = lerp(starty, startVliegPatroon.y, 0.01);
+      fase2 = true;
+      fase1 = false;
+    }
+    if (fase2 && startx == 400 && starty < -100) {
+      startx = lerp(startx, vliegPatroonF1.x, 0.01);
+      starty = lerp(starty, vliegPatroonF1.y, 0.01);
+    } else if (fase2 && startx == 400 && starty > -50) {
+      startx = lerp(startx, vliegPatroonF2.x, 0.01);
+      starty = lerp(starty, vliegPatroonF2.y, 0.01);
+    } else if (fase2 && startx == 400 && starty < -60) {
+      sizeShrink = true;
+      startx = lerp(startx, vliegPatroonF3.x, 0.01);
+      starty = lerp(starty, vliegPatroonF3.y, 0.01);
+    }
+    if (sizeShrink) {
+      constrain((int) sizeDragon, 1, 46);
+      sizeDragon -= 0.01;
+      println("yes");
+    }
+
+    if (dragon.dragonHealth < 75 * dragon.fightAmount) {
       startx = lerp(startx, fireBallVliegPatroon[0].x, 0.01);
       starty = lerp(starty, fireBallVliegPatroon[0].y, 0.01);
       timer++;
@@ -221,7 +221,7 @@ class bossFight {
       dragon.fightAmount += 1;
       scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
-      healthbarPos = healthbarPosEnd;
+      dragon.healthbarPos = dragon.healthbarPosEnd;
     }
   }
 }

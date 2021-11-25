@@ -33,8 +33,8 @@ class CollisionHandler
 
   void update() {
     hit = 
-    polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
-    polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
+      polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
+      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
   }
 
   //object met player collision
@@ -169,7 +169,7 @@ class CollisionHandler
     }
     return false;
   }
-  
+
 
   //CIRCLE/CIRCLE
   boolean circleCircle(float circleX, float circleY, float circleDia, float oCircleX, float oCircleY, float oCircleDia) {
@@ -239,29 +239,30 @@ class CollisionHandler
       return false;
     }
   }
-}
 
-boolean wallColliderLeft(float objectX, float radius, float wallThickness) {
-  if (objectX - radius < wallThickness) {
-    return true;
+
+  boolean wallColliderLeft(float objectX, float radius, float wallThickness) {
+    if (objectX - radius < wallThickness) {
+      return true;
+    }
+    return false;
   }
-  return false;
-}
-boolean wallColliderRight(float objectX, float radius, float wallThickness) {
-  if (objectX + radius > width - wallThickness) {
-    return true;
+  boolean wallColliderRight(float objectX, float radius, float wallThickness) {
+    if (objectX + radius > width - wallThickness) {
+      return true;
+    }
+    return false;
   }
-  return false;
-}
 
-double calculateDistance(
-  double x1, 
-  double y1, 
-  double x2, 
-  double y2) {
+  double calculateDistance(
+    double x1, 
+    double y1, 
+    double x2, 
+    double y2) {
 
-  double ac = Math.abs(y2 - y1);
-  double cb = Math.abs(x2 - x1);
+    double ac = Math.abs(y2 - y1);
+    double cb = Math.abs(x2 - x1);
 
-  return Math.hypot(ac, cb);
+    return Math.hypot(ac, cb);
+  }
 }

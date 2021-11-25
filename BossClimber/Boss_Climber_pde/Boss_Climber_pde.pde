@@ -1,5 +1,7 @@
 //prototype IG-103-2
 
+//import de.bezier.data.sql.*;
+
 Menu menu;
 Player player;
 CollisionHandler collisionHandler;
