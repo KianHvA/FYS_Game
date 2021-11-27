@@ -17,13 +17,14 @@ class Druppel{
     hasCollision = collisionHandler.hitDragon;    
     
     if (hasCollision){
-      waterfles.druppelOn = false;
-      damageDragon = true;
+     waterfles.druppelOn = false;
+     damageDragon = true;
     }
   }
   
   void draw(){
     fill(0, 0, 255);
     circle(startX, startY, druppelDia);
+    println(startX);
   }
 }

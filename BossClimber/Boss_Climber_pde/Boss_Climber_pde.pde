@@ -15,7 +15,7 @@ Flamethrower flamethrower;
 Dragon dragon;
 Sword sword;
 Waterfles waterfles;
-ArrayList<Druppel> druppels;
+Druppel druppels;
 ScoreHandler scoreHandler;
 Inventory inventory;
 Schild schild;
@@ -25,6 +25,7 @@ int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
 int RspawnCountDruppel = 500; //oorspronkelijke functie
+int resetWaterflesCount = 600;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
@@ -72,7 +73,7 @@ void setup()
   health.setup();
   dragon.setup();
   waterfles = new Waterfles();
-  druppels = new ArrayList<Druppel>();
+  druppels = new Druppel();
   sword = new Sword();
   sword.setup();
 }
@@ -230,6 +231,30 @@ void update()
     fireballs[5].respawn();
     fireballs[5].posFireball = fireballs[5].RposFireball;
   }
+  
+  if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
+      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    fire = false;
+    fireballCount = 300;
+    fireballs[0].respawn();
+  }
+  if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
+      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    fire2 = false;
+    fireballCount = 300;
+    fireballs[1].respawn();
+  }
+  if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
+      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    fire3 = false;
+    fireballCount = 300;
+    fireballs[2].respawn();
+  }
+   if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
+      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    fire4 = false;
+    fireballs[3].respawn();
+  }
 
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
@@ -281,13 +306,27 @@ void update()
     spawnCountDruppel--;
   }
 
-  if (waterfles.druppelOn && spawnCountDruppel == 0) {//Moet nog worden aangepast!
-    druppels.add(new Druppel());
-    waterfles.druppelOn = false;
+  if (waterfles.druppelOn) {//Moet nog worden aangepast!
+    druppels.druppelUpdate();
     waterfles.pickedUp = false;
     dragon.waterFles = false;
     cooldown = 100;
   }
+  
+  if (druppels.startY <= 0){
+    waterfles.druppelOn = false;
+    
+    
+   if (resetWaterflesCount >= 0){//Timer when waterfles is spawning again.
+    resetWaterflesCount--;
+  }
+  }
+  
+  if (resetWaterflesCount <= 0){
+    resetWaterflesCount = 600;
+    waterfles.resetWaterfles();
+  }
+  println(resetWaterflesCount);
 
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
@@ -325,28 +364,6 @@ void draw()
       fireballs[2].draw();
     }
 
-
-    for (int d = druppels.size() - 1; d >= 0; d--) {
-      if (druppels.size() >= 3) {
-        waterfles.druppelOff = true;
-        waterfles.druppelOn = true;
-        spawnCountDruppel = 500;
-      }
-      Druppel druppel = druppels.get(d);
-      druppel.druppelUpdate();
-      druppel.draw();
-
-      if (d >= 2) {
-        respawnWaterfles = true;
-      }
-
-      if (respawnWaterfles) {
-        waterfles.resetWaterfles();
-        d = 0;
-        respawnWaterfles = false;
-      }
-    }
-
     flamethrower.draw();
     player.draw();
     platforms.draw();
@@ -360,6 +377,10 @@ void draw()
     schild.draw();
     dragon.draw();
     sword.draw();
+    
+    if (waterfles.druppelOn) {//Shooting
+      druppels.draw();
+    }
 
     //teken alle UI hier zodat het op de voorgrond komt
     UI.draw();

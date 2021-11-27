@@ -16,29 +16,25 @@ class Waterfles{
   }
   
   void updateWaterfles(){
-    if (catchWaterfles){
-     flesB = 10;
-     flesH = 40;
       if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)){//Collision player & waterfles
         flesB = 0;
         flesH = 0;
         pickedUp = true;
-        catchWaterfles = false;
         scoreHandler.score((int)random(10,30));
     }
-   }
     
-    if (!catchWaterfles && keysPressed['S'] && !druppelOff && cooldown == 0){//Schiet waterfles
+    if (pickedUp == true && keysPressed['S'] && cooldown == 0){//Schiet waterfles
       druppelOn = true;
     }
   }
   
  void resetWaterfles(){//Reset nieuwe waterfles
-    flesX = resetFlesX;
-    flesY = resetFlesY;
-    druppelOn = false;
-    druppelOff = false;
-    catchWaterfles = true;
+    flesX = random(200, 600);
+    flesY = random(0, 600);
+    flesB = 10;
+    flesH = 40;
+    druppels.startX = player.posPlayer.x;
+    druppels.startY = player.posPlayer.y;
  }
   
   void draw(){

@@ -123,4 +123,16 @@ class Fireball {
       posFireball.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
     }
   }
+  
+  boolean fireballDruppel(float vuurX, float vuurY, float vuurDia, float drupX, float drupY, float drupDia){//Fireball + druppel
+    float distanceX = vuurX - drupX;
+    float distanceY = vuurY - drupY;
+    
+    float totalDistance = sqrt((distanceX * distanceX) + (distanceY * distanceY));
+    
+    if (totalDistance <= vuurDia + drupDia){
+      return true;
+    }
+    return false;
+  }
 }
