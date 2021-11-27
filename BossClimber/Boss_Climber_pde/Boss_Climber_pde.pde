@@ -315,11 +315,9 @@ void update()
   
   if (druppels.startY <= 0){
     waterfles.druppelOn = false;
-    
-    
    if (resetWaterflesCount >= 0){//Timer when waterfles is spawning again.
     resetWaterflesCount--;
-  }
+   }
   }
   
   if (resetWaterflesCount <= 0){
