@@ -38,6 +38,9 @@ class Schild {
   }
 
   void update() {
+    if (waterfles.pickedUp || Doublejump.pickedUp) {
+      pickedUp = false;
+    }
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;

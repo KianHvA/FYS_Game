@@ -28,6 +28,9 @@ class Sword {
   }
 
   void updateSword() {
+    if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
+      pickedUp = false;
+    }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
       swordW = 0;
       swordH = 0;
