@@ -18,6 +18,7 @@ Waterfles waterfles;
 Druppel druppels;
 ScoreHandler scoreHandler;
 Inventory inventory;
+Instructions instruction;
 Schild schild;
 UI UI;
 HealthBarDragon HealthbarDragon;
@@ -63,6 +64,7 @@ void setup()
   dragon = new Dragon(xDragon, yDragon, sizeDragon);
   scoreHandler = new ScoreHandler();
   inventory = new Inventory();
+  instruction = new Instructions();
   schild = new Schild();
   UI = new UI();
   Highscore = new HighScore();
@@ -331,8 +333,7 @@ void update()
     resetWaterflesCount = 600;
     waterfles.resetWaterfles();
   }
-  println(resetWaterflesCount);
-
+ 
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
   // fireballs[i].movementUpdate();
@@ -347,15 +348,26 @@ void update()
 void draw()
 {
   background(0);
+  
   if (menu.start ==false) {
     level.draw();
     menu.draw();
     //menu.highlight();
     textSize(72);
-    text("BOSS CLIMBER", 147, 200);
-  }
+    text("BOSS CLIMBER", 147, 200); 
+    
+     if (keysPressed['D']){
+      instruction.manual = true;
+    }
+  
+     if (instruction.manual){//Player reads instructions.
+        instruction.updateInstructions();
+        instruction.draw();
+      }
+      println(instruction.manual);
+    }
+  
   if (menu.start == true) {
-
     update();
     level.draw();
     if (fire == true) {

@@ -47,11 +47,15 @@ class Menu {
     rectMode(CORNER);
     fill(125);
     //colorMode(rect1);
-    rect(placement1.x, placement1.y, size.x, size.y);
+    rect(placement1.x - 175, placement1.y, size.x, size.y);
+    rect(menu.placement1.x + 150, menu.placement1.y, menu.size.x, menu.size.y);
     rectMode(CENTER);
-    textFont(f, 72); //size of the texts
+    textFont(f, 50); //size of the texts
     fill(255); //color
-    text("Play", placement1.x + 70, placement1.y + 100);
+    text("Press A", placement1.x - 125, placement1.y + 65);
+    text("to start", placement1.x -115, placement1.y + 115);
+    text("Press D for", placement1.x + 160, placement1.y + 65);
+    text("instructions", placement1.x + 160, placement1.y + 115);
     drawn = true;
     
     if(keysPressed['A']) {
