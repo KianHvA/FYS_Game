@@ -42,9 +42,8 @@ class Inventory {
       rectMode(CENTER);
       noStroke();
       fill(0, 0, 255);
-      image(waterflesI, width-(breedte/4 * 2.8), height-(hoogte * 2.4), 10, 40);
-      //rect(width-(breedte/4 * 2.8), height-(hoogte * 2.4), 10, 40);
-      rect(width-35, height-35, 10, 40);
+      image(waterflesI, width-52, height-55, 35, 40);
+      //rect(width-35, height-35, 10, 40);
       inventoryFull = true;
     } else {
       inventoryFull = false;
@@ -54,9 +53,9 @@ class Inventory {
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
-      image(shieldF, width-breedte, height-(hoogte * 2.5), 30, 40);
+      image(shieldF, width-52, height-54, 35, 40);
       //rect(width-breedte, height-(hoogte * 2.5), 30, 40);
-      rect(width-35, height-35, 30, 40);
+      //rect(width-35, height-35, 30, 40);
       inventoryFull = true;
     } else {
       inventoryFull = false;

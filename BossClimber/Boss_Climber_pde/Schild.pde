@@ -1,6 +1,6 @@
 class Schild {
   PVector schildPos = new PVector(random(100, 700), random(0, 200));
-  PVector schildSize = new PVector(30, 40);
+  PVector schildSize = new PVector(35, 40);
   PVector timerSD;
   final float GRAVITYSchild;
   boolean schildOn = false;
