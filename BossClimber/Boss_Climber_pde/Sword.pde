@@ -46,8 +46,9 @@ class Sword {
   void draw() {
     fill(255);
     rectMode(CENTER);
-    rect(swordX, swordY, swordW, swordH);
-    rect(swordX, swordY + 15, guardW, guardH);
+    image(inventory.sword, swordX, swordY, swordW, swordH);
+    //rect(swordX, swordY, swordW, swordH);
+    //rect(swordX, swordY + 15, guardW, guardH);
   }
   
   void attack() {

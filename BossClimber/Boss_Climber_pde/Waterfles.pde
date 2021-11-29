@@ -9,8 +9,8 @@ class Waterfles{
   Waterfles(){
     flesX = random(200, 600);
     flesY = random(0, 600);
-    flesB = 10;
-    flesH = 40;
+    flesB = 20;
+    flesH = 20;
     resetFlesX = random(200, 600);
     resetFlesY = random(200, 600);
   }
@@ -39,6 +39,7 @@ class Waterfles{
   
   void draw(){
     fill(0, 0, 255);
-    rect(flesX, flesY, flesB, flesH);
+    image(inventory.waterflesI, flesX, flesY, flesB, flesH);
+    //rect(flesX, flesY, flesB, flesH);
   }
 }

@@ -7,6 +7,35 @@ class Player {
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
   boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
+  PImage left, left1, left2, right, right1, right2; //normaal
+  PImage leftS, leftS1, leftS2, rightS, rightS1, rightS2; //shield
+  PImage Active, leftActive, rightActive;
+  PImage leftActiveS, rightActiveS;
+  float timerLeft1 = 0, timerLeft2 = 0;
+  float timerRight1 = 0, timerRight2 = 0;  
+
+  void setup() {
+    //left
+    left = loadImage("Knight - Left.png");
+    left1 = loadImage("Knight - Left - Walk1.png");
+    left2 = loadImage("Knight - Left - Walk2.png");
+    leftS = loadImage("Knight - Left - Shield.png");
+    leftS1 = loadImage("Knight - Left - Walk1 - Shield.png");
+    leftS2 = loadImage("Knight - Left - Walk2 - Shield.png");
+    //right
+    right = loadImage("Knight - Right.png");
+    right1 = loadImage("Knight - Right - Walk1.png");
+    right2 = loadImage("Knight - Right - Walk2.png");
+    rightS = loadImage("Knight - Right - Shield.png");
+    rightS1 = loadImage("Knight - Right - Walk1 - Shield.png");
+    rightS2 = loadImage("Knight - Right - Walk2 - Shield.png");
+    //Start
+    Active = loadImage("Knight - Right.png");
+    leftActive = loadImage("Knight - Left.png");
+    rightActive = loadImage("Knight - Right.png");
+    leftActiveS = loadImage("Knight - Left - Shield.png");
+    rightActiveS = loadImage("Knight - Right - Shield.png");
+  }
 
   void draw() {
     //modes
@@ -15,7 +44,8 @@ class Player {
 
     //player
     fill(menu.player);
-    ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
   void movementUpdate()
   {
@@ -46,7 +76,7 @@ class Player {
     } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
     {
       velocity.x = 3;
-      moveRight = false;
+      moveRight = true;
     } else 
     if (!hasCollision)
     {
@@ -62,6 +92,72 @@ class Player {
       moveUp = false;
       moveDown = false;
     }
+    if (!schild.pickedUp) {
+      if (moveLeft) {
+        Active = leftActive;
+        if (timerLeft2 ==0) {
+          timerLeft1++;
+        }
+        if (timerLeft1 >= 5) {
+          leftActive = left1;
+          timerLeft2++;
+        }
+        if (timerLeft2 >= 5) {
+          leftActive = left2;
+          timerLeft1 = 0;
+          timerLeft2 = 0;
+        }
+      }
+      if (moveRight) {
+        Active = rightActive;
+        if (timerRight2 ==0) {
+          timerRight1++;
+        }
+        if (timerRight1 >= 5) {
+          rightActive = right1;
+          timerRight2++;
+        }
+        if (timerRight2 >= 5) {
+          rightActive = right2;
+          timerRight1 = 0;
+          timerRight2 = 0;
+        }
+      }
+    }
+    
+    if (schild.pickedUp) {
+      if (moveLeft) {
+        Active = leftActiveS;
+        if (timerLeft2 ==0) {
+          timerLeft1++;
+        }
+        if (timerLeft1 >= 5) {
+          leftActiveS = leftS1;
+          timerLeft2++;
+        }
+        if (timerLeft2 >= 5) {
+          leftActiveS = leftS2;
+          timerLeft1 = 0;
+          timerLeft2 = 0;
+        }
+      }
+      if (moveRight) {
+        Active = rightActiveS;
+        if (timerRight2 ==0) {
+          timerRight1++;
+        }
+        if (timerRight1 >= 5) {
+          rightActiveS = rightS1;
+          timerRight2++;
+        }
+        if (timerRight2 >= 5) {
+          rightActiveS = rightS2;
+          timerRight1 = 0;
+          timerRight2 = 0;
+        }
+      }
+    }
+
 
     //handle jump
     if (hasCollision && keysPressed[UP]  && !platforms.moveStage)
@@ -76,23 +172,23 @@ class Player {
       hasDoubleJumped = true;
       moveUp = true;
     }
-    
-    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
+
+    if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
       schild.schildLevens = 2;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 2) {
+    if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 2) {
       schild.schildLevens = 1;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    if(healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 1) {
+    if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 1) {
       schild.schildLevens = 0;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    if(sword.pickedUp && keysPressed['A']) {
+    if (sword.pickedUp && keysPressed['A']) {
       sword.attack();
     }
 

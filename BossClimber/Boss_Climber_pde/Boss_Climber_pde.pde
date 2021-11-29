@@ -21,6 +21,7 @@ Inventory inventory;
 Schild schild;
 UI UI;
 HealthBarDragon HealthbarDragon;
+HighScore Highscore;
 int cooldown = 100;
 int fireballCount = 300;
 int spawnCountDruppel = 500;
@@ -63,6 +64,7 @@ void setup()
   inventory = new Inventory();
   schild = new Schild();
   UI = new UI();
+  Highscore = new HighScore();
   level.setup();
   scoreHandler.setup();
   for (int i = 0; i < fireballs.length; i++) { 
@@ -76,6 +78,9 @@ void setup()
   druppels = new Druppel();
   sword = new Sword();
   sword.setup();
+  inventory.setup();
+  player.setup();
+  Highscore.setup();
 }
 
 void update()
@@ -90,6 +95,7 @@ void update()
   sword.updateSword();
   menu.restart();
   schild.update();
+  Highscore.update();
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
   if (!dragon.fight) {
@@ -384,6 +390,7 @@ void draw()
     UI.draw();
     scoreHandler.draw();
     inventory.draw();
+    Highscore.draw();
 
     //game overscherm
     //healthbar.draw();
