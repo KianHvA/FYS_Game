@@ -43,7 +43,7 @@ class CollisionHandler
   }
   //object met Dragon collision
   void checkCollisionDragon(float objectX, float objectY, float objectRadius) {
-    hitDragon = circleRect(objectX, objectY, objectRadius, dragon.startx, dragon.starty, dragon.diameter, dragon.diameter);
+    hitDragon = circleRect(objectX, objectY, objectRadius, dragon.startx, dragon.starty, dragon.diameter.y, dragon.diameter.y);
   }
 
   //Object met platform collision

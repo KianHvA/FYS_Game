@@ -6,7 +6,8 @@ class Dragon {
   int totalTime = 1000;
   float startx;
   float starty;
-  float diameter;
+  PVector diameter = new PVector(0,0);
+  float ppos; //for animation
   String Modus;
   int vliegen;
   float checkCollision;
@@ -22,6 +23,9 @@ class Dragon {
   PVector healthbarPosStart = new PVector(275, 20);
   PVector healthbarPosEnd = new PVector(-1000, -1000);
   boolean waterFles = false;
+
+  PImage dagonClosedUp, dagonClosedDown, dagonOpenUp, dagonOpenDown;
+  PImage dragonSprite; //current dragon sprite renderd
   void setup() {
     bossFight.setup();
   }
@@ -32,16 +36,25 @@ class Dragon {
     //HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
     this.startx = x;
     this.starty = y;
-    this.diameter = diameter;
+    this.diameter.x = diameter;
+    this.diameter.y = diameter;
     startx = x;
     starty = y;
+
+    //load images
+    dagonClosedUp = loadImage("DragonClosedDown.png");
+    dagonClosedDown = loadImage("DragonClosedDown.png");
+    dagonOpenUp = loadImage("DragonClosedDown.png");
+    dagonOpenDown = loadImage("DragonClosedDown.png");
+    dragonSprite = dagonClosedUp;
   }
 
   void draw() {
     stroke(0);
     fill(185, 185, 182);
-    rect(startx, starty, diameter, diameter);
-
+    //rect(startx, starty, diameter.x, diameter.y);
+    image(dragonSprite, startx, starty, diameter.x, diameter.y);
+    
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
       savedTime = millis();
@@ -49,7 +62,7 @@ class Dragon {
     }
     if (a) {
       //ga naar volgende positie in array
-      //vliegen++;
+      vliegen++;
       if (vliegen >= vliegPatroon.length) {
         vliegen = 0;
       }
@@ -92,8 +105,6 @@ class Dragon {
       startx = lerp(startx, stageMovePatroon[0].x, 0.01);
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
-    if (platforms.moveAmount == 1) {
-    }
 
     if (platforms.moveAmount == 3 * fightAmount) {
       //FireballRain.spawn();
@@ -103,6 +114,14 @@ class Dragon {
     }
     xDragon = startx;
     yDragon = starty;
+    //for turning the dragon and animation
+    if ((startx - ppos) > 0) {
+      diameter.x = -diameter.y;
+    }else{
+      diameter.x = diameter.y;
+    }
+    ppos = startx;
+    //end of animation part
   }
 }
 

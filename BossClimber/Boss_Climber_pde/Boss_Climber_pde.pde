@@ -30,7 +30,7 @@ int resetWaterflesCount = 600;
 final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
-float xDragon = 152, yDragon = 50, sizeDragon = 46;
+float xDragon = 152, yDragon = 50, sizeDragon = 100;
 int fireballAmount = 6;
 boolean fire = false;
 boolean fire2 = false;
@@ -49,6 +49,7 @@ void setup()
   size(800, 600);
   rectMode(CENTER);
   frameRate(60);
+  smooth(0);
   menu = new Menu();
   level = new Level();
   player = new Player();
