@@ -97,9 +97,9 @@ class Health {
       //ellipse(20, height - 50, 10, 10);
       //ellipse(20, height - 90, 10, 10);
       //ellipse(20, height - 130, 10, 10);
-      image(img1, 0, height-80, 50, 50);
-      image(img2, 0, height-130, 50, 50);
-      image(img3, 0, height-180, 50, 50);
+      image(img1, 5, height-80, 50, 50);
+      image(img2, 5, height-130, 50, 50);
+      image(img3, 5, height-180, 50, 50);
       break;
     case 3: /*2 but because of the multiplier with damage it can't get to 0*/
       amount2 = true;
@@ -107,18 +107,18 @@ class Health {
       //ellipseMode(CORNER);
       //ellipse(20, height - 50, 10, 10);
       //ellipse(20, height - 90, 10, 10);
-      image(img1, 0, height-80, 50, 50);
-      image(img2, 0, height-130, 50, 50);
-      image(dead3, 0, height-180, 50, 50);
+      image(img1, 5, height-80, 50, 50);
+      image(img2, 5, height-130, 50, 50);
+      image(dead3, 5, height-180, 50, 50);
       break;
     case 2: /*1 but because of the multiplier with damage it can't get to 0*/
       amount1 = true;
       fill(255);
       //ellipseMode(CORNER);
       //ellipse(20, height - 50, 10, 10);
-      image(img1, 0, height-80, 50, 50);
-      image(dead2, 0, height-130, 50, 50);
-      image(dead3, 0, height-180, 50, 50);
+      image(img1, 5, height-80, 50, 50);
+      image(dead2, 5, height-130, 50, 50);
+      image(dead3, 5, height-180, 50, 50);
       break;
     default: /*0 but because of the multiplier with damage it can't get to 0*/
       amount0 = true;
@@ -158,7 +158,7 @@ class Health {
   }
 }
 
-class HealthBar {  //class + naam van de class (Zoals bovenaan staat)//
+class HealthBar {
 
   boolean shieldDamage;
   float x, y, w, h;

@@ -4,17 +4,18 @@ class ScoreHandler {
   int finalScore;
   int score;
   int textSize = 30; 
-  
+
   void setup() {
     score = 0;
     text("Score: " + score, 35, textSize);
   } 
-  void draw() {
+  void draw() {    
     fill(255);
-    text("Score: " + score, 35, textSize);
-    if(health.dead) {
+      text("Score: " + score, 35, textSize);
+    if (health.dead) {
       finalScore = score;
     }
+    text("Score: " + score, 45, 15);
   }
   void score(int scoreToAdd) {
     score += scoreToAdd * dragon.fightAmount;

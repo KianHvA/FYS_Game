@@ -30,6 +30,9 @@ class DoubleJump {
     }
   }
   void update() {
+    if (waterfles.pickedUp || schild.pickedUp) {
+      pickedUp = false;
+    }
     collisionHandler.checkCollisionPlayer(Location.x, Location.y, size);
     {
       hasCollision = collisionHandler.hitPlayer;

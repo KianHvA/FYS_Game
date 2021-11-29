@@ -5,11 +5,16 @@ class UI {
   String equip = new String("s = equip");
 
   void draw() {
+    fill(50, 300);
+    noStroke();
+    rectMode(CORNER);
+    rect(700, 0, width, 90);
+    
     textSize(20);
     fill(255);
-    text(jump, 760, 20);
-    text(left, 760, 35);
-    text(right, 760, 50);
-    text(equip, 760, 65);
+    text(jump, 752, 10);
+    text(left, 744, 30);
+    text(right, 750, 50);
+    text(equip, 755, 70);
   }
 }
