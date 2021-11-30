@@ -64,7 +64,7 @@ class Inventory {
       inventoryFull = false;
     }
     
-     if (swordI.pickedUp) {
+     if (sword.pickedUp) {
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
