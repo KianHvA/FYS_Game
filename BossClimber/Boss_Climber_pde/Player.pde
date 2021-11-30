@@ -2,7 +2,7 @@ class Player {
 
   //variables
   PVector posPlayer = new PVector(width/2, height/2 - 10);
-  PVector sizePlayer = new PVector(20, 20);
+  PVector sizePlayer = new PVector(20, 40);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 9;
@@ -62,8 +62,8 @@ class Player {
 
     //player
     fill(menu.player);
-    imageMode(CORNER);
-    image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    imageMode(CENTER);
+    image(Active, posPlayer.x, posPlayer.y - 30, sizePlayer.x, sizePlayer.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
   void movementUpdate()

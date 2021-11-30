@@ -93,6 +93,7 @@ class Health {
     switch(amount) {
     case 4:/*3 but because of the mulptiplier with damage it can't get to 0*/
       fill(255);
+      imageMode(CORNER);
       //ellipseMode(CORNER);
       //ellipse(20, height - 50, 10, 10);
       //ellipse(20, height - 90, 10, 10);
@@ -104,6 +105,7 @@ class Health {
     case 3: /*2 but because of the multiplier with damage it can't get to 0*/
       amount2 = true;
       fill(255);
+      imageMode(CORNER);
       //ellipseMode(CORNER);
       //ellipse(20, height - 50, 10, 10);
       //ellipse(20, height - 90, 10, 10);
@@ -114,6 +116,7 @@ class Health {
     case 2: /*1 but because of the multiplier with damage it can't get to 0*/
       amount1 = true;
       fill(255);
+      imageMode(CORNER);
       //ellipseMode(CORNER);
       //ellipse(20, height - 50, 10, 10);
       image(img1, 5, height-80, 50, 50);
