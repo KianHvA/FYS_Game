@@ -4,7 +4,8 @@ class Sword {
   float durabillity = 3;
   float durablillityFight = 9;
   float durabillityStart = 3;
-  boolean pickedUp = false;
+  boolean NewPos = false;
+  public boolean pickedUp = false;
   boolean swordOn = false;
   boolean spawnSword = false;
   boolean swordOff = false;
