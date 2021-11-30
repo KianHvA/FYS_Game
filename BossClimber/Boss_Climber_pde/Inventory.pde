@@ -1,13 +1,13 @@
 class Inventory {
   int breedte = width/13;
   int hoogte = height/12;
-  PImage shieldF /*shield front*/, shieldB /*shield back*/, sword, doubleJump, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
+  PImage shieldF /*shield front*/, shieldB /*shield back*/, swordI, doubleJump, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
   boolean inventoryFull = false;
 
   void setup() {
     shieldF = loadImage("Shield - Front.png");
     shieldB = loadImage("Shield - Back.png");
-    sword = loadImage("Sword.png");
+    swordI = loadImage("Sword.png");
     waterflesI = loadImage("Waterfles.png");
     doubleJump = loadImage("Jump - Boost.png");
   }
@@ -63,5 +63,16 @@ class Inventory {
     } else {
       inventoryFull = false;
     }
+    
+     if (sword.pickedUp) {
+      rectMode(CENTER);
+      noStroke();
+      fill(255, 0, 0);
+      image(swordI, width-53, height-55, 35, 50);
+      inventoryFull = true;
+    } else {
+      inventoryFull = false;
+    }
+    
   }
 }

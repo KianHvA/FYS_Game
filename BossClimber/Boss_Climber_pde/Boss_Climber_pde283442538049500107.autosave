@@ -46,7 +46,6 @@ float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
 boolean damageDragon = false;
 boolean respawnWaterfles = false;
-boolean On=true;
 
 void setup() 
 {
@@ -100,7 +99,7 @@ void update()
 {
   dragon.update();
   flamethrower.update();
-  
+  player.movementUpdate();
   Doublejump.update();
   collisionHandler.update();
   health.update();
@@ -343,10 +342,6 @@ void update()
     resetWaterflesCount = 600;
     waterfles.resetWaterfles();
   }
-  
-  for (int c = 0; c < aantalCoins; c++){
-    coin[c].updateCoins();
-  }
  
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
@@ -357,8 +352,6 @@ void update()
   //}
 
   //println(fireballCount);
-  
-  player.movementUpdate();
 }
 
 void draw()
@@ -367,7 +360,6 @@ void draw()
   
   if (menu.start ==false) {
     textAlign(CORNER, CORNER);
-    
     level.draw();
     menu.draw();
     //menu.highlight();
@@ -386,14 +378,7 @@ void draw()
   
   if (menu.start == true) {
     update();
-   
     level.draw();
-    
-    for (int c = 0; c < aantalCoins; c++){
-      coin[c].draw();
-      println(coin[c].coinCounter);
-    }
-
     if (fire == true) {//Draws fireballs!
       fireballs[0].draw();
     }
@@ -416,13 +401,12 @@ void draw()
     if (fire6 == true){
       fireballs[5].draw();
     }
-if(On){
+
     flamethrower.draw();
     player.draw();
-    platforms.draw();}
+    platforms.draw();
     if (platforms.drawBossRoom) {
       player.draw();
-      Bossplatform();
     }
     Doublejump.draw();
     healthbar.draw();
@@ -442,6 +426,10 @@ if(On){
     inventory.draw();
     Highscore.draw();
     
+    for (int c = 0; c < aantalCoins; c++){
+      coin[c].draw();
+    }
+
     //game overscherm
     //healthbar.draw();
     //health.draw();
