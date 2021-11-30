@@ -49,6 +49,7 @@ class Fireball {
     image(Active,posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
     //ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
   }
+  
   void movementUpdate()
   {
     checkCollision(posFireball.x, posFireball.y, sizeFireball.y);
@@ -63,7 +64,7 @@ class Fireball {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
       collideWithPlatform();
-      //println(wallCollisonR + "  " + wallCollisonL);
+      
       if (wallCollisonR && !switchDirection) {
         switchDirection = true;
         left = true;
@@ -160,7 +161,6 @@ class Fireball {
     //ellipse(startFireball.x, startFireball.y, sizeFireball.x, sizeFireball.y);
   }
 
-
   void checkCollision(float objectX, float objectY, float objectRadius) {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
   }
@@ -168,9 +168,10 @@ class Fireball {
   void collideWithPlatform()
   {
     velocity.y = 0;
-    hasCollision = true;
     if (collisionHandler.platformHitPos.y > posFireball.y) {
-      posFireball.y = collisionHandler.platformHitPos.y - collisionHandler.platformHeight * 2;
+      posFireball.y = collisionHandler.platformHitPos.y - sizeFireball.y;
+    } else {
+      posFireball.y += 1;
     }
   }
   

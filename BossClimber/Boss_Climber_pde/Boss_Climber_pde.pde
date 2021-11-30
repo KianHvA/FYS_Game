@@ -90,7 +90,7 @@ void update()
 {
   dragon.update();
   flamethrower.update();
-  player.movementUpdate();
+  
   Doublejump.update();
   collisionHandler.update();
   health.update();
@@ -343,6 +343,8 @@ void update()
   //}
 
   //println(fireballCount);
+  
+  player.movementUpdate();
 }
 
 void draw()
