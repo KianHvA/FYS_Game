@@ -29,7 +29,7 @@ class Player {
     leftSW = loadImage("Knight - Left - Sword.png");
     leftSW1 = loadImage("Knight - Left - Walk1 - Sword.png");
     leftSW2 = loadImage("Knight - Left - Walk2 - Sword.png");
-    leftW = loadImage(" ");
+    //leftW = loadImage(" ");
     leftW1 = loadImage("Knight - Left - Walk1 - Water.png");
     leftW2 = loadImage("Knight - Left - Walk2 - Water.png");
     //right
@@ -42,7 +42,7 @@ class Player {
     rightSW = loadImage("Knight - Right - Sword.png");
     rightSW1 = loadImage("Knight - Right - Walk1 - Sword.png");
     rightSW2 = loadImage("Knight - Right - Walk2 - Sword.png");
-    rightW = loadImage(" ");
+    //rightW = loadImage(" ");
     rightW1 = loadImage("Knight - Right - Walk1 - Water.png");
     rightW2 = loadImage("Knight - Right - Walk2 - Water.png");
     //Start
