@@ -29,7 +29,7 @@ class Player {
     leftSW = loadImage("Knight - Left - Sword.png");
     leftSW1 = loadImage("Knight - Left - Walk1 - Sword.png");
     leftSW2 = loadImage("Knight - Left - Walk2 - Sword.png");
-    //leftW = loadImage(" ");
+    leftW = loadImage("Knight - Left - Water.png");
     leftW1 = loadImage("Knight - Left - Walk1 - Water.png");
     leftW2 = loadImage("Knight - Left - Walk2 - Water.png");
     //right
@@ -42,7 +42,7 @@ class Player {
     rightSW = loadImage("Knight - Right - Sword.png");
     rightSW1 = loadImage("Knight - Right - Walk1 - Sword.png");
     rightSW2 = loadImage("Knight - Right - Walk2 - Sword.png");
-    //rightW = loadImage(" ");
+    rightW = loadImage("Knight - Right - Water.png");
     rightW1 = loadImage("Knight - Right - Walk1 - Water.png");
     rightW2 = loadImage("Knight - Right - Walk2 - Water.png");
     //Start
@@ -53,6 +53,8 @@ class Player {
     rightActiveS = loadImage("Knight - Right - Shield.png");
     leftActiveSW = loadImage("Knight - Left - Sword.png");
     rightActiveSW = loadImage("Knight - Right - Sword.png");
+    leftActiveW = loadImage("Knight - Left - Water.png");
+    rightActiveW = loadImage("Knight - Right - Water.png");
   }
 
   void draw() {
@@ -111,8 +113,8 @@ class Player {
       moveUp = false;
       moveDown = false;
     }
-    if (!schild.pickedUp && !sword.pickedUp) {
-      if (moveLeft) {
+    if (!schild.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+      if (moveLeft && !moveRight) {
         Active = leftActive;
         if (timerLeft2 ==0) {
           timerLeft1++;
@@ -126,8 +128,9 @@ class Player {
           timerLeft1 = 0;
           timerLeft2 = 0;
         }
-      }
-      if (moveRight) {
+      } 
+      
+      if (moveRight && !moveLeft) {
         Active = rightActive;
         if (timerRight2 ==0) {
           timerRight1++;
@@ -141,11 +144,14 @@ class Player {
           timerRight1 = 0;
           timerRight2 = 0;
         }
+      } 
+      if (!moveLeft && !moveRight) {
+        Active = right;
       }
     }
     
     if (schild.pickedUp && !waterfles.pickedUp && !sword.pickedUp) {
-      if (moveLeft) {
+      if (moveLeft && !moveRight) {
         Active = leftActiveS;
         if (timerLeft2 ==0) {
           timerLeft1++;
@@ -160,7 +166,7 @@ class Player {
           timerLeft2 = 0;
         }
       }
-      if (moveRight) {
+      if (moveRight && !moveLeft) {
         Active = rightActiveS;
         if (timerRight2 ==0) {
           timerRight1++;
@@ -175,10 +181,13 @@ class Player {
           timerRight2 = 0;
         }
       }
+      if (!moveLeft && !moveRight) {
+        Active = rightS;
+      }
     }
     
     if (!schild.pickedUp && !sword.pickedUp && waterfles.pickedUp) {
-      if (moveLeft) {
+      if (moveLeft && !moveRight) {
         Active = leftActiveW;
         if (timerLeft2 ==0) {
           timerLeft1++;
@@ -193,7 +202,7 @@ class Player {
           timerLeft2 = 0;
         }
       }
-      if (moveRight) {
+      if (moveRight && !moveLeft) {
         Active = rightActiveW;
         if (timerRight2 ==0) {
           timerRight1++;
@@ -208,10 +217,13 @@ class Player {
           timerRight2 = 0;
         }
       }
+      if (!moveLeft && !moveRight) {
+        Active = rightW;
+      }
     }
     
     if (!schild.pickedUp && sword.pickedUp && !waterfles.pickedUp) {
-      if (moveLeft) {
+      if (moveLeft && !moveRight) {
         Active = leftActiveSW;
         if (timerLeft2 ==0) {
           timerLeft1++;
@@ -226,7 +238,7 @@ class Player {
           timerLeft2 = 0;
         }
       }
-      if (moveRight) {
+      if (moveRight && !moveLeft) {
         Active = rightActiveSW;
         if (timerRight2 ==0) {
           timerRight1++;
@@ -240,6 +252,9 @@ class Player {
           timerRight1 = 0;
           timerRight2 = 0;
         }
+      }
+      if (!moveLeft && !moveRight) {
+        Active = rightSW;
       }
     }
 
