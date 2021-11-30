@@ -63,5 +63,16 @@ class Inventory {
     } else {
       inventoryFull = false;
     }
+    
+     if (sword.pickedUp) {
+      rectMode(CENTER);
+      noStroke();
+      fill(255, 0, 0);
+      image(swordI, width-53, height-55, 35, 50);
+      inventoryFull = true;
+    } else {
+      inventoryFull = false;
+    }
+    
   }
 }
