@@ -202,8 +202,13 @@ class HighScore {
         text("^", x + textWidth(name) + textWidth(nameDef[0]) * (j + 1) - 90, y - 70);
         textSize(textSize*0.75);
         fill(#FFFFFF);
-        rotate(PI);
-        text("^", x + textWidth(name) + textWidth(nameDef[0]) * (j+1) - 90, y + 70);
+        pushMatrix();
+        float angle1 = radians(180);
+        translate(x + textWidth(name) + textWidth(nameDef[0]) * (j + 1) - 90, y + 70);
+        rotate(angle1);
+        text("^", 0,0);
+        popMatrix();
+        
       }
     }
   }

@@ -42,7 +42,7 @@ class Menu {
 
 
   void draw() {
-    restart = false;
+    restart = false;    
     stroke(rect1);
     rectMode(CORNER);
     fill(125);
@@ -241,8 +241,8 @@ class Menu {
 
 void restart() {
   if (restart && keysPressed['Z']) {
-    halfX = -1000;
-    halfY = -1000;
+     halfX = -1000;
+     halfY = -1000;
     //Health.xBegin = -1000;
     //Health.yBegin = -1000;
     placement1 = Rplacement1; 
