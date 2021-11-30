@@ -19,16 +19,16 @@ void Bossplatform() {
 
   //if (Platform.draw.moveAmount) {
     fill(147, 147, 147);
-    background(0);
+    //background(0);
     rectMode(CORNER);
-    rect(0, height-50, width, height);
+    rect(0, height-20, width, height);
     muur();
     boolean bossFightRoom=true;
     if (mousePressed) {
       bossFightRoom=!bossFightRoom;
-    }
-
-  }
+    
+ if (player.posPlayer.y<height-20 && bossFightRoom){player.posPlayer.y=height-20;}
+  }}
 //}
 
 //if(bossFightRoom){
