@@ -44,6 +44,7 @@ float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
 boolean damageDragon = false;
 boolean respawnWaterfles = false;
+boolean On=true;
 
 void setup() 
 {
@@ -351,6 +352,7 @@ void draw()
   
   if (menu.start ==false) {
     textAlign(CORNER, CORNER);
+    
     level.draw();
     menu.draw();
     //menu.highlight();
@@ -369,6 +371,7 @@ void draw()
   
   if (menu.start == true) {
     update();
+   
     level.draw();
     if (fire == true) {//Draws fireballs!
       fireballs[0].draw();
@@ -392,12 +395,13 @@ void draw()
     if (fire6 == true){
       fireballs[5].draw();
     }
-
+if(On){
     flamethrower.draw();
     player.draw();
-    platforms.draw();
+    platforms.draw();}
     if (platforms.drawBossRoom) {
       player.draw();
+      Bossplatform();
     }
     Doublejump.draw();
     healthbar.draw();

@@ -53,7 +53,7 @@ class Flamethrower {
         timer1++;
         //println(timer1);
       } 
-      if (timer1 > 900) {
+      if (timer1 > 900&&On) {
         imageMode(CENTER);
         rectMode(CENTER);
         fill(#FA9108);

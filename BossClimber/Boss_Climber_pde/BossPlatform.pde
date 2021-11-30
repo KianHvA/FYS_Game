@@ -23,9 +23,10 @@ void Bossplatform() {
     //background(0);
     rectMode(CORNER);
     rect(0, height-20, xxpos, height);
-    xxpos++;
+    xxpos=xxpos+10;
     muur();
     boolean bossFightRoom=true;
+    On=false;
 
     
  if (player.posPlayer.y<height-15 && bossFightRoom){player.posPlayer.y=height-40;}

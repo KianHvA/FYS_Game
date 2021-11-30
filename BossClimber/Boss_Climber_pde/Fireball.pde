@@ -45,10 +45,11 @@ class Fireball {
     rectMode(CENTER);
 
     //Fireball
+    if(On){
     fill(255, 0, 0);
     image(Active,posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
     //ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
-  }
+  }}
   void movementUpdate()
   {
     checkCollision(posFireball.x, posFireball.y, sizeFireball.y);

@@ -4,12 +4,16 @@ class Level {
 
   void setup() {
     size(800, 600);
-      background (0);
+    background (0);
+
       platforms.draw();
+    
   }
   void draw() {
-      //ladders();
+    //ladders();
+    if (On) {
       platforms.draw();
-      muur();
+    }
+    muur();
   }
 }
