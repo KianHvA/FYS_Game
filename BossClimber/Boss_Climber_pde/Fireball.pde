@@ -102,6 +102,7 @@ class Fireball {
     //Fireball
     posFireball.x = dragon.startx;
     posFireball.y = dragon.starty;
+    
     //println(dragon.startx);
     //println(dragon.starty);
     //startFireball.x = 400;

@@ -6,7 +6,8 @@ class Dragon {
   int totalTime = 1000;
   float startx;
   float starty;
-  PVector diameter = new PVector(0,0);
+  PVector diameter = new PVector(0, 0);
+  boolean isFlipped;
   float ppos; //for animation
   String Modus;
   int vliegen;
@@ -17,15 +18,16 @@ class Dragon {
   boolean fight = false;
   float fightAmount = 1;
   boolean fireBallRain = false;
-  PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
+  PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
   PVector healthbarPosEnd = new PVector(-1000, -1000);
   boolean waterFles = false;
 
-  PImage dagonClosedUp, dagonClosedDown, dagonOpenUp, dagonOpenDown;
-  PImage dragonSprite; //current dragon sprite renderd
+  PImage dragonClosedUp, dragonClosedDown, dragonOpenUp, dragonOpenDown;
+  PImage dragonClosedUpR, dragonClosedDownR, dragonOpenUpR, dragonOpenDownR;
+  PImage dragonSprite, dragonSpriteR; //current dragon sprite renderd
   void setup() {
     bossFight.setup();
   }
@@ -42,19 +44,41 @@ class Dragon {
     starty = y;
 
     //load images
-    dagonClosedUp = loadImage("DragonClosedDown.png");
-    dagonClosedDown = loadImage("DragonClosedDown.png");
-    dagonOpenUp = loadImage("DragonClosedDown.png");
-    dagonOpenDown = loadImage("DragonClosedDown.png");
-    dragonSprite = dagonClosedUp;
+    dragonClosedUp = loadImage("DragonClosedUp.png");
+    dragonClosedDown = loadImage("DragonClosedDown.png");
+    dragonOpenUp = loadImage("DragonOpenUp.png");
+    dragonOpenDown = loadImage("DragonOpenDown.png");
+
+    dragonClosedUpR = loadImage("DragonClosedUpR.png");
+    dragonClosedDownR = loadImage("DragonClosedDownR.png");
+    dragonOpenUpR = loadImage("DragonOpenUpR.png");
+    dragonOpenDownR = loadImage("DragonOpenDownR.png");
+
+    dragonSprite = dragonClosedUp;
+    dragonSpriteR = dragonClosedUpR;
   }
 
   void draw() {
     stroke(0);
     fill(185, 185, 182);
-    //rect(startx, starty, diameter.x, diameter.y);
-    image(dragonSprite, startx, starty, diameter.x, diameter.y);
     
+    //for dragon wing animation
+    if (frameCount % 30 == 0) {
+      dragonSpriteR = dragonClosedDownR;
+      dragonSprite = dragonClosedDown;
+    } else if (frameCount % 50 == 0) {
+      dragonSpriteR = dragonClosedUpR;
+      dragonSprite = dragonClosedUp;
+    }
+    
+    //check the direction the dragon is moving and use flipped sprite
+    if (isFlipped) {
+      image(dragonSpriteR, startx, starty, diameter.x, diameter.y);
+    } else {
+      image(dragonSprite, startx, starty, diameter.x, diameter.y);
+    }
+
+
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
       savedTime = millis();
@@ -116,9 +140,9 @@ class Dragon {
     yDragon = starty;
     //for turning the dragon and animation
     if ((startx - ppos) > 0) {
-      diameter.x = -diameter.y;
-    }else{
-      diameter.x = diameter.y;
+      isFlipped = true;
+    } else {
+      isFlipped = false;
     }
     ppos = startx;
     //end of animation part
