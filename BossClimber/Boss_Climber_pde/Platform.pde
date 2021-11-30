@@ -23,6 +23,8 @@ class Platform {
   void draw() {
 
     if (player.posPlayer.y <= moveY && !dragon.fight) {
+      player.moveLeft = true;
+      player.moveRight = false;
       moveStage = true;
       player.posPlayer.y = -10;
       player.posPlayer.x = 600;

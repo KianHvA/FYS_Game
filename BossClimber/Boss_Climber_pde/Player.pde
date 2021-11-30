@@ -5,7 +5,7 @@ class Player {
   PVector sizePlayer = new PVector(20, 30);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
-  float jumpForce = 9;
+  float jumpForce = 10;
   boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
   PImage left, left1, left2, right, right1, right2; //normaal
   PImage leftS, leftS1, leftS2, rightS, rightS1, rightS2; //shield
