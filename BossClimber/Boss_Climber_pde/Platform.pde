@@ -19,9 +19,9 @@ class Platform {
   PVector[] vertexesR= new PVector[20 * moveAmount];
   float moveY = 0;
   boolean drawBossRoom = false;
+  float finalMoveAmount = 0;
 
   void draw() {
-
     if (player.posPlayer.y <= moveY && !dragon.fight) {
       player.moveLeft = true;
       player.moveRight = false;
@@ -97,6 +97,7 @@ class Platform {
       if (drawBossRoom) { 
         Bossplatform();
       }
+      if(health.dead) finalMoveAmount = moveAmount;
     }
   }
 }
