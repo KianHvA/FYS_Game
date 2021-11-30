@@ -2,7 +2,7 @@ class Player {
 
   //variables
   PVector posPlayer = new PVector(width/2, height/2 - 10);
-  PVector sizePlayer = new PVector(20, 20);
+  PVector sizePlayer = new PVector(20, 30);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 10;
@@ -65,18 +65,21 @@ class Player {
     //player
     fill(menu.player);
     imageMode(CENTER);
-    image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y * 2);
-    ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
   void movementUpdate()
   {
     //check collision and set booleans to use down the line
     checkCollision(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
-    
+    hasCollision = collisionHandler.hit;
+    wallCollisonL = collisionHandler.hitWallLeft;
+    wallCollisonR = collisionHandler.hitWallRight;
     if (!hasCollision)
     {
       velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
     } else {
+      velocity.y = 0;
       player.collideWithPlatform();
     }
     if (wallCollisonR) {
@@ -263,7 +266,7 @@ class Player {
       velocity.y = -jumpForce;
       moveUp = true;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
@@ -285,7 +288,7 @@ class Player {
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
-    if (sword.pickedUp && keysPressed['A'] || keysPressed['A']) {
+    if (sword.pickedUp && keysPressed['A']) {
       sword.attack();
     }
 
@@ -296,18 +299,16 @@ class Player {
 
   void collideWithPlatform()
   {
-    velocity.y = 0;
+    hasCollision = true;
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y = collisionHandler.platformHitPos.y - sizePlayer.y;
+      posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight * 2);
     } else {
-      posPlayer.y += 1;
+      hasCollision = false;
+      posPlayer.y = posPlayer.y + 1;
     }
   }
 
   void checkCollision(float objectX, float objectY, float objectRadius) {
     collisionHandler.checkCollision(objectX, objectY, objectRadius);
-    hasCollision = collisionHandler.hit;
-    wallCollisonL = collisionHandler.hitWallLeft;
-    wallCollisonR = collisionHandler.hitWallRight;
   }
 }

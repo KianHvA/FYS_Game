@@ -99,7 +99,7 @@ void update()
 {
   dragon.update();
   flamethrower.update();
-  
+  player.movementUpdate();
   Doublejump.update();
   collisionHandler.update();
   health.update();
@@ -342,10 +342,6 @@ void update()
     resetWaterflesCount = 600;
     waterfles.resetWaterfles();
   }
-  
-  for (int c = 0; c < aantalCoins; c++){
-    coin[c].updateCoins();
-  }
  
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
@@ -356,8 +352,6 @@ void update()
   //}
 
   //println(fireballCount);
-  
-  player.movementUpdate();
 }
 
 void draw()
@@ -385,12 +379,6 @@ void draw()
   if (menu.start == true) {
     update();
     level.draw();
-    
-    for (int c = 0; c < aantalCoins; c++){
-      coin[c].draw();
-      println(coin[c].coinCounter);
-    }
-
     if (fire == true) {//Draws fireballs!
       fireballs[0].draw();
     }
@@ -438,6 +426,10 @@ void draw()
     inventory.draw();
     Highscore.draw();
     
+    for (int c = 0; c < aantalCoins; c++){
+      coin[c].draw();
+    }
+
     //game overscherm
     //healthbar.draw();
     //health.draw();
