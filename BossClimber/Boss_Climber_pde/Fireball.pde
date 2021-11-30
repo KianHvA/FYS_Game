@@ -11,7 +11,10 @@ class Fireball {
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false, newPos = false;
   float damageFireball = 33;
   PVector RposFireball = new PVector(400, 50);
-
+  PImage leftF1, leftF2, rightF1, rightF2; //fireballs
+  PImage Active, leftActive, rightActive;
+  boolean left, right;
+  float timerLeft1 = 0, timerLeft2 = 0, timerRight1 = 0, timerRight2 = 0;;
   
   void fireball(float fireX, float fireY){
     posFireball.x = fireX;
@@ -19,6 +22,16 @@ class Fireball {
   }
   
   void setup(){
+    //left
+    leftF1 = loadImage("FireBall - Left1.png");
+    leftF2 = loadImage("FireBall - Left2.png");
+    //right
+    rightF1 = loadImage("FireBall - Right1.png");
+    rightF2 = loadImage("FireBall - Right2.png");
+    //active
+    Active = loadImage("FireBall - Right1.png");
+    leftActive = loadImage("FireBall - Left1.png");
+    rightActive = loadImage("FireBall - Right1.png");
     //dragon.startx = posFireball.x;
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
@@ -33,7 +46,8 @@ class Fireball {
 
     //Fireball
     fill(255, 0, 0);
-    ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
+    image(Active,posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
+    //ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
   }
   void movementUpdate()
   {
@@ -52,8 +66,12 @@ class Fireball {
       //println(wallCollisonR + "  " + wallCollisonL);
       if (wallCollisonR && !switchDirection) {
         switchDirection = true;
+        left = true;
+        right = false;
       } else if (wallCollisonL && switchDirection) {
         switchDirection = false;
+        right = true;
+        left = false;
       } else {
         velocity.x = 2;
       }
@@ -76,6 +94,37 @@ class Fireball {
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;
+      
+      if (left && !right) {
+        Active = leftActive;
+        if (timerLeft2 ==0) {
+          timerLeft1++;
+        }
+        if (timerLeft1 >= 5) {
+          leftActive = leftF1;
+          timerLeft2++;
+        }
+        if (timerLeft2 >= 5) {
+          leftActive = leftF2;
+          timerLeft1 = 0;
+          timerLeft2 = 0;
+        }
+      }
+      if (right && !left) {
+        Active = rightActive;
+        if (timerRight2 ==0) {
+          timerRight1++;
+        }
+        if (timerRight1 >= 5) {
+          rightActive = rightF1;
+          timerRight2++;
+        }
+        if (timerRight2 >= 5) {
+          rightActive = rightF2;
+          timerRight1 = 0;
+          timerRight2 = 0;
+        }
+      }
     //if (timer >= 300) {
     //spawn fireBall
     //posFireball.x = newPosFireball.x;

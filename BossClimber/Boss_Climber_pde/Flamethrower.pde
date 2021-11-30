@@ -10,8 +10,10 @@ class Flamethrower {
   int  distBetween = 200, idk = 0;
   boolean live = false, hasCollision = false;
   int newY = 660;
+  PImage flamethrower;
 
   void setup() {
+    flamethrower = loadImage("Flamethrower.png");
     //links
     for (int y = distance; y > from; y = y - distBetween) {
       int y1 = y + minus;
@@ -52,9 +54,11 @@ class Flamethrower {
         //println(timer1);
       } 
       if (timer1 > 900) {
+        imageMode(CENTER);
         rectMode(CENTER);
         fill(#FA9108);
-        rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y); //Making the Fire come out
+        image(flamethrower, x1 + width/25, y1, sizeVlam.x, sizeVlam.y);
+        //rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y); //Making the Fire come out
         live = true; //Collision check activate
         timer2++;
         timer1 = 910;

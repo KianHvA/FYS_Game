@@ -9,8 +9,12 @@ class Player {
   boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
   PImage left, left1, left2, right, right1, right2; //normaal
   PImage leftS, leftS1, leftS2, rightS, rightS1, rightS2; //shield
+  PImage leftW, leftW1, leftW2, rightW, rightW1, rightW2; //waterfles
+  PImage leftSW, leftSW1, leftSW2, rightSW, rightSW1, rightSW2; //sword
   PImage Active, leftActive, rightActive;
   PImage leftActiveS, rightActiveS;
+  PImage leftActiveW, rightActiveW;
+  PImage leftActiveSW, rightActiveSW;
   float timerLeft1 = 0, timerLeft2 = 0;
   float timerRight1 = 0, timerRight2 = 0;  
 
@@ -22,6 +26,12 @@ class Player {
     leftS = loadImage("Knight - Left - Shield.png");
     leftS1 = loadImage("Knight - Left - Walk1 - Shield.png");
     leftS2 = loadImage("Knight - Left - Walk2 - Shield.png");
+    leftSW = loadImage("Knight - Left - Sword.png");
+    leftSW1 = loadImage("Knight - Left - Walk1 - Sword.png");
+    leftSW2 = loadImage("Knight - Left - Walk2 - Sword.png");
+    leftW = loadImage(" ");
+    leftW1 = loadImage("Knight - Left - Walk1 - Water.png");
+    leftW2 = loadImage("Knight - Left - Walk2 - Water.png");
     //right
     right = loadImage("Knight - Right.png");
     right1 = loadImage("Knight - Right - Walk1.png");
@@ -29,12 +39,20 @@ class Player {
     rightS = loadImage("Knight - Right - Shield.png");
     rightS1 = loadImage("Knight - Right - Walk1 - Shield.png");
     rightS2 = loadImage("Knight - Right - Walk2 - Shield.png");
+    rightSW = loadImage("Knight - Right - Sword.png");
+    rightSW1 = loadImage("Knight - Right - Walk1 - Sword.png");
+    rightSW2 = loadImage("Knight - Right - Walk2 - Sword.png");
+    rightW = loadImage(" ");
+    rightW1 = loadImage("Knight - Right - Walk1 - Water.png");
+    rightW2 = loadImage("Knight - Right - Walk2 - Water.png");
     //Start
     Active = loadImage("Knight - Right.png");
     leftActive = loadImage("Knight - Left.png");
     rightActive = loadImage("Knight - Right.png");
     leftActiveS = loadImage("Knight - Left - Shield.png");
     rightActiveS = loadImage("Knight - Right - Shield.png");
+    leftActiveSW = loadImage("Knight - Left - Sword.png");
+    rightActiveSW = loadImage("Knight - Right - Sword.png");
   }
 
   void draw() {
@@ -44,6 +62,7 @@ class Player {
 
     //player
     fill(menu.player);
+    imageMode(CORNER);
     image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
@@ -92,7 +111,7 @@ class Player {
       moveUp = false;
       moveDown = false;
     }
-    if (!schild.pickedUp) {
+    if (!schild.pickedUp && !sword.pickedUp) {
       if (moveLeft) {
         Active = leftActive;
         if (timerLeft2 ==0) {
@@ -125,7 +144,7 @@ class Player {
       }
     }
     
-    if (schild.pickedUp) {
+    if (schild.pickedUp && !waterfles.pickedUp && !sword.pickedUp) {
       if (moveLeft) {
         Active = leftActiveS;
         if (timerLeft2 ==0) {
@@ -152,6 +171,72 @@ class Player {
         }
         if (timerRight2 >= 5) {
           rightActiveS = rightS2;
+          timerRight1 = 0;
+          timerRight2 = 0;
+        }
+      }
+    }
+    
+    if (!schild.pickedUp && !sword.pickedUp && waterfles.pickedUp) {
+      if (moveLeft) {
+        Active = leftActiveW;
+        if (timerLeft2 ==0) {
+          timerLeft1++;
+        }
+        if (timerLeft1 >= 5) {
+          leftActiveW = leftW1;
+          timerLeft2++;
+        }
+        if (timerLeft2 >= 5) {
+          leftActiveW = leftW2;
+          timerLeft1 = 0;
+          timerLeft2 = 0;
+        }
+      }
+      if (moveRight) {
+        Active = rightActiveW;
+        if (timerRight2 ==0) {
+          timerRight1++;
+        }
+        if (timerRight1 >= 5) {
+          rightActiveW = rightW1;
+          timerRight2++;
+        }
+        if (timerRight2 >= 5) {
+          rightActiveW = rightW2;
+          timerRight1 = 0;
+          timerRight2 = 0;
+        }
+      }
+    }
+    
+    if (!schild.pickedUp && sword.pickedUp && !waterfles.pickedUp) {
+      if (moveLeft) {
+        Active = leftActiveSW;
+        if (timerLeft2 ==0) {
+          timerLeft1++;
+        }
+        if (timerLeft1 >= 5) {
+          leftActiveSW = leftSW1;
+          timerLeft2++;
+        }
+        if (timerLeft2 >= 5) {
+          leftActiveSW = leftSW2;
+          timerLeft1 = 0;
+          timerLeft2 = 0;
+        }
+      }
+      if (moveRight) {
+        Active = rightActiveSW;
+        if (timerRight2 ==0) {
+          timerRight1++;
+        }
+        if (timerRight1 >= 5) {
+          rightActiveSW = rightSW1;
+          timerRight2++;
+        }
+        if (timerRight2 >= 5) {
+          rightActiveSW = rightSW2;
           timerRight1 = 0;
           timerRight2 = 0;
         }

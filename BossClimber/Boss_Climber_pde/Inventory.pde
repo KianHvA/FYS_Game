@@ -1,7 +1,7 @@
 class Inventory {
   int breedte = width/13;
   int hoogte = height/12;
-  PImage shieldF /*shield front*/, shieldB /*shield back*/, sword, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
+  PImage shieldF /*shield front*/, shieldB /*shield back*/, sword, doubleJump, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
   boolean inventoryFull = false;
 
   void setup() {
@@ -9,6 +9,7 @@ class Inventory {
     shieldB = loadImage("Shield - Back.png");
     sword = loadImage("Sword.png");
     waterflesI = loadImage("Waterfles.png");
+    doubleJump = loadImage("Jump - Boost.png");
   }
   void draw() {
     stroke(200);
@@ -32,7 +33,9 @@ class Inventory {
       rectMode(CENTER);
       noStroke();
       fill(147);
-      rect(width-35, height-35, 50, 50);
+      imageMode(CENTER);
+      image(doubleJump, width-35, height-35, 50, 50);
+      //rect(width-35, height-35, 50, 50);
       inventoryFull = true;
     } else {
       inventoryFull = false;
