@@ -14,21 +14,22 @@
 //PVector[] vertexesBossPlatform = new PVector[8];
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
-
+float xxpos = 1;
+boolean bossFightRoom = false;
 void Bossplatform() {
 
   //if (Platform.draw.moveAmount) {
     fill(147, 147, 147);
     //background(0);
     rectMode(CORNER);
-    rect(0, height-20, width, height);
+    rect(0, height-20, xxpos, height);
+    xxpos++;
     muur();
     boolean bossFightRoom=true;
-    if (mousePressed) {
-      bossFightRoom=!bossFightRoom;
+
     
- if (player.posPlayer.y<height-20 && bossFightRoom){player.posPlayer.y=height-20;}
-  }}
+ if (player.posPlayer.y<height-15 && bossFightRoom){player.posPlayer.y=height-40;}
+  }
 //}
 
 //if(bossFightRoom){

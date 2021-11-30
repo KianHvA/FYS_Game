@@ -13,7 +13,7 @@ class Fireball {
   PVector RposFireball = new PVector(400, 50);
   PImage leftF1, leftF2, rightF1, rightF2; //fireballs
   PImage Active, leftActive, rightActive;
-  boolean left, right;
+  boolean left = false, right = true;
   float timerLeft1 = 0, timerLeft2 = 0, timerRight1 = 0, timerRight2 = 0;;
   
   void fireball(float fireX, float fireY){
@@ -100,11 +100,11 @@ class Fireball {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= 5) {
+        if (timerLeft1 >= 15) {
           leftActive = leftF1;
           timerLeft2++;
         }
-        if (timerLeft2 >= 5) {
+        if (timerLeft2 >= 15) {
           leftActive = leftF2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -115,11 +115,11 @@ class Fireball {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= 5) {
+        if (timerRight1 >= 15) {
           rightActive = rightF1;
           timerRight2++;
         }
-        if (timerRight2 >= 5) {
+        if (timerRight2 >= 15) {
           rightActive = rightF2;
           timerRight1 = 0;
           timerRight2 = 0;

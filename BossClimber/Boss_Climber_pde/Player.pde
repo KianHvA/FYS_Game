@@ -5,7 +5,7 @@ class Player {
   PVector sizePlayer = new PVector(20, 30);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
-  float jumpForce = 9;
+  float jumpForce = 10;
   boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
   PImage left, left1, left2, right, right1, right2; //normaal
   PImage leftS, leftS1, leftS2, rightS, rightS1, rightS2; //shield
@@ -29,7 +29,7 @@ class Player {
     leftSW = loadImage("Knight - Left - Sword.png");
     leftSW1 = loadImage("Knight - Left - Walk1 - Sword.png");
     leftSW2 = loadImage("Knight - Left - Walk2 - Sword.png");
-    leftW = loadImage(" ");
+    //leftW = loadImage(" ");
     leftW1 = loadImage("Knight - Left - Walk1 - Water.png");
     leftW2 = loadImage("Knight - Left - Walk2 - Water.png");
     //right
@@ -42,7 +42,7 @@ class Player {
     rightSW = loadImage("Knight - Right - Sword.png");
     rightSW1 = loadImage("Knight - Right - Walk1 - Sword.png");
     rightSW2 = loadImage("Knight - Right - Walk2 - Sword.png");
-    rightW = loadImage(" ");
+    //rightW = loadImage(" ");
     rightW1 = loadImage("Knight - Right - Walk1 - Water.png");
     rightW2 = loadImage("Knight - Right - Walk2 - Water.png");
     //Start

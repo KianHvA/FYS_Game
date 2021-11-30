@@ -160,6 +160,7 @@ class HighScore {
   } 
   void draw() {
     if (health.dead) {
+      imageMode(CORNER);
       image(backgroundDead, 0, 0);
       textMode(CENTER);
       fill(endText);
