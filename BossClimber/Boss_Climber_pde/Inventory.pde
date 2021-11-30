@@ -34,7 +34,7 @@ class Inventory {
       noStroke();
       fill(147);
       imageMode(CENTER);
-      image(doubleJump, width-35, height-35, 50, 50);
+      image(doubleJump, width-35, height-35, 40, 50);
       //rect(width-35, height-35, 50, 50);
       inventoryFull = true;
     } else {
