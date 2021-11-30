@@ -49,7 +49,7 @@ class Sword {
   void draw() {
     fill(255);
     rectMode(CENTER);
-    image(inventory.sword, swordX, swordY, swordW, swordH);
+    image(inventory.swordI, swordX, swordY, swordW, swordH);
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);
   }
