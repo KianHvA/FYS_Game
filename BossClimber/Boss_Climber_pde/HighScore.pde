@@ -175,23 +175,23 @@ class HighScore {
         fill(flash[0]);
         text(nameDef[0], x + textWidth(name) - 75, y);
         fill(flash[1]);
-        text(nameDef[1], x + textWidth(name) + textWidth(nameDef[0]) - 75, y);
+        text(nameDef[1], x + textWidth(name) + textWidth('X') - 75, y);
         fill(flash[2]);
-        text(nameDef[2], x + textWidth(name) + textWidth(nameDef[0]) * 2 - 75, y);
+        text(nameDef[2], x + textWidth(name) + textWidth('X') * 2 - 75, y);
         fill(flash[3]);
-        text(nameDef[3], x + textWidth(name) + textWidth(nameDef[0]) * 3 - 75, y);
+        text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - 75, y);
         fill(flash[4]);
-        text(nameDef[4], x + textWidth(name) + textWidth(nameDef[0]) * 4 - 75, y);
+        text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
         fill(flash[5]);
-        text(nameDef[5], x + textWidth(name) + textWidth(nameDef[0]) * 5 - 75, y);
+        text(nameDef[5], x + textWidth(name) + textWidth('X') * 5 - 75, y);
         fill(flash[6]);
-        text(nameDef[6], x + textWidth(name) + textWidth(nameDef[0]) * 6 - 75, y);
+        text(nameDef[6], x + textWidth(name) + textWidth('X') * 6 - 75, y);
         fill(flash[7]);
-        text(nameDef[7], x + textWidth(name) + textWidth(nameDef[0]) * 7 - 75, y);
+        text(nameDef[7], x + textWidth(name) + textWidth('X') * 7 - 75, y);
         fill(flash[8]);
-        text(nameDef[8], x + textWidth(name) + textWidth(nameDef[0]) * 8 - 75, y);
+        text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
         fill(flash[9]);
-        text(nameDef[9], x + textWidth(name) + textWidth(nameDef[0]) * 9 - 75, y);
+        text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
       }
       drawn = true;
     }
