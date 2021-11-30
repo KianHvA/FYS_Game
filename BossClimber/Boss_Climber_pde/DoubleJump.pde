@@ -3,7 +3,7 @@ class DoubleJump {
   boolean pickedUp = false;
   boolean hasCollision = false;
   PVector Location = new PVector(200, 200);
-  PVector sizePowerup = new PVector(50, 50);
+  PVector sizePowerup = new PVector(40, 50);
   float GRAVITYJB = 0.98;
   float size = 50;
   float cooldown = 0;
