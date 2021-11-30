@@ -75,17 +75,19 @@ class CollisionHandler
       PVector vc = vertices[current];
       rectMode(CENTER);
       PVector vn = vertices[next];
-      if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
-        continue;
-      }
+      ellipseMode(CENTER);
+      circle(vc.x, vc.y, 10);
+      //if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
+      //  continue;
+      //}
       boolean collision = lineCircle(vc.x, vc.y, vn.x, vn.y, cx, cy, r);
       if (collision) return true;
     }
 
-    boolean centerInside = polygonPoint(vertices, cx, cy);
-    if (centerInside) return true;
+    //boolean centerInside = polygonPoint(vertices, cx, cy); //<>//
+    //if (centerInside) return true;
 
-    return false;
+    return false; //<>//
   }
 
   // LINE/CIRCLE

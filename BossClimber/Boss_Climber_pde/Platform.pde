@@ -15,8 +15,8 @@ class Platform {
   int ySpeed = 10;
   boolean moveStage = false;
   int moveAmount = 1;
-  PVector[] vertexesL= new PVector[20 * moveAmount];
-  PVector[] vertexesR= new PVector[20 * moveAmount];
+  PVector[] vertexesL= new PVector[30];
+  PVector[] vertexesR= new PVector[30];
   float moveY = 0;
   boolean drawBossRoom = false;
   float finalMoveAmount = 0;
