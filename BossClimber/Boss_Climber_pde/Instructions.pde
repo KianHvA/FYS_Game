@@ -61,8 +61,9 @@ class Instructions{
     text("--", text.x + 80, text.y + 47);
     text("Press ^ to jump:", text.x, text.y + 200);
     text("|", text.x + 87, text.y + 211);
-    text("If you have a powerup in your inventory,", text.x, text.y + 300);
-    text("press S to use the powerup", text.x, text.y + 330);
+    text("If you have a powerup in your inventory,", text.x, text.y + 250);
+    text("press S to use the powerup.", text.x, text.y + 280);
+    text("Goal: Chase the dragon by climbing the building!", text.x, text.y + 350);
     
     textSize(40);
     text("Press A to start", text.x + 220, text.y + 460);
