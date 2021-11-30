@@ -4,7 +4,8 @@ class Sword {
   float durabillity = 3;
   float durablillityFight = 9;
   float durabillityStart = 3;
-  boolean pickedUp = false;
+  boolean NewPos = false;
+  public boolean pickedUp = false;
   boolean swordOn = false;
   boolean spawnSword = false;
   boolean swordOff = false;
@@ -49,7 +50,7 @@ class Sword {
   void draw() {
     fill(255);
     rectMode(CENTER);
-    image(inventory.sword, swordX, swordY, swordW, swordH);
+    image(inventory.swordI, swordX, swordY, swordW, swordH);
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);
   }
@@ -61,4 +62,13 @@ class Sword {
       HealthbarDragon.doDamageDragon(1);
     }
   }
+  
+  void reset() {
+    NewPos = false;
+    image(inventory.swordI, swordX, swordY, swordW, swordH);
+    swordOn = false;
+    pickedUp = false;
+
+  }
+  
 }
