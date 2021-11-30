@@ -61,4 +61,13 @@ class Sword {
       HealthbarDragon.doDamageDragon(1);
     }
   }
+  
+  void reset() {
+    NewPos = false;
+    image(inventory.swordI, swordX, swordY, swordW, swordH);
+    swordOn = false;
+    pickedUp = false;
+
+  }
+  
 }
