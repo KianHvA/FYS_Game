@@ -66,6 +66,7 @@ class Platform {
       noStroke();
       fill(147, 147, 147);
       quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
+      if(bossFightRoom){x2--;}
       if (i == vertexesL.length) {
         i = 0;
         //quad(x1, y, x1, y1, x2+120, y2+platformThickness, x2+120, y1+platformThickness);
@@ -80,6 +81,7 @@ class Platform {
     for (int z = newZ; z>0; z = z- 200) {//rechterplatform
       fill(147, 147, 147);
       quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
+      if(bossFightRoom){x2++;}
 
       if (j == vertexesR.length) {
         j = 0;
