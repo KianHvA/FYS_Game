@@ -20,7 +20,8 @@ class DoubleJump {
     GRAVITYJB = 0.98; 
     Location.y += GRAVITYJB;
     fill(255);
-    rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
+    image(inventory.doubleJump, Location.x, Location.y, sizePowerup.x, sizePowerup.y);
+    //rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
 
     size = 50;
     if(player.hasDoubleJumped == true) cooldown++;

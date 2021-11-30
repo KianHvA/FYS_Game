@@ -63,6 +63,7 @@ class Dragon {
     fill(185, 185, 182);
     
     //for dragon wing animation
+    imageMode(CORNER);
     if (frameCount % 30 == 0) {
       dragonSpriteR = dragonClosedDownR;
       dragonSprite = dragonClosedDown;
