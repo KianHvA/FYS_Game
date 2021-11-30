@@ -1,5 +1,6 @@
 class Instructions{
   PVector text;
+  PVector text2;
   PVector example;
   PVector example2;
   PVector example3;

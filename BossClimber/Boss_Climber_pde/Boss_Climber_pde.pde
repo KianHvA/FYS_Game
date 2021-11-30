@@ -350,6 +350,7 @@ void draw()
   background(0);
   
   if (menu.start ==false) {
+    textAlign(CORNER, CORNER);
     level.draw();
     menu.draw();
     //menu.highlight();
@@ -364,13 +365,12 @@ void draw()
         instruction.updateInstructions();
         instruction.draw();
       }
-      println(instruction.manual);
     }
   
   if (menu.start == true) {
     update();
     level.draw();
-    if (fire == true) {
+    if (fire == true) {//Draws fireballs!
       fireballs[0].draw();
     }
     if (fire2 == true) {  
@@ -379,6 +379,18 @@ void draw()
 
     if (fire3 == true) {  
       fireballs[2].draw();
+    }
+    
+    if (fire4 == true){
+      fireballs[3].draw();
+    }
+    
+    if (fire5 == true){
+      fireballs[4].draw();
+    }
+    
+    if (fire6 == true){
+      fireballs[5].draw();
     }
 
     flamethrower.draw();
