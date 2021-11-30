@@ -6,8 +6,8 @@ class Druppel{
     xSpeedDruppel = 4;
     ySpeedDruppel = -4;
     druppelDia = 10;
-    player.posPlayer.x = startX;
-    player.posPlayer.y = startY;
+    startX = player.posPlayer.x;
+    startY = player.posPlayer.y;
   }
   
   void druppelUpdate(){

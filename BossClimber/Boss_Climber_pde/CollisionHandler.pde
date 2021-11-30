@@ -31,12 +31,6 @@ class CollisionHandler
 
   int wallThickness = width/12;
 
-  void update() {
-    hit = 
-      polyCircle(platforms.vertexesL, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y) ||
-      polyCircle(platforms.vertexesR, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.y);
-  }
-
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
     hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
@@ -63,8 +57,8 @@ class CollisionHandler
   // POLYGON/CIRCLE
   boolean polyCircle(PVector[] vertices, float cx, float cy, float r) {
 
-    // go through each of the vertices, plus
-    // the next vertex in the list
+    // go through each of the vertices
+    // and the next vertex in the list
     int next = 0;
     closestDistance = 0;
     for (int current=0; current < vertices.length; current++) {
@@ -75,8 +69,8 @@ class CollisionHandler
       PVector vc = vertices[current];
       rectMode(CENTER);
       PVector vn = vertices[next];
-      ellipseMode(CENTER);
-      circle(vc.x, vc.y, 10);
+      //ellipseMode(CENTER);
+      //circle(vc.x, vc.y, 10);
       //if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
       //  continue;
       //}
@@ -84,16 +78,16 @@ class CollisionHandler
       if (collision) return true;
     }
 
-    //boolean centerInside = polygonPoint(vertices, cx, cy); //<>//
+    //boolean centerInside = polygonPoint(vertices, cx, cy);
     //if (centerInside) return true;
 
-    return false; //<>//
+    return false;
   }
 
-  // LINE/CIRCLE
+  // LINE/CIRCLE //<>//
   boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {
 
-    boolean inside1 = pointCircle(x1, y1, cx, cy, r);
+    boolean inside1 = pointCircle(x1, y1, cx, cy, r); //<>//
     boolean inside2 = pointCircle(x2, y2, cx, cy, r);
     if (inside1 || inside2) return true;
 

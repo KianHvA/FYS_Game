@@ -98,7 +98,7 @@ class Dragon {
       //HealthBarDragon.draw();
     }
     if (damageDragon && fight) {
-      HealthbarDragon.doDamageDragon(20);
+      //HealthbarDragon.doDamageDragon(20);
       damageDragon = false;
     }
   }

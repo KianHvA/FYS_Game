@@ -5,12 +5,9 @@ class Level {
   void setup() {
     size(800, 600);
     background (0);
-
-      platforms.draw();
-    
+    platforms.draw();
   }
   void draw() {
-    //ladders();
     if (On) {
       platforms.draw();
     }

@@ -46,7 +46,7 @@ float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
 boolean damageDragon = false;
 boolean respawnWaterfles = false;
-boolean On=true;
+boolean On = true;
 
 void setup() 
 {
@@ -74,16 +74,16 @@ void setup()
   Highscore = new HighScore();
   level.setup();
   scoreHandler.setup();
-  
+
   for (int i = 0; i < fireballs.length; i++) { 
     fireballs[i] = new Fireball();
     fireballs[i].setup();
   }
-  
-  for (int c = 0; c < aantalCoins; c++){
+
+  for (int c = 0; c < aantalCoins; c++) {
     coin[c] = new Coins();
   }
-  
+
   flamethrower.setup();
   health.setup();
   dragon.setup();
@@ -100,9 +100,7 @@ void update()
 {
   dragon.update();
   flamethrower.update();
-  
   Doublejump.update();
-  collisionHandler.update();
   health.update();
   waterfles.updateWaterfles();
   sword.updateSword();
@@ -250,27 +248,27 @@ void update()
     fireballs[5].respawn();
     fireballs[5].posFireball = fireballs[5].RposFireball;
   }
-  
+
   if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
-      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire = false;
     fireballCount = 300;
     fireballs[0].respawn();
   }
   if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
-      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire2 = false;
     fireballCount = 300;
     fireballs[1].respawn();
   }
   if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
-      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire3 = false;
     fireballCount = 300;
     fireballs[2].respawn();
   }
-   if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
-      druppels.startX, druppels.startY, druppels.druppelDia)){//Collision fireball & druppel
+  if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire4 = false;
     fireballs[3].respawn();
   }
@@ -331,23 +329,23 @@ void update()
     dragon.waterFles = false;
     cooldown = 100;
   }
-  
-  if (druppels.startY <= 0){
+
+  if (druppels.startY <= 0) {
     waterfles.druppelOn = false;
-   if (resetWaterflesCount >= 0){//Timer when waterfles is spawning again.
-    resetWaterflesCount--;
-   }
+    if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
+      resetWaterflesCount--;
+    }
   }
-  
-  if (resetWaterflesCount <= 0){
+
+  if (resetWaterflesCount <= 0) {
     resetWaterflesCount = 600;
     waterfles.resetWaterfles();
   }
-  
-  for (int c = 0; c < aantalCoins; c++){
+
+  for (int c = 0; c < aantalCoins; c++) {
     coin[c].updateCoins();
   }
- 
+
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
   // fireballs[i].movementUpdate();
@@ -357,43 +355,53 @@ void update()
   //}
 
   //println(fireballCount);
-  
+
   player.movementUpdate();
 }
 
 void draw()
 {
   background(0);
-  
+
   if (menu.start ==false) {
     textAlign(CORNER, CORNER);
-    
+
     level.draw();
     menu.draw();
     //menu.highlight();
     textSize(72);
     text("BOSS CLIMBER", 147, 200); 
-    
-     if (keysPressed['D']){
+
+    if (keysPressed['D']) {
       instruction.manual = true;
     }
-  
-     if (instruction.manual){//Player reads instructions.
-        instruction.updateInstructions();
-        instruction.draw();
-      }
+
+    if (instruction.manual) {//Player reads instructions.
+      instruction.updateInstructions();
+      instruction.draw();
     }
-  
+  }
+
   if (menu.start == true) {
     update();
-   
+
     level.draw();
-    
-    for (int c = 0; c < aantalCoins; c++){
+
+    for (int c = 0; c < aantalCoins; c++) {
       coin[c].draw();
       println(coin[c].coinCounter);
     }
 
+
+    if (On) {
+      flamethrower.draw();
+      platforms.draw();
+      player.draw();
+    }
+    if (platforms.drawBossRoom) {
+      player.draw();
+      Bossplatform();
+    }
     if (fire == true) {//Draws fireballs!
       fireballs[0].draw();
     }
@@ -404,25 +412,17 @@ void draw()
     if (fire3 == true) {  
       fireballs[2].draw();
     }
-    
-    if (fire4 == true){
+
+    if (fire4 == true) {
       fireballs[3].draw();
     }
-    
-    if (fire5 == true){
+
+    if (fire5 == true) {
       fireballs[4].draw();
     }
-    
-    if (fire6 == true){
+
+    if (fire6 == true) {
       fireballs[5].draw();
-    }
-if(On){
-    flamethrower.draw();
-    player.draw();
-    platforms.draw();}
-    if (platforms.drawBossRoom) {
-      player.draw();
-      Bossplatform();
     }
     Doublejump.draw();
     healthbar.draw();
@@ -431,7 +431,7 @@ if(On){
     schild.draw();
     dragon.draw();
     sword.draw();
-    
+
     if (waterfles.druppelOn) {//Shooting
       druppels.draw();
     }
@@ -441,7 +441,7 @@ if(On){
     scoreHandler.draw();
     inventory.draw();
     Highscore.draw();
-    
+
     //game overscherm
     //healthbar.draw();
     //health.draw();

@@ -19,18 +19,37 @@ boolean bossFightRoom = false;
 void Bossplatform() {
 
   //if (Platform.draw.moveAmount) {
-    fill(147, 147, 147);
-    //background(0);
-    rectMode(CORNER);
-    rect(0, height-20, xxpos, height);
-    xxpos=xxpos+10;
-    muur();
-    boolean bossFightRoom=true;
-    On=false;
+  fill(147, 147, 147);
+  //background(0);
+  rectMode(CORNER);
+  rect(0, height-20, xxpos, height);
+  xxpos = xxpos + 10;
+  muur();
+  bossFightRoom = true;
+  On=false;
 
-    
- if (player.posPlayer.y<height-15 && bossFightRoom){player.posPlayer.y=height-40;}
+  //for collision
+  //change vertexes in both arrays to match the bossplatform
+  for (int i = 0; i < platforms.vertexesL.length; i += 5) {
+    platforms.vertexesL[i] = new PVector(0, height-20);
+    platforms.vertexesL[i+1] = new PVector(xxpos, height-20);
+    platforms.vertexesL[i+2] = new PVector(0,  height);
+    platforms.vertexesL[i+3] = new PVector(xxpos, height);
+    platforms.vertexesL[i+4] = new PVector(0, height-20);
   }
+  for (int i = 0; i < platforms.vertexesR.length; i += 5) {
+    platforms.vertexesR[i] = new PVector(0, height-20);
+    platforms.vertexesR[i+1] = new PVector(xxpos, height-20);
+    platforms.vertexesR[i+2] = new PVector(0,  height);
+    platforms.vertexesR[i+3] = new PVector(xxpos, height);
+    platforms.vertexesR[i+4] = new PVector(0, height-20);
+  }
+
+  if (player.posPlayer.y<height-15 && bossFightRoom)
+  {
+    player.posPlayer.y=height-40;
+  }
+}
 //}
 
 //if(bossFightRoom){
