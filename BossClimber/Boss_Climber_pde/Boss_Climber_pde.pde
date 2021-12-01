@@ -395,6 +395,8 @@ void draw()
     update();
 
     level.draw();
+    
+    instruction.sign();
 
     if (On) {
       flamethrower.draw();
