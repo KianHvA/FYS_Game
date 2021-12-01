@@ -311,6 +311,12 @@ void update()
     fireballs[5].respawn();
     fireballs[5].posFireball = fireballs[5].RposFireball;
   }
+  
+   if (platforms.moveStage == true){
+    fire = false;
+    fire2 = false;
+    fire3 = false;
+  }
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {

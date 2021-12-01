@@ -84,11 +84,6 @@ class Fireball {
       }
       velocity.y = 2;
     }
-    
-    if (platforms.moveStage == true){
-      velocity.x = 0;
-      velocity.y = 0;
-    }
 
     if (playerCollision) {
       healthbar.doDamage(damageFireball);
