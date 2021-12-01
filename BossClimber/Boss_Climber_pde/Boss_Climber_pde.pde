@@ -25,7 +25,7 @@ UI UI;
 HealthBarDragon HealthbarDragon;
 HighScore Highscore;
 int cooldown = 100;
-int fireballCount = 300;
+int fireballCount = 600;
 int spawnCountDruppel = 500;
 int RspawnCountDruppel = 500; //oorspronkelijke functie
 int resetWaterflesCount = 600;
@@ -179,7 +179,7 @@ void update()
   if (fireballs[0].playerCollision) {//Damage fireball && respawning fireball
     fire = false;
     fireballs[0].playerCollision = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[0].respawn();
     fireballs[0].posFireball = fireballs[0].RposFireball;
   }  
@@ -189,88 +189,100 @@ void update()
   if (fireballs[1].playerCollision) {//Damage fireball && respawning fireball
     fire2 = false;
     fireballs[1].playerCollision = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[1].respawn();
     fireballs[1].posFireball = fireballs[1].RposFireball;
   }
   if (fireballs[2].playerCollision) {//Damage fireball && respawning fireball
     fire3 = false;
     fireballs[2].playerCollision = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
   }
-
-  if (fireballCount == 550) {//Counter fireballs
-    fire4 = true;
-  }
-  if (fireballCount == 450) {
-    fire5 = true;
-  }
-  if (fireballCount == 350) {
-    fire6 = true;
-  }
-
-  if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
-    fireballs[3].movementUpdate();
-  }
-  if (fire5 == true) {
-    fireballs[4].movementUpdate();
-  }
-  if (fire6 == true) {
-    fireballs[5].movementUpdate();
-  }    
-
-  if (fireballs[3].posFireball.y >= height || fireballs[3].playerCollision) {//Fires = false, last statement = reset of fireballs
-    fire4 = false;
-  }
-  if (fireballs[3].playerCollision) {//Damage fireball && respawning fireball
-    fire = false;
-    fireballs[3].playerCollision = false;
-    fireballCount = 600;
-    fireballs[3].respawn();
-    fireballs[3].posFireball = fireballs[3].RposFireball;
-  }  
-  if (fireballs[4].posFireball.y >= height || fireballs[4].playerCollision) {
-    fire5 = false;
-  }
-  if (fireballs[4].playerCollision) {//Damage fireball && respawning fireball
-    fire5 = false;
-    fireballs[4].playerCollision = false;
-    fireballCount = 600;
-    fireballs[4].respawn();
-    fireballs[4].posFireball = fireballs[4].RposFireball;
-  }
-  if (fireballs[5].playerCollision) {//Damage fireball && respawning fireball
-    fire6 = false;
-    fireballs[5].playerCollision = false;
-    fireballCount = 600;
-    fireballs[5].respawn();
-    fireballs[5].posFireball = fireballs[5].RposFireball;
-  }
+  
+  if (scoreHandler.score >= 1500){//Score >= 1000 ---> spawning more fireballs!
+    if (fireballCount == 550) {//Counter fireballs
+      fire4 = true;
+    }
+    if (fireballCount == 450) {
+      fire5 = true;
+    }
+    if (fireballCount == 350) {
+      fire6 = true;
+    }
+  
+    if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
+      fireballs[3].movementUpdate();
+    }
+    if (fire5 == true) {
+      fireballs[4].movementUpdate();
+    }
+    if (fire6 == true) {
+      fireballs[5].movementUpdate();
+    }    
+  
+    if (fireballs[3].posFireball.y >= height || fireballs[3].playerCollision) {//Fires = false, last statement = reset of fireballs
+      fire4 = false;
+    }
+    if (fireballs[3].playerCollision) {//Damage fireball && respawning fireball
+      fire = false;
+      fireballs[3].playerCollision = false;
+      fireballCount = 600;
+      fireballs[3].respawn();
+      fireballs[3].posFireball = fireballs[3].RposFireball;
+    }  
+    if (fireballs[4].posFireball.y >= height || fireballs[4].playerCollision) {
+      fire5 = false;
+    }
+    if (fireballs[4].playerCollision) {//Damage fireball && respawning fireball
+      fire5 = false;
+      fireballs[4].playerCollision = false;
+      fireballCount = 600;
+      fireballs[4].respawn();
+      fireballs[4].posFireball = fireballs[4].RposFireball;
+    }
+    if (fireballs[5].playerCollision) {//Damage fireball && respawning fireball
+      fire6 = false;
+      fireballs[5].playerCollision = false;
+      fireballCount = 600;
+      fireballs[5].respawn();
+      fireballs[5].posFireball = fireballs[5].RposFireball;
+    }
+   }
 
   if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
     druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[0].respawn();
   }
   if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
     druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire2 = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[1].respawn();
   }
   if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
     druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire3 = false;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[2].respawn();
   }
   if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
     druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
     fire4 = false;
     fireballs[3].respawn();
+  }
+  if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    fire5 = false;
+    fireballs[4].respawn();
+  }
+  if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
+    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    fire6 = false;
+    fireballs[5].respawn();
   }
 
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
@@ -281,7 +293,7 @@ void update()
     //fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
     //fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
     //fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
-    fireballCount = 300;
+    fireballCount = 600;
     fireballs[0].respawn();
     fireballs[0].posFireball = fireballs[0].RposFireball;
     fireballs[1].respawn();
@@ -323,7 +335,7 @@ void update()
     spawnCountDruppel--;
   }
 
-  if (waterfles.druppelOn) {//Moet nog worden aangepast!
+  if (waterfles.druppelOn) {//When shooting the druppel.
     druppels.druppelUpdate();
     waterfles.pickedUp = false;
     dragon.waterFles = false;
@@ -335,11 +347,10 @@ void update()
     if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
       resetWaterflesCount--;
     }
-  }
-
-  if (resetWaterflesCount <= 0) {
-    resetWaterflesCount = 600;
-    waterfles.resetWaterfles();
+    if (resetWaterflesCount <= 0) {//Resets waterfles.
+      resetWaterflesCount = 600;
+      waterfles.resetWaterfles();
+    }
   }
 
   for (int c = 0; c < aantalCoins; c++) {

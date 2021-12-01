@@ -23,9 +23,9 @@ class Inventory {
     ellipse(width-60, height-60, 50, 50);
 
     if (inventoryFull) {
-      println("Full");
+      //println("Full");
     } else {
-      println("Empty");
+      //println("Empty");
     }
 
 

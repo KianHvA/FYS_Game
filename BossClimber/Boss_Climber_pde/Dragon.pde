@@ -248,7 +248,7 @@ class bossFight {
       for (int i = 0; i > fireballs.length * 2; i++) {
         fireballs[i].posFireball.x = startx;
         fireballs[i].posFireball.y = starty;
-        fireballs[i].draw();
+       fireballs[i].draw();
       }
       timerAmount++;
     }

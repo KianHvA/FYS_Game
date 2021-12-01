@@ -25,6 +25,5 @@ class Druppel{
   void draw(){
     fill(0, 0, 255);
     circle(startX, startY, druppelDia);
-    println(startX);
   }
 }
