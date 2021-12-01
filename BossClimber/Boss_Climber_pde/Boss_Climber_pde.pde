@@ -49,7 +49,7 @@ boolean On = true;
 
 void setup() 
 {
-  size(800, 600);
+  size(1024, 576);
   rectMode(CENTER);
   frameRate(60);
   smooth(0);
@@ -373,13 +373,8 @@ void draw()
   background(0);
 
   if (menu.start ==false) {
-    textAlign(CORNER, CORNER);
-
     level.draw();
     menu.draw();
-    //menu.highlight();
-    textSize(72);
-    text("BOSS CLIMBER", 147, 200); 
 
     if (keysPressed['D']) {
       instruction.manual = true;
