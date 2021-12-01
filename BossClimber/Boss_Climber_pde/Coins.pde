@@ -12,7 +12,7 @@ class Coins{
   void updateCoins(){
     if (playerCoin(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, coinX, coinY, coinSize)){
       coinSize = 0;
-      scoreHandler.score += 5000;
+      scoreHandler.score += 500;
       
       if (coinCounter <= 0){
         resetCoin();
