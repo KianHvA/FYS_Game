@@ -14,7 +14,7 @@ class Dragon {
   float checkCollision;
   boolean a;
   final int b = 300;
-  final int c = 250;
+  final int c = 350;
   float dragonHealth = 150;
   float dragonHealthS = 150;
   boolean fight = false;
@@ -22,7 +22,7 @@ class Dragon {
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
-    new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(650, b), new PVector(650, 3)};
+    new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(600, b), new PVector(width/2,height/2), new PVector(600, 3)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
