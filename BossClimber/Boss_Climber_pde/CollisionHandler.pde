@@ -117,7 +117,7 @@ class CollisionHandler
 
     if (distance > closestDistance) {
       closestDistance = distance; 
-      closestHitPos = new PVector(closestX, cy - r/2);
+      closestHitPos = new PVector(closestX, closestY);
       platformHitPos = closestHitPos;
     }
     // is the circle on the line?
@@ -140,7 +140,7 @@ class CollisionHandler
 
     // since floats are so minutely accurate, add
     // a little buffer zone that will give collision
-    float buffer = 0.1;    // higher # = less accurate
+    float buffer = 0.5;    // higher # = less accurate
 
     // if the two distances are equal to the line's
     // length, the point is on the line!
