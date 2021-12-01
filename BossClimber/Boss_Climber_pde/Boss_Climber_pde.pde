@@ -49,7 +49,7 @@ boolean On = true;
 
 void setup() 
 {
-  size(800, 600);
+  size(1024, 576);
   rectMode(CENTER);
   frameRate(60);
   smooth(0);
