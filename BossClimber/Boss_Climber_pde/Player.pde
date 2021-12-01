@@ -2,7 +2,8 @@ class Player {
 
   //variables
   PVector posPlayer = new PVector(width/2, height/2 - 10);
-  PVector sizePlayer = new PVector(20, 30);
+  PVector sizePlayer = new PVector(20,20);//for collision 
+  PVector sizeSprite = new PVector(sizePlayer.x,sizePlayer.y * (3/2)*2);//for sprite
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 10;
@@ -65,7 +66,7 @@ class Player {
     //player
     fill(menu.player);
     imageMode(CENTER);
-    image(Active, posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    image(Active, posPlayer.x, posPlayer.y, sizeSprite.x, sizeSprite.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
   }
   void movementUpdate()
@@ -129,7 +130,7 @@ class Player {
           timerLeft2 = 0;
         }
       } 
-      
+
       if (moveRight && !moveLeft) {
         Active = rightActive;
         if (timerRight2 ==0) {
@@ -149,7 +150,7 @@ class Player {
         Active = right;
       }
     }
-    
+
     if (schild.pickedUp && !waterfles.pickedUp && !sword.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActiveS;
@@ -185,7 +186,7 @@ class Player {
         Active = rightS;
       }
     }
-    
+
     if (!schild.pickedUp && !sword.pickedUp && waterfles.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActiveW;
@@ -221,7 +222,7 @@ class Player {
         Active = rightW;
       }
     }
-    
+
     if (!schild.pickedUp && sword.pickedUp && !waterfles.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActiveSW;
@@ -299,7 +300,6 @@ class Player {
 
   void collideWithPlatform()
   {
-    hasCollision = true;
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight * 2);
     } else {
