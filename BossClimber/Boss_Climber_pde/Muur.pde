@@ -12,8 +12,9 @@ void muur() {
   for (int x=0; x<900; x=x+30) {
     strokeWeight(2);
     stroke(0);
-    line(0, x, breedte-1, x); // rechterkant
-    line(width-3*sGetal, x, width, x); //linkerkant
+    line(0, x, width/12-1, x); // rechterkant
+    //line(width-3*sGetal, x, width, x); //linkerkant
+    line(width/12*11+5,x,width,x);
   }
   //verticale lijnen
   for (int x=30; x<900; x=x+60) {// x coordinaat voor de lijnen
