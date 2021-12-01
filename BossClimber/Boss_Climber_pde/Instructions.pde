@@ -5,8 +5,10 @@ class Instructions{
   PVector example2;
   PVector example3;
   PVector sizes;
+  PVector posSign;
+  PVector sizeSign;
   int textSize;
-  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn;
+  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight;
   boolean manual = false;
   
   Instructions(){
@@ -15,6 +17,10 @@ class Instructions{
     example2 = new PVector(500, 40);
     example3 = new PVector(300, 40);
     sizes = new PVector(25, 25);
+    posSign = new PVector(650, 510);
+    sizeSign = new PVector(80, 50);
+    standWidth = 20;
+    standHeight = 40;
     textSize = 10;
     exampleSpeedX = 2;
     exampleSpeedY = 2;
@@ -41,6 +47,17 @@ class Instructions{
     if (example3.y <= -50){
       exampleSpeedY = 2;
     }
+  }
+  
+  void sign(){//Sign, the player (maybe) knows what to do.
+    fill(#A57005);
+    rect(posSign.x + 30, posSign.y + 30, standWidth, standHeight);
+    rect(posSign.x, posSign.y, sizeSign.x, sizeSign.y);
+    
+    fill(255);
+    textSize(50);
+    text("^", text.x + 640, text.y + 472);
+    text("|", text.x + 640, text.y + 472);
   }
   
   void draw(){
