@@ -406,12 +406,6 @@ void draw()
 
     level.draw();
 
-    for (int c = 0; c < aantalCoins; c++) {
-      coin[c].draw();
-      println(coin[c].coinCounter);
-    }
-
-
     if (On) {
       flamethrower.draw();
       platforms.draw();
@@ -453,6 +447,11 @@ void draw()
 
     if (waterfles.druppelOn) {//Shooting
       druppels.draw();
+    }
+    
+   for (int c = 0; c < aantalCoins; c++) {
+      coin[c].draw();
+      println(coin[c].coinCounter);
     }
 
     //teken alle UI hier zodat het op de voorgrond komt
