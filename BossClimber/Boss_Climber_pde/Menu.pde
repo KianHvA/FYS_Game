@@ -1,8 +1,8 @@
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
   boolean start = false, drawn = false;
-  PVector placement1 = new PVector(275, 250);
-  PVector placement2 = new PVector(400, 250);
+  PVector placement1 = new PVector(width/3 + 50, 250);
+  PVector placement2 = new PVector(width/3 + 175, 250);
   boolean highlight1 = true, highlight2 = false;
   color normal = 125;
   color highlight = #EFF03F;
@@ -45,8 +45,13 @@ class Menu {
     restart = false;    
     stroke(rect1);
     rectMode(CORNER);
-    fill(125);
     //colorMode(rect1);
+    //menu.highlight();
+    fill(255);
+    textSize(72);
+    textAlign(CORNER, CORNER);
+    text("BOSS CLIMBER", placement1.x - 133, 200); 
+    fill(125);
     rect(placement1.x - 175, placement1.y, size.x, size.y);
     rect(menu.placement1.x + 150, menu.placement1.y, menu.size.x, menu.size.y);
     rectMode(CENTER);
@@ -57,9 +62,9 @@ class Menu {
     text("Press D for", placement1.x + 160, placement1.y + 65);
     text("instructions", placement1.x + 160, placement1.y + 115);
     drawn = true;
-    
-    if(keysPressed['A']) {
-     start = true; 
+
+    if (keysPressed['A']) {
+      start = true;
     }
 
     //stroke(rect2);
@@ -146,109 +151,109 @@ class Menu {
   //    timer2 = 6;
   //    Personalize();
   //  }
-//}
+  //}
 
-//void Personalize() {
-//  if (Check3 > 0) Timer3++;
-//  if (Timer3 > 20) {
-//    Check3 = 0;
-//    Timer3 = 0;
-//  }
-//  fill(0);
-//  rect(spawnBS.x, spawnBS.y, width, height);
-//  muur();
-//  fill(Rgb);
-//  ellipse(spawnP1.x, spawnP1.y, 20, 20);
-//  fill(rGb);
-//  ellipse(spawnP2.x, spawnP2.y, 20, 20);
-//  fill(rgB);
-//  ellipse(spawnP3.x, spawnP3.y, 20, 20);
+  //void Personalize() {
+  //  if (Check3 > 0) Timer3++;
+  //  if (Timer3 > 20) {
+  //    Check3 = 0;
+  //    Timer3 = 0;
+  //  }
+  //  fill(0);
+  //  rect(spawnBS.x, spawnBS.y, width, height);
+  //  muur();
+  //  fill(Rgb);
+  //  ellipse(spawnP1.x, spawnP1.y, 20, 20);
+  //  fill(rGb);
+  //  ellipse(spawnP2.x, spawnP2.y, 20, 20);
+  //  fill(rgB);
+  //  ellipse(spawnP3.x, spawnP3.y, 20, 20);
 
-//  fill(125);
-//  stroke(rect3);
-//  rect(spawnP1.x - 40, spawnP1.y + 100, 75, 25);
-//  stroke(rect4);
-//  rect(spawnP2.x - 40, spawnP2.y + 100, 75, 25);
-//  stroke(rect5);
-//  rect(spawnP3.x - 40, spawnP3.y + 100, 75, 25);
-//  if (keysPressed[RIGHT] && Check2 == 0 && Check3 == 0) {
-//    if (rect3 == highlight) {
-//      highlight3 = false;
-//      highlight4 = true;
-//      highlight5 = false;
-//      rect3 = normal;
-//      rect4 = highlight;
-//      rect5 = normal;
-//    } else if (rect4 == highlight) {
-//      highlight3 = false;
-//      highlight4 = false;
-//      highlight5 = true;
-//      rect3 = normal;
-//      rect4 = normal;
-//      rect5 = highlight;
-//    } else if (rect5 == highlight) {
-//      highlight3 = true;
-//      highlight4 = false;
-//      highlight5 = false;
-//      rect3 = highlight;
-//      rect4 = normal;
-//      rect5 = normal;
-//    }
-//    Check2++;
-//  }
-//  if (keysPressed[LEFT] && Check2 == 0) {
-//    if (rect3 == highlight) {
-//      highlight3 = false;
-//      highlight4 = false;
-//      highlight5 = true;
-//      rect3 = normal;
-//      rect4 = normal;
-//      rect5 = highlight;
-//    } else if (rect4 == highlight) {
-//      highlight3 = true;
-//      highlight4 = false;
-//      highlight5 = false;
-//      rect3 = highlight;
-//      rect4 = normal;
-//      rect5 = normal;
-//    } else if (rect5 == highlight) {
-//      highlight3 = false;
-//      highlight4 = true;
-//      highlight5 = false;
-//      rect3 = normal;
-//      rect4 = highlight;
-//      rect5 = normal;
-//    }
-//    Check2++;
-//  }
-//  if (Check2 > 0) Time2++;
-//  if (Time2 > 20) {
-//    Check2 = 0;
-//    Time2 = 0;
-//  }
+  //  fill(125);
+  //  stroke(rect3);
+  //  rect(spawnP1.x - 40, spawnP1.y + 100, 75, 25);
+  //  stroke(rect4);
+  //  rect(spawnP2.x - 40, spawnP2.y + 100, 75, 25);
+  //  stroke(rect5);
+  //  rect(spawnP3.x - 40, spawnP3.y + 100, 75, 25);
+  //  if (keysPressed[RIGHT] && Check2 == 0 && Check3 == 0) {
+  //    if (rect3 == highlight) {
+  //      highlight3 = false;
+  //      highlight4 = true;
+  //      highlight5 = false;
+  //      rect3 = normal;
+  //      rect4 = highlight;
+  //      rect5 = normal;
+  //    } else if (rect4 == highlight) {
+  //      highlight3 = false;
+  //      highlight4 = false;
+  //      highlight5 = true;
+  //      rect3 = normal;
+  //      rect4 = normal;
+  //      rect5 = highlight;
+  //    } else if (rect5 == highlight) {
+  //      highlight3 = true;
+  //      highlight4 = false;
+  //      highlight5 = false;
+  //      rect3 = highlight;
+  //      rect4 = normal;
+  //      rect5 = normal;
+  //    }
+  //    Check2++;
+  //  }
+  //  if (keysPressed[LEFT] && Check2 == 0) {
+  //    if (rect3 == highlight) {
+  //      highlight3 = false;
+  //      highlight4 = false;
+  //      highlight5 = true;
+  //      rect3 = normal;
+  //      rect4 = normal;
+  //      rect5 = highlight;
+  //    } else if (rect4 == highlight) {
+  //      highlight3 = true;
+  //      highlight4 = false;
+  //      highlight5 = false;
+  //      rect3 = highlight;
+  //      rect4 = normal;
+  //      rect5 = normal;
+  //    } else if (rect5 == highlight) {
+  //      highlight3 = false;
+  //      highlight4 = true;
+  //      highlight5 = false;
+  //      rect3 = normal;
+  //      rect4 = highlight;
+  //      rect5 = normal;
+  //    }
+  //    Check2++;
+  //  }
+  //  if (Check2 > 0) Time2++;
+  //  if (Time2 > 20) {
+  //    Check2 = 0;
+  //    Time2 = 0;
+  //  }
 
-//  if (keysPressed[65] && rect3 == highlight) {
-//    player = Rgb;
-//    start = true;
-//  } else if (keysPressed[65] && rect4 == highlight) {
-//    player = rGb;
-//    start = true;
-//  } else if (keysPressed[65] && rect5 == highlight) {
-//    player = rgB;
-//    start = true;
-//  }
-//}
+  //  if (keysPressed[65] && rect3 == highlight) {
+  //    player = Rgb;
+  //    start = true;
+  //  } else if (keysPressed[65] && rect4 == highlight) {
+  //    player = rGb;
+  //    start = true;
+  //  } else if (keysPressed[65] && rect5 == highlight) {
+  //    player = rgB;
+  //    start = true;
+  //  }
+  //}
 
-void restart() {
-  if (restart && keysPressed['Z']) {
-     halfX = -1000;
-     halfY = -1000;
-    //Health.xBegin = -1000;
-    //Health.yBegin = -1000;
-    placement1 = Rplacement1; 
-    placement2 = Rplacement2;
-    start = false;
-    setup();
+  void restart() {
+    if (restart && keysPressed['Z']) {
+      halfX = -1000;
+      halfY = -1000;
+      //Health.xBegin = -1000;
+      //Health.yBegin = -1000;
+      placement1 = Rplacement1; 
+      placement2 = Rplacement2;
+      start = false;
+      setup();
+    }
   }
-}
 }
