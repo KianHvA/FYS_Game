@@ -45,7 +45,7 @@ void Bossplatform() {
     platforms.vertexesR[i+4] = new PVector(0, height-20);
   }
 
-  if (player.posPlayer.y<height-15 && bossFightRoom)
+  if (player.posPlayer.y>height-15 && bossFightRoom)
   {
     player.posPlayer.y=height-40;
   }
