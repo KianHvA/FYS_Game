@@ -11,14 +11,19 @@ class Dragon {
   float ppos; //for animation
   String Modus;
   int vliegen;
+  int bossVliegen;
   float checkCollision;
   boolean a;
+  final int b = 300;
+  final int c = 250;
   float dragonHealth = 150;
   float dragonHealthS = 150;
   boolean fight = false;
   float fightAmount = 1;
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
+  PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
+    new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b),new PVector(600, c),new PVector(650, b), new PVector(650, 3)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
@@ -61,7 +66,7 @@ class Dragon {
   void draw() {
     stroke(0);
     fill(185, 185, 182);
-    
+
     //for dragon wing animation
     imageMode(CORNER);
     if (frameCount % 30 == 0) {
@@ -71,7 +76,7 @@ class Dragon {
       dragonSpriteR = dragonClosedUpR;
       dragonSprite = dragonClosedUp;
     }
-    
+
     //check the direction the dragon is moving and use flipped sprite
     if (isFlipped) {
       image(dragonSpriteR, startx, starty, diameter.x, diameter.y);
@@ -91,6 +96,10 @@ class Dragon {
       if (vliegen >= vliegPatroon.length) {
         vliegen = 0;
       }
+      if(bossFightRoom){
+       if (bossVliegen >= vliegPatroonBossFight.length) {
+        vliegen = 0;
+      }}
       //zet a weer naar false;
       a = false;
     }
@@ -118,8 +127,14 @@ class Dragon {
       //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
       //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
       //if(!FireballRain.fireBallRain) {
-      startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
-      starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
+      if (bossFightRoom) { 
+        startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.1);
+        starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
+      }
+      if (On) {
+        startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
+        starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
+      }
       //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
       break;
       //}
@@ -200,10 +215,10 @@ class bossFight {
       startx = lerp(startx, vliegPatroon[0].x, 0.01);
       starty = lerp(starty, vliegPatroon[0].y, 0.01);
       //if (!dragon.waterFles) {
-        //waterfles.flesX = player.posPlayer.x;
-       // waterfles.flesY = player.posPlayer.y - 20;
-        //waterfles = new Waterfles();
-        //dragon.waterFles = true;
+      //waterfles.flesX = player.posPlayer.x;
+      // waterfles.flesY = player.posPlayer.y - 20;
+      //waterfles = new Waterfles();
+      //dragon.waterFles = true;
       //}
       //if (dragon.fight) HealthbarDragon.HealthBar(10, 100, 250, 10);
       onTheWay();
@@ -248,7 +263,7 @@ class bossFight {
       for (int i = 0; i > fireballs.length * 2; i++) {
         fireballs[i].posFireball.x = startx;
         fireballs[i].posFireball.y = starty;
-       fireballs[i].draw();
+        fireballs[i].draw();
       }
       timerAmount++;
     }
