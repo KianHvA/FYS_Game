@@ -5,7 +5,6 @@
 Menu menu;
 Player player;
 CollisionHandler collisionHandler;
-Coins[] coin;
 Platform platforms;
 Health health;
 HealthBar healthbar;
@@ -59,7 +58,6 @@ void setup()
   player = new Player();
   platforms = new Platform();
   collisionHandler = new CollisionHandler();
-  coin = new Coins[aantalCoins];
   health = new Health();
   healthbar = new HealthBar(10, height - 20, 250, 10);
   Doublejump = new DoubleJump();
@@ -78,10 +76,6 @@ void setup()
   for (int i = 0; i < fireballs.length; i++) { 
     fireballs[i] = new Fireball();
     fireballs[i].setup();
-  }
-
-  for (int c = 0; c < aantalCoins; c++) {
-    coin[c] = new Coins();
   }
 
   flamethrower.setup();
@@ -361,10 +355,6 @@ void update()
   
   println(resetWaterflesCount);
 
-  for (int c = 0; c < aantalCoins; c++) {
-    coin[c].updateCoins();
-  }
-
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
   // fireballs[i].movementUpdate();
@@ -447,10 +437,6 @@ void draw()
 
     if (waterfles.druppelOn) {//Shooting
       druppels.draw();
-    }
-    
-   for (int c = 0; c < aantalCoins; c++) {
-      coin[c].draw();
     }
 
     //teken alle UI hier zodat het op de voorgrond komt
