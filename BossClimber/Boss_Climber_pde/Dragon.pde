@@ -199,12 +199,12 @@ class bossFight {
       dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
       startx = lerp(startx, vliegPatroon[0].x, 0.01);
       starty = lerp(starty, vliegPatroon[0].y, 0.01);
-      if (!dragon.waterFles) {
-        waterfles.flesX = player.posPlayer.x;
-        waterfles.flesY = player.posPlayer.y - 20;
-        waterfles = new Waterfles();
-        dragon.waterFles = true;
-      }
+      //if (!dragon.waterFles) {
+        //waterfles.flesX = player.posPlayer.x;
+       // waterfles.flesY = player.posPlayer.y - 20;
+        //waterfles = new Waterfles();
+        //dragon.waterFles = true;
+      //}
       //if (dragon.fight) HealthbarDragon.HealthBar(10, 100, 250, 10);
       onTheWay();
     }

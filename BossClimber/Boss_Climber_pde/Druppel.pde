@@ -1,19 +1,25 @@
 class Druppel{
-  float xSpeedDruppel, ySpeedDruppel, startX, startY, druppelDia;
+  float xSpeedDruppel, ySpeedDruppel, druppelDia;
+  PVector posPlayer = new PVector(player.posPlayer.x, player.posPlayer.y);
   boolean hasCollision = false;
   
   Druppel(){
-    xSpeedDruppel = 4;
-    ySpeedDruppel = -4;
     druppelDia = 10;
-    startX = player.posPlayer.x;
-    startY = player.posPlayer.y;
   }
   
-  void druppelUpdate(){
-    startY += ySpeedDruppel;
+  void shootDruppel(float startX, float startY, float druppelSpeedX, float druppelSpeedY){
+    posPlayer.x = startX;
+    posPlayer.y = startY;
+    xSpeedDruppel = druppelSpeedX;
+    ySpeedDruppel = druppelSpeedY;
+  }
     
-    collisionHandler.checkCollisionDragon(startX, startY, druppelDia);
+  
+  void druppelUpdate(){
+    posPlayer.y += ySpeedDruppel;
+    posPlayer.x += xSpeedDruppel;
+    
+    collisionHandler.checkCollisionDragon(posPlayer.x, posPlayer.y, druppelDia);
     hasCollision = collisionHandler.hitDragon;    
     
     if (hasCollision){
@@ -24,6 +30,6 @@ class Druppel{
   
   void draw(){
     fill(0, 0, 255);
-    circle(startX, startY, druppelDia);
+    circle(posPlayer.x, posPlayer.y, druppelDia);
   }
 }

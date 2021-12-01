@@ -291,6 +291,11 @@ class Player {
     if (sword.pickedUp && keysPressed['A']) {
       sword.attack();
     }
+    
+    if (waterfles.pickedUp == true && keysPressed['S'] && cooldown == 0) {//Shooting druppel
+      druppels.shootDruppel(posPlayer.x, posPlayer.y, 0, -4);
+      waterfles.druppelOn = true;
+    }
 
     //add velocity to posPlayer
     posPlayer.x += velocity.x;

@@ -252,35 +252,35 @@ void update()
    }
 
   if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire = false;
     fireballCount = 600;
     fireballs[0].respawn();
   }
   if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire2 = false;
     fireballCount = 600;
     fireballs[1].respawn();
   }
   if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire3 = false;
     fireballCount = 600;
     fireballs[2].respawn();
   }
   if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire4 = false;
     fireballs[3].respawn();
   }
   if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire5 = false;
     fireballs[4].respawn();
   }
   if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
-    druppels.startX, druppels.startY, druppels.druppelDia)) {//Collision fireball & druppel
+    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire6 = false;
     fireballs[5].respawn();
   }
@@ -342,7 +342,7 @@ void update()
     cooldown = 100;
   }
 
-  if (druppels.startY <= 0) {
+  if (druppels.posPlayer.y <= 0 || druppels.hasCollision) {//Druppel off screen or hits dragon:
     waterfles.druppelOn = false;
     if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
       resetWaterflesCount--;
@@ -352,6 +352,8 @@ void update()
       waterfles.resetWaterfles();
     }
   }
+  
+  println(resetWaterflesCount);
 
   for (int c = 0; c < aantalCoins; c++) {
     coin[c].updateCoins();

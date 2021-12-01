@@ -25,10 +25,6 @@ class Waterfles {
       pickedUp = true;
       scoreHandler.score((int)random(10, 30));
     }
-
-    if (pickedUp == true && keysPressed['S'] && cooldown == 0) {//Schiet waterfles
-      druppelOn = true;
-    }
   }
 
   void resetWaterfles() {//Reset nieuwe waterfles
@@ -36,8 +32,9 @@ class Waterfles {
     flesY = random(0, 600);
     flesB = 10;
     flesH = 40;
-    druppels.startX = player.posPlayer.x;
-    druppels.startY = player.posPlayer.y;
+    druppels.posPlayer.x = player.posPlayer.x;
+    druppels.posPlayer.y = player.posPlayer.y;
+    druppels.hasCollision = false;
   }
 
   void draw() {
