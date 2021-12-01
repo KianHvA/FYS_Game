@@ -451,7 +451,6 @@ void draw()
     
    for (int c = 0; c < aantalCoins; c++) {
       coin[c].draw();
-      println(coin[c].coinCounter);
     }
 
     //teken alle UI hier zodat het op de voorgrond komt
