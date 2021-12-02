@@ -26,11 +26,11 @@ class Instructions {
     exampleSpeedY = 2;
     respawning = 700;
     secondRespawn = 500;
-    moveL = loadImage("JoyConButtonY.png");
+    moveL = loadImage("JoyConLeftRight.png");
     moveL1 = loadImage("Knight - Left - Walk1.png");
-    moveR = loadImage("JoyConButtonA.png");
-    moveR1 = loadImage("Knight - Right - Walk1.png");
-    moveUp = loadImage("JoyConButtonX.png");
+    //moveR = loadImage("JoyConButtonA.png");
+    //moveR1 = loadImage("Knight - Right - Walk1.png");
+    moveUp = loadImage("JoyConUp.png");
     equip = loadImage("JoyConButtonA.png");
     equip1 = loadImage("Knight - Left.png");
     equip2 = loadImage("Knight - Left - Shield.png");
@@ -75,7 +75,7 @@ class Instructions {
       fill(255);
       textSize(35);
       imageMode(CENTER);
-      image(moveL, posSign[1].x + 15, posSign[1].y + 30, standWidth * 1.5, standHeight);
+      image(moveL, posSign[1].x + 15, posSign[1].y + 25, standWidth * 1.5, standHeight);
       text("=", posSign[1].x + 45, posSign[1].y + 30);
       image(moveL1, posSign[1].x + 66, posSign[1].y + 30, standWidth, standHeight);
 
@@ -90,6 +90,16 @@ class Instructions {
       image(equip1, width - 70, height - 90);
       text(">", width-50, height - 90);
       image(equip2, width-30, height - 90);
+      
+      fill(#A57005);
+      rect(posSign[2].x + 30, posSign[2].y + 30, standWidth, standHeight);
+      rect(posSign[2].x, posSign[2].y, sizeSign.x, sizeSign.y);
+
+      fill(255);
+      textSize(35);
+      imageMode(CENTER);
+      image(moveUp, posSign[2].x + 15, posSign[2].y + 25, standWidth * 1.5, standHeight * 1.1);
+      text("= ^", posSign[2].x + 55, posSign[2].y + 30);
     }
   }
 

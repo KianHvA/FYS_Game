@@ -1,8 +1,7 @@
-import samuelal.squelized.*;
-import java.util.Properties;
-
 //prototype IG-103-2
 
+import samuelal.squelized.*;
+import java.util.Properties;
 //import de.bezier.data.sql.*;
 
 Menu menu;
