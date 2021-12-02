@@ -151,7 +151,7 @@ class HighScore {
           select = false;
         }
         if (j >= 10) {
-          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] + nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9];
+          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
           delay(100);
           exit();
         }
@@ -182,16 +182,16 @@ class HighScore {
         text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - 75, y);
         fill(flash[4]);
         text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
-        fill(flash[5]);
-        text(nameDef[5], x + textWidth(name) + textWidth('X') * 5 - 75, y);
-        fill(flash[6]);
-        text(nameDef[6], x + textWidth(name) + textWidth('X') * 6 - 75, y);
-        fill(flash[7]);
-        text(nameDef[7], x + textWidth(name) + textWidth('X') * 7 - 75, y);
-        fill(flash[8]);
-        text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
-        fill(flash[9]);
-        text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
+      //  fill(flash[5]);
+      //  text(nameDef[5], x + textWidth(name) + textWidth('X') * 5 - 75, y);
+      //  fill(flash[6]);
+      //  text(nameDef[6], x + textWidth(name) + textWidth('X') * 6 - 75, y);
+      //  fill(flash[7]);
+      //  text(nameDef[7], x + textWidth(name) + textWidth('X') * 7 - 75, y);
+      //  fill(flash[8]);
+      //  text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
+      //  fill(flash[9]);
+      //  text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
       }
       drawn = true;
     }
@@ -199,16 +199,18 @@ class HighScore {
       if (!filledIn[j]) {
         textSize(textSize*0.75);
         fill(#FFFFFF);
-        text("^", x + textWidth(name) + textWidth(nameDef[0]) * (j + 1) - 90, y - 70);
+        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 90, y - 70);
         textSize(textSize*0.75);
         fill(#FFFFFF);
         pushMatrix();
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth(nameDef[0]) * (j + 1) - 90, y + 70);
+        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 90, y + 70);
         rotate(angle1);
         text("^", 0,0);
         popMatrix();
-        
+      }
+      if (filledIn[j-1]) {
+       fill(#FFFFFF, 1000); 
       }
     }
   }
