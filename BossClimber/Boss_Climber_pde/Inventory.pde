@@ -17,8 +17,8 @@ class Inventory {
 
     ellipseMode(CORNER);
     textAlign(CENTER, CENTER);
-    fill(255);
-    text("S", width-55, height-70);
+    //fill(255);
+    //text("S", width-55, height-70);
     fill(0);
     ellipse(width-60, height-60, 50, 50);
 
