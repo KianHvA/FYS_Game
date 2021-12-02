@@ -1,3 +1,6 @@
+import samuelal.squelized.*;
+import java.util.Properties;
+
 //prototype IG-103-2
 
 //import de.bezier.data.sql.*;
@@ -53,6 +56,11 @@ void setup()
   rectMode(CENTER);
   frameRate(60);
   smooth(0);
+  Properties props = new Properties();
+  props.setProperty("user", "dreijed1");
+  props.setProperty("password", "kerPVqZtWlI8M4");
+  
+  SQLConnection myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   menu = new Menu();
   level = new Level();
   player = new Player();
