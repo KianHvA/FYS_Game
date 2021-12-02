@@ -10,14 +10,14 @@ class HighScore {
   String[] nameSelector  = new String[characterAmount];
   float nameNumber = 0;
   float nameNumberStart = 0;
-  int nameLength = 10;
+  int nameLength = 5;
   String[] nameDef = new String[nameLength + 1];
   float timerA = 0, timerB = 0;
   boolean drawn = false;
   boolean[] filledIn = new boolean[nameLength + 1];
   int nameNumberAt = 1;
   //float[] flash = new float[10];
-  color[] flash = new color[10];
+  color[] flash = new color[nameLength];
   int x = 300;
   int y = 355;
   String name = "Name:";
@@ -97,7 +97,7 @@ class HighScore {
     for ( int i = 0; i < nameLength; i++) {
       nameDef[i] = nameSelector[j];
       filledIn[i] = false;
-      flash[i] = color(#FFFFFF, 255);
+      flash[i] = color(#FFFFFF, 1000);
     }
   }
 
@@ -150,7 +150,7 @@ class HighScore {
           delay(90);
           select = false;
         }
-        if (j >= 10) {
+        if (j >= 5) {
           finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
           delay(100);
           exit();
@@ -209,8 +209,8 @@ class HighScore {
         text("^", 0,0);
         popMatrix();
       }
-      if (filledIn[j-1]) {
-       fill(#FFFFFF, 1000); 
+      if (j > 1) {
+       flash[j-1] = color(#FFFFFF, 1000); 
       }
     }
   }
