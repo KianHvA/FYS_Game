@@ -4,7 +4,7 @@ class Flamethrower {
   float x1 = width/6, x2 = width/6;
   float x3 = width/6 + width/2, x4 = width/6 + width/2;
   int i = 0;
-  PVector sizeVlam = new PVector(22, 80);
+  PVector sizeVlam = new PVector(30, 80);
   float timer1 = 0, timer2 = 0;
   int distance = 660, from = 150, minus = 7;
   int  distBetween = 200, idk = 0;

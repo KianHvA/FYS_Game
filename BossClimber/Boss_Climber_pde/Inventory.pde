@@ -68,7 +68,7 @@ class Inventory {
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
-      image(swordI, width-53, height-55, 35, 50);
+      image(swordI, width-45, height-55, 15, 50);
       inventoryFull = true;
     } else {
       inventoryFull = false;
