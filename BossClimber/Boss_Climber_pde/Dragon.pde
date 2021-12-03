@@ -106,7 +106,7 @@ class Dragon {
       //  if (vliegen>=vliegPatroonBossFight2.length) {
       //    vliegen = 0;
       //  } else
-        if (vliegen >= vliegPatroon.length) {
+       else if (vliegen >= vliegPatroon.length) {
           vliegen = 0;
         }
 
