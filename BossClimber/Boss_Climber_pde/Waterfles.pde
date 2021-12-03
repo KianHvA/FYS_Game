@@ -17,7 +17,7 @@ class Waterfles {
   }
 
   void updateWaterfles() {
-    if (schild.pickedUp || Doublejump.pickedUp) {
+    if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
     }
@@ -27,7 +27,7 @@ class Waterfles {
       pickedUp = true;
       scoreHandler.score((int)random(10, 30));
     }
-    if (reset) {
+    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
      resetWaterfles();
      reset = false;
     }
