@@ -15,6 +15,8 @@ class Dragon {
   boolean a;
   final int b = 300;
   final int c = 350;
+  boolean d;
+  //float randomX ;
   float dragonHealth = 150;
   float dragonHealthS = 150;
   boolean fight = false;
@@ -22,12 +24,14 @@ class Dragon {
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
-    new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(600, b), new PVector(width/2,height/2), new PVector(600, 3)};
+    new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(600, b), new PVector(width/2, height/2), new PVector(600, 3)};
+  //PVector[] vliegPatroonBossFight2 ={new PVector(randomX, 3)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
   PVector healthbarPosEnd = new PVector(-1000, -1000);
   boolean waterFles = false;
+  boolean bossFightRoomFase2 = false;
 
   PImage dragonClosedUp, dragonClosedDown, dragonOpenUp, dragonOpenDown;
   PImage dragonClosedUpR, dragonClosedDownR, dragonOpenUpR, dragonOpenDownR;
@@ -88,6 +92,7 @@ class Dragon {
     if (passedTime > totalTime) {
       savedTime = millis();
       a = true;
+      d = true;
     }
     if (a) {
       //ga naar volgende positie in array
@@ -96,7 +101,11 @@ class Dragon {
         if (vliegen >= vliegPatroonBossFight.length) {
           vliegen = 0;
         }
-      } else
+      }
+      //if (bossFightRoomFase2) {
+      //  if (vliegen>=vliegPatroonBossFight2.length) {
+      //    vliegen = 0;
+      //  } else
         if (vliegen >= vliegPatroon.length) {
           vliegen = 0;
         }
@@ -128,9 +137,27 @@ class Dragon {
       //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
       //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
       //if(!FireballRain.fireBallRain) {
-      if (bossFightRoom) { 
+      if (bossFightRoom&&!bossFightRoomFase2) { 
         startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.1);
         starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
+
+        //mousepressed is een tijdelijke variabele, dit moet verandert worden door iets met wanneer dragon healt lager is dan...
+        if (mousePressed) {
+          bossFightRoomFase2 = true;
+        }
+
+
+        // hier moet komen dat de boss boven in de bossroom vliegt en dat er veel waterflesjes spawnen
+        if (bossFightRoomFase2) {
+          float randomX = width/2;
+          if (d) {
+            d=false;
+            randomX = random(0, 800);
+          }
+          startx = lerp(startx, randomX, 0.1);
+          starty = lerp(starty, 100, 0.1);
+          FireballRain.spawn();
+        }
       }
       if (On) {
         startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
