@@ -27,7 +27,7 @@ class Platform {
       player.moveRight = false;
       moveStage = true;
       player.posPlayer.y = -10;
-      player.posPlayer.x = 600;
+      player.posPlayer.x = width - width / 6;
     }
     if (moveStage) {
       levelMove++;
