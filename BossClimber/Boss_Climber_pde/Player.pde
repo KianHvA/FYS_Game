@@ -288,6 +288,7 @@ class Player {
       schild.schildLevens = 0;
       schild.hit = true;
       healthbar.shieldDamage = false;
+      schild.pickedUp = false;
     }
     if (sword.pickedUp && keysPressed['A']) {
       sword.attack();

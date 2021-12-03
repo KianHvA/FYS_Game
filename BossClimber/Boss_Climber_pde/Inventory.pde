@@ -11,6 +11,7 @@ class Inventory {
     waterflesI = loadImage("Waterfles.png");
     doubleJump = loadImage("Jump - Boost.png");
   }
+  
   void draw() {
     stroke(200);
     strokeWeight(4);
@@ -37,6 +38,9 @@ class Inventory {
       image(doubleJump, width-35, height-35, 40, 50);
       //rect(width-35, height-35, 50, 50);
       inventoryFull = true;
+      //schild.pickedUp = false;
+      //sword.pickedUp = false;
+      //waterfles.pickedUp = false;
     } else {
       inventoryFull = false;
     }
@@ -48,6 +52,9 @@ class Inventory {
       image(waterflesI, width-52, height-55, 35, 40);
       //rect(width-35, height-35, 10, 40);
       inventoryFull = true;
+      //schild.pickedUp = false;
+      //sword.pickedUp = false;
+      //Doublejump.pickedUp = false;
     } else {
       inventoryFull = false;
     }
@@ -60,6 +67,9 @@ class Inventory {
       //rect(width-breedte, height-(hoogte * 2.5), 30, 40);
       //rect(width-35, height-35, 30, 40);
       inventoryFull = true;
+      //sword.pickedUp = false;
+      //Doublejump.pickedUp = false;
+      //waterfles.pickedUp = false;
     } else {
       inventoryFull = false;
     }
@@ -70,6 +80,9 @@ class Inventory {
       fill(255, 0, 0);
       image(swordI, width-45, height-55, 15, 50);
       inventoryFull = true;
+      //schild.pickedUp = false;
+      //Doublejump.pickedUp = false;
+      //waterfles.pickedUp = false;
     } else {
       inventoryFull = false;
     }
