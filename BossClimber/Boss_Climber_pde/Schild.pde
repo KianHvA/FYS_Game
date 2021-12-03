@@ -88,7 +88,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset) {
+    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
       reset = true;

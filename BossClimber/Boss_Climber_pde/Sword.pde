@@ -48,7 +48,7 @@ class Sword {
       durabillity = durablillityFight;
     }
     
-    if(reset) {
+    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       reset = false;
     }
