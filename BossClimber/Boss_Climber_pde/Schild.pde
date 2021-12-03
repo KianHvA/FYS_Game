@@ -1,5 +1,5 @@
 class Schild {
-  PVector schildPos = new PVector(random(100, 700), random(0, 200));
+  PVector schildPos = spawnPointsPUPS.upperL;
   PVector schildSize = new PVector(35, 40);
   PVector timerSD;
   final float GRAVITYSchild;
@@ -14,6 +14,7 @@ class Schild {
   boolean pickedUp = false;
   boolean hit = false;
   float hitTimer = 0;
+  boolean reset = false;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -40,6 +41,7 @@ class Schild {
   void update() {
     if (waterfles.pickedUp || Doublejump.pickedUp) {
       pickedUp = false;
+      reset = true;
     }
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
@@ -64,39 +66,47 @@ class Schild {
       if (player.posPlayer.y < 0) {
         FlamethrowerJumping = false;
       }
-      println("done");
+    }
+
+    if (reset) {
+      reset(); 
+      reset = false;
     }
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
     //  FlamethrowerJumping = false;
     //}
     if (NewPos) {
-      schildPos.x = random(100, 700);
-      schildPos.y = random(0, 200);
+      schildPos = spawnPointsPUPS.location;
+      //schildPos.x = random(100, 700);
+      //schildPos.y = random(0, 200);
       NewPos = false;
     }
+
     if (schildActivated) {
       println("Active");
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0) {
+    if (schildLevens == 0 || reset) {
       health.invincibleB = false;
       reset();
+      reset = true;
+      println("done");
     }
   }
 
   void draw() {
     SchildEq();
-    schildPos.y += GRAVITYSchild;
+    //schildPos.y += GRAVITYSchild;
     fill(255, 0, 0);
-    image(inventory.shieldF,schildPos.x, schildPos.y, schildSize.x, schildSize.y);
+    image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
   }
 
   void reset() {
     NewPos = true;
-    image(inventory.shieldF,schildPos.x, schildPos.y, schildSize.x, schildSize.y);
+    image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildActivated = false;
     pickedUp = false;
   }

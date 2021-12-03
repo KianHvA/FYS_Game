@@ -1,5 +1,5 @@
 class Sword {
-  float swordX, swordY, swordW, swordH;
+  float swordX = spawnPointsPUPS.underL.x, swordY = spawnPointsPUPS.underL.y, swordW, swordH;
   float guardW, guardH;
   float durabillity = 3;
   float durablillityFight = 9;
@@ -12,10 +12,11 @@ class Sword {
   boolean hasCollision = false;
   float extendSword = 60;
   boolean attacked = false;
+  boolean reset = false;
 
   Sword() {
-    swordX = random(100, 400);
-    swordY = random(100, 300);
+    //swordX = random(100, 400);
+    //swordY = random(100, 300);
     swordW = 5;
     swordH = 60;
     durabillity = durabillityStart;
@@ -31,6 +32,7 @@ class Sword {
   void updateSword() {
     if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
       pickedUp = false;
+      reset = true;
     }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
       swordW = 0;
@@ -44,6 +46,11 @@ class Sword {
 
     if (pickedUp && dragon.fight) {
       durabillity = durablillityFight;
+    }
+    
+    if(reset) {
+      reset();
+      reset = false;
     }
   }
 
