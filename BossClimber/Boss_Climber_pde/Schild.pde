@@ -39,7 +39,7 @@ class Schild {
   }
 
   void update() {
-    if (waterfles.pickedUp || Doublejump.pickedUp) {
+    if (waterfles.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
     }
