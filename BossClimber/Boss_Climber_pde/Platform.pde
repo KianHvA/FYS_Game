@@ -14,7 +14,7 @@ class Platform {
   int j = 0;
   int ySpeed = 10;
   boolean moveStage = false;
-  int moveAmount = 1;
+  int moveAmount = 3;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
   float moveY = 0;
@@ -27,7 +27,7 @@ class Platform {
       player.moveRight = false;
       moveStage = true;
       player.posPlayer.y = -10;
-      player.posPlayer.x = 600;
+      player.posPlayer.x = width - width / 6;
     }
     if (moveStage) {
       levelMove++;

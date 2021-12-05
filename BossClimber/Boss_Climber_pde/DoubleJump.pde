@@ -2,12 +2,12 @@ class DoubleJump {
   PVector timerJB = new PVector(0, 0);
   boolean pickedUp = false;
   boolean hasCollision = false;
-  PVector Location = new PVector(200, 200);
+  PVector Location = spawnPointsPUPS.upperR;
   PVector sizePowerup = new PVector(40, 50);
   float GRAVITYJB = 0.98;
   float size = 50;
   float cooldown = 0;
-
+  boolean reset = false;
 
 
   void setup() {
@@ -18,7 +18,7 @@ class DoubleJump {
   void draw() {
     DoubleJumpEq();
     GRAVITYJB = 0.98; 
-    Location.y += GRAVITYJB;
+    //Location.y += GRAVITYJB;
     fill(255);
     image(inventory.doubleJump, Location.x, Location.y, sizePowerup.x, sizePowerup.y);
     //rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
@@ -33,6 +33,7 @@ class DoubleJump {
   void update() {
     if (waterfles.pickedUp || schild.pickedUp) {
       pickedUp = false;
+      reset = true;
     }
     collisionHandler.checkCollisionPlayer(Location.x, Location.y, size);
     {
@@ -40,6 +41,10 @@ class DoubleJump {
       if (hasCollision) {
         pickedUp = true;
       }
+    }
+    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+     reset();
+     reset = false;
     }
   }
 
@@ -67,7 +72,7 @@ class DoubleJump {
     }
   }
   void reset() {
-    Location = new PVector(200, 200);
-    rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
+    Location = spawnPointsPUPS.location;
+    draw();
   }
 }

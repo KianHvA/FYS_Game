@@ -25,6 +25,7 @@ Schild schild;
 UI UI;
 HealthBarDragon HealthbarDragon;
 HighScore Highscore;
+SpawnPointsPUPS spawnPointsPUPS;
 int cooldown = 100;
 int fireballCount = 600;
 int spawnCountDruppel = 500;
@@ -48,6 +49,8 @@ boolean powerUpActive = false;
 boolean damageDragon = false;
 boolean respawnWaterfles = false;
 boolean On = true;
+SQLConnection myConnection;
+Table databaseTable;
 
 void setup() 
 {
@@ -59,7 +62,9 @@ void setup()
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
   
-  SQLConnection myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  spawnPointsPUPS = new SpawnPointsPUPS();
+  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  databaseTable = myConnection.getTable("Highscore");
   menu = new Menu();
   level = new Level();
   player = new Player();
@@ -367,6 +372,7 @@ void update()
   //println(fireballCount);
 
   player.movementUpdate();
+  spawnPointsPUPS.update();
 }
 
 void draw()

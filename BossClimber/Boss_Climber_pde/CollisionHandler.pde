@@ -1,4 +1,4 @@
-/*
+/* //<>// //<>//
  Welkom bij de Collision Class, dit is hoe je hem gebruikt: 
  
  1. maak een collision boolean aan in de global variables:
@@ -25,6 +25,7 @@ class CollisionHandler
 
   float closestDistance;
   PVector closestHitPos;
+  PVector preplatformHitPos = new PVector(0,0);
   PVector platformHitPos;
   float platformHeight;
   PVector posBeforeCollision;

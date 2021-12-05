@@ -1,9 +1,9 @@
 class Player {
 
   //variables
-  PVector posPlayer = new PVector(width/2, height/2 - 10);
-  PVector sizePlayer = new PVector(20,20);//for collision 
-  PVector sizeSprite = new PVector(sizePlayer.x,sizePlayer.y * (3/2)*2);//for sprite
+  PVector posPlayer = new PVector(width/1.8, height/1.2);
+  PVector sizePlayer = new PVector(20, 20);//for collision 
+  PVector sizeSprite = new PVector(sizePlayer.x, sizePlayer.y * (3/2)*2);//for sprite
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.4f;
   float jumpForce = 10;
@@ -288,11 +288,12 @@ class Player {
       schild.schildLevens = 0;
       schild.hit = true;
       healthbar.shieldDamage = false;
+      schild.pickedUp = false;
     }
     if (sword.pickedUp && keysPressed['A']) {
       sword.attack();
     }
-    
+
     if (waterfles.pickedUp == true && keysPressed['S'] && cooldown == 0) {//Shooting druppel
       druppels.shootDruppel(posPlayer.x, posPlayer.y, 0, -4);
       waterfles.druppelOn = true;
@@ -306,7 +307,12 @@ class Player {
   void collideWithPlatform()
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight * 2);
+      if (dist(collisionHandler.preplatformHitPos.x, collisionHandler.preplatformHitPos.y, collisionHandler.platformHitPos.x, collisionHandler.platformHitPos.y) > 100) {
+        posPlayer.y = posPlayer.y - (collisionHandler.platformHeight + sizePlayer.y/2);
+      } else {
+        posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight + sizePlayer.y/2);
+      }
+      collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
       hasCollision = false;
       posPlayer.y = posPlayer.y + 1;

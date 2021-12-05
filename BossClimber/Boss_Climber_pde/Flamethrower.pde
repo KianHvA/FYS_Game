@@ -4,7 +4,7 @@ class Flamethrower {
   float x1 = width/6, x2 = width/6;
   float x3 = width/6 + width/2, x4 = width/6 + width/2;
   int i = 0;
-  PVector sizeVlam = new PVector(30, 80);
+  PVector sizeVlam = new PVector(60, 100);
   float timer1 = 0, timer2 = 0;
   int distance = 660, from = 150, minus = 7;
   int  distBetween = 200, idk = 0;
@@ -57,7 +57,7 @@ class Flamethrower {
         imageMode(CENTER);
         rectMode(CENTER);
         fill(#FA9108);
-        image(flamethrower, x1 + width/25, y1, sizeVlam.x, sizeVlam.y);
+        image(flamethrower, x1 + width/35, y1 - height/50, sizeVlam.x, sizeVlam.y);
         //rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y); //Making the Fire come out
         live = true; //Collision check activate
         timer2++;
