@@ -174,7 +174,7 @@ void update()
     fireballs[2].movementUpdate();
   }    
 
-  if (fireballs[0].posFireball.y >= height || fireballs[0].playerCollision) {//Fires = false, last statement = reset of fireballs
+  if (fireballs[0].posFireball.y >= height) {//Fires = false, last statement = reset of fireballs
     fire = false;
   }
   if (fireballs[0].playerCollision) {//Damage fireball && respawning fireball
@@ -184,7 +184,7 @@ void update()
     fireballs[0].respawn();
     fireballs[0].posFireball = fireballs[0].RposFireball;
   }  
-  if (fireballs[1].posFireball.y >= height || fireballs[1].playerCollision) {
+  if (fireballs[1].posFireball.y >= height) {
     fire2 = false;
   }
   if (fireballs[1].playerCollision) {//Damage fireball && respawning fireball
@@ -288,12 +288,6 @@ void update()
 
   if (fireballs[2].posFireball.y >= height || fireballs[0].posFireball.y >= height || fireballs[1].posFireball.y >= height) {
     fire3 = false;
-    //fireballs[0].posFireball.x = fireballs[0].RposFireball.x;
-    //fireballs[1].posFireball.x = fireballs[1].RposFireball.x;
-    //fireballs[2].posFireball.x = fireballs[2].RposFireball.x;
-    //fireballs[0].posFireball.y = fireballs[0].RposFireball.y;
-    //fireballs[1].posFireball.y = fireballs[1].RposFireball.y;
-    //fireballs[2].posFireball.y = fireballs[2].RposFireball.y;
     fireballCount = 600;
     fireballs[0].respawn();
     fireballs[0].posFireball = fireballs[0].RposFireball;
@@ -304,6 +298,7 @@ void update()
   }
 
   if (fireballs[3].posFireball.y >= height || fireballs[4].posFireball.y >= height || fireballs[5].posFireball.y >= height) {
+    fire6 = false;
     fireballCount = 600;
     fireballs[3].respawn();
     fireballs[3].posFireball = fireballs[3].RposFireball;
@@ -317,6 +312,7 @@ void update()
     fire = false;
     fire2 = false;
     fire3 = false;
+    fireballCount = 600;
   }
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
@@ -359,8 +355,6 @@ void update()
       waterfles.resetWaterfles();
     }
   }
-  
-  println(resetWaterflesCount);
 
   //println(spawnCountDruppel);
   //for (int i =0; i != fireballs.length; i++) { 
@@ -379,7 +373,7 @@ void draw()
 {
   background(0);
 
-  if (menu.start ==false) {
+  if (menu.start == false) {
     level.draw();
     menu.draw();
 
