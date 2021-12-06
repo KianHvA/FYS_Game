@@ -1,81 +1,101 @@
 class Flamethrower {
-  //PVector source = new PVector(platforms.x/random(1, 5), platforms.y + platforms.platformThickness/2);
-  //PVector[] spawn = new PVector[20];
-  float x1 = width/6, x2 = width/6;
-  float x3 = width/6 + width/2, x4 = width/6 + width/2;
-  int i = 0;
-  PVector sizeVlam = new PVector(60, 100);
+  final float X1 = width/6; //X coördinates left.
+  final float X2 = width/6 + 60;
+  final float X3 = width/6 + width/2; //X coördinates right.
+  final float X4 = width/6 + width/2 + 60;
+  final PVector SIZEFLAME = new PVector(60, 100);
   float timer1 = 0, timer2 = 0;
-  int distance = 660, from = 150, minus = 7;
-  int  distBetween = 200, idk = 0;
-  boolean live = false, hasCollision = false;
-  int newY = 660;
+  int distance = 660; //Size screen so that everything stands correctly.
+  int from = 150; //From y = 150 flamethrowers are drawn.
+  int minus = 7; //Size base flamethrower.
+  int  distBetween = 200; //Distance between bases of flamethrowers.
+  final int RIGHTSIDE = 80; //Offset voor de rechterkant.
+  boolean live = false; 
+  boolean hasCollision = false;
+  int newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
 
   void setup() {
-    flamethrower = loadImage("Flamethrower.png");
+    flamethrower = loadImage("Flamethrower.png"); //Loading of the picture.
     //links
     for (int y = distance; y > from; y = y - distBetween) {
-      int y1 = y + minus;
-      int y2 = y1 + minus;
+      int y1 = y + minus; //Y1 = upper side.
+      int y2 = y1 + minus; //Y2 = under side.
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the Flamethrower
+      quad(X1, y, X1, y1, X2+60, y2 + (platforms.platformThickness/4), X2+60, y1 + (platforms.platformThickness/4) - 10); //Bottom left.
     }
     //rechts 
-    //for (int y = 660; y>150; y = y+ 200) {
-    //  int y1= y + 7;
-    //  int y2 = y1 + 7;
-    //  noStroke();
-    //  fill(255);
-    //  quad(x3, y, x3, y1, x4+60, y2 + (platforms.platformThickness/4), x4+60, y1 + (platforms.platformThickness/4) - 10);
-    //}
+    for (int y = newY; y > from; y = y - distBetween) {
+      int y1 = y + minus; //Y1 = upper side.
+      int y2 = y1 + minus; //Y2 = under side.
+      noStroke();
+      fill(255);
+      quad(X3, y, X3, y1, X4 + 60, y2 + (platforms.platformThickness/4), X4 + 60, y1 + (platforms.platformThickness/4) - 10); //Bottom right.
+    }
   }
 
   void draw() {
     newY = distance + platforms.levelMove;
     //links
     for (int y = newY; y >from; y = y - distBetween) {
-      int y1 = y + minus;
-      int y2 = y1 + minus;
+      int y1 = y + minus; //Y1 = upper side.
+      int y2 = y1 + minus; //Y2 = under side.
       noStroke();
       fill(255);
-      quad(x1, y, x1, y1, x2+60, y2 + (platforms.platformThickness/4), x2+60, y1 + (platforms.platformThickness/4) - 10); //The bottom of the Flamethrower
+      quad(X1, y, X1, y1, X2, y2 + (platforms.platformThickness/4), X2, y1 + (platforms.platformThickness/4) - 10); //Bottom left.
     }
+    newY = distance - RIGHTSIDE + platforms.levelMove; //newY is now 80 less which makes it fit better on the right side.
+    //recths
+    for (int y = newY; y > from; y = y - distBetween) {
+      int y1 = y + minus; //Y1 = upper side.
+      int y2 = y1 + minus; //Y2 = under side.
+      noStroke();
+      fill(255);
+      quad(X3, y2  + (platforms.platformThickness/4), X3, y1  + (platforms.platformThickness/4) - 10, X4, y, X4, y1); //Bottom right.
+    }
+    newY = distance + platforms.levelMove; //Putting back newY so it works correctly in update().
   }
 
-  void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time
-    for (int y = newY; y>from; y = y- distBetween) {
-      int y1= y - 6;
+  void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time.
+    if (!dragon.fight) {//Not if bossfight is active.
+      for (int y = newY; y>from; y = y- distBetween) {
+        int y1= y - 6; //Y variable links. Picture only needs one Y value.
+        int y2 = y - 90; //Y variabel right. Picture only needs one Y value.
 
-      noStroke();
-      if (timer2 == 0) {
-        timer1++;
-        //println(timer1);
-      } 
-      if (timer1 > 900&&On) {
-        imageMode(CENTER);
-        rectMode(CENTER);
-        fill(#FA9108);
-        image(flamethrower, x1 + width/35, y1 - height/50, sizeVlam.x, sizeVlam.y);
-        //rect(x1 + width/25, y1, sizeVlam.x, sizeVlam.y); //Making the Fire come out
-        live = true; //Collision check activate
-        timer2++;
-        timer1 = 910;
-        //println(timer2);
-      } 
-      if (live) { //Checking the collision
-        collisionHandler.checkCollisionPlayer(x1, y1, sizeVlam.x);
-        hasCollision = collisionHandler.hitPlayer;
-      } else {
-        hasCollision = false;
+        noStroke();
+        if (timer2 == 0) {
+          timer1++;
+        } 
+        if (timer1 > 900) {
+          imageMode(CENTER);
+          rectMode(CENTER);
+          fill(#FA9108);
+          image(flamethrower, X1 + width/35, y1 - height/50, SIZEFLAME.x, SIZEFLAME.y);
+          image(flamethrower, X3 + width/35, y2 - height/50, SIZEFLAME.x, SIZEFLAME.y);
+          live = true; //Collision check activate
+          timer2++;
+          timer1 = 910;
+        } 
+        if (live) { //Checking the collision
+          collisionHandler.checkCollisionPlayer(X1, y1, SIZEFLAME.x);
+          hasCollision = collisionHandler.hitPlayer;
+        } else {
+          hasCollision = false;
+        }
+        if (live) { //Checking the collision
+          collisionHandler.checkCollisionPlayer(X3, y2, SIZEFLAME.x);
+          hasCollision = collisionHandler.hitPlayer;
+        } else {
+          hasCollision = false;
+        }
+        if (timer2 == 180) {
+          timer1 = 0;
+          timer2 = 0;
+          live = false; //Collision check de-activate
+        }
+        if (hasCollision) healthbar.doDamage(1); //damage
       }
-      if (timer2 == 180) {
-        timer1 = 0;
-        timer2 = 0;
-        live = false; //Collision check de-activate
-      }
-      if (hasCollision) idk++; //Uhm we don't talk about it (Otherwise it doesn't detect that hasCollision == true. I don't know why)
     }
   }
 }

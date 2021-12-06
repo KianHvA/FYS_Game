@@ -1,77 +1,68 @@
 class DoubleJump {
-  PVector timerJB = new PVector(0, 0);
+  PVector timerDJ = new PVector(0, 0); //Timer DoubleJump (DJ).
   boolean pickedUp = false;
   boolean hasCollision = false;
   PVector Location = spawnPointsPUPS.upperR;
-  PVector sizePowerup = new PVector(40, 50);
-  float GRAVITYJB = 0.98;
-  float size = 50;
-  float cooldown = 0;
+  final PVector SIZEPOWERUP = new PVector(40, 50);
+  final float SIZE = 50;
+  float cooldown = 0; //Timer
   boolean reset = false;
+  final float COOLDOWNAMOUNT1 = 300; //Max time cooldown.
+  final float COOLDOWNAMOUNT2 = 900; //Max time cooldown.
 
-
-  void setup() {
-  }
-  void item() {
-    draw();
-  }
   void draw() {
-    DoubleJumpEq();
-    GRAVITYJB = 0.98; 
-    //Location.y += GRAVITYJB;
+    DoubleJumpEq(); //Invoking the equip function.
     fill(255);
-    image(inventory.doubleJump, Location.x, Location.y, sizePowerup.x, sizePowerup.y);
-    //rect(Location.x, Location.y, sizePowerup.x, sizePowerup.y);
-
-    size = 50;
+    image(inventory.doubleJump, Location.x, Location.y, SIZEPOWERUP.x, SIZEPOWERUP.y); //Loading of the picture.
+    //Timer between jumps
     if(player.hasDoubleJumped == true) cooldown++;
-    if(cooldown == 300) {
+    if(cooldown == COOLDOWNAMOUNT1) {
      player.hasDoubleJumped = false;
      cooldown = 0;
     }
   }
+  
   void update() {
-    if (waterfles.pickedUp || schild.pickedUp) {
+    //Only one puwer-up at a time
+    if (waterfles.pickedUp || schild.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
     }
-    collisionHandler.checkCollisionPlayer(Location.x, Location.y, size);
+    //Invoking the collision function
+    collisionHandler.checkCollisionPlayer(Location.x, Location.y, SIZE);
     {
       hasCollision = collisionHandler.hitPlayer;
       if (hasCollision) {
         pickedUp = true;
       }
     }
+    //When DoubleJump gets taken out of the inventory it should reset when the inventory is empty
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
      reset();
      reset = false;
     }
   }
 
-
-
   void DoubleJumpEq() {
     if (pickedUp) {
-      Location = new PVector(width * 2, height * 2);
-      GRAVITYJB = 0;
-      timerJB.x++;
-      //println(timerJB.x);
+      Location = new PVector(width * 2, height * 2); //Putting the picture outside the screen
+      timerDJ.x++;
     }
-    if (timerJB.x == 900) {
-      //println("hoi");
-      timerJB.x = 0;
+    if (timerDJ.x == COOLDOWNAMOUNT2 * 3) {
+      timerDJ.x = 0;
       pickedUp = false;
     }
     if (!pickedUp) {
-      timerJB.y++;
-      //println(timerJB.y);
+      timerDJ.y++;
     }
-    if (timerJB.y == 900) {
+    if (timerDJ.y == COOLDOWNAMOUNT2 * 3) {
       reset();
-      timerJB.y = 0;
+      timerDJ.y = 0;
     }
   }
+
   void reset() {
+    //Location is randomized between on of the four points
     Location = spawnPointsPUPS.location;
     draw();
   }

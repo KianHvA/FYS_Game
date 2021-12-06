@@ -43,6 +43,7 @@ class Schild {
       pickedUp = false;
       reset = true;
     }
+    
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
@@ -54,6 +55,7 @@ class Schild {
       schildOn = false;
       schildActivated = true;
     }
+    
     if (schildActivated && flamethrower.hasCollision) {
       FlamethrowerJumping = true;
       LevelMoveAmountCurrent = platforms.moveAmount;
@@ -70,7 +72,7 @@ class Schild {
 
     if (reset) {
       reset(); 
-      reset = false;
+      reset = true;
     }
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
