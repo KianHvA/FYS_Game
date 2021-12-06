@@ -71,7 +71,7 @@ void setup()
   platforms = new Platform();
   collisionHandler = new CollisionHandler();
   health = new Health();
-  healthbar = new HealthBar(10, height - 20, 250, 10);
+  healthbar = new HealthBar(width/8, height - 20, 250, 10);
   Doublejump = new DoubleJump();
   fireballs = new Fireball[fireballAmount];
   flamethrower = new Flamethrower();
