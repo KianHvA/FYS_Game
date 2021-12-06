@@ -71,8 +71,8 @@ class Flamethrower {
           imageMode(CENTER);
           rectMode(CENTER);
           fill(#FA9108);
-          image(flamethrower, X1 + width/35, y1 - height/50, SIZEFLAME.x, SIZEFLAME.y);
-          image(flamethrower, X3 + width/35, y2 - height/50, SIZEFLAME.x, SIZEFLAME.y);
+          image(flamethrower, X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x, SIZEFLAME.y);
+          image(flamethrower, X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x, SIZEFLAME.y);
           live = true; //Collision check activate
           timer2++;
           timer1 = 910;

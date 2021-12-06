@@ -15,6 +15,7 @@ class Schild {
   boolean hit = false;
   float hitTimer = 0;
   boolean reset = false;
+  boolean livesSet = false;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -43,19 +44,25 @@ class Schild {
       pickedUp = false;
       reset = true;
     }
-    
+
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
+      livesSet = true;
       schildSize.x = 0;
       schildSize.y = 0;
+    }
+
+    if (livesSet) {
+      schildLevens = 3;
+      livesSet = false;
     }
 
     if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
       schildOn = false;
       schildActivated = true;
     }
-    
+
     if (schildActivated && flamethrower.hasCollision) {
       FlamethrowerJumping = true;
       LevelMoveAmountCurrent = platforms.moveAmount;
@@ -86,7 +93,6 @@ class Schild {
     }
 
     if (schildActivated) {
-      println("Active");
       health.invincibleB = true;
     }
 
@@ -108,6 +114,7 @@ class Schild {
 
   void reset() {
     NewPos = true;
+    schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildActivated = false;
     pickedUp = false;
