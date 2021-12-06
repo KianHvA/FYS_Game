@@ -148,7 +148,7 @@ class Health {
       halfX = xBegin;
       halfY = yBegin;
       //println("hoi"); Used for checks
-      rectMode(CENTER); 
+      //rectMode(CORNER); 
       fill(0);
       rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
       textFont(f, 36); //size of the texts
@@ -181,19 +181,22 @@ class HealthBar {
     } else shieldDamage = true;
   }
   void draw() {
-    healthPlayer = constrain(healthPlayer, 0, 100);
-    noFill();
-    stroke(255);
-    rect(x, y, w, h);
-
     colorMode(RGB, 150);
     float c = map(healthPlayer, 0, 100, 0, w);
     float d = map(healthPlayer, 0, 100/2, 0, 255);
     float f = map(healthPlayer, 0, 100, 255, 0);
     fill(f, d, 0);
     noStroke();
-    rect(x+1, y+1, c, h-1);
+    rectMode(CORNER);
+    rect(3, height-25, c, h+1);
     colorMode(RGB, 400);
+    
+    healthPlayer = constrain(healthPlayer, 0, 100);
+    noFill();
+    stroke(255);
+    rectMode(CENTER);
+    rect(x, y, w, h);
+
   }
 }
 
@@ -218,7 +221,7 @@ class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
     dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
     noFill();
     stroke(255);
-    rect(x, y, w, h);
+    rect(x+1, y-1, w, h);
 
     colorMode(RGB, 150);
     float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
