@@ -390,6 +390,14 @@ void draw()
     if (instruction.manual) {//Player reads instructions.
       instruction.updateInstructions();
       instruction.draw();
+      
+      if (keysPressed['S']){
+        instruction.powerExpl = true;
+      }
+      
+      if (instruction.powerExpl){
+        instruction.powerUpInstructions();
+      }
     }
   }
 
