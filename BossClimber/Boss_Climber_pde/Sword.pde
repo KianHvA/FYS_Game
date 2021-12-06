@@ -52,6 +52,19 @@ class Sword {
       reset();
       reset = false;
     }
+    
+    
+       if (attacked && swordOn) {
+        attack();
+        attacked = false;
+      
+      }
+      
+      if (keysPressed['S']) {
+         attacked = false;
+           println("Active");
+      }
+    
   }
 
   void draw() {
