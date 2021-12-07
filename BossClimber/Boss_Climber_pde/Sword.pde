@@ -1,3 +1,4 @@
+//Ömer
 class Sword {
   float swordX = spawnPointsPUPS.underL.x, swordY = spawnPointsPUPS.underL.y, swordW, swordH;
   float guardW, guardH;
@@ -10,7 +11,7 @@ class Sword {
   boolean spawnSword = false;
   boolean swordOff = false;
   boolean hasCollision = false;
-  float extendSword = 60;
+  float extendSword = 10;
   boolean attacked = false;
   boolean reset = false;
 
@@ -56,13 +57,13 @@ class Sword {
     
        if (attacked && swordOn) {
         attack();
-        attacked = false;
+        
       
       }
       
       if (keysPressed['S']) {
-         attacked = false;
-           println("Active");
+         attacked = true;
+         println("Active");
       }
     
   }
@@ -76,11 +77,13 @@ class Sword {
   }
   
   void attack() {
-    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y+extendSword, 5);
+    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision) {
-      HealthbarDragon.doDamageDragon(1);
+      HealthbarDragon.doDamageDragon(50);
+      println("Damage Dragon");
     }
+    attacked = false;
   }
   
   void reset() {

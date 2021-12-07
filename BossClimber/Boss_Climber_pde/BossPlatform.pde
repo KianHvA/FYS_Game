@@ -1,3 +1,4 @@
+//Tigo
 // Welkom in de bossplatform class in deze class word de boss room gemaakt.
 
 //int bpX, bpY, bpW, bpH;

@@ -1,3 +1,4 @@
+//Dion
 class Druppel{
   float xSpeedDruppel, ySpeedDruppel, druppelDia;
   PVector posPlayer = new PVector(player.posPlayer.x, player.posPlayer.y);
