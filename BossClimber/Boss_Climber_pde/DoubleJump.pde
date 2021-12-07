@@ -8,7 +8,7 @@ class DoubleJump {
   final float SIZE = 50;
   float cooldown = 0; //Timer
   boolean reset = false;
-  final float COOLDOWNAMOUNT1 = 300; //Max time cooldown.
+  final float COOLDOWNAMOUNT1 = 100; //Max time cooldown.
   final float COOLDOWNAMOUNT2 = 900; //Max time cooldown.
 
   void draw() {
