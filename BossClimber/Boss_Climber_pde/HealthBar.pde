@@ -1,3 +1,4 @@
+//Fee Fee
 class Health {  
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial.
   float invincible; //Using invincibility to make sure you cannot one shot yourself.
@@ -125,6 +126,7 @@ class Health {
   }
 }
 
+//Fee Fee
 class HealthBar {
   boolean shieldDamage; //If the shield is equiped it takes the damage.
   float x, y, w, h;

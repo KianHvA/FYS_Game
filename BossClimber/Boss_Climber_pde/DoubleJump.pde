@@ -1,3 +1,4 @@
+//Tristan
 class DoubleJump {
   PVector timerDJ = new PVector(0, 0); //Timer DoubleJump (DJ).
   boolean pickedUp = false;

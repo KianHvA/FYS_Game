@@ -1,3 +1,4 @@
+//Tigo
 //platforms hoger laten spawnen
 
 class Platform { 

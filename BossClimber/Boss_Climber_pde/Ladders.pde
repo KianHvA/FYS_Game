@@ -1,3 +1,4 @@
+//Tigo
 //zorgen dat er nieuwe ladders en ladder lijnen spawnen.
 
 void ladders() {

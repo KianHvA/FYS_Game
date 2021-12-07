@@ -1,3 +1,5 @@
+//Tristan
+//Dion: handleiding
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
   boolean start = false, drawn = false;

@@ -1,3 +1,4 @@
+//Tristan, Kian
 class Player {
 
   //variables

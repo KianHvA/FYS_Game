@@ -1,3 +1,6 @@
+//Tristan:  Inventory display
+//Fee Fee: Inventory full
+//Ömer: Zwaard inplementatie
 class Inventory {
   int breedte = width/13;
   int hoogte = height/12;

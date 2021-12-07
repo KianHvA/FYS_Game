@@ -1,3 +1,4 @@
+//Ömer, Tigo, Kian
 class Dragon {
   FireBallRain FireballRain;
   bossFight bossFight;
@@ -43,7 +44,7 @@ class Dragon {
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
     bossFight = new bossFight();
-    //HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
+    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
     this.startx = x;
     this.starty = y;
     this.diameter.x = diameter;
@@ -114,7 +115,7 @@ class Dragon {
       a = false;
     }
     if (fight) {
-      //HealthBarDragon.draw();
+      HealthbarDragon.draw();
     }
     if (damageDragon && fight) {
       //HealthbarDragon.doDamageDragon(20);

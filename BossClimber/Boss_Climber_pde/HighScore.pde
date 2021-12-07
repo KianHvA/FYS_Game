@@ -1,3 +1,4 @@
+//Tristan
 class HighScore {
   PImage backgroundDead;
   String end = "Game Over";
