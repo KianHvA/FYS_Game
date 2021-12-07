@@ -33,9 +33,9 @@ class Sword {
 
   void updateSword() {
     if(dragon.fight && !pickedUp && !fight) {
-      delay(30);
-      swordX = spawnPointsPUPS.location.x;
-      swordY = spawnPointsPUPS.location.y;
+      delay(40);
+      swordX = spawnPointsPUPS.fightL.x;
+      swordY = spawnPointsPUPS.fightL.y;
       fight = true;
     }
     
@@ -66,8 +66,6 @@ class Sword {
     
        if (attacked && swordOn) {
         attack();
-        
-      
       }
       
       if (keysPressed['S']) {

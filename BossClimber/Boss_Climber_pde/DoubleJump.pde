@@ -28,7 +28,7 @@ class DoubleJump {
     //If the bossfight starts the locations need to be re-randomized so you can reach everything
     if(dragon.fight && !pickedUp && !fight) {
       delay(30);
-      Location = spawnPointsPUPS.location;
+      Location = spawnPointsPUPS.fightU;
       fight = true;
     }
     //Only one power-up at a time
