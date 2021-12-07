@@ -18,6 +18,8 @@ class Schild {
   boolean reset = false;
   boolean livesSet = false;
   boolean fight = false;
+  boolean ResetReset = false;
+  boolean timedReset = false;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -25,40 +27,47 @@ class Schild {
   }
 
   void SchildEq() {
-    if (schildOn && !schildActivated) {
-      timerSD.x++;
-    }
-    if (timerSD.x == 900) {
-      timerSD.x = 0;
-      schildOn = false;
-    }
-    if (!schildOn && !schildActivated) {
-      timerSD.y++;
-    }
-    if (timerSD.y == 900) {
-      reset();
-      timerSD.y = 0;
-    }
+    //if (schildOn && !schildActivated) {
+    //  timerSD.x++;
+    //}
+    //if (timerSD.x == 900) {
+    //  timerSD.x = 0;
+    //  schildOn = false;
+    //}
+    //if (!schildOn && !schildActivated) {
+    //  timerSD.y++;
+    //}
+    //if (timerSD.y == 900) {
+    //  reset();
+    //  timerSD.y = 0;
+    //}
   }
 
   void update() {
     if(dragon.fight && !pickedUp && !fight) {
-      delay(30);
-      schildPos = spawnPointsPUPS.location;
+      delay(20);
+      schildPos = spawnPointsPUPS.fightR;
       fight = true;
     }
     
-    if (waterfles.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
+    if (waterfles.pickedUp && !ResetReset || Doublejump.pickedUp && !ResetReset || sword.pickedUp && !ResetReset) {
       pickedUp = false;
       reset = true;
+      ResetReset = true;
+      timedReset = true;
+    }
+    
+    if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
+      pickedUp = false;
+      ResetReset = false;
     }
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
       livesSet = true;
-      schildSize.x = 0;
-      schildSize.y = 0;
+      schildPos.x = width * 2;
+      schildPos.y = height * 2;
       fight = false;
     }
 
@@ -86,16 +95,16 @@ class Schild {
       }
     }
 
-    if (reset) {
-      reset(); 
-      reset = true;
-    }
+    //if (reset) {
+    //  reset(); 
+    //  reset = false;
+    //}
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
     //  FlamethrowerJumping = false;
     //}
     if (NewPos) {
-      schildPos = spawnPointsPUPS.location;
+      //schildPos = spawnPointsPUPS.location;
       //schildPos.x = random(100, 700);
       //schildPos.y = random(0, 200);
       NewPos = false;
@@ -105,10 +114,18 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !schild.pickedUp /* && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp */) {
       health.invincibleB = false;
       reset();
+      timedReset = false;
       reset = false;
+    }
+    if (timedReset) {
+     delay (300);
+     reset();
+     reset = false;
+     fight = false;
+     timedReset = false;
     }
   }
 
@@ -124,6 +141,7 @@ class Schild {
     NewPos = true;
     schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
+    schildPos = spawnPointsPUPS.location;
     schildActivated = false;
     pickedUp = false;
   }

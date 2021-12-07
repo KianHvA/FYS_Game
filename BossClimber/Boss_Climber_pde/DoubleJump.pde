@@ -11,6 +11,7 @@ class DoubleJump {
   final float COOLDOWNAMOUNT1 = 100; //Max time cooldown.
   final float COOLDOWNAMOUNT2 = 900; //Max time cooldown.
   boolean fight = false; //If the fight starts the location only needs to be randomized once.
+  boolean timedReset = false; //If it takes too long to use all the powerups the power ups reset after an certain amount (5 second right now) of time.
 
   void draw() {
     DoubleJumpEq(); //Invoking the equip function.
@@ -28,13 +29,14 @@ class DoubleJump {
     //If the bossfight starts the locations need to be re-randomized so you can reach everything
     if(dragon.fight && !pickedUp && !fight) {
       delay(30);
-      Location = spawnPointsPUPS.location;
+      Location = spawnPointsPUPS.fightU;
       fight = true;
     }
     //Only one power-up at a time
     if (waterfles.pickedUp || schild.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
+      timedReset = true;
     }
     //Invoking the collision function
     collisionHandler.checkCollisionPlayer(Location.x, Location.y, SIZE);
@@ -42,12 +44,16 @@ class DoubleJump {
       hasCollision = collisionHandler.hitPlayer;
       if (hasCollision) {
         pickedUp = true;
+        Location.x = width * 2;
+        Location.y = height * 2;
         fight = false;
       }
     }
     //When DoubleJump gets taken out of the inventory it should reset when the inventory is empty
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
      reset();
+     timedReset = false;
+     fight = false;
      reset = false;
     }
     
@@ -68,6 +74,13 @@ class DoubleJump {
     if (timerDJ.y == COOLDOWNAMOUNT2 * 3) {
       reset();
       timerDJ.y = 0;
+    }
+    if (timedReset) {
+     delay (300);
+     reset();
+     reset = false;
+     fight = false;
+     timedReset = false;
     }
   }
 

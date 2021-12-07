@@ -79,16 +79,17 @@ class Flamethrower {
           live2 = true; //Collision check activate
           timer2++;
           timer1 = 910;
-        } 
-        if (live) { //Checking the collision
-          collisionHandler.checkCollisionPlayer(X1, y1, SIZEFLAME.x);
+        }
+        
+        if (live) {
+          collisionHandler.checkCollisionPlayer(X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x);
+          if (collisionHandler.hitPlayer) {
+            hasCollision = collisionHandler.hitPlayer;
+          } else {
+            collisionHandler.checkCollisionPlayer(X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x);
+          }
           hasCollision = collisionHandler.hitPlayer;
-        } else if (live2) { //Checking the collision
-          collisionHandler.checkCollisionPlayer(X3, y2, SIZEFLAME.x);
-          hasCollision = collisionHandler.hitPlayer;
-        } else {
-          hasCollision = false;
-        } 
+        }
         if (timer2 == 180) {
           timer1 = 0;
           timer2 = 0;

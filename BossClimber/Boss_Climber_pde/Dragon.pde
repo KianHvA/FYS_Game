@@ -107,9 +107,9 @@ class Dragon {
       //  if (vliegen>=vliegPatroonBossFight2.length) {
       //    vliegen = 0;
       //  } else
-       else if (vliegen >= vliegPatroon.length) {
-          vliegen = 0;
-        }
+      else if (vliegen >= vliegPatroon.length) {
+        vliegen = 0;
+      }
 
       //zet a weer naar false;
       a = false;
@@ -146,20 +146,17 @@ class Dragon {
         if (mousePressed) {
           bossFightRoomFase2 = true;
         }
-
-
-        
       }
       // hier moet komen dat de boss boven in de bossroom vliegt en dat er veel waterflesjes spawnen
-        if (bossFightRoomFase2) {
-          if (d) {
-            d=false;
-            randomX = random(0, 800);
-          }
-          startx = lerp(startx, randomX, 0.1);
-          starty = lerp(starty, 100, 0.1);
-          FireballRain.spawn();
+      if (bossFightRoomFase2) {
+        if (d) {
+          d=false;
+          randomX = random(0, 800);
         }
+        startx = lerp(startx, randomX, 0.1);
+        starty = lerp(starty, 100, 0.1);
+        FireballRain.spawn();
+      }
       if (On) {
         startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
         starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
@@ -296,7 +293,7 @@ class bossFight {
 
 
   void End() {
-    if (dragon.dragonHealth < 0) {
+    if (dragon.dragonHealth == 0&&bossFightRoom) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
@@ -306,6 +303,10 @@ class bossFight {
       scoreHandler.score(250);
       dragon.dragonHealth *= dragon.fightAmount;
       dragon.healthbarPos = dragon.healthbarPosEnd;
+      bossFightRoom = false;
+      On=true;
+      platforms.moveAmount=platforms.moveAmount+1;
+      println("dead");
     }
   }
 }

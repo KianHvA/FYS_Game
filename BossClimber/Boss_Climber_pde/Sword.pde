@@ -15,6 +15,7 @@ class Sword {
   boolean attacked = false;
   boolean reset = false;
   boolean fight = false;
+  boolean timedReset = false;
 
   Sword() {
     //swordX = random(100, 400);
@@ -26,26 +27,27 @@ class Sword {
     guardW = 20;
     guardH = 5;
   }
-  
+
   void setup() {
-    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x,dragon.healthbarPos.y, 250 , 10);
+    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
 
   void updateSword() {
-    if(dragon.fight && !pickedUp && !fight) {
-      delay(30);
-      swordX = spawnPointsPUPS.location.x;
-      swordY = spawnPointsPUPS.location.y;
+    if (dragon.fight && !pickedUp && !fight) {
+      delay(40);
+      swordX = spawnPointsPUPS.fightL.x;
+      swordY = spawnPointsPUPS.fightL.y;
       fight = true;
     }
-    
+
     if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
       pickedUp = false;
       reset = true;
+      timedReset = true;
     }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
-      swordW = 0;
-      swordH = 0;
+      swordX = width * 2;
+      swordY = height * 2;
       pickedUp = true;
       fight = false;
     }
@@ -57,24 +59,29 @@ class Sword {
     if (pickedUp && dragon.fight) {
       durabillity = durablillityFight;
     }
-    
+
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
+      timedReset = false;
       reset = false;
     }
-    
-    
-       if (attacked && swordOn) {
-        attack();
-        
-      
-      }
-      
-      if (keysPressed['S']) {
-         attacked = true;
-         println("Active");
-      }
-    
+
+
+    if (attacked && swordOn) {
+      attack();
+    }
+
+    if (keysPressed['S'] && pickedUp) {
+      attacked = true;
+      println("Active");
+    }
+    if (timedReset) {
+     delay (300);
+     reset();
+     reset = false;
+     fight = false;
+     timedReset = false;
+    }
   }
 
   void draw() {
@@ -84,7 +91,7 @@ class Sword {
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);
   }
-  
+
   void attack() {
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
@@ -94,13 +101,11 @@ class Sword {
     }
     attacked = false;
   }
-  
+
   void reset() {
     NewPos = false;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;
-
   }
-  
 }
