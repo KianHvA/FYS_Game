@@ -1,7 +1,7 @@
 class Fireball {
 
   //variables
-  PVector posFireball = new PVector(0, 0);
+  PVector posFireball = new PVector(200, 0);
   PVector startFireball;
   PVector sizeFireball = new PVector(20, 20);
   PVector newPosFireball = new PVector(200, 50);
@@ -16,10 +16,10 @@ class Fireball {
   boolean left = false, right = true;
   float timerLeft1 = 0, timerLeft2 = 0, timerRight1 = 0, timerRight2 = 0;;
   
-  void fireball(float fireX, float fireY){
-    posFireball.x = fireX;
-    posFireball.y = fireY;
-  }
+  //void fireball(float fireX, float fireY){
+    //posFireball.x = fireX;
+    //posFireball.y = fireY;
+  //}
   
   void setup(){
     //left
@@ -145,8 +145,12 @@ class Fireball {
 
   void respawn() {
     //Fireball
-    posFireball.x = dragon.startx;
-    posFireball.y = dragon.starty;
+    
+    posFireball.x = 200;
+    posFireball.y = 0;
+    
+    //posFireball.x = dragon.startx;
+    //posFireball.y = dragon.starty;
     
     //println(dragon.startx);
     //println(dragon.starty);
