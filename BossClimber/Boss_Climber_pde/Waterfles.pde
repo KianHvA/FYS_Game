@@ -31,8 +31,8 @@ class Waterfles {
       reset = true;
     }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)) {//Collision player & waterfles
-      flesB = 0;
-      flesH = 0;
+      flesX = width * 2;
+      flesY = height * 2;
       pickedUp = true;
       scoreHandler.score((int)random(10, 30));
       fight = false;

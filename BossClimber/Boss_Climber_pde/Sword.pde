@@ -44,8 +44,8 @@ class Sword {
       reset = true;
     }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
-      swordW = 0;
-      swordH = 0;
+      swordX = width * 2;
+      swordY = height * 2;
       pickedUp = true;
       fight = false;
     }

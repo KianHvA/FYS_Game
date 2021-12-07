@@ -25,20 +25,20 @@ class Schild {
   }
 
   void SchildEq() {
-    if (schildOn && !schildActivated) {
-      timerSD.x++;
-    }
-    if (timerSD.x == 900) {
-      timerSD.x = 0;
-      schildOn = false;
-    }
-    if (!schildOn && !schildActivated) {
-      timerSD.y++;
-    }
-    if (timerSD.y == 900) {
-      reset();
-      timerSD.y = 0;
-    }
+    //if (schildOn && !schildActivated) {
+    //  timerSD.x++;
+    //}
+    //if (timerSD.x == 900) {
+    //  timerSD.x = 0;
+    //  schildOn = false;
+    //}
+    //if (!schildOn && !schildActivated) {
+    //  timerSD.y++;
+    //}
+    //if (timerSD.y == 900) {
+    //  reset();
+    //  timerSD.y = 0;
+    //}
   }
 
   void update() {
@@ -57,8 +57,8 @@ class Schild {
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
       livesSet = true;
-      schildSize.x = 0;
-      schildSize.y = 0;
+      schildPos.x = width * 2;
+      schildPos.y = height * 2;
       fight = false;
     }
 
@@ -88,14 +88,14 @@ class Schild {
 
     if (reset) {
       reset(); 
-      reset = true;
+      reset = false;
     }
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
     //  FlamethrowerJumping = false;
     //}
     if (NewPos) {
-      schildPos = spawnPointsPUPS.location;
+      //schildPos = spawnPointsPUPS.location;
       //schildPos.x = random(100, 700);
       //schildPos.y = random(0, 200);
       NewPos = false;
@@ -124,6 +124,7 @@ class Schild {
     NewPos = true;
     schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
+    schildPos = spawnPointsPUPS.location;
     schildActivated = false;
     pickedUp = false;
   }

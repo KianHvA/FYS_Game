@@ -42,6 +42,8 @@ class DoubleJump {
       hasCollision = collisionHandler.hitPlayer;
       if (hasCollision) {
         pickedUp = true;
+        Location.x = width * 2;
+        Location.y = height * 2;
         fight = false;
       }
     }
