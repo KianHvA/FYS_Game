@@ -353,6 +353,7 @@ void update()
 void restartGame(){
   scoreHandler.score = 0;
   Highscore.j = 0;
+  platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
   menu.kleur = 255;
