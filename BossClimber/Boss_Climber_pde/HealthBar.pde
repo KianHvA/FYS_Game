@@ -113,6 +113,7 @@ class Health {
     if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600 || amount0) { //Player is out of lives or walked out of the screen to die.
       halfX = xBegin;
       halfY = yBegin;
+
       //println("hoi"); Used for checks
       //rectMode(CORNER); 
       fill(0);
@@ -158,7 +159,7 @@ class HealthBar {
     //Healthbar being drawn.
     noFill();
     stroke(255);
-    rect(x, y, w, h);
+    //rect(x, y, w, h);
     colorMode(RGB, 150);
     float c = map(healthPlayer, 0, 100, 0, w);
     float d = map(healthPlayer, 0, 100/2, 0, 255);
@@ -168,13 +169,12 @@ class HealthBar {
     rectMode(CORNER);
     rect(3, height-25, c, h+1);
     colorMode(RGB, 400);
-    
+
     healthPlayer = constrain(healthPlayer, 0, 100);
     noFill();
     stroke(255);
     rectMode(CENTER);
     rect(x, y, w, h);
-
   }
 }
 
@@ -196,19 +196,21 @@ class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
     }
   }
   void draw() {
-    dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
-    noFill();
-    stroke(255);
-    rect(x+1, y-1, w, h);
-
     colorMode(RGB, 150);
     float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
     float d = map(dragon.dragonHealth, 0, dragon.dragonHealth/2, 0, 255);
     float f = map(dragon.dragonHealth, 0, dragon.dragonHealth, 255, 0);
     fill(f, d, 0);
     noStroke();
-    rect(x+1, y+1, c, h-1);
+    rectMode(CENTER);
+    rect(width/2, 10, c, h-1);
     colorMode(RGB, 400);
     if (dragon.dragonHealth == 0) dragon.dragonHealth = 0;
+
+    dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
+    noFill();
+    stroke(255);
+    rectMode(CENTER);
+    rect(width/2, 10, w, h);
   }
 }
