@@ -10,7 +10,7 @@ class Menu {
   color highlight = #EFF03F;
   color rect1 = 0;
   color rect2 = 0;
-  float Check = 0, Time = 0;
+  float Check = 0, Time = 0, kleur = 255;
   boolean personalize = false;
   PVector size = new PVector(275, 150);
   float timer2 = 0;
@@ -49,7 +49,7 @@ class Menu {
     rectMode(CORNER);
     //colorMode(rect1);
     //menu.highlight();
-    fill(255);
+    fill(kleur);
     textSize(72);
     textAlign(CORNER, CORNER);
     text("BOSS CLIMBER", placement1.x - 133, 200); 
@@ -58,7 +58,7 @@ class Menu {
     rect(menu.placement1.x + 150, menu.placement1.y, menu.size.x, menu.size.y);
     rectMode(CENTER);
     textFont(f, 50); //size of the texts
-    fill(255); //color
+    fill(kleur); //color
     text("Press A", placement1.x - 125, placement1.y + 65);
     text("to start", placement1.x -115, placement1.y + 115);
     text("Press D for", placement1.x + 160, placement1.y + 65);

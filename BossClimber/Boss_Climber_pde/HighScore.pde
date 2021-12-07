@@ -26,7 +26,9 @@ class HighScore {
   boolean keyDown = false; //To check if arrow Down is pressed.
   boolean select = false; //To check if the player selects that letter.
   String finalName = "12345"; //The final name when the player is done
+  boolean ending = false;
   boolean exitgame = false;
+
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -122,6 +124,45 @@ class HighScore {
             timerB++;
           }
 
+        if (timerB > 10) {
+          flash[j] = color(#FFFFFF, 1000);
+          timerA = 0;
+          timerB = 0;
+        }
+        //If the up arrow is pressed the letter goes up.
+        if (keysPressed[UP] && !keyUp && !select) {
+          keyUp = true;
+        }
+        if (keyUp) {
+          k++;
+          delay(90);
+          keyUp = false;
+        }
+        //If the down arrow is pressed the letter goes down.
+        if (keysPressed[DOWN] && !keyDown && !select) {
+          keyDown = true;
+        }
+        if (keyDown) {
+          k--;
+          delay(90);
+          keyDown = false;
+        }
+        //If the a button is pressed the letter gets set.
+        if (keysPressed['A'] && !keyDown && !keyUp && !select) {
+          select = true;
+        }
+        if (select) {
+          j++;
+          delay(160);
+          select = false;
+        }
+        //If the letter is at max the final name gets made.
+        if (j >= 5) {
+          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+          delay(100);
+          //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
+          ending = true;//Ending screen!
+          //exit();
           if (timerB > 10) {
             flash[j] = color(#FFFFFF, 1000);
             timerA = 0;

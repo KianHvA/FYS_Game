@@ -18,7 +18,7 @@
 float xxpos = 1;
 boolean bossFightRoom = false;
 void Bossplatform() {
-  
+
   dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
   fill(147, 147, 147);
@@ -28,21 +28,23 @@ void Bossplatform() {
   xxpos = xxpos + 10;
   muur();
   bossFightRoom = true;
-  On=false;
+  if (bossFightRoom) {
+    On=false;
+  }
 
   //for collision
   //change vertexes in both arrays to match the bossplatform
   for (int i = 0; i < platforms.vertexesL.length; i += 5) {
     platforms.vertexesL[i] = new PVector(0, height-20);
     platforms.vertexesL[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesL[i+2] = new PVector(0,  height);
+    platforms.vertexesL[i+2] = new PVector(0, height);
     platforms.vertexesL[i+3] = new PVector(xxpos, height);
     platforms.vertexesL[i+4] = new PVector(0, height-20);
   }
   for (int i = 0; i < platforms.vertexesR.length; i += 5) {
     platforms.vertexesR[i] = new PVector(0, height-20);
     platforms.vertexesR[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesR[i+2] = new PVector(0,  height);
+    platforms.vertexesR[i+2] = new PVector(0, height);
     platforms.vertexesR[i+3] = new PVector(xxpos, height);
     platforms.vertexesR[i+4] = new PVector(0, height-20);
   }

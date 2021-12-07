@@ -35,6 +35,8 @@ final int maxToetsen = 1024; //kan niet worden aangepast.
 float halfX = width/2;
 float halfY = height/2;
 float xDragon = 152, yDragon = 10, sizeDragon = 100;
+float textX = width/2;
+float textY = height/2;
 int fireballAmount = 6;
 boolean fire = false;
 boolean fire2 = false;
@@ -348,11 +350,26 @@ void update()
   spawnPointsPUPS.update();
 }
 
+void restartGame(){
+  scoreHandler.score = 0;
+  Highscore.j = 0;
+  player.posPlayer.x = width/1.8;
+  player.posPlayer.y = height/1.2;
+  menu.kleur = 255;
+  instruction.manual = false;
+  instruction.powerExpl = false;
+}
+
 void draw()
 {
   background(0);
+  
+  textSize(40);
+  text("Press Z to go to the title screen", width/2, height/2);
 
+ if (Highscore.ending == false){
   if (menu.start == false) {
+    background(0);
     level.draw();
     menu.draw();
 
@@ -375,9 +392,11 @@ void draw()
   }
 
   if (menu.start == true) {
+    background(0);
     update();
-
+dragon.bossFight.End();
     level.draw();
+    muur();
     
     instruction.sign();
 
@@ -432,6 +451,15 @@ void draw()
     //game overscherm
     //healthbar.draw();
     //health.draw();
+  }
+ }
+  
+  if (Highscore.ending == true && keysPressed['Z']){
+    health.dead = false;
+    Highscore.drawn = false;
+    Highscore.ending = false;
+    menu.start = false;
+    restartGame();
   }
 }
 
