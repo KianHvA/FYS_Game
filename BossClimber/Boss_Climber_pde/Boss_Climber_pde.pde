@@ -376,8 +376,9 @@ void draw()
 
   if (menu.start == true) {
     update();
-
+dragon.bossFight.End();
     level.draw();
+    muur();
     
     instruction.sign();
 
