@@ -159,13 +159,13 @@ void update()
     fireballCount--;
   }
 
-  if (fireballCount == 400) {//Counter fireballs
+  if (fireballCount == 1000) {//Counter fireballs
     fire = true;
   }
-  if (fireballCount == 200) {
+  if (fireballCount == 800) {
     fire2 = true;
   }
-  if (fireballCount == 0) {
+  if (fireballCount == 600) {
     fire3 = true;
   }
 
@@ -203,13 +203,13 @@ void update()
   }
   
   if (scoreHandler.score >= 50000){//Score >= 50000 ---> spawning more fireballs!
-    if (fireballCount == 1000) {//Counter fireballs
+    if (fireballCount == 400) {//Counter fireballs
       fire4 = true;
     }
-    if (fireballCount == 800) {
+    if (fireballCount == 200) {
       fire5 = true;
     }
-    if (fireballCount == 600) {
+    if (fireballCount == 0) {
       fire6 = true;
     }
   
