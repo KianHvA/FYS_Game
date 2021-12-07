@@ -201,23 +201,11 @@ class HighScore {
               delay(100);
               String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "')";
               myConnection.updateQuery(qwery);
-              exitGame();
             }
           }
         }
       }
     }
-  }
-  void exitGame() {
-    exitgame = true;
-    rectMode(CORNER);
-    fill(255, 255, 0);
-    rect(0, 0, width, height);
-    if (keysPressed['Z']) {
-      exitgame = false;
-      setup();
-    }
-    exitGame();
   }
 
   void draw() {
