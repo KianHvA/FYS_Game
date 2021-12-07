@@ -1,5 +1,5 @@
+//Kian
 //gebruik scoreHandler.score(<Voer Hier Score In Voor Actie>); om jouw actie aan de score counter toe te voegen
-
 class ScoreHandler {
   int finalScore;
   int score;

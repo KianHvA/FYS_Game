@@ -1,3 +1,4 @@
+//Ömer, Tristan
 class Schild {
   PVector schildPos = spawnPointsPUPS.upperL;
   PVector schildSize = new PVector(35, 40);

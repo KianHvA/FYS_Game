@@ -22,7 +22,6 @@ ScoreHandler scoreHandler;
 Inventory inventory;
 Instructions instruction;
 Schild schild;
-UI UI;
 HealthBarDragon HealthbarDragon;
 HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
@@ -80,7 +79,6 @@ void setup()
   inventory = new Inventory();
   instruction = new Instructions();
   schild = new Schild();
-  UI = new UI();
   Highscore = new HighScore();
   level.setup();
   scoreHandler.setup();
@@ -421,7 +419,6 @@ void draw()
     }
 
     //teken alle UI hier zodat het op de voorgrond komt
-    UI.draw();
     scoreHandler.draw();
     inventory.draw();
     Highscore.draw();

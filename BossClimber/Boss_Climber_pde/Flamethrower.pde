@@ -1,3 +1,4 @@
+//Tristan
 class Flamethrower {
   final float X1 = width/6; //X coördinates left.
   final float X2 = width/6 + 60;

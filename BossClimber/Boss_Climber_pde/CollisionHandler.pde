@@ -1,4 +1,4 @@
-/* //<>// //<>//
+/*Kian //<>//
  Welkom bij de Collision Class, dit is hoe je hem gebruikt: 
  
  1. maak een collision boolean aan in de global variables:
