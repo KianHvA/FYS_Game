@@ -350,7 +350,7 @@ void update()
   spawnPointsPUPS.update();
 }
 
-void restartGame(){
+void restartGame(){//Resets the whole game
   scoreHandler.score = 0;
   Highscore.j = 0;
   platforms.moveAmount = 1;
