@@ -286,6 +286,9 @@ void update()
     fire = false;
     fire2 = false;
     fire3 = false;
+    fire4 = false;
+    fire5 = false;
+    fire6 = false;
     fireballCount = 1200;
   }
   
