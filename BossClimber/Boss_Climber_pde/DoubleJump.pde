@@ -50,12 +50,19 @@ class DoubleJump {
       }
     }
     //When DoubleJump gets taken out of the inventory it should reset when the inventory is empty
-    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset && !schild.pickedUp && pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
      reset();
      timedReset = false;
      fight = false;
      reset = false;
     }
+    //if (timedReset) {
+    // delay (5000);
+    // reset();
+    // reset = false;
+    // fight = false;
+    // timedReset = false;
+    //}
     
   }
 
@@ -75,16 +82,10 @@ class DoubleJump {
       reset();
       timerDJ.y = 0;
     }
-    if (timedReset) {
-     delay (300);
-     reset();
-     reset = false;
-     fight = false;
-     timedReset = false;
-    }
   }
 
   void reset() {
+    pickedUp = false;
     //Location is randomized between on of the four points
     Location = spawnPointsPUPS.location;
     draw();

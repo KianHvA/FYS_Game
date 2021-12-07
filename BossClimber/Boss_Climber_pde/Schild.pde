@@ -45,7 +45,6 @@ class Schild {
 
   void update() {
     if(dragon.fight && !pickedUp && !fight) {
-      delay(20);
       schildPos = spawnPointsPUPS.fightR;
       fight = true;
     }
@@ -53,8 +52,8 @@ class Schild {
     if (waterfles.pickedUp && !ResetReset || Doublejump.pickedUp && !ResetReset || sword.pickedUp && !ResetReset) {
       pickedUp = false;
       reset = true;
-      ResetReset = true;
       timedReset = true;
+      ResetReset = true;
     }
     
     if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
@@ -114,19 +113,19 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp /* && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp */) {
+    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
       timedReset = false;
       reset = false;
     }
-    if (timedReset) {
-     delay (300);
-     reset();
-     reset = false;
-     fight = false;
-     timedReset = false;
-    }
+    //if (timedReset) {
+    // delay (5000);
+    // reset();
+    // reset = false;
+    // fight = false;
+    // timedReset = false;
+    //}
   }
 
   void draw() {

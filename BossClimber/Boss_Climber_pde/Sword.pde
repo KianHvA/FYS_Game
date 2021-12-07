@@ -34,7 +34,6 @@ class Sword {
 
   void updateSword() {
     if (dragon.fight && !pickedUp && !fight) {
-      delay(40);
       swordX = spawnPointsPUPS.fightL.x;
       swordY = spawnPointsPUPS.fightL.y;
       fight = true;
@@ -75,13 +74,13 @@ class Sword {
       attacked = true;
       println("Active");
     }
-    if (timedReset) {
-     delay (300);
-     reset();
-     reset = false;
-     fight = false;
-     timedReset = false;
-    }
+    //if (timedReset) {
+    // delay (5000);
+    // reset();
+    // reset = false;
+    // fight = false;
+    // timedReset = false;
+    //}
   }
 
   void draw() {

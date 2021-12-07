@@ -20,13 +20,12 @@ class Waterfles {
   }
 
   void updateWaterfles() {
-    if(dragon.fight && !pickedUp && !fight) {
-      delay(50);
+    if (dragon.fight && !pickedUp && !fight) {
       flesX = spawnPointsPUPS.fightM.x;
       flesY = spawnPointsPUPS.fightM.y;
       fight = true;
     }
-    
+
     if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
@@ -40,21 +39,22 @@ class Waterfles {
       fight = false;
     }
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
-     resetWaterfles();
-     fight = false;
-     timedReset = false;
-     reset = false;
+      resetWaterfles();
+      fight = false;
+      timedReset = false;
+      reset = false;
     }
-    if (timedReset) {
-     delay (300);
-     resetWaterfles();
-     reset = false;
-     fight = false;
-     timedReset = false;
-    }
+    //if (timedReset) {
+    //  delay (5000);
+    //  resetWaterfles();
+    //  reset = false;
+    //  fight = false;
+    //  timedReset = false;
+    //}
   }
 
   void resetWaterfles() {//Reset nieuwe waterfles
+    pickedUp = false;
     flesX = spawnPointsPUPS.location.x;
     flesY = spawnPointsPUPS.location.y;
     flesB = 20;
