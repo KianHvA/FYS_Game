@@ -80,7 +80,7 @@ class Sword {
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision) {
-      HealthbarDragon.doDamageDragon(50);
+      HealthbarDragon.doDamageDragon(1);
       println("Damage Dragon");
     }
     attacked = false;

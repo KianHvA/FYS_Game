@@ -18,8 +18,8 @@ class Dragon {
   final int c = 350;
   boolean d;
   //float randomX ;
-  float dragonHealth = 150;
-  float dragonHealthS = 150;
+  float dragonHealth = 3;
+  float dragonHealthS = 3;
   boolean fight = false;
   float fightAmount = 1;
   boolean fireBallRain = false;
@@ -241,8 +241,8 @@ class bossFight {
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);
       dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
-      startx = lerp(startx, vliegPatroon[0].x, 0.01);
-      starty = lerp(starty, vliegPatroon[0].y, 0.01);
+      //startx = lerp(startx, vliegPatroon[0].x, 0.01);
+      //starty = lerp(starty, vliegPatroon[0].y, 0.01);
       //if (!dragon.waterFles) {
       //waterfles.flesX = player.posPlayer.x;
       // waterfles.flesY = player.posPlayer.y - 20;
@@ -261,21 +261,21 @@ class bossFight {
 
 
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
-      startx = lerp(startx, startVliegPatroon.x, 0.01);
-      starty = lerp(starty, startVliegPatroon.y, 0.01);
+      //startx = lerp(startx, startVliegPatroon.x, 0.01);
+      //starty = lerp(starty, startVliegPatroon.y, 0.01);
       fase2 = true;
       fase1 = false;
     }
     if (fase2 && startx == 400 && starty < -100) {
-      startx = lerp(startx, vliegPatroonF1.x, 0.01);
-      starty = lerp(starty, vliegPatroonF1.y, 0.01);
+      //startx = lerp(startx, vliegPatroonF1.x, 0.01);
+      //starty = lerp(starty, vliegPatroonF1.y, 0.01);
     } else if (fase2 && startx == 400 && starty > -50) {
-      startx = lerp(startx, vliegPatroonF2.x, 0.01);
-      starty = lerp(starty, vliegPatroonF2.y, 0.01);
+      //startx = lerp(startx, vliegPatroonF2.x, 0.01);
+      //starty = lerp(starty, vliegPatroonF2.y, 0.01);
     } else if (fase2 && startx == 400 && starty < -60) {
       sizeShrink = true;
-      startx = lerp(startx, vliegPatroonF3.x, 0.01);
-      starty = lerp(starty, vliegPatroonF3.y, 0.01);
+      //startx = lerp(startx, vliegPatroonF3.x, 0.01);
+      //starty = lerp(starty, vliegPatroonF3.y, 0.01);
     }
     if (sizeShrink) {
       constrain((int) sizeDragon, 1, 46);
@@ -284,8 +284,8 @@ class bossFight {
     }
 
     if (dragon.dragonHealth < 75 * dragon.fightAmount) {
-      startx = lerp(startx, fireBallVliegPatroon[0].x, 0.01);
-      starty = lerp(starty, fireBallVliegPatroon[0].y, 0.01);
+      //startx = lerp(startx, fireBallVliegPatroon[0].x, 0.01);
+      //starty = lerp(starty, fireBallVliegPatroon[0].y, 0.01);
       timer++;
     }
     if (timer == 60 * timerAmount) {
