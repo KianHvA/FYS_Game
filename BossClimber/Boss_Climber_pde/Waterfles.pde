@@ -20,9 +20,9 @@ class Waterfles {
 
   void updateWaterfles() {
     if(dragon.fight && !pickedUp && !fight) {
-      delay(30);
-      flesX = spawnPointsPUPS.location.x;
-      flesY = spawnPointsPUPS.location.y;
+      delay(50);
+      flesX = spawnPointsPUPS.fightM.x;
+      flesY = spawnPointsPUPS.fightM.y;
       fight = true;
     }
     

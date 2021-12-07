@@ -43,8 +43,8 @@ class Schild {
 
   void update() {
     if(dragon.fight && !pickedUp && !fight) {
-      delay(30);
-      schildPos = spawnPointsPUPS.location;
+      delay(20);
+      schildPos = spawnPointsPUPS.fightR;
       fight = true;
     }
     
