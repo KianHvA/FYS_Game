@@ -141,6 +141,7 @@ class Instructions {
     text("Gives you an extra jump.", text.x + 620, text.y + 100);
     //text("This power-up only appears during the boss battle.", text.x + 500, text.y + 120);
     text("Protects you from fireballs and flamethrowers.", text.x - 30, text.y + 300);
+    text("Defeat the dragon with this power-up.", text.x + 550, text.y + 360);
   }
 
   void draw() {
