@@ -18,6 +18,8 @@ class Schild {
   boolean reset = false;
   boolean livesSet = false;
   boolean fight = false;
+  boolean ResetReset = false;
+  boolean timedReset = false;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -48,9 +50,16 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
+    if (waterfles.pickedUp && !ResetReset || Doublejump.pickedUp && !ResetReset || sword.pickedUp && !ResetReset) {
       pickedUp = false;
       reset = true;
+      ResetReset = true;
+      timedReset = true;
+    }
+    
+    if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
+      pickedUp = false;
+      ResetReset = false;
     }
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
@@ -86,10 +95,10 @@ class Schild {
       }
     }
 
-    if (reset) {
-      reset(); 
-      reset = false;
-    }
+    //if (reset) {
+    //  reset(); 
+    //  reset = false;
+    //}
 
     //if (platforms.moveAmount == LevelMoveAmountNext) {
     //  FlamethrowerJumping = false;
@@ -105,10 +114,18 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !schild.pickedUp /* && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp */) {
       health.invincibleB = false;
       reset();
+      timedReset = false;
       reset = false;
+    }
+    if (timedReset) {
+     delay (300);
+     reset();
+     reset = false;
+     fight = false;
+     timedReset = false;
     }
   }
 

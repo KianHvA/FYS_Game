@@ -8,6 +8,7 @@ class Waterfles {
   boolean catchWaterfles = true;
   boolean reset = false;
   boolean fight = false;
+  boolean timedReset = false;
 
   Waterfles() {
     //flesX = random(200, 600);
@@ -29,6 +30,7 @@ class Waterfles {
     if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
+      timedReset = true;
     }
     if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)) {//Collision player & waterfles
       flesX = width * 2;
@@ -39,8 +41,16 @@ class Waterfles {
     }
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
      resetWaterfles();
+     fight = false;
+     timedReset = false;
+     reset = false;
+    }
+    if (timedReset) {
+     delay (300);
+     resetWaterfles();
      reset = false;
      fight = false;
+     timedReset = false;
     }
   }
 
