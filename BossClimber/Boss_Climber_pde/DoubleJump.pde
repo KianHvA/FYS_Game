@@ -8,7 +8,7 @@ class DoubleJump {
   final float SIZE = 50;
   float cooldown = 0; //Timer
   boolean reset = false;
-  final float COOLDOWNAMOUNT1 = 300; //Max time cooldown.
+  final float COOLDOWNAMOUNT1 = 100; //Max time cooldown.
   final float COOLDOWNAMOUNT2 = 900; //Max time cooldown.
 
   void draw() {
@@ -24,6 +24,11 @@ class DoubleJump {
   }
   
   void update() {
+    //If the bossfight starts the locations need to be re-randomized so you can reach everything
+    if(dragon.fight && !pickedUp) {
+      delay(30);
+      Location = spawnPointsPUPS.location;
+    }
     //Only one puwer-up at a time
     if (waterfles.pickedUp || schild.pickedUp || sword.pickedUp) {
       pickedUp = false;

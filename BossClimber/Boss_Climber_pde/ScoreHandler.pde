@@ -12,8 +12,8 @@ class ScoreHandler {
   void draw() {    
     textMode(CORNER);
     fill(255);
-      //text("Score: " + score, 35, textSize);
-      text("Score: " + score, 45, 15);
+    textSize(textSize);
+    text("Score: " + score, width /12, 15);
     if (health.dead) {
       finalScore = score;
     }

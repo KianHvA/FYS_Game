@@ -11,13 +11,19 @@ class Waterfles {
   Waterfles() {
     //flesX = random(200, 600);
     //flesY = random(0, 600);
-    flesB = 20;
-    flesH = 20;
+    //flesB = 20;
+    //flesH = 20;
     //resetFlesX = random(200, 600);
     //resetFlesY = random(200, 600);
   }
 
   void updateWaterfles() {
+    if(dragon.fight && !pickedUp) {
+      delay(30);
+      flesX = spawnPointsPUPS.location.x;
+      flesY = spawnPointsPUPS.location.y;
+    }
+    
     if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
