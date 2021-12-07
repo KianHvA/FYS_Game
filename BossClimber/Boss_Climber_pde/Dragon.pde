@@ -17,7 +17,7 @@ class Dragon {
   final int b = 300;
   final int c = 350;
   boolean d;
-  //float randomX ;
+  float randomX = width/2;
   float dragonHealth = 3;
   float dragonHealthS = 3;
   boolean fight = false;
@@ -138,7 +138,7 @@ class Dragon {
       //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
       //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
       //if(!FireballRain.fireBallRain) {
-      if (bossFightRoom&&!bossFightRoomFase2) { 
+      if (bossFightRoom && !bossFightRoomFase2) { 
         startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.1);
         starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
 
@@ -148,9 +148,10 @@ class Dragon {
         }
 
 
-        // hier moet komen dat de boss boven in de bossroom vliegt en dat er veel waterflesjes spawnen
+        
+      }
+      // hier moet komen dat de boss boven in de bossroom vliegt en dat er veel waterflesjes spawnen
         if (bossFightRoomFase2) {
-          float randomX = width/2;
           if (d) {
             d=false;
             randomX = random(0, 800);
@@ -159,7 +160,6 @@ class Dragon {
           starty = lerp(starty, 100, 0.1);
           FireballRain.spawn();
         }
-      }
       if (On) {
         startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
         starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
@@ -255,10 +255,6 @@ class bossFight {
   }
 
   void onTheWay() {//Draak vliegt naar de achtergrond en schiet vuurballen op de player. Komt later te weinig tijd.
-    if (fase1) {
-    }
-
-
 
     if (dragon.dragonHealth < 300 && fase1 && !fase2) {
       //startx = lerp(startx, startVliegPatroon.x, 0.01);
