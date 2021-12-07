@@ -15,7 +15,7 @@ class Platform {
   int j = 0;
   int ySpeed = 10;
   boolean moveStage = false;
-  int moveAmount = 3;
+  int moveAmount = 1;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
   float moveY = 0;
@@ -40,14 +40,15 @@ class Platform {
       levelMove = 0;
       println(moveAmount);
     }
+    if (moveAmount == 20){moveAmount = 1;}
     if (moveAmount % 4 == 0) {
       drawBossRoom = true;
       //Bossplatform();
       //dragon.bossFight.startFight();
       //dragon.bossFight.startFight();
     }
-    if (moveAmount % 3 == 0) {
-      //dragon.FireballRain.spawn();
+    if (moveAmount % 5 == 0) {
+      dragon.dragonHealth=3;
     }
 
     newZ = 801 + levelMove; 

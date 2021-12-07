@@ -153,9 +153,10 @@ class Dragon {
           d=false;
           randomX = random(0, 800);
         }
+        if(!On){
         startx = lerp(startx, randomX, 0.1);
         starty = lerp(starty, 100, 0.1);
-        FireballRain.spawn();
+        FireballRain.spawn();}
       }
       if (On) {
         startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
@@ -305,6 +306,7 @@ class bossFight {
       dragon.healthbarPos = dragon.healthbarPosEnd;
       bossFightRoom = false;
       On=true;
+      dragon.vliegen = 0;
       platforms.drawBossRoom=false;
       On = true;
       platforms.moveAmount=platforms.moveAmount+1;
