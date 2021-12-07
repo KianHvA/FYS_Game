@@ -34,7 +34,7 @@ class CollisionHandler
 
   //object met player collision
   void checkCollisionPlayer(float objectX, float objectY, float objectRadius) {
-    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y);
+    hitPlayer = circleRect(objectX, objectY, objectRadius, player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x/2, player.sizePlayer.y/2);
   }
   //object met Dragon collision
   void checkCollisionDragon(float objectX, float objectY, float objectRadius) {
