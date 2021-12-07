@@ -10,7 +10,8 @@ class Menu {
   color highlight = #EFF03F;
   color rect1 = 0;
   color rect2 = 0;
-  float Check = 0, Time = 0, kleur = 255;
+  color kleur = #FFFFFF;
+  float Check = 0, Time = 0;
   boolean personalize = false;
   PVector size = new PVector(275, 150);
   float timer2 = 0;

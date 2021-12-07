@@ -17,8 +17,8 @@
 //int levelMove = 0;
 float xxpos = 1;
 boolean bossFightRoom = false;
-void Bossplatform() {
 
+void Bossplatform() {
   dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
   fill(147, 147, 147);
@@ -29,7 +29,7 @@ void Bossplatform() {
   muur();
   bossFightRoom = true;
   if (bossFightRoom) {
-    On=false;
+    On = false;
   }
 
   //for collision

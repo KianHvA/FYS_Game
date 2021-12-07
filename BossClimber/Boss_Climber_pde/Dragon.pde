@@ -293,7 +293,7 @@ class bossFight {
 
 
   void End() {
-    if (dragon.dragonHealth == 0&&bossFightRoom) {
+    if (dragon.dragonHealth == 0 && bossFightRoom) {
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
@@ -306,6 +306,7 @@ class bossFight {
       bossFightRoom = false;
       On=true;
       platforms.drawBossRoom=false;
+      On = true;
       platforms.moveAmount=platforms.moveAmount+1;
       println("dead");
       println(platforms.moveAmount);
