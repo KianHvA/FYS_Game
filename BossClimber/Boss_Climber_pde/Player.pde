@@ -94,11 +94,11 @@ class Player {
     //handle movement on x-axes
     if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
     {
-      velocity.x = -9;
+      velocity.x = -7;
       moveLeft = true;
     } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
     {
-      velocity.x = 9;
+      velocity.x = 7;
       moveRight = true;
     } else 
     if (!hasCollision)
