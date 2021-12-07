@@ -31,7 +31,7 @@ class DoubleJump {
       Location = spawnPointsPUPS.location;
       fight = true;
     }
-    //Only one puwer-up at a time
+    //Only one power-up at a time
     if (waterfles.pickedUp || schild.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
@@ -42,6 +42,7 @@ class DoubleJump {
       hasCollision = collisionHandler.hitPlayer;
       if (hasCollision) {
         pickedUp = true;
+        fight = false;
       }
     }
     //When DoubleJump gets taken out of the inventory it should reset when the inventory is empty
@@ -49,6 +50,7 @@ class DoubleJump {
      reset();
      reset = false;
     }
+    
   }
 
   void DoubleJumpEq() {
@@ -72,7 +74,6 @@ class DoubleJump {
   void reset() {
     //Location is randomized between on of the four points
     Location = spawnPointsPUPS.location;
-    fight = false;
     draw();
   }
 }

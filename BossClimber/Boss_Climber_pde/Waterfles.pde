@@ -35,6 +35,7 @@ class Waterfles {
       flesH = 0;
       pickedUp = true;
       scoreHandler.score((int)random(10, 30));
+      fight = false;
     }
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
      resetWaterfles();

@@ -47,6 +47,7 @@ class Sword {
       swordW = 0;
       swordH = 0;
       pickedUp = true;
+      fight = false;
     }
 
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
@@ -60,7 +61,6 @@ class Sword {
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       reset = false;
-      fight = false;
     }
     
     

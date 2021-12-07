@@ -59,6 +59,7 @@ class Schild {
       livesSet = true;
       schildSize.x = 0;
       schildSize.y = 0;
+      fight = false;
     }
 
     if (livesSet) {
@@ -125,6 +126,5 @@ class Schild {
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildActivated = false;
     pickedUp = false;
-    fight = false;
   }
 }
