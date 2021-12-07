@@ -2,8 +2,14 @@
 //platforms hoger laten spawnen
 
 class Platform { 
+  final int RIGHTPLATFORM_DISTANCE_FROM_WALL = 85;
+  final int DRAGON_HEALTH = 3;
+  final int BOSSROOM_TRIGGER = 4;
+  final int DRAGON_HEALTH_REGEN_TRIGGER = 5;
   int NPLATFORMS = 100;
   Platform platforms;
+  int startZ = 801;
+  int startY = 660;
   int newZ;
   int newY;
   int levelMove;
@@ -15,7 +21,9 @@ class Platform {
   int j = 0;
   int ySpeed = 10;
   boolean moveStage = false;
+  int startMoveAmount = 1;
   int moveAmount = 1;
+  int maxMoveAmount = 20;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
   float moveY = 0;
@@ -40,27 +48,30 @@ class Platform {
       levelMove = 0;
       println(moveAmount);
     }
-    if (moveAmount == 20){moveAmount = 1;}
-    if (moveAmount % 4 == 0) {
+    if (moveAmount == maxMoveAmount) {
+      moveAmount = startMoveAmount;
+    }
+    if (moveAmount % BOSSROOM_TRIGGER == 0) {
       drawBossRoom = true;
       //Bossplatform();
       //dragon.bossFight.startFight();
       //dragon.bossFight.startFight();
     }
-    if (moveAmount % 5 == 0) {
-      dragon.dragonHealth=3;
+    if (moveAmount % DRAGON_HEALTH_REGEN_TRIGGER == 0) {
+      dragon.dragonHealth=DRAGON_HEALTH;
     }
 
-    newZ = 801 + levelMove; 
-    newY = 660 + levelMove; 
+    newZ = startZ + levelMove; 
+    newY = startY + levelMove; 
     //linksboven = 1 
     //links onder = 2 
     //rechtsonder = 3 
     //linksboven = 4
     float x1 = width/12;
     float x2 = width/2;
+    float platColor = 147;
 
-    fill(147, 147, 147);
+    fill(platColor);
 
     for (int y = newY; y>0; y = y- 200) {
       int y1= y + 25;
@@ -86,7 +97,7 @@ class Platform {
 
     for (int z = newZ; z>0; z = z- 200) {//rechterplatform
       fill(147, 147, 147);
-      quad(x2-120, z, x2-120, z+25, width-66, z, width-66, z-25);
+      quad(x2-120, z, x2-120, z+25, width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z, width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z-25);
       if (bossFightRoom) {
         x2++;
       }
@@ -94,11 +105,11 @@ class Platform {
       if (j == vertexesR.length) {
         j = 0;
       }
-      vertexesR[j] = new PVector(width-66, z-platformThickness);
+      vertexesR[j] = new PVector(width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z-platformThickness);
       vertexesR[j + 1] = new PVector(x2-120, z);
       vertexesR[j + 2] = new PVector(x2-120, z+platformThickness);
-      vertexesR[j + 3] = new PVector(width-66, z);
-      vertexesR[j + 4] = new PVector(width-66, z-platformThickness);
+      vertexesR[j + 3] = new PVector(width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z);
+      vertexesR[j + 4] = new PVector(width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z-platformThickness);
       j += 5;
       fill(147, 147, 147);
       dragon.bossFight.End();
