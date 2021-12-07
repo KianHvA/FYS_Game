@@ -47,6 +47,8 @@ class Waterfles {
   void resetWaterfles() {//Reset nieuwe waterfles
     flesX = spawnPointsPUPS.location.x;
     flesY = spawnPointsPUPS.location.y;
+    flesB = 20;
+    flesH = 20;
     druppels.posPlayer.x = player.posPlayer.x;
     druppels.posPlayer.y = player.posPlayer.y;
     druppels.hasCollision = false;
