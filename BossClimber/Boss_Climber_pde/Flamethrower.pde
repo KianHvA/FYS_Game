@@ -11,7 +11,8 @@ class Flamethrower {
   int minus = 7; //Size base flamethrower.
   int  distBetween = 200; //Distance between bases of flamethrowers.
   final int RIGHTSIDE = 80; //Offset voor de rechterkant.
-  boolean live = false; 
+  boolean live = false; //If the flamethrowers are active this boolean will make sure that the collision activates.
+  boolean live2 = false; //If the flamethrowers are active this boolean will make sure that the collision activates.
   boolean hasCollision = false;
   int newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
@@ -75,25 +76,24 @@ class Flamethrower {
           image(flamethrower, X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x, SIZEFLAME.y);
           image(flamethrower, X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x, SIZEFLAME.y);
           live = true; //Collision check activate
+          live2 = true; //Collision check activate
           timer2++;
           timer1 = 910;
         } 
         if (live) { //Checking the collision
           collisionHandler.checkCollisionPlayer(X1, y1, SIZEFLAME.x);
           hasCollision = collisionHandler.hitPlayer;
-        } else {
-          hasCollision = false;
-        }
-        if (live) { //Checking the collision
+        } else if (live2) { //Checking the collision
           collisionHandler.checkCollisionPlayer(X3, y2, SIZEFLAME.x);
           hasCollision = collisionHandler.hitPlayer;
         } else {
           hasCollision = false;
-        }
+        } 
         if (timer2 == 180) {
           timer1 = 0;
           timer2 = 0;
           live = false; //Collision check de-activate
+          live2 = false; //Collision check de-activate
         }
         if (hasCollision) healthbar.doDamage(1); //damage
       }
