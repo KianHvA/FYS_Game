@@ -18,7 +18,8 @@
 float xxpos = 1;
 boolean bossFightRoom = false;
 void Bossplatform() {
-
+  
+  dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
   fill(147, 147, 147);
   //background(0);
