@@ -26,6 +26,7 @@ class HighScore {
   boolean keyDown = false; //To check if arrow Down is pressed.
   boolean select = false; //To check if the player selects that letter.
   String finalName = "12345"; //The final name when the player is done
+  boolean ending = false;
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -157,7 +158,8 @@ class HighScore {
           finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
           delay(100);
           //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
-          exit();
+          ending = true;//Ending screen!
+          //exit();
         }
       }
     }
