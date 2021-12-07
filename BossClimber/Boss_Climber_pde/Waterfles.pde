@@ -7,21 +7,23 @@ class Waterfles {
   boolean pickedUp = false; //Needed for inventory
   boolean catchWaterfles = true;
   boolean reset = false;
+  boolean fight = false;
 
   Waterfles() {
     //flesX = random(200, 600);
     //flesY = random(0, 600);
-    //flesB = 20;
-    //flesH = 20;
+    flesB = 20;
+    flesH = 20;
     //resetFlesX = random(200, 600);
     //resetFlesY = random(200, 600);
   }
 
   void updateWaterfles() {
-    if(dragon.fight && !pickedUp) {
+    if(dragon.fight && !pickedUp && !fight) {
       delay(30);
       flesX = spawnPointsPUPS.location.x;
       flesY = spawnPointsPUPS.location.y;
+      fight = true;
     }
     
     if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
@@ -37,14 +39,13 @@ class Waterfles {
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
      resetWaterfles();
      reset = false;
+     fight = false;
     }
   }
 
   void resetWaterfles() {//Reset nieuwe waterfles
     flesX = spawnPointsPUPS.location.x;
     flesY = spawnPointsPUPS.location.y;
-    flesB = 10;
-    flesH = 40;
     druppels.posPlayer.x = player.posPlayer.x;
     druppels.posPlayer.y = player.posPlayer.y;
     druppels.hasCollision = false;

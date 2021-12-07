@@ -14,6 +14,7 @@ class Sword {
   float extendSword = 10;
   boolean attacked = false;
   boolean reset = false;
+  boolean fight = false;
 
   Sword() {
     //swordX = random(100, 400);
@@ -31,10 +32,11 @@ class Sword {
   }
 
   void updateSword() {
-    if(dragon.fight && !pickedUp) {
+    if(dragon.fight && !pickedUp && !fight) {
       delay(30);
       swordX = spawnPointsPUPS.location.x;
       swordY = spawnPointsPUPS.location.y;
+      fight = true;
     }
     
     if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
@@ -58,6 +60,7 @@ class Sword {
     if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       reset = false;
+      fight = false;
     }
     
     

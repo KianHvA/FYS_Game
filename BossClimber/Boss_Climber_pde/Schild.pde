@@ -17,6 +17,7 @@ class Schild {
   float hitTimer = 0;
   boolean reset = false;
   boolean livesSet = false;
+  boolean fight = false;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -41,9 +42,10 @@ class Schild {
   }
 
   void update() {
-    if(dragon.fight && !pickedUp) {
+    if(dragon.fight && !pickedUp && !fight) {
       delay(30);
       schildPos = spawnPointsPUPS.location;
+      fight = true;
     }
     
     if (waterfles.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
@@ -123,5 +125,6 @@ class Schild {
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildActivated = false;
     pickedUp = false;
+    fight = false;
   }
 }
