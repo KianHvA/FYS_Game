@@ -305,8 +305,10 @@ class bossFight {
       dragon.healthbarPos = dragon.healthbarPosEnd;
       bossFightRoom = false;
       On=true;
+      platforms.drawBossRoom=false;
       platforms.moveAmount=platforms.moveAmount+1;
       println("dead");
+      println(platforms.moveAmount);
     }
   }
 }
