@@ -41,6 +41,11 @@ class Schild {
   }
 
   void update() {
+    if(dragon.fight && !pickedUp) {
+      delay(30);
+      schildPos = spawnPointsPUPS.location;
+    }
+    
     if (waterfles.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
       pickedUp = false;
       reset = true;
@@ -100,8 +105,7 @@ class Schild {
     if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
-      reset = true;
-      println("done");
+      reset = false;
     }
   }
 

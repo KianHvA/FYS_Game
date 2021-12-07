@@ -24,6 +24,11 @@ class DoubleJump {
   }
   
   void update() {
+    //If the bossfight starts the locations need to be re-randomized so you can reach everything
+    if(dragon.fight && !pickedUp) {
+      delay(30);
+      Location = spawnPointsPUPS.location;
+    }
     //Only one puwer-up at a time
     if (waterfles.pickedUp || schild.pickedUp || sword.pickedUp) {
       pickedUp = false;

@@ -31,6 +31,12 @@ class Sword {
   }
 
   void updateSword() {
+    if(dragon.fight && !pickedUp) {
+      delay(30);
+      swordX = spawnPointsPUPS.location.x;
+      swordY = spawnPointsPUPS.location.y;
+    }
+    
     if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
       pickedUp = false;
       reset = true;
