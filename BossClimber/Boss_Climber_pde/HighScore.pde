@@ -9,7 +9,7 @@ class HighScore {
   String[] nameSelector  = new String[characterAmount]; //String that will hold all the letters.
   float nameNumber = 0;
   float nameNumberStart = 0;
-  int nameLength = 5;
+  int nameLength = 6;
   String[] nameDef = new String[nameLength + 1]; //String that will hold the players choice of letters for his/her name.
   float timerA = 0, timerB = 0;
   boolean drawn = false;
@@ -124,45 +124,6 @@ class HighScore {
             timerB++;
           }
 
-        if (timerB > 10) {
-          flash[j] = color(#FFFFFF, 1000);
-          timerA = 0;
-          timerB = 0;
-        }
-        //If the up arrow is pressed the letter goes up.
-        if (keysPressed[UP] && !keyUp && !select) {
-          keyUp = true;
-        }
-        if (keyUp) {
-          k++;
-          delay(90);
-          keyUp = false;
-        }
-        //If the down arrow is pressed the letter goes down.
-        if (keysPressed[DOWN] && !keyDown && !select) {
-          keyDown = true;
-        }
-        if (keyDown) {
-          k--;
-          delay(90);
-          keyDown = false;
-        }
-        //If the a button is pressed the letter gets set.
-        if (keysPressed['A'] && !keyDown && !keyUp && !select) {
-          select = true;
-        }
-        if (select) {
-          j++;
-          delay(160);
-          select = false;
-        }
-        //If the letter is at max the final name gets made.
-        if (j >= 5) {
-          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
-          delay(100);
-          //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
-          ending = true;//Ending screen!
-          //exit();
           if (timerB > 10) {
             flash[j] = color(#FFFFFF, 1000);
             timerA = 0;
@@ -199,9 +160,49 @@ class HighScore {
           if (j >= 5) {
             finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
             delay(100);
-            String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "')";
-            myConnection.updateQuery(qwery);
-            exitGame();
+            //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
+            ending = true;//Ending screen!
+            //exit();
+            if (timerB > 10) {
+              flash[j] = color(#FFFFFF, 1000);
+              timerA = 0;
+              timerB = 0;
+            }
+            //If the up arrow is pressed the letter goes up.
+            if (keysPressed[UP] && !keyUp && !select) {
+              keyUp = true;
+            }
+            if (keyUp) {
+              k++;
+              delay(90);
+              keyUp = false;
+            }
+            //If the down arrow is pressed the letter goes down.
+            if (keysPressed[DOWN] && !keyDown && !select) {
+              keyDown = true;
+            }
+            if (keyDown) {
+              k--;
+              delay(90);
+              keyDown = false;
+            }
+            //If the a button is pressed the letter gets set.
+            if (keysPressed['A'] && !keyDown && !keyUp && !select) {
+              select = true;
+            }
+            if (select) {
+              j++;
+              delay(160);
+              select = false;
+            }
+            //If the letter is at max the final name gets made.
+            if (j >= 5) {
+              finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+              delay(100);
+              String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "')";
+              myConnection.updateQuery(qwery);
+              exitGame();
+            }
           }
         }
       }
