@@ -92,7 +92,7 @@ class Sword {
   }
 
   void attack() {
-    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 250);
+    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision) {
       HealthbarDragon.doDamageDragon(1);
