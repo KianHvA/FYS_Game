@@ -455,7 +455,7 @@ dragon.bossFight.End();
   }
  }
   
-  if (Highscore.ending == true && keysPressed['Z']){
+  if (Highscore.ending == true && keysPressed['D']){
     health.dead = false;
     Highscore.drawn = false;
     Highscore.ending = false;
