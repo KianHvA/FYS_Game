@@ -366,7 +366,7 @@ void draw()
   background(0);
   
   textSize(40);
-  text("Press Z to go to the title screen", width/2, height/2);
+  text("Press Y to go to the title screen", width/2, height/2);
 
  if (Highscore.ending == false){
   if (menu.start == false) {
