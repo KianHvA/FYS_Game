@@ -15,6 +15,8 @@ class DoubleJump {
 
   void draw() {
     DoubleJumpEq(); //Invoking the equip function.
+    fill(255,255,0);
+    //circle(Location.x , Location.y, SIZEPOWERUP.x * 1.5);
     fill(255);
     image(inventory.doubleJump, Location.x, Location.y, SIZEPOWERUP.x, SIZEPOWERUP.y); //Loading of the picture.
     //Timer between jumps

@@ -65,6 +65,8 @@ class Waterfles {
   }
 
   void draw() {
+    fill(255,255,0);
+    circle(flesX + flesB/2, flesY + flesB/2, flesB * 1.5);
     fill(0, 0, 255);
     image(inventory.waterflesI, flesX, flesY, flesB, flesH);
     //rect(flesX, flesY, flesB, flesH);
