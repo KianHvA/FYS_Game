@@ -28,6 +28,7 @@ class DoubleJump {
      player.hasDoubleJumped = false;
      cooldown = 0;
     }
+    
   }
   
   void update() {
