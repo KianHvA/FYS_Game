@@ -19,6 +19,7 @@ class Player {
   PImage leftActiveSW, rightActiveSW;
   float timerLeft1 = 0, timerLeft2 = 0;
   float timerRight1 = 0, timerRight2 = 0;  
+  final float SPEED = 5;
 
   void setup() {
     //left
@@ -94,11 +95,11 @@ class Player {
     //handle movement on x-axes
     if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
     {
-      velocity.x = -7;
+      velocity.x = -SPEED;
       moveLeft = true;
     } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
     {
-      velocity.x = 7;
+      velocity.x = SPEED;
       moveRight = true;
     } else 
     if (!hasCollision)
