@@ -49,7 +49,7 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp && !ResetReset || Doublejump.pickedUp && !ResetReset || sword.pickedUp && !ResetReset) {
+    if (waterfles.pickedUp && !ResetReset /*|| Doublejump.pickedUp && !ResetReset*/ || sword.pickedUp && !ResetReset) {
       pickedUp = false;
       reset = true;
       timedReset = true;

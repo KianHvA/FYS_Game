@@ -39,7 +39,7 @@ class Sword {
       fight = true;
     }
 
-    if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
+    if (waterfles.pickedUp || schild.pickedUp /*|| Doublejump.pickedUp*/) {
       pickedUp = false;
       reset = true;
       timedReset = true;

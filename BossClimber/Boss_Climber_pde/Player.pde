@@ -268,7 +268,7 @@ class Player {
       velocity.y = -jumpForce;
       moveUp = true;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage)
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
