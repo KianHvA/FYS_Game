@@ -63,10 +63,10 @@ class Platform {
 
     newZ = startZ + levelMove; 
     newY = startY + levelMove; 
-    //linksboven = 1 
+    //links boven = 1 
     //links onder = 2 
-    //rechtsonder = 3 
-    //linksboven = 4
+    //rechts onder = 3 
+    //rechts boven = 4
     float x1 = width/12;
     float x2 = width/2;
     float platColor = 147;
