@@ -324,6 +324,16 @@ void update()
     dragon.waterFles = false;
     cooldown = 100;
   }
+  
+  if (waterfles.pickedUp == false){//If other power-up is picked.
+    if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
+      resetWaterflesCount--;
+    }
+    if (resetWaterflesCount <= 0) {//Resets waterfles.
+      resetWaterflesCount = 600;
+      waterfles.resetWaterfles();
+    }
+  }
 
   if (druppels.posPlayer.y <= 0 || druppels.hasCollision) {//Druppel off screen or hits dragon:
     waterfles.druppelOn = false;
