@@ -62,7 +62,7 @@ void setup()
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
-
+  
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   databaseTable = myConnection.getTable("Highscore");
@@ -201,8 +201,8 @@ void update()
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
   }
-
-  if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
+  
+  if (scoreHandler.score >= 50000){//Score >= 50000 ---> spawning more fireballs!
     if (fireballCount == 400) {//Counter fireballs
       fire4 = true;
     }
@@ -212,7 +212,7 @@ void update()
     if (fireballCount == 0) {
       fire6 = true;
     }
-
+  
     if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
       fireballs[3].movementUpdate();
     }
@@ -230,7 +230,7 @@ void update()
       fireballs[3].respawn();
       fireballs[3].posFireball = fireballs[3].RposFireball;
     }  
-
+  
     if (fireballs[4].playerCollision || fireballs[4].posFireball.y >= height) {//Damage fireball && respawning fireball
       fire5 = false;
       fireballs[4].playerCollision = false;
@@ -245,7 +245,7 @@ void update()
       fireballs[5].respawn();
       fireballs[5].posFireball = fireballs[5].RposFireball;
     }
-  }
+   }
 
   if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
@@ -283,8 +283,8 @@ void update()
     fireballCount = 1200;
     fireballs[5].respawn();
   }
-
-  if (platforms.moveStage == true) {
+  
+   if (platforms.moveStage == true){
     fire = false;
     fire2 = false;
     fire3 = false;
@@ -293,7 +293,7 @@ void update()
     fire6 = false;
     fireballCount = 1200;
   }
-
+  
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
@@ -325,16 +325,6 @@ void update()
     cooldown = 100;
   }
 
-  if (waterfles.pickedUp == false) {//If other power-up is picked.
-    if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
-      resetWaterflesCount--;
-    }
-    if (resetWaterflesCount <= 0) {//Resets waterfles.
-      resetWaterflesCount = 600;
-      waterfles.resetWaterfles();
-    }
-  }
-
   if (druppels.posPlayer.y <= 0 || druppels.hasCollision) {//Druppel off screen or hits dragon:
     waterfles.druppelOn = false;
     if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
@@ -360,7 +350,7 @@ void update()
   spawnPointsPUPS.update();
 }
 
-void restartGame() {//Resets the whole game
+void restartGame(){//Resets the whole game
   scoreHandler.score = 0;
   Highscore.j = 0;
   platforms.moveAmount = 1;
@@ -374,99 +364,98 @@ void restartGame() {//Resets the whole game
 void draw()
 {
   background(0);
-
+  
   textSize(40);
   text("Press Y to go to the title screen", width/2, height/2);
 
-  if (Highscore.ending == false) {
-    if (menu.start == false) {
-      background(0);
-      level.draw();
-      menu.draw();
+ if (Highscore.ending == false){
+  if (menu.start == false) {
+    background(0);
+    level.draw();
+    menu.draw();
 
-      if (keysPressed['D']) {
-        instruction.manual = true;
-      }
-
-      if (instruction.manual) {//Player reads instructions.
-        instruction.updateInstructions();
-        instruction.draw();
-
-        if (keysPressed['S']) {
-          instruction.powerExpl = true;
-        }
-
-        if (instruction.powerExpl) {
-          instruction.powerUpInstructions();
-        }
-      }
+    if (keysPressed['D']) {
+      instruction.manual = true;
     }
 
-    if (menu.start == true) {
-      background(0);
-      update();
-      dragon.bossFight.End();
-      level.draw();
-      muur();
-
-      instruction.sign();
-
-      if (On) {
-        flamethrower.draw();
-        platforms.draw();
-        player.draw();
-      }
-      if (platforms.drawBossRoom) {
-        player.draw();
-        Bossplatform();
+    if (instruction.manual) {//Player reads instructions.
+      instruction.updateInstructions();
+      instruction.draw();
+      
+      if (keysPressed['S']){
+        instruction.powerExpl = true;
       }
       
-      Doublejump.draw();
-      healthbar.draw();
-      health.draw();
-      waterfles.draw();
-      schild.draw();
-      dragon.draw();
-      sword.draw();
-
-      if (waterfles.druppelOn) {//Shooting
-        druppels.draw();
-      }
-
-      //teken alle UI hier zodat het op de voorgrond komt
-      scoreHandler.draw();
-      inventory.draw();
-      Highscore.draw();
-
-      //game overscherm
-      //healthbar.draw();
-      //health.draw();
-      if (fire == true) {//Draws fireballs!
-        fireballs[0].draw();
-      }
-      if (fire2 == true) {  
-        fireballs[1].draw();
-      }
-
-      if (fire3 == true) {  
-        fireballs[2].draw();
-      }
-
-      if (fire4 == true) {
-        fireballs[3].draw();
-      }
-
-      if (fire5 == true) {
-        fireballs[4].draw();
-      }
-
-      if (fire6 == true) {
-        fireballs[5].draw();
+      if (instruction.powerExpl){
+        instruction.powerUpInstructions();
       }
     }
   }
 
-  if (Highscore.ending == true && keysPressed['Z']) {
+  if (menu.start == true) {
+    background(0);
+    update();
+dragon.bossFight.End();
+    level.draw();
+    muur();
+    
+    instruction.sign();
+
+    if (On) {
+      flamethrower.draw();
+      platforms.draw();
+      player.draw();
+    }
+    if (platforms.drawBossRoom) {
+      player.draw();
+      Bossplatform();
+    }
+    if (fire == true) {//Draws fireballs!
+      fireballs[0].draw();
+    }
+    if (fire2 == true) {  
+      fireballs[1].draw();
+    }
+
+    if (fire3 == true) {  
+      fireballs[2].draw();
+    }
+
+    if (fire4 == true) {
+      fireballs[3].draw();
+    }
+
+    if (fire5 == true) {
+      fireballs[4].draw();
+    }
+
+    if (fire6 == true) {
+      fireballs[5].draw();
+    }
+    Doublejump.draw();
+    healthbar.draw();
+    health.draw();
+    waterfles.draw();
+    schild.draw();
+    dragon.draw();
+    sword.draw();
+
+    if (waterfles.druppelOn) {//Shooting
+      druppels.draw();
+    }
+
+    //teken alle UI hier zodat het op de voorgrond komt
+    scoreHandler.draw();
+    inventory.draw();
+    Highscore.draw();
+
+    //game overscherm
+    //healthbar.draw();
+    //health.draw();
+  }
+ }
+  
+  if (Highscore.ending == true && keysPressed['Z']){
     health.dead = false;
     Highscore.drawn = false;
     Highscore.ending = false;

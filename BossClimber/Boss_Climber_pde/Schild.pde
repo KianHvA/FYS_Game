@@ -131,8 +131,6 @@ class Schild {
   void draw() {
     SchildEq();
     //schildPos.y += GRAVITYSchild;
-    fill(255, 255, 0);
-    circle(schildPos.x + schildSize.x/2, schildPos.y + schildSize.x/2, schildSize.x * 1.5);
     fill(255, 0, 0);
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
