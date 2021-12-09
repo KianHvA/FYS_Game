@@ -6,7 +6,7 @@ class Sword {
   float durabillity = 3;
   float durablillityFight = 9;
   float durabillityStart = 3;
-  boolean NewPos = false;
+  boolean newPos = false;
   public boolean pickedUp = false;
   boolean swordOn = false;
   boolean spawnSword = false;
@@ -41,7 +41,7 @@ class Sword {
       fight = true;
     }
 
-    if (waterfles.pickedUp || schild.pickedUp /*|| Doublejump.pickedUp*/) {
+    if (waterfles.pickedUp && pickedUp || schild.pickedUp && pickedUp /*|| Doublejump.pickedUp*/) {
       pickedUp = false;
       reset = true;
       timedReset = true;
@@ -83,6 +83,11 @@ class Sword {
     // fight = false;
     // timedReset = false;
     //}
+    if (newPos) {
+      swordX = spawnPointsPUPS.location.x;
+      swordY = spawnPointsPUPS.location.y;
+      newPos = false;
+    }
   }
 
   void draw() {
@@ -104,7 +109,7 @@ class Sword {
   }
 
   void reset() {
-    NewPos = false;
+    newPos = true;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;

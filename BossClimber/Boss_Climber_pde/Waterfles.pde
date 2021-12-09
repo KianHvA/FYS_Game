@@ -28,7 +28,7 @@ class Waterfles {
       fight = true;
     }
 
-    if (schild.pickedUp || /*Doublejump.pickedUp ||*/ sword.pickedUp) {
+    if (schild.pickedUp && pickedUp || /*Doublejump.pickedUp ||*/ sword.pickedUp && pickedUp) {
       pickedUp = false;
       reset = true;
       timedReset = true;
@@ -57,8 +57,10 @@ class Waterfles {
 
   void resetWaterfles() {//Reset nieuwe waterfles
     pickedUp = false;
+    if (!dragon.fight) {
     flesX = spawnPointsPUPS.location.x;
     flesY = spawnPointsPUPS.location.y;
+    }
     flesB = 20;
     flesH = 20;
     druppels.posPlayer.x = player.posPlayer.x;

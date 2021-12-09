@@ -52,7 +52,7 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp && !ResetReset /*|| Doublejump.pickedUp && !ResetReset*/ || sword.pickedUp && !ResetReset) {
+    if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset*/ || sword.pickedUp && !ResetReset && pickedUp) {
       pickedUp = false;
       reset = true;
       //timedReset = true;
@@ -121,7 +121,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
       timedReset = false;
