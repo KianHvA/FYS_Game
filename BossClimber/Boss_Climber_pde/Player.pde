@@ -24,6 +24,8 @@ class Player {
   boolean jump = false;
   boolean jumped = false;
   float jumpTimer1 = 0;
+  float jumpAmount = 0;
+  float walkAmount = 0;
   
   void setup() {
     //left
@@ -102,10 +104,12 @@ class Player {
     if (keysPressed[LEFT] /*&& !collisionHandler.hitWallLeft*/ && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
       velocity.x = -SPEED;
+      walkAmount++;
       moveLeft = true;
     } else if (keysPressed[RIGHT] /*&& !collisionHandler.hitWallRight*/  && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
       velocity.x = SPEED;
+      walkAmount++;
       moveRight = true;
     } else 
     if (!hasCollision)
@@ -271,13 +275,15 @@ class Player {
     //handle jump
     if (hasCollision && keysPressed[UP]  && !platforms.moveStage && jump && !jumped)
     {
+      jumpAmount++;
       jumped = true;
     }
     if (!hasCollision && !hasDoubleJumped && jump && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage && !wallCollisonL && !wallCollisonR)
     {
       velocity.y = -jumpForce;
-      hasDoubleJumped = true;
+      jumpAmount++;
       moveUp = true;
+      hasDoubleJumped = true;
     }
     if (jumped) {
      hasCollision = false;

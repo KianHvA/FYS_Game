@@ -114,19 +114,19 @@ class HighScore {
       nameDef[j] = nameSelector[k]; //When k changes the letter that the player is at changes.
       if (drawn) {
         //Timer for flashing the letters.
-        if (timerB == 0) {
-          timerA++;
-        }
-        if (timerA > 30) {
-          flash[j] = color(#FFFFFF, 0);
-          timerB++;
-        }
+        //if (timerB == 0) {
+        //  timerA++;
+        //}
+        //if (timerA > 30) {
+        //  flash[j] = color(#FFFFFF, 0);
+        //  timerB++;
+        //}
 
-        if (timerB > 10) {
-          flash[j] = color(#FFFFFF, 1000);
-          timerA = 0;
-          timerB = 0;
-        }
+        //if (timerB > 10) {
+        //  flash[j] = color(#FFFFFF, 1000);
+        //  timerA = 0;
+        //  timerB = 0;
+        //}
         //If the up arrow is pressed the letter goes up.
         if (keysPressed[UP] && !keyUp && !select) {
           keyUp = true;
@@ -161,38 +161,38 @@ class HighScore {
           //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
           ending = true;//Ending screen!
           //exit();
-          if (timerB > 10) {
-            flash[j] = color(#FFFFFF, 1000);
-            timerA = 0;
-            timerB = 0;
-          }
+          //if (timerB > 10) {
+          //  flash[j] = color(#FFFFFF, 1000);
+          //  timerA = 0;
+          //  timerB = 0;
+          //}
           //If the up arrow is pressed the letter goes up.
-          if (keysPressed[UP] && !keyUp && !select) {
-            keyUp = true;
-          }
-          if (keyUp) {
-            k++;
-            delay(90);
-            keyUp = false;
-          }
-          //If the down arrow is pressed the letter goes down.
-          if (keysPressed[DOWN] && !keyDown && !select) {
-            keyDown = true;
-          }
-          if (keyDown) {
-            k--;
-            delay(90);
-            keyDown = false;
-          }
-          //If the a button is pressed the letter gets set.
-          if (keysPressed['A'] && !keyDown && !keyUp && !select) {
-            select = true;
-          }
-          if (select) {
-            j++;
-            delay(160);
-            select = false;
-          }
+          //if (keysPressed[UP] && !keyUp && !select) {
+          //  keyUp = true;
+          //}
+          //if (keyUp) {
+          //  k++;
+          //  delay(90);
+          //  keyUp = false;
+          //}
+          ////If the down arrow is pressed the letter goes down.
+          //if (keysPressed[DOWN] && !keyDown && !select) {
+          //  keyDown = true;
+          //}
+          //if (keyDown) {
+          //  k--;
+          //  delay(90);
+          //  keyDown = false;
+          //}
+          ////If the a button is pressed the letter gets set.
+          //if (keysPressed['A'] && !keyDown && !keyUp && !select) {
+          //  select = true;
+          //}
+          //if (select) {
+          //  j++;
+          //  delay(160);
+          //  select = false;
+          //}
           //If the letter is at max the final name gets made.
           if (j >= 5) {
             finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
@@ -248,19 +248,19 @@ class HighScore {
       if (!filledIn[j]) {
         textSize(textSize*0.75);
         fill(#FFFFFF);
-        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 90, y - 70);
+        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 107.5, y - 50);
         textSize(textSize*0.75);
         fill(#FFFFFF);
         pushMatrix();
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 90, y + 70);
+        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 107.5, y + 65);
         rotate(angle1);
         text("^", 0, 0);
         popMatrix();
       }
-      if (j > 1) {
-        flash[j-1] = color(#FFFFFF, 1000);
-      }
+      //if (j > 1) {
+      //  flash[j-1] = color(#FFFFFF, 1000);
+      //}
     }
   }
 }

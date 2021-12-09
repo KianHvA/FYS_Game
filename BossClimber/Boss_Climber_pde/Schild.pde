@@ -101,9 +101,9 @@ class Schild {
     //  reset = false;
     //}
 
-    //if (platforms.moveAmount == LevelMoveAmountNext) {
-    //  FlamethrowerJumping = false;
-    //}
+    if (platforms.moveAmount == LevelMoveAmountNext) {
+      FlamethrowerJumping = false;
+    }
     if (NewPos) {
       //schildPos = spawnPointsPUPS.location;
       //schildPos.x = random(100, 700);
@@ -115,7 +115,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
       timedReset = false;
