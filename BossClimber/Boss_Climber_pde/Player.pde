@@ -21,6 +21,9 @@ class Player {
   float timerLeft1 = 0, timerLeft2 = 0;
   float timerRight1 = 0, timerRight2 = 0;  
   final float SPEED = 5;
+  boolean jump = false;
+  boolean jumped = false;
+  float jumpTimer1 = 0;
   
   void setup() {
     //left
@@ -266,17 +269,29 @@ class Player {
 
 
     //handle jump
-    if (hasCollision && keysPressed[UP]  && !platforms.moveStage)
+    if (hasCollision && keysPressed[UP]  && !platforms.moveStage && jump && !jumped)
     {
-      hasCollision = false;
-      velocity.y = -jumpForce;
-      moveUp = true;
+      jumped = true;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage && !wallCollisonL && !wallCollisonR)
+    if (!hasCollision && !hasDoubleJumped && jump && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage && !wallCollisonL && !wallCollisonR)
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
       moveUp = true;
+    }
+    if (jumped) {
+     hasCollision = false;
+      velocity.y = -jumpForce;
+      moveUp = true;
+      jump = false;
+      jumped = false;
+    }
+    if (!jump) {
+     jumpTimer1++; 
+    }
+    if (jumpTimer1 == 30) {
+      jump = true;
+      jumpTimer1 = 0;
     }
 
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
