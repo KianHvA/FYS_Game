@@ -26,6 +26,7 @@ class Druppel{
     hasCollision = collisionHandler.hitDragon;    
     
     if (hasCollision){
+     sword.doneDamage = true;
      waterfles.druppelOn = false;
      HealthbarDragon.doDamageDragon(1);
     }

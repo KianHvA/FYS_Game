@@ -96,23 +96,14 @@ class Sword {
       swordY = spawnPointsPUPS.location.y;
       newPos = false;
     }
-  }
-
-  void draw() {
-    fill(255);
-    rectMode(CENTER);
-    image(inventory.swordI, swordX, swordY, swordW, swordH);
-    //rect(swordX, swordY, swordW, swordH);
-    //rect(swordX, swordY + 15, guardW, guardH);
-  }
-
-  void attack() {
     if (!doneDamage) {
     dragonX = dragon.startx;
     dragonY = dragon.starty;
     damageOpacity = 1000;
     }
     if (doneDamage) {
+      fill(damage, sword.damageOpacity);
+      text("-1", sword.dragonX, sword.dragonY);
       dragonX++;
       dragonY += 2;
       damageOpacity--;
@@ -130,13 +121,21 @@ class Sword {
     if (damageFixTimer >= 60) {
       fastDamageFix = false;
     }
-    
+  }
+
+  void draw() {
+    fill(255);
+    rectMode(CENTER);
+    image(inventory.swordI, swordX, swordY, swordW, swordH);
+    //rect(swordX, swordY, swordW, swordH);
+    //rect(swordX, swordY + 15, guardW, guardH);
+  }
+
+  void attack() {    
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision && !fastDamageFix) {
       doneDamage = true;
-      fill(damage, damageOpacity);
-      text("-1", dragonX, dragonY);
       HealthbarDragon.doDamageDragon(1);
       fastDamageFix = true;
     }
