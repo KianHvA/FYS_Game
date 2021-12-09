@@ -8,7 +8,7 @@ class SpawnPointsPUPS {
   PVector upperL = new PVector(650, 100);
   PVector upperR = new PVector(100, 200);
   PVector fightR = new PVector(100, 450);
-  PVector fightM = new PVector(width/2, 475);
+  PVector fightM = new PVector(900, 425);
   PVector fightL = new PVector(625, 400);
   PVector fightU = new PVector(random(100, 200), height - MINUS);
   int random = 0;

@@ -54,19 +54,20 @@ class Schild {
     if (waterfles.pickedUp && !ResetReset /*|| Doublejump.pickedUp && !ResetReset*/ || sword.pickedUp && !ResetReset) {
       pickedUp = false;
       reset = true;
-      timedReset = true;
+      //timedReset = true;
       ResetReset = true;
     }
     
-    if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
-      pickedUp = false;
-      ResetReset = false;
-    }
+    //if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
+    //  pickedUp = false;
+    //  ResetReset = false;
+    //}
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
       livesSet = true;
+      schildActivated = true;
       schildPos.x = width * 2;
       schildPos.y = height * 2;
       fight = false;
@@ -77,10 +78,10 @@ class Schild {
       livesSet = false;
     }
 
-    if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
-      schildOn = false;
-      schildActivated = true;
-    }
+    //if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
+    //  schildOn = false;
+    //  schildActivated = true;
+    //}
 
     if (schildActivated && flamethrower.hasCollision) {
       FlamethrowerJumping = true;
@@ -143,6 +144,7 @@ class Schild {
     schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildPos = spawnPointsPUPS.location;
+    FlamethrowerJumping = false;
     schildActivated = false;
     pickedUp = false;
   }
