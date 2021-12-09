@@ -1,6 +1,7 @@
 //Tristan, Kian
 class Player {
 
+  CollisionHandler collisionHandler;
   //variables
   PVector posPlayer = new PVector(width/1.8, height/1.2);
   PVector sizePlayer = new PVector(20, 20);//for collision 
@@ -58,6 +59,8 @@ class Player {
     rightActiveSW = loadImage("Knight - Right - Sword.png");
     leftActiveW = loadImage("Knight - Left - Water.png");
     rightActiveW = loadImage("Knight - Right - Water.png");
+    
+    collisionHandler = new CollisionHandler();
   }
 
   void draw() {
@@ -310,14 +313,14 @@ class Player {
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       if (dist(collisionHandler.preplatformHitPos.x, collisionHandler.preplatformHitPos.y, collisionHandler.platformHitPos.x, collisionHandler.platformHitPos.y) > 100) {
-        posPlayer.y = posPlayer.y - (collisionHandler.platformHeight + sizePlayer.y/2);
+        posPlayer.y = collisionHandler.platformHitPos.y - (sizePlayer.y/2);
       } else {
         posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight + sizePlayer.y/2);
       }
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
       hasCollision = false;
-      posPlayer.y = posPlayer.y + 1;
+      posPlayer.y = posPlayer.y + (GRAVITY*sizePlayer.y);
     }
   }
 
