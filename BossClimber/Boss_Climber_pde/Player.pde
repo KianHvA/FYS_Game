@@ -21,7 +21,7 @@ class Player {
   float timerLeft1 = 0, timerLeft2 = 0;
   float timerRight1 = 0, timerRight2 = 0;  
   final float SPEED = 5;
-
+  
   void setup() {
     //left
     left = loadImage("Knight - Left.png");
@@ -90,17 +90,17 @@ class Player {
     }
     if (wallCollisonR) {
       velocity.x = 0;
-      velocity.x -= 1;
+      velocity.x -= 3;
     } else if (wallCollisonL) {
       velocity.x = 0;
-      velocity.x += 1;
+      velocity.x += 3;
     }
     //handle movement on x-axes
-    if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
+    if (keysPressed[LEFT] /*&& !collisionHandler.hitWallLeft*/ && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
       velocity.x = -SPEED;
       moveLeft = true;
-    } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
+    } else if (keysPressed[RIGHT] /*&& !collisionHandler.hitWallRight*/  && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
       velocity.x = SPEED;
       moveRight = true;
@@ -272,7 +272,7 @@ class Player {
       velocity.y = -jumpForce;
       moveUp = true;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage)
+    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage && !wallCollisonL && !wallCollisonR)
     {
       velocity.y = -jumpForce;
       hasDoubleJumped = true;
