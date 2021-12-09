@@ -28,7 +28,7 @@ class Waterfles {
       fight = true;
     }
 
-    if (schild.pickedUp && pickedUp || /*Doublejump.pickedUp ||*/ sword.pickedUp && pickedUp) {
+    if (schild.pickedUp && pickedUp  /*|| Doublejump.pickedUp*/ || sword.pickedUp && pickedUp) {
       pickedUp = false;
       reset = true;
       timedReset = true;

@@ -78,6 +78,18 @@ class Player {
     imageMode(CENTER);
     image(Active, posPlayer.x, posPlayer.y, sizeSprite.x, sizeSprite.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    if (schild.pickedUp && schild.schildLevens == 3) {
+      fill(#EBFA90, 250);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
+    if (schild.pickedUp && schild.schildLevens == 2) {
+      fill(#EBFA90, 150);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
+    if (schild.pickedUp && schild.schildLevens == 1) {
+      fill(#EBFA90, 100);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
   }
   void movementUpdate()
   {
@@ -301,16 +313,23 @@ class Player {
     }
 
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
+      //ellipseMode(CENTER);
+      fill(#EBFA90, 900);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 2;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 2) {
+      fill(#EBFA90, 600);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 1;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 1) {
+      fill(#EBFA90, 300);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 0;
       schild.hit = true;
       healthbar.shieldDamage = false;

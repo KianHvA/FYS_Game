@@ -52,9 +52,11 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset*/ || sword.pickedUp && !ResetReset && pickedUp) {
+    if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && !ResetReset && pickedUp) {
+      healthbar.shieldDamage = false;
       pickedUp = false;
       reset = true;
+      schildActivated = false;
       //timedReset = true;
       ResetReset = true;
     }
@@ -67,6 +69,7 @@ class Schild {
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
+      health.invincibleB = true;
       livesSet = true;
       schildActivated = true;
       schildPos.x = width * 2;
