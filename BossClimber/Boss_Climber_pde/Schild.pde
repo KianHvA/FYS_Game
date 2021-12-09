@@ -21,6 +21,7 @@ class Schild {
   boolean fight = false;
   boolean ResetReset = false;
   boolean timedReset = false;
+  float schildSaveLevens = 3;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -82,8 +83,12 @@ class Schild {
     //  schildOn = false;
     //  schildActivated = true;
     //}
+    if (!FlamethrowerJumping) {
+    schildSaveLevens = schildLevens;
+    }
 
     if (schildActivated && flamethrower.hasCollision) {
+      schildLevens = schildSaveLevens;
       FlamethrowerJumping = true;
       LevelMoveAmountCurrent = platforms.moveAmount;
       LevelMoveAmountNext = LevelMoveAmountCurrent + 1;

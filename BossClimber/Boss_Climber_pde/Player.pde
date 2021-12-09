@@ -323,6 +323,7 @@ class Player {
     if (waterfles.pickedUp == true && keysPressed['S'] && cooldown == 0) {//Shooting druppel
       druppels.shootDruppel(posPlayer.x, posPlayer.y, 0, -4);
       waterfles.druppelOn = true;
+      waterfles.pickedUp = false;
     }
 
     //add velocity to posPlayer
