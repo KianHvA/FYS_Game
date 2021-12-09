@@ -17,6 +17,14 @@ class Sword {
   boolean reset = false;
   boolean fight = false;
   boolean timedReset = false;
+  float dragonX = 0;
+  float dragonY = 0;
+  boolean doneDamage = false;
+  boolean fastDamageFix = true;
+  float timerDamage = 0;
+  float damageFixTimer = 0;
+  color damage = #FFFFFF;
+  float damageOpacity = 1000;
 
   Sword() {
     //swordX = random(100, 400);
@@ -68,13 +76,13 @@ class Sword {
     }
 
 
-    if (attacked && swordOn) {
-      attack();
-    }
+    //if (attacked && swordOn) {
+    //  attack();
+    //}
 
     if (keysPressed['S'] && pickedUp) {
       attacked = true;
-      println("Active");
+      attack();
     }
     //if (timedReset) {
     // delay (5000);
@@ -99,11 +107,38 @@ class Sword {
   }
 
   void attack() {
+    if (!doneDamage) {
+    dragonX = dragon.startx;
+    dragonY = dragon.starty;
+    damageOpacity = 1000;
+    }
+    if (doneDamage) {
+      dragonX++;
+      dragonY += 2;
+      damageOpacity--;
+      timerDamage++;
+    }
+    if (timerDamage >= 60) {
+      doneDamage = false;
+      timerDamage = 0;
+    }
+    
+    if (fastDamageFix) {
+      damageFixTimer++;
+    }
+    
+    if (damageFixTimer >= 60) {
+      fastDamageFix = false;
+    }
+    
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
-    if (hasCollision) {
+    if (hasCollision && !fastDamageFix) {
+      doneDamage = true;
+      fill(damage, damageOpacity);
+      text("-1", dragonX, dragonY);
       HealthbarDragon.doDamageDragon(1);
-      println("Damage Dragon");
+      fastDamageFix = true;
     }
     attacked = false;
   }
