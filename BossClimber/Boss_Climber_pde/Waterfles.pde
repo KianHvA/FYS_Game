@@ -1,5 +1,6 @@
 //Dion
 class Waterfles {
+  CollisionHandler collisionHandler;
   float flesX = spawnPointsPUPS.underR.x, flesY = spawnPointsPUPS.underR.y, flesB, flesH, resetFlesX, resetFlesY;
   boolean druppelOn = false;
   boolean spawnWaterfles = false;
@@ -11,6 +12,7 @@ class Waterfles {
   boolean timedReset = false;
 
   Waterfles() {
+    collisionHandler = new CollisionHandler();
     //flesX = random(200, 600);
     //flesY = random(0, 600);
     flesB = 20;

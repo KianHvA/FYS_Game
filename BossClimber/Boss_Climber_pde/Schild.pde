@@ -1,5 +1,6 @@
 //Ömer, Tristan
 class Schild {
+  CollisionHandler collisionHandler;
   PVector schildPos = spawnPointsPUPS.upperL;
   PVector schildSize = new PVector(35, 40);
   PVector timerSD;
@@ -24,6 +25,7 @@ class Schild {
   Schild() {
     GRAVITYSchild = 0.98;
     timerSD = new PVector(0, 0);
+    collisionHandler = new CollisionHandler();
   }
 
   void SchildEq() {

@@ -1,5 +1,6 @@
 //Ömer
 class Sword {
+  CollisionHandler collisionHandler;
   float swordX = spawnPointsPUPS.underL.x, swordY = spawnPointsPUPS.underL.y, swordW, swordH;
   float guardW, guardH;
   float durabillity = 3;
@@ -29,6 +30,7 @@ class Sword {
   }
 
   void setup() {
+    collisionHandler = new CollisionHandler();
     HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
 

@@ -1,6 +1,7 @@
 //Dion
 class Fireball {
 
+  CollisionHandler collisionHandler;
   //variables
   PVector posFireball = new PVector(200, 0);
   PVector startFireball;
@@ -37,6 +38,8 @@ class Fireball {
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
     //println(posFireball.y);
+    
+    collisionHandler = new CollisionHandler();
   }
 
 

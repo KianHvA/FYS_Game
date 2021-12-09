@@ -1,5 +1,6 @@
 //Tristan
 class Flamethrower {
+  CollisionHandler collisionHandler;
   final float X1 = width/6; //X coördinates left.
   final float X2 = width/6 + 60;
   final float X3 = width/6 + width/2; //X coördinates right.
@@ -18,6 +19,7 @@ class Flamethrower {
   PImage flamethrower;
 
   void setup() {
+    collisionHandler = new CollisionHandler();
     flamethrower = loadImage("Flamethrower.png"); //Loading of the picture.
     //links
     for (int y = distance; y > from; y = y - distBetween) {

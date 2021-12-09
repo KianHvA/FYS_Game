@@ -6,7 +6,6 @@ import java.util.Properties;
 
 Menu menu;
 Player player;
-CollisionHandler collisionHandler;
 Platform platforms;
 Health health;
 HealthBar healthbar;
@@ -25,6 +24,7 @@ Schild schild;
 HealthBarDragon HealthbarDragon;
 HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
+
 int cooldown = 100;
 int fireballCount = 1200;
 int spawnCountDruppel = 500;
@@ -70,7 +70,7 @@ void setup()
   level = new Level();
   player = new Player();
   platforms = new Platform();
-  collisionHandler = new CollisionHandler();
+  
   health = new Health();
   healthbar = new HealthBar(width/8, height - 20, 250, 10);
   Doublejump = new DoubleJump();
