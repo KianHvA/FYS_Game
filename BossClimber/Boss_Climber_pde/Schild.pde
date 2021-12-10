@@ -75,7 +75,6 @@ class Schild {
       schildPos.x = width * 2;
       schildPos.y = height * 2;
       fight = false;
-      ResetReset = false;
     }
 
     if (livesSet) {
@@ -149,6 +148,7 @@ class Schild {
   }
 
   void reset() {
+    ResetReset = false;
     NewPos = true;
     schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
