@@ -294,7 +294,8 @@ void update()
     fire6 = false;
     fireballCount = 1200;
   }
-
+  
+  println(waterfles.seeScoreFles);
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
