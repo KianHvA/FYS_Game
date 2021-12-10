@@ -285,7 +285,7 @@ void update()
     fireballs[5].respawn();
   }
 
-  if (platforms.moveStage == true) {
+  if (platforms.moveStage == true||!On) {
     fire = false;
     fire2 = false;
     fire3 = false;
@@ -294,7 +294,8 @@ void update()
     fire6 = false;
     fireballCount = 1200;
   }
-
+  
+  println(waterfles.seeScoreFles);
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {

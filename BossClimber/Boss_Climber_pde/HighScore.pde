@@ -205,12 +205,12 @@ class HighScore {
             gameFinished = true;
           }
           if (gameFinished) {
-            String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "');";
+            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + player.walkAmount + ", " + dragon.fightAmount + ");";
             myConnection.updateQuery(qwery);
-            String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ");";
-            myConnection.updateQuery(qwery2);
-            String qwery3 = "INSERT INTO Highscore (bossKilled) VALUES (" + dragon.fightAmount + ");";
-            myConnection.updateQuery(qwery3);
+            //String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ");";
+            //myConnection.updateQuery(qwery2);
+            //String qwery3 = "INSERT INTO Highscore (bossKilled) VALUES (" + dragon.fightAmount + ");";
+            //myConnection.updateQuery(qwery3);
             gameFinished = false;
           }
         }
