@@ -29,6 +29,8 @@ class HighScore {
   boolean ending = false;
   String amountJumped;
   String amountWalked;
+  String amountKilledDragon;
+  String amountGamePlayed;
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -210,9 +212,12 @@ class HighScore {
 
 
   void draw() {
+    deadScreenScore();
     if (health.dead && !drawn) {
       amountWalked = "You have walked " + player.walkAmount + " meter";
       amountJumped = "You have jumped " + player.jumpAmount + " times";
+      amountKilledDragon = "You have killed the boss " + dragon.fightAmount + " times";
+      amountGamePlayed = "Game played total ";
     }
     if (health.dead) {
       //Drawing the image and all the text.
@@ -248,7 +253,6 @@ class HighScore {
         //  text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
         //  fill(flash[9]);
         //  text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
-        deadScreenScore();
       }
       drawn = true;
     }
@@ -277,9 +281,10 @@ class HighScore {
     Table databaseTable = myConnection.runQuery(query);
     int id = databaseTable.getStringColumn(2).length;
     textSize(textSize * 0.5);
-        textMode(CORNER);
-    text("Game played total " + id, 800, 450);
-        text(amountJumped, 250, 450);
-        text(amountWalked, 250, 475);
+    textMode(CORNER);
+    text(amountGamePlayed + id, 800, 450);
+    text(amountKilledDragon, 250, 440);
+        text(amountJumped, 250, 470);
+        text(amountWalked, 250, 500);
   }
 }
