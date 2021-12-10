@@ -8,7 +8,8 @@ class Lava {
     rectMode(CORNER);
     noStroke();
     fill(#FAB800);
-    rect(b, y, width-2*b, height);
+    image(level.lavaImg, b, y, width-2*b, height);
+    //rect(b, y, width-2*b, height);
     if (!health.dead) {
       if (!dragon.fight) {
         y -= speed;
