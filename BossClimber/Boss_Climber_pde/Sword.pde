@@ -1,11 +1,12 @@
 //Ömer
 class Sword {
+  CollisionHandler collisionHandler;
   float swordX = spawnPointsPUPS.underL.x, swordY = spawnPointsPUPS.underL.y, swordW, swordH;
   float guardW, guardH;
   float durabillity = 3;
   float durablillityFight = 9;
   float durabillityStart = 3;
-  boolean NewPos = false;
+  boolean newPos = false;
   public boolean pickedUp = false;
   boolean swordOn = false;
   boolean spawnSword = false;
@@ -16,6 +17,14 @@ class Sword {
   boolean reset = false;
   boolean fight = false;
   boolean timedReset = false;
+  float dragonX = 0;
+  float dragonY = 0;
+  boolean doneDamage = false;
+  boolean fastDamageFix = true;
+  float timerDamage = 0;
+  float damageFixTimer = 0;
+  color damage = #FFFFFF;
+  float damageOpacity = 1000;
 
   Sword() {
     //swordX = random(100, 400);
@@ -29,6 +38,7 @@ class Sword {
   }
 
   void setup() {
+    collisionHandler = new CollisionHandler();
     HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
 
@@ -39,7 +49,7 @@ class Sword {
       fight = true;
     }
 
-    if (waterfles.pickedUp || schild.pickedUp || Doublejump.pickedUp) {
+    if (waterfles.pickedUp && pickedUp || schild.pickedUp && pickedUp /*|| Doublejump.pickedUp*/) {
       pickedUp = false;
       reset = true;
       timedReset = true;
@@ -59,20 +69,20 @@ class Sword {
       durabillity = durablillityFight;
     }
 
-    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       timedReset = false;
       reset = false;
     }
 
 
-    if (attacked && swordOn) {
-      attack();
-    }
+    //if (attacked && swordOn) {
+    //  attack();
+    //}
 
     if (keysPressed['S'] && pickedUp) {
       attacked = true;
-      println("Active");
+      attack();
     }
     //if (timedReset) {
     // delay (5000);
@@ -81,6 +91,36 @@ class Sword {
     // fight = false;
     // timedReset = false;
     //}
+    if (newPos) {
+      swordX = spawnPointsPUPS.location.x;
+      swordY = spawnPointsPUPS.location.y;
+      newPos = false;
+    }
+    if (!doneDamage) {
+    dragonX = dragon.startx;
+    dragonY = dragon.starty;
+    damageOpacity = 1000;
+    }
+    if (doneDamage) {
+      fill(damage, sword.damageOpacity);
+      text("-1", sword.dragonX, sword.dragonY);
+      dragonX++;
+      dragonY += 2;
+      damageOpacity--;
+      timerDamage++;
+    }
+    if (timerDamage >= 60) {
+      doneDamage = false;
+      timerDamage = 0;
+    }
+    
+    if (fastDamageFix) {
+      damageFixTimer++;
+    }
+    
+    if (damageFixTimer >= 60) {
+      fastDamageFix = false;
+    }
   }
 
   void draw() {
@@ -91,18 +131,19 @@ class Sword {
     //rect(swordX, swordY + 15, guardW, guardH);
   }
 
-  void attack() {
+  void attack() {    
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;
-    if (hasCollision) {
+    if (hasCollision && !fastDamageFix) {
+      doneDamage = true;
       HealthbarDragon.doDamageDragon(1);
-      println("Damage Dragon");
+      fastDamageFix = true;
     }
     attacked = false;
   }
 
   void reset() {
-    NewPos = false;
+    newPos = true;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;

@@ -1,4 +1,4 @@
-/*Kian //<>//
+/*Kian    //<>//
  Welkom bij de Collision Class, dit is hoe je hem gebruikt: 
  
  1. maak een collision boolean aan in de global variables:
@@ -85,7 +85,7 @@ class CollisionHandler
     return false;
   }
 
-  // LINE/CIRCLE //<>//
+  // LINE/CIRCLE  //<>//
   boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {
 
     boolean inside1 = pointCircle(x1, y1, cx, cy, r); //<>//

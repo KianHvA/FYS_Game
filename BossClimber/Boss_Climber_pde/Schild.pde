@@ -1,5 +1,6 @@
 //Ömer, Tristan
 class Schild {
+  CollisionHandler collisionHandler;
   PVector schildPos = spawnPointsPUPS.upperL;
   PVector schildSize = new PVector(35, 40);
   PVector timerSD;
@@ -20,10 +21,12 @@ class Schild {
   boolean fight = false;
   boolean ResetReset = false;
   boolean timedReset = false;
+  float schildSaveLevens = 3;
 
   Schild() {
     GRAVITYSchild = 0.98;
     timerSD = new PVector(0, 0);
+    collisionHandler = new CollisionHandler();
   }
 
   void SchildEq() {
@@ -49,22 +52,26 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp && !ResetReset || Doublejump.pickedUp && !ResetReset || sword.pickedUp && !ResetReset) {
+    if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && !ResetReset && pickedUp) {
+      healthbar.shieldDamage = false;
       pickedUp = false;
       reset = true;
-      timedReset = true;
+      schildActivated = false;
+      //timedReset = true;
       ResetReset = true;
     }
     
-    if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
-      pickedUp = false;
-      ResetReset = false;
-    }
+    //if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
+    //  pickedUp = false;
+    //  ResetReset = false;
+    //}
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
+      health.invincibleB = true;
       livesSet = true;
+      schildActivated = true;
       schildPos.x = width * 2;
       schildPos.y = height * 2;
       fight = false;
@@ -75,12 +82,16 @@ class Schild {
       livesSet = false;
     }
 
-    if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
-      schildOn = false;
-      schildActivated = true;
+    //if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
+    //  schildOn = false;
+    //  schildActivated = true;
+    //}
+    if (!FlamethrowerJumping) {
+    schildSaveLevens = schildLevens;
     }
 
     if (schildActivated && flamethrower.hasCollision) {
+      schildLevens = schildSaveLevens;
       FlamethrowerJumping = true;
       LevelMoveAmountCurrent = platforms.moveAmount;
       LevelMoveAmountNext = LevelMoveAmountCurrent + 1;
@@ -99,9 +110,9 @@ class Schild {
     //  reset = false;
     //}
 
-    //if (platforms.moveAmount == LevelMoveAmountNext) {
-    //  FlamethrowerJumping = false;
-    //}
+    if (platforms.moveAmount == LevelMoveAmountNext) {
+      FlamethrowerJumping = false;
+    }
     if (NewPos) {
       //schildPos = spawnPointsPUPS.location;
       //schildPos.x = random(100, 700);
@@ -113,7 +124,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       health.invincibleB = false;
       reset();
       timedReset = false;
@@ -137,10 +148,12 @@ class Schild {
   }
 
   void reset() {
+    ResetReset = false;
     NewPos = true;
     schildLevens = 3;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildPos = spawnPointsPUPS.location;
+    FlamethrowerJumping = false;
     schildActivated = false;
     pickedUp = false;
   }

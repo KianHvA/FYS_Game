@@ -198,9 +198,7 @@ class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
   void draw() {
     colorMode(RGB, 150);
     float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
-    float d = map(dragon.dragonHealth, 0, dragon.dragonHealth/2, 0, 255);
-    float f = map(dragon.dragonHealth, 0, dragon.dragonHealth, 255, 0);
-    fill(f, d, 0);
+    fill(255, 0, 0);
     noStroke();
     rectMode(CENTER);
     rect(width/2, 10, c, h-1);

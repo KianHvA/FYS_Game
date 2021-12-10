@@ -1,11 +1,13 @@
 //Dion
 class Druppel{
+  CollisionHandler collisionHandler;
   float xSpeedDruppel, ySpeedDruppel, druppelDia;
   PVector posPlayer = new PVector(player.posPlayer.x, player.posPlayer.y);
   boolean hasCollision = false;
   
   Druppel(){
     druppelDia = 10;
+    collisionHandler = new CollisionHandler();
   }
   
   void shootDruppel(float startX, float startY, float druppelSpeedX, float druppelSpeedY){
@@ -24,6 +26,7 @@ class Druppel{
     hasCollision = collisionHandler.hitDragon;    
     
     if (hasCollision){
+     sword.doneDamage = true;
      waterfles.druppelOn = false;
      HealthbarDragon.doDamageDragon(1);
     }

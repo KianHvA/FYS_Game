@@ -1,6 +1,7 @@
 //Dion
 class Waterfles {
-  float flesX = spawnPointsPUPS.underR.x, flesY = spawnPointsPUPS.underR.y, flesB, flesH, resetFlesX, resetFlesY;
+  CollisionHandler collisionHandler;
+  float flesX = spawnPointsPUPS.underR.x, flesY = spawnPointsPUPS.underR.y, flesB, flesH, resetFlesX, resetFlesY, flesScore, flesScoreCount;
   boolean druppelOn = false;
   boolean spawnWaterfles = false;
   boolean druppelOff = false;
@@ -9,12 +10,16 @@ class Waterfles {
   boolean reset = false;
   boolean fight = false;
   boolean timedReset = false;
+  boolean seeScoreFles = false;
 
   Waterfles() {
+    collisionHandler = new CollisionHandler();
     //flesX = random(200, 600);
     //flesY = random(0, 600);
     flesB = 20;
     flesH = 20;
+    flesScore = 25;
+    flesScoreCount = 100;
     //resetFlesX = random(200, 600);
     //resetFlesY = random(200, 600);
   }
@@ -26,7 +31,7 @@ class Waterfles {
       fight = true;
     }
 
-    if (schild.pickedUp || Doublejump.pickedUp || sword.pickedUp) {
+    if (schild.pickedUp && pickedUp  /*|| Doublejump.pickedUp*/ || sword.pickedUp && pickedUp) {
       pickedUp = false;
       reset = true;
       timedReset = true;
@@ -35,10 +40,11 @@ class Waterfles {
       flesX = width * 2;
       flesY = height * 2;
       pickedUp = true;
-      scoreHandler.score((int)random(10, 30));
+      scoreHandler.score += flesScore;
       fight = false;
+      seeScoreFles = true;
     }
-    if (reset && !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp) {
+    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !pickedUp) {
       resetWaterfles();
       fight = false;
       timedReset = false;
@@ -51,12 +57,24 @@ class Waterfles {
     //  fight = false;
     //  timedReset = false;
     //}
+    
+    if (seeScoreFles){
+      flesScoreCount--;
+    }
+    
+    if (flesScoreCount < 0){
+      seeScoreFles = false;
+      flesScoreCount = 100;
+    }
   }
 
   void resetWaterfles() {//Reset nieuwe waterfles
     pickedUp = false;
+    flesScoreCount = 100;
+    if (!dragon.fight) {
     flesX = spawnPointsPUPS.location.x;
     flesY = spawnPointsPUPS.location.y;
+    }
     flesB = 20;
     flesH = 20;
     druppels.posPlayer.x = player.posPlayer.x;
@@ -67,6 +85,12 @@ class Waterfles {
   void draw() {
     fill(0, 0, 255);
     image(inventory.waterflesI, flesX, flesY, flesB, flesH);
+    
+    if (seeScoreFles){
+     fill(255);
+     textSize(30);
+     text("+ 25", player.posPlayer.x, player.posPlayer.y - 40);
+    }
     //rect(flesX, flesY, flesB, flesH);
   }
 }

@@ -22,7 +22,7 @@ class Platform {
   int ySpeed = 10;
   boolean moveStage = false;
   int startMoveAmount = 1;
-  int moveAmount = 1;
+  int moveAmount = 3;
   int maxMoveAmount = 20;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
@@ -63,10 +63,10 @@ class Platform {
 
     newZ = startZ + levelMove; 
     newY = startY + levelMove; 
-    //linksboven = 1 
+    //links boven = 1 
     //links onder = 2 
-    //rechtsonder = 3 
-    //linksboven = 4
+    //rechts onder = 3 
+    //rechts boven = 4
     float x1 = width/12;
     float x2 = width/2;
     float platColor = 147;

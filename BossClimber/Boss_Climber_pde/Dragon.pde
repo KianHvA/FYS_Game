@@ -21,7 +21,7 @@ class Dragon {
   float dragonHealth = 3;
   float dragonHealthS = 3;
   boolean fight = false;
-  float fightAmount = 1;
+  float fightAmount = 0;
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
@@ -143,7 +143,7 @@ class Dragon {
         starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
 
         //mousepressed is een tijdelijke variabele, dit moet verandert worden door iets met wanneer dragon healt lager is dan...
-        if (mousePressed) {
+        if (dragon.dragonHealth<1) {
           bossFightRoomFase2 = true;
         }
       }

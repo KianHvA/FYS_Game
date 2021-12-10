@@ -1,6 +1,7 @@
 //Dion
 class Fireball {
 
+  CollisionHandler collisionHandler;
   //variables
   PVector posFireball = new PVector(200, 0);
   PVector startFireball;
@@ -8,7 +9,7 @@ class Fireball {
   PVector newPosFireball = new PVector(200, 50);
   PVector velocity = new PVector(0, 0);
   final float GRAVITY = 0.1f;
-  private float timer = 0;
+  //private float timer = 0;
   boolean hasJumped = false, switchDirection = false, hasDashed = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, playerCollision = false, newPos = false;
   float damageFireball = 33;
   PVector RposFireball = new PVector(400, 50);
@@ -37,6 +38,8 @@ class Fireball {
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
     //println(posFireball.y);
+    
+    collisionHandler = new CollisionHandler();
   }
 
 

@@ -1,6 +1,7 @@
 //Tristan, Kian
 class Player {
 
+  CollisionHandler collisionHandler;
   //variables
   PVector posPlayer = new PVector(width/1.8, height/1.2);
   PVector sizePlayer = new PVector(20, 20);//for collision 
@@ -19,7 +20,13 @@ class Player {
   PImage leftActiveSW, rightActiveSW;
   float timerLeft1 = 0, timerLeft2 = 0;
   float timerRight1 = 0, timerRight2 = 0;  
-
+  final float SPEED = 5;
+  boolean jump = false;
+  boolean jumped = false;
+  float jumpTimer1 = 0;
+  float jumpAmount = 0;
+  float walkAmount = 0;
+  
   void setup() {
     //left
     left = loadImage("Knight - Left.png");
@@ -57,6 +64,8 @@ class Player {
     rightActiveSW = loadImage("Knight - Right - Sword.png");
     leftActiveW = loadImage("Knight - Left - Water.png");
     rightActiveW = loadImage("Knight - Right - Water.png");
+    
+    collisionHandler = new CollisionHandler();
   }
 
   void draw() {
@@ -69,6 +78,18 @@ class Player {
     imageMode(CENTER);
     image(Active, posPlayer.x, posPlayer.y, sizeSprite.x, sizeSprite.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
+    if (schild.pickedUp && schild.schildLevens == 3) {
+      fill(#EBFA90, 250);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
+    if (schild.pickedUp && schild.schildLevens == 2) {
+      fill(#EBFA90, 150);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
+    if (schild.pickedUp && schild.schildLevens == 1) {
+      fill(#EBFA90, 100);
+      circle(player.posPlayer.x, player.posPlayer.y, 50);
+    }
   }
   void movementUpdate()
   {
@@ -86,19 +107,21 @@ class Player {
     }
     if (wallCollisonR) {
       velocity.x = 0;
-      velocity.x -= 1;
+      velocity.x -= 3;
     } else if (wallCollisonL) {
       velocity.x = 0;
-      velocity.x += 1;
+      velocity.x += 3;
     }
     //handle movement on x-axes
-    if (keysPressed[LEFT] && !collisionHandler.hitWallLeft && !platforms.moveStage)
+    if (keysPressed[LEFT] /*&& !collisionHandler.hitWallLeft*/ && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
-      velocity.x = -7;
+      velocity.x = -SPEED;
+      walkAmount++;
       moveLeft = true;
-    } else if (keysPressed[RIGHT] && !collisionHandler.hitWallRight  && !platforms.moveStage)
+    } else if (keysPressed[RIGHT] /*&& !collisionHandler.hitWallRight*/  && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
     {
-      velocity.x = 7;
+      velocity.x = SPEED;
+      walkAmount++;
       moveRight = true;
     } else 
     if (!hasCollision)
@@ -262,30 +285,51 @@ class Player {
 
 
     //handle jump
-    if (hasCollision && keysPressed[UP]  && !platforms.moveStage)
+    if (hasCollision && keysPressed[UP]  && !platforms.moveStage && jump && !jumped)
     {
-      hasCollision = false;
-      velocity.y = -jumpForce;
-      moveUp = true;
+      jumpAmount++;
+      jumped = true;
     }
-    if (!hasCollision && !hasDoubleJumped && keysPressed[UP] && velocity.y > 0 && Doublejump.pickedUp && Doublejump.cooldown < 10  && !platforms.moveStage)
+    if (!hasCollision && !hasDoubleJumped && jump && keysPressed[UP] && velocity.y > 0 && Doublejump.cooldown < 10  && !platforms.moveStage && !wallCollisonL && !wallCollisonR)
     {
       velocity.y = -jumpForce;
-      hasDoubleJumped = true;
+      jumpAmount++;
       moveUp = true;
+      hasDoubleJumped = true;
+    }
+    if (jumped) {
+     hasCollision = false;
+      velocity.y = -jumpForce;
+      moveUp = true;
+      jump = false;
+      jumped = false;
+    }
+    if (!jump) {
+     jumpTimer1++; 
+    }
+    if (jumpTimer1 == 30) {
+      jump = true;
+      jumpTimer1 = 0;
     }
 
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
+      //ellipseMode(CENTER);
+      fill(#EBFA90, 900);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 2;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 2) {
+      fill(#EBFA90, 600);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 1;
       schild.hit = true;
       healthbar.shieldDamage = false;
     }
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 1) {
+      fill(#EBFA90, 300);
+      circle(player.posPlayer.x, player.posPlayer.y, 30);
       schild.schildLevens = 0;
       schild.hit = true;
       healthbar.shieldDamage = false;
@@ -298,6 +342,7 @@ class Player {
     if (waterfles.pickedUp == true && keysPressed['S'] && cooldown == 0) {//Shooting druppel
       druppels.shootDruppel(posPlayer.x, posPlayer.y, 0, -4);
       waterfles.druppelOn = true;
+      waterfles.pickedUp = false;
     }
 
     //add velocity to posPlayer
@@ -309,14 +354,14 @@ class Player {
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       if (dist(collisionHandler.preplatformHitPos.x, collisionHandler.preplatformHitPos.y, collisionHandler.platformHitPos.x, collisionHandler.platformHitPos.y) > 100) {
-        posPlayer.y = posPlayer.y - (collisionHandler.platformHeight + sizePlayer.y/2);
+        posPlayer.y = collisionHandler.platformHitPos.y - (sizePlayer.y/2);
       } else {
         posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight + sizePlayer.y/2);
       }
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
       hasCollision = false;
-      posPlayer.y = posPlayer.y + 1;
+      posPlayer.y = posPlayer.y + (GRAVITY*sizePlayer.y);
     }
   }
 

@@ -33,20 +33,20 @@ class Inventory {
     }
 
 
-    if (Doublejump.pickedUp) {
-      rectMode(CENTER);
-      noStroke();
-      fill(147);
-      imageMode(CENTER);
-      image(doubleJump, width-35, height-35, 40, 50);
-      //rect(width-35, height-35, 50, 50);
-      inventoryFull = true;
-      //schild.pickedUp = false;
-      //sword.pickedUp = false;
-      //waterfles.pickedUp = false;
-    } else {
-      inventoryFull = false;
-    }
+    //if (Doublejump.pickedUp) {
+    //  rectMode(CENTER);
+    //  noStroke();
+    //  fill(147);
+    //  imageMode(CENTER);
+    //  image(doubleJump, width-35, height-35, 40, 50);
+    //  //rect(width-35, height-35, 50, 50);
+    //  inventoryFull = true;
+    //  //schild.pickedUp = false;
+    //  //sword.pickedUp = false;
+    //  //waterfles.pickedUp = false;
+    //} else {
+    //  inventoryFull = false;
+    //}
 
     if (waterfles.pickedUp) {
       rectMode(CENTER);

@@ -1,10 +1,12 @@
 //Tristan
 //Dion: handleiding
+//Kian: showing highscore
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
-  boolean start = false, drawn = false;
+  boolean start = false, drawn = false, displayHighscore = false;
   PVector placement1 = new PVector(width/3 + 50, 250);
-  PVector placement2 = new PVector(width/3 + 175, 250);
+  PVector placement2 = new PVector(width/3 + 200, 250);
+  PVector placement3 = new PVector(width/2, 250);
   boolean highlight1 = true, highlight2 = false;
   color normal = 125;
   color highlight = #EFF03F;
@@ -56,18 +58,25 @@ class Menu {
     text("BOSS CLIMBER", placement1.x - 133, 200); 
     fill(125);
     rect(placement1.x - 175, placement1.y, size.x, size.y);
-    rect(menu.placement1.x + 150, menu.placement1.y, menu.size.x, menu.size.y);
+    rect(placement2.x, placement2.y, size.x, size.y);
+    rect(placement3.x - size.x/2, placement3.y+size.y + 10, size.x, size.y/1.5);
     rectMode(CENTER);
     textFont(f, 50); //size of the texts
     fill(kleur); //color
-    text("Press A", placement1.x - 125, placement1.y + 65);
-    text("to start", placement1.x -115, placement1.y + 115);
-    text("Press D for", placement1.x + 160, placement1.y + 65);
-    text("instructions", placement1.x + 160, placement1.y + 115);
+    textLeading(50);
+    text("Press A\n to start", placement1.x - 125, placement1.y + 65); //press A on pc
+    text("Press Y for\ninstructions", placement1.x + 160, placement1.y + 65); //press D on pc
+    textSize(72/2);
+    textLeading(40);
+    text("Press X for\n Highscore", placement3.x - size.x/3, placement3.y+(size.y*1.35)); // press X on pc
+    textSize(72);
     drawn = true;
 
     if (keysPressed['A']) {
       start = true;
+    }
+    if (keysPressed['X']) {
+      displayHighscore = true;
     }
 
     //stroke(rect2);
@@ -81,6 +90,26 @@ class Menu {
     //text("Personalise", placement2.x + 10, placement2.y + 60);
     //drawn = true;
   }
+
+  void HighscoreDraw() {
+    background(0);
+    String highscore;
+    String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
+    Table databaseTable = myConnection.runQuery(query);
+    String[] scores = databaseTable.getStringColumn(0);
+    String[] names = databaseTable.getStringColumn(1);
+    
+    textAlign(CENTER,CENTER);
+    text("Highscore:", height/2, height/2 - 100 * 2);
+    fill(255);
+    for (int i = 0; i < 10; i++) {
+      highscore = names[i] + ": " + scores[i];
+      textSize(20);
+      
+      text(highscore, width/2, height/2 - 100 + i * 20);
+    }
+  }
+
 
   //void highlight() {
   //  if (highlight1) {
