@@ -200,6 +200,8 @@ class HighScore {
             delay(100);
             String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "');";
             myConnection.updateQuery(qwery);
+            String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ", " + dragon.fightAmount + ");";
+            myConnection.updateQuery(qwery2);
           }
         }
       }
