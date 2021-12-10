@@ -212,7 +212,7 @@ class HighScore {
       amountWalked = "You have walked " + player.walkAmount + " meter";
       amountJumped = "You have jumped " + player.jumpAmount + " times";
     }
-      if (health.dead) {
+    if (health.dead) {
       //Drawing the image and all the text.
       imageMode(CORNER);
       image(backgroundDead, 0, 0);
@@ -248,8 +248,8 @@ class HighScore {
         //  text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
         textSize(textSize * 0.5);
         textMode(CORNER);
-        text(amountJumped, 200, 450);
-        text(amountWalked, 200, 475);
+        text(amountJumped, 250, 450);
+        text(amountWalked, 250, 475);
       }
       drawn = true;
     }

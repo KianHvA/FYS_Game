@@ -75,6 +75,7 @@ class Schild {
       schildPos.x = width * 2;
       schildPos.y = height * 2;
       fight = false;
+      ResetReset = false;
     }
 
     if (livesSet) {
