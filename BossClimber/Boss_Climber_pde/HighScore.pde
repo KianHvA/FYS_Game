@@ -212,7 +212,7 @@ class HighScore {
       amountWalked = "You have walked " + player.walkAmount + " meter";
       amountJumped = "You have jumped " + player.jumpAmount + " times";
     }
-      if (health.dead) {
+    if (health.dead) {
       //Drawing the image and all the text.
       imageMode(CORNER);
       image(backgroundDead, 0, 0);
@@ -246,10 +246,7 @@ class HighScore {
         //  text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
         //  fill(flash[9]);
         //  text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
-        textSize(textSize * 0.5);
-        textMode(CORNER);
-        text(amountJumped, 200, 450);
-        text(amountWalked, 200, 475);
+        deadScreenScore();
       }
       drawn = true;
     }
@@ -271,5 +268,16 @@ class HighScore {
       //  flash[j-1] = color(#FFFFFF, 1000);
       //}
     }
+  }
+  
+  void deadScreenScore() {
+    String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
+    Table databaseTable = myConnection.runQuery(query);
+    int id = databaseTable.getStringColumn(2).length;
+    textSize(textSize * 0.5);
+        textMode(CORNER);
+    text("Game played total " + id, 800, 450);
+        text(amountJumped, 250, 450);
+        text(amountWalked, 250, 475);
   }
 }
