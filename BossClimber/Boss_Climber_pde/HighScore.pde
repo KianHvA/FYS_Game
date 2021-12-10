@@ -31,6 +31,9 @@ class HighScore {
   String amountWalked;
   String amountKilledDragon;
   String amountGamePlayed;
+  boolean gameFinished = false;
+  boolean getTable = false;
+  int idFix = 0;
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -199,11 +202,16 @@ class HighScore {
           //If the letter is at max the final name gets made.
           if (j >= 5) {
             finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
-            delay(100);
+            gameFinished = true;
+          }
+          if (gameFinished) {
             String qwery = "INSERT INTO Highscore (score, name) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "');";
             myConnection.updateQuery(qwery);
-            String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ", " + dragon.fightAmount + ");";
+            String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ");";
             myConnection.updateQuery(qwery2);
+            String qwery3 = "INSERT INTO Highscore (bossKilled) VALUES (" + dragon.fightAmount + ");";
+            myConnection.updateQuery(qwery3);
+            gameFinished = false;
           }
         }
       }
@@ -277,12 +285,17 @@ class HighScore {
   }
 
   void deadScreenScore() {
+    getTable = true;
+    if (getTable) {
     String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
     Table databaseTable = myConnection.runQuery(query);
     int id = databaseTable.getStringColumn(2).length;
+    idFix = id;
+    }
+    getTable = false;
     textSize(textSize * 0.5);
     textMode(CORNER);
-    text(amountGamePlayed + id, 800, 450);
+    text(amountGamePlayed + idFix, 800, 450);
     text(amountKilledDragon, 250, 440);
     text(amountJumped, 250, 470);
     text(amountWalked, 250, 500);
