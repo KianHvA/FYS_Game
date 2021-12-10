@@ -285,7 +285,7 @@ void update()
     fireballs[5].respawn();
   }
 
-  if (platforms.moveStage == true) {
+  if (platforms.moveStage == true||!On) {
     fire = false;
     fire2 = false;
     fire3 = false;
