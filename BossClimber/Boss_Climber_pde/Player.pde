@@ -248,7 +248,7 @@ class Player {
     }
 
     if (!schild.pickedUp && sword.pickedUp && !waterfles.pickedUp) {
-      if (moveLeft && !moveRight) {
+      if (moveLeft && !moveRight && !sword.attacked) {
         Active = leftActiveSW;
         if (timerLeft2 ==0) {
           timerLeft1++;
@@ -278,8 +278,11 @@ class Player {
           timerRight2 = 0;
         }
       }
-      if (!moveLeft && !moveRight) {
+      if (!moveLeft && !moveRight && !sword.attacked) {
         Active = rightSW;
+      }
+      if (sword.attacked && sword.stabAnimation >= 100) {
+       Active = sword.swordStab; 
       }
     }
 

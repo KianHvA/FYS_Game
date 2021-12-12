@@ -326,7 +326,7 @@ void update()
     fireballHitCount = 100;
   }
   
-  println(seeHitFireball);
+  //println(seeHitFireball);
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
