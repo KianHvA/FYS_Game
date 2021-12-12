@@ -6,7 +6,7 @@ class Flamethrower {
   final float X3 = width/6 + width/2; //X coördinates right.
   final float X4 = width/6 + width/2 + 60;
   final PVector SIZEFLAME = new PVector(60, 100);
-  float timer1 = 0, timer2 = 0;
+  float timer1 = 0, timer2 = 0, hitFlamethrowerCount = 100;
   int distance = 660; //Size screen so that everything stands correctly.
   int from = 150; //From y = 150 flamethrowers are drawn.
   int minus = 7; //Size base flamethrower.
@@ -15,6 +15,7 @@ class Flamethrower {
   boolean live = false; //If the flamethrowers are active this boolean will make sure that the collision activates.
   boolean live2 = false; //If the flamethrowers are active this boolean will make sure that the collision activates.
   boolean hasCollision = false;
+  boolean seeHitFlamethrower = false;
   int newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
 
@@ -59,6 +60,12 @@ class Flamethrower {
       quad(X3, y2  + (platforms.platformThickness/4), X3, y1  + (platforms.platformThickness/4) - 10, X4, y, X4, y1); //Bottom right.
     }
     newY = distance + platforms.levelMove; //Putting back newY so it works correctly in update().
+    
+    if (seeHitFlamethrower){
+     fill(255);
+     textSize(30);
+     text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
+    }
   }
 
   void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time.
@@ -87,6 +94,7 @@ class Flamethrower {
           collisionHandler.checkCollisionPlayer(X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x);
           if (collisionHandler.hitPlayer) {
             hasCollision = collisionHandler.hitPlayer;
+            seeHitFlamethrower = true;
           } else {
             collisionHandler.checkCollisionPlayer(X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x);
           }
@@ -100,6 +108,15 @@ class Flamethrower {
         }
         if (hasCollision) healthbar.doDamage(1); //damage
       }
+    }
+    
+    if (seeHitFlamethrower){
+      hitFlamethrowerCount--;
+    }
+    
+    if (hitFlamethrowerCount < 0){
+      seeHitFlamethrower = false;
+      hitFlamethrowerCount = 100;
     }
   }
 }

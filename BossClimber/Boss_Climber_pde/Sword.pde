@@ -25,6 +25,9 @@ class Sword {
   float damageFixTimer = 0;
   color damage = #FFFFFF;
   float damageOpacity = 1000;
+  boolean seeScoreSword = false;
+  float scoreSwordCount = 100;
+  int swordScore = 50;
 
   Sword() {
     //swordX = random(100, 400);
@@ -59,6 +62,8 @@ class Sword {
       swordY = height * 2;
       pickedUp = true;
       fight = false;
+      seeScoreSword = true;
+      scoreHandler.score += swordScore;
     }
 
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
@@ -121,6 +126,15 @@ class Sword {
     if (damageFixTimer >= 60) {
       fastDamageFix = false;
     }
+    
+    if (seeScoreSword){
+      scoreSwordCount--;
+    }
+    
+    if (scoreSwordCount < 0){
+      seeScoreSword = false;
+      scoreSwordCount = 100;
+    }
   }
 
   void draw() {
@@ -129,6 +143,12 @@ class Sword {
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);
+    
+    if (seeScoreSword){
+     fill(255);
+     textSize(30);
+     text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+    }
   }
 
   void attack() {    

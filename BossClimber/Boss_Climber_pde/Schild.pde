@@ -21,7 +21,10 @@ class Schild {
   boolean fight = false;
   boolean ResetReset = false;
   boolean timedReset = false;
+  boolean seeScoreShield = false;
   float schildSaveLevens = 3;
+  float schildScoreCount = 100;
+  int shieldScore = 50;
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -75,6 +78,8 @@ class Schild {
       schildPos.x = width * 2;
       schildPos.y = height * 2;
       fight = false;
+      seeScoreShield = true;
+      scoreHandler.score += shieldScore;
     }
 
     if (livesSet) {
@@ -137,6 +142,15 @@ class Schild {
     // fight = false;
     // timedReset = false;
     //}
+    
+    if (seeScoreShield){
+      schildScoreCount--;
+    }
+    
+    if (schildScoreCount < 0){
+      seeScoreShield = false;
+      schildScoreCount = 100;
+    }
   }
 
   void draw() {
@@ -145,6 +159,12 @@ class Schild {
     fill(255, 0, 0);
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
+    
+    if (seeScoreShield){
+     fill(255);
+     textSize(30);
+     text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+    }
   }
 
   void reset() {
