@@ -139,11 +139,12 @@ class Sword {
       scoreSwordCount = 100;
     }
     if (attacked) {
-      stabAnimation++;
+      stabAnimation = 0;
     }
     if (stabAnimation == 100) {
       attacked = false;
     }
+    stabAnimation++;
   }
 
   void draw() {
