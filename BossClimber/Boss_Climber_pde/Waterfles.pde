@@ -37,6 +37,7 @@ class Waterfles {
         reset = true;
         timedReset = true;
       }
+      
       if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)) {//Collision player & waterfles
         flesX = width * 2;
         flesY = height * 2;
@@ -45,6 +46,7 @@ class Waterfles {
         fight = false;
         seeScoreFles = true;
       }
+      
       if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/ || druppel.posPlayer.x <= 0 && druppel.posPlayer.y <= 0 || druppel.hasCollision) {
         resetWaterfles();
         fight = false;

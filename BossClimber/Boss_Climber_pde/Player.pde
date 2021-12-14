@@ -281,7 +281,7 @@ class Player {
       if (!moveLeft && !moveRight && !sword.attacked) {
         Active = rightSW;
       }
-      if (sword.attacked && sword.stabAnimation >= 100) {
+      if (sword.attacked && sword.stabAnimation <= 100) {
        Active = sword.swordStab; 
       }
     }
