@@ -37,9 +37,9 @@ class Waterfles {
         pickedUp = false;
         reset = true;
         timedReset = true;
-      }
-      
-      if (!schild.pickedUp){
+       }
+     
+     if (!schild.pickedUp){
       if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)) {//Collision player & waterfles
         flesX = width * 2;
         flesY = height * 2;
@@ -49,8 +49,7 @@ class Waterfles {
         seeScoreFles = true;
       }
       }
-      
-      if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/ || druppel.posPlayer.x <= 0 && druppel.posPlayer.y <= 0 || druppel.hasCollision) {
+      if (reset/*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/) {
         resetWaterfles();
         fight = false;
         timedReset = false;
@@ -70,7 +69,7 @@ class Waterfles {
         //reset = true;
         //sword.reset = true;
         //schild.reset = true;
-      //}
+   //}
   }
 
   void resetWaterfles() {//Reset nieuwe waterfles

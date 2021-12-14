@@ -269,36 +269,42 @@ void update()
     fire = false;
     fireballCount = 1200;
     fireballs[0].respawn();
+    waterfles.resetWaterfles();
   }
   if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire2 = false;
     fireballCount = 1200;
     fireballs[1].respawn();
+    waterfles.resetWaterfles();
   }
   if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire3 = false;
     fireballCount = 1200;
     fireballs[2].respawn();
+    waterfles.resetWaterfles();
   }
   if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire4 = false;
     fireballCount = 1200;
     fireballs[3].respawn();
+    waterfles.resetWaterfles();
   }
   if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire5 = false;
     fireballCount = 1200;
     fireballs[4].respawn();
+    waterfles.resetWaterfles();
   }
   if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
     fire6 = false;
     fireballCount = 1200;
     fireballs[5].respawn();
+    waterfles.resetWaterfles();
   }
 
   if (platforms.moveStage == true||!On) {
@@ -346,7 +352,7 @@ void update()
     waterfles.resetWaterfles();
   }
   
-  //println(resetWaterflesCount);
+  println(resetWaterflesCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();

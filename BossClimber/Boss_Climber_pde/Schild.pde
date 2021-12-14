@@ -50,9 +50,19 @@ class Schild {
   }
 
   void update() {
-    if(dragon.fight && !pickedUp && !fight) {
-      schildPos = spawnPointsPUPS.fightR;
+    //if(dragon.fight && !pickedUp && !fight) {
+      //schildPos = spawnPointsPUPS.fightR;
+      //fight = true;
+    //}
+    
+    if (dragon.fight && !fight){
+      schildPos.x = 2000;
+      pickedUp = false;
       fight = true;
+            
+      if (!dragon.fight){
+        reset();
+      }
     }
     
     if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && !ResetReset && pickedUp) {
