@@ -11,42 +11,63 @@ class Lava {
     rectMode(CORNER);
     noStroke();
     fill(#FAB800);
-    rect(b, y, width-2*b, height);
-
-    if (!dragon.fight) {
-      y -= speed;
-    }
-
-    if (player.posPlayer.y+20 >= y) {
-      healthbar.doDamage(100);
-    }
-
-    if (lavaBack) {
-      y += back; 
-      if (y > 700) {
-        y -= 0;
+    image(level.lavaImg, b, y, width-2*b, height);
+    //rect(b, y, width-2*b, height);
+    if (!health.dead) {
+      if (!dragon.fight) {
+        y -= speed;
       }
+
+      if (player.posPlayer.y+20 >= y) {
+        healthbar.doDamage(100);
+      }
+
+      if (player.posPlayer.y+20 >= y) {
+        healthbar.doDamage(100);
+      }
+
+      if (lavaBack) {
+        y += back; 
+        if (y > 700) {
+          y -= 0;
+        }
+      }
+
+      if (player.posPlayer.y <= 0 && !dragon.fight) {
+        lavaBack = true;
+      }
+      if (player.posPlayer.y >= height-20 && !dragon.fight) {
+        lavaBack = false;
+        println("Lava stop");
+        y -= speed;
+        println("Lava spawn");
+        if (player.posPlayer.y <= 0 && !dragon.fight) {
+          y = 700;
+        }
+
+        if (platforms.moveAmount == 8) {
+          speed = 0.2;
+        }
+
+        if (platforms.moveAmount == 16) {
+          speed = 0.4;
+        }
+
+        if (platforms.moveAmount == 32) {
+          speed = 0.8;
+        }
+      }
+
+      //    if (platforms.moveAmount == 8) {
+      //      speed = 0.2;
+      //    }
+
+      //    if (platforms.moveAmount == 16) {
+      //      speed = 0.4;
+      //    }
+
+      //    if (platforms.moveAmount == 32) {
+      //      speed = 0.8;
     }
-
-    if (player.posPlayer.y <= 0 && !dragon.fight) {
-      lavaBack = true;
-    }
-    if (player.posPlayer.y >= height-20 && !dragon.fight) {
-      lavaBack = false;
-      println("Lava stop");
-      y -= speed;
-      println("Lava spawn");
-    }
-
-    //    if (platforms.moveAmount == 8) {
-    //      speed = 0.2;
-    //    }
-
-    //    if (platforms.moveAmount == 16) {
-    //      speed = 0.4;
-    //    }
-
-    //    if (platforms.moveAmount == 32) {
-    //      speed = 0.8;
   }
 }

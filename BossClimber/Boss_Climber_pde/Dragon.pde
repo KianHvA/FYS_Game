@@ -143,7 +143,7 @@ class Dragon {
         starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
 
         //mousepressed is een tijdelijke variabele, dit moet verandert worden door iets met wanneer dragon healt lager is dan...
-        if (mousePressed) {
+        if (dragon.dragonHealth<1) {
           bossFightRoomFase2 = true;
         }
       }

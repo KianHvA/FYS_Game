@@ -37,6 +37,7 @@ float halfY = height/2;
 float xDragon = 152, yDragon = 10, sizeDragon = 100;
 float textX = width/2;
 float textY = height/2;
+float fireballHitCount = 100;
 int fireballAmount = 6;
 boolean fire = false;
 boolean fire2 = false;
@@ -50,6 +51,7 @@ boolean powerUpActive = false;
 boolean damageDragon = false;
 boolean respawnWaterfles = false;
 boolean On = true;
+boolean seeHitFireball = false;
 SQLConnection myConnection;
 
 
@@ -182,7 +184,6 @@ void update()
 
   if (fireballs[0].playerCollision || fireballs[0].posFireball.y >= height) {//Damage fireball && respawning fireball
     fire = false;
-    fireballs[0].playerCollision = false;
     fireballCount = 1200;
     fireballs[0].respawn();
     fireballs[0].posFireball = fireballs[0].RposFireball;
@@ -190,17 +191,25 @@ void update()
 
   if (fireballs[1].playerCollision || fireballs[1].posFireball.y >= height) {//Damage fireball && respawning fireball
     fire2 = false;
-    fireballs[1].playerCollision = false;
     fireballCount = 1200;
     fireballs[1].respawn();
     fireballs[1].posFireball = fireballs[1].RposFireball;
   }
   if (fireballs[2].playerCollision || fireballs[2].posFireball.y >= height) {//Damage fireball && respawning fireball
     fire3 = false;
-    fireballs[2].playerCollision = false;
     fireballCount = 1200;
     fireballs[2].respawn();
     fireballs[2].posFireball = fireballs[2].RposFireball;
+  }
+  
+  if (fireballs[0].playerCollision){//Player sees that he/she is hitting a fireball.
+    seeHitFireball = true;
+  }
+  if (fireballs[1].playerCollision){//Player sees that he/she is hitting a fireball.
+    seeHitFireball = true;
+  }
+  if (fireballs[2].playerCollision){//Player sees that he/she is hitting a fireball.
+    seeHitFireball = true;
   }
 
   if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
@@ -226,7 +235,6 @@ void update()
 
     if (fireballs[3].playerCollision || fireballs[3].posFireball.y >= height) {//Damage fireball && respawning fireball
       fire4 = false;
-      fireballs[3].playerCollision = false;
       fireballCount = 1200;
       fireballs[3].respawn();
       fireballs[3].posFireball = fireballs[3].RposFireball;
@@ -234,17 +242,25 @@ void update()
 
     if (fireballs[4].playerCollision || fireballs[4].posFireball.y >= height) {//Damage fireball && respawning fireball
       fire5 = false;
-      fireballs[4].playerCollision = false;
       fireballCount = 1200;
       fireballs[4].respawn();
       fireballs[4].posFireball = fireballs[4].RposFireball;
     }
     if (fireballs[5].playerCollision || fireballs[5].posFireball.y >= height) {//Damage fireball && respawning fireball
       fire6 = false;
-      fireballs[5].playerCollision = false;
       fireballCount = 1200;
       fireballs[5].respawn();
       fireballs[5].posFireball = fireballs[5].RposFireball;
+    }
+    
+    if (fireballs[3].playerCollision){//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
+    }
+    if (fireballs[4].playerCollision){//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
+    }
+    if (fireballs[5].playerCollision){//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
     }
   }
 
@@ -285,7 +301,7 @@ void update()
     fireballs[5].respawn();
   }
 
-  if (platforms.moveStage == true) {
+  if (platforms.moveStage == true||!On) {
     fire = false;
     fire2 = false;
     fire3 = false;
@@ -294,7 +310,23 @@ void update()
     fire6 = false;
     fireballCount = 1200;
   }
-
+  
+  if (seeHitFireball){
+    fireballHitCount--;
+  }
+  
+  if (fireballHitCount < 0){
+    seeHitFireball = false;
+    fireballs[0].playerCollision = false;
+    fireballs[1].playerCollision = false;
+    fireballs[2].playerCollision = false;
+    fireballs[3].playerCollision = false;
+    fireballs[4].playerCollision = false;
+    fireballs[5].playerCollision = false;
+    fireballHitCount = 100;
+  }
+  
+  //println(seeHitFireball);
   //println(fireballCount);
   //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
   //  for (int i = 0; i > fireballs.length; i++) {
@@ -414,6 +446,7 @@ void draw()
         player.draw();
         Bossplatform();
       }
+      
       if (fire == true) {//Draws fireballs!
         fireballs[0].draw();
       }
@@ -436,6 +469,13 @@ void draw()
       if (fire6 == true) {
         fireballs[5].draw();
       }
+      
+      if (seeHitFireball){
+        fill(255);
+        textSize(30);
+        text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
+      }
+      
       Doublejump.draw();
       waterfles.draw();
       schild.draw();

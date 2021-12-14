@@ -25,6 +25,11 @@ class Sword {
   float damageFixTimer = 0;
   color damage = #FFFFFF;
   float damageOpacity = 1000;
+  boolean seeScoreSword = false;
+  float scoreSwordCount = 100;
+  int swordScore = 50;
+  PImage swordStab;
+  float stabAnimation = 0;
 
   Sword() {
     //swordX = random(100, 400);
@@ -40,6 +45,7 @@ class Sword {
   void setup() {
     collisionHandler = new CollisionHandler();
     HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
+    swordStab = loadImage("Knight - Sword - Attack2.png");
   }
 
   void updateSword() {
@@ -59,6 +65,8 @@ class Sword {
       swordY = height * 2;
       pickedUp = true;
       fight = false;
+      seeScoreSword = true;
+      scoreHandler.score += swordScore;
     }
 
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
@@ -97,9 +105,9 @@ class Sword {
       newPos = false;
     }
     if (!doneDamage) {
-    dragonX = dragon.startx;
-    dragonY = dragon.starty;
-    damageOpacity = 1000;
+      dragonX = dragon.startx;
+      dragonY = dragon.starty;
+      damageOpacity = 1000;
     }
     if (doneDamage) {
       fill(damage, sword.damageOpacity);
@@ -113,13 +121,28 @@ class Sword {
       doneDamage = false;
       timerDamage = 0;
     }
-    
+
     if (fastDamageFix) {
       damageFixTimer++;
     }
-    
+
     if (damageFixTimer >= 60) {
       fastDamageFix = false;
+    }
+
+    if (seeScoreSword) {
+      scoreSwordCount--;
+    }
+
+    if (scoreSwordCount < 0) {
+      seeScoreSword = false;
+      scoreSwordCount = 100;
+    }
+    if (attacked) {
+      stabAnimation++;
+    }
+    if (stabAnimation == 100) {
+      attacked = false;
     }
   }
 
@@ -129,6 +152,12 @@ class Sword {
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);
+
+    if (seeScoreSword) {
+      fill(255);
+      textSize(30);
+      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+    }
   }
 
   void attack() {    
@@ -139,7 +168,6 @@ class Sword {
       HealthbarDragon.doDamageDragon(1);
       fastDamageFix = true;
     }
-    attacked = false;
   }
 
   void reset() {
