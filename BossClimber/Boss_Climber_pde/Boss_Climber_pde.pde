@@ -352,7 +352,7 @@ void update()
     }
   }
   
-  println(resetWaterflesCount);
+  //println(resetWaterflesCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();

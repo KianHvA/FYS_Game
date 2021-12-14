@@ -45,7 +45,7 @@ class Sword {
   void setup() {
     collisionHandler = new CollisionHandler();
     HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
-    swordStab = loadImage("Knight - Sword - Attack2.png");
+    swordStab = loadImage("Knight - Sword attack.png");
   }
 
   void updateSword() {
@@ -139,12 +139,13 @@ class Sword {
       scoreSwordCount = 100;
     }
     if (attacked) {
+      stabAnimation++;
+      println(stabAnimation);
+    }
+    if (stabAnimation >= 25) {
+      attacked = false;
       stabAnimation = 0;
     }
-    if (stabAnimation == 100) {
-      attacked = false;
-    }
-    stabAnimation++;
   }
 
   void draw() {
