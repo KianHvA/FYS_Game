@@ -346,6 +346,8 @@ void update()
     waterfles.resetWaterfles();
   }
   
+  println(waterfles.reset);
+  
   //println(resetWaterflesCount);
 
   player.movementUpdate();

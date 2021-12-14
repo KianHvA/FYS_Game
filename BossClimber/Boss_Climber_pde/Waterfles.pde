@@ -50,7 +50,7 @@ class Waterfles {
       }
       }
       
-      if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/ || druppel.posPlayer.x <= 0 && druppel.posPlayer.y <= 0 || druppel.hasCollision) {
+      if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/) {
         resetWaterfles();
         fight = false;
         timedReset = false;
