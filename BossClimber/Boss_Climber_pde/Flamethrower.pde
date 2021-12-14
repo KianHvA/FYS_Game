@@ -61,7 +61,7 @@ class Flamethrower {
     }
     newY = distance + platforms.levelMove; //Putting back newY so it works correctly in update().
     
-    if (seeHitFlamethrower){
+    if (seeHitFlamethrower && !schild.pickedUp){
      fill(255);
      textSize(30);
      text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);

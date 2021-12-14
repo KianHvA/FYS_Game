@@ -346,8 +346,6 @@ void update()
     waterfles.resetWaterfles();
   }
   
-  println(sword.swordY);
-  
   //println(resetWaterflesCount);
 
   player.movementUpdate();
