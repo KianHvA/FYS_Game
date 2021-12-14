@@ -168,7 +168,7 @@ class Dragon {
     }
     //}
     //ga terug naar begin positie
-    if (fireBallRain || player.posPlayer.y < 80 && !fight) {
+    if (fireBallRain || player.posPlayer.y < height/2 && !fight) {
       startx = lerp(startx, stageMovePatroon[0].x, 0.01);
       starty = lerp(starty, stageMovePatroon[0].y, 0.01);
     }
