@@ -14,18 +14,14 @@ class Waterfles {
 
   Waterfles() {
     collisionHandler = new CollisionHandler();
-    //flesX = random(200, 600);
-    //flesY = random(0, 600);
     flesB = 20;
     flesH = 20;
     flesScore = 25;
     flesScoreCount = 100;
-    //resetFlesX = random(200, 600);
-    //resetFlesY = random(200, 600);
   }
 
   void updateWaterfles() {
-    if (dragon.fight && !pickedUp && !fight) {
+    if (dragon.fight && !pickedUp && !fight && !druppelOn) {
       flesX = spawnPointsPUPS.fightM.x;
       flesY = spawnPointsPUPS.fightM.y;
       fight = true;
@@ -50,13 +46,6 @@ class Waterfles {
       timedReset = false;
       reset = false;
     }
-    //if (timedReset) {
-    //  delay (5000);
-    //  resetWaterfles();
-    //  reset = false;
-    //  fight = false;
-    //  timedReset = false;
-    //}
     
     if (seeScoreFles){
       flesScoreCount--;
@@ -91,6 +80,5 @@ class Waterfles {
      textSize(30);
      text("+ 25", player.posPlayer.x, player.posPlayer.y - 40);
     }
-    //rect(flesX, flesY, flesB, flesH);
   }
 }
