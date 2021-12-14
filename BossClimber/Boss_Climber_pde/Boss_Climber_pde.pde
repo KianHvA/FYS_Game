@@ -60,7 +60,7 @@ void setup()
   size(1024, 576);
   rectMode(CENTER);
   frameRate(60);
-  smooth(0);
+  smooth(8);
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");

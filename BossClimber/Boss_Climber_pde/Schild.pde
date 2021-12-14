@@ -129,11 +129,10 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (schildLevens == 0 || reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
       health.invincibleB = false;
       reset();
       timedReset = false;
-      reset = false;
     }
     //if (timedReset) {
     // delay (5000);
@@ -176,5 +175,6 @@ class Schild {
     FlamethrowerJumping = false;
     schildActivated = false;
     pickedUp = false;
+    reset = false;
   }
 }

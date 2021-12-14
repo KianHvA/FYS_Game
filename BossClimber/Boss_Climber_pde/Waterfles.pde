@@ -1,6 +1,7 @@
 //Dion
 class Waterfles {
   CollisionHandler collisionHandler;
+  Druppel druppel;
   float flesX = spawnPointsPUPS.underR.x, flesY = spawnPointsPUPS.underR.y, flesB, flesH, resetFlesX, resetFlesY, flesScore, flesScoreCount;
   boolean druppelOn = false;
   boolean spawnWaterfles = false;
@@ -14,6 +15,9 @@ class Waterfles {
 
   Waterfles() {
     collisionHandler = new CollisionHandler();
+    druppel = new Druppel();
+    //flesX = random(200, 600);
+    //flesY = random(0, 600);
     flesB = 20;
     flesH = 20;
     flesScore = 25;
@@ -22,6 +26,7 @@ class Waterfles {
 
   void updateWaterfles() {
     if (dragon.fight && !pickedUp && !fight && !druppelOn) {
+    if (dragon.fight && !pickedUp && !fight && flesB <= 0 && flesH <= 0) {
       flesX = spawnPointsPUPS.fightM.x;
       flesY = spawnPointsPUPS.fightM.y;
       fight = true;
@@ -40,7 +45,7 @@ class Waterfles {
       fight = false;
       seeScoreFles = true;
     }
-    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !pickedUp) {
+    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !pickedUp || druppel.posPlayer.x <= 0 && druppel.posPlayer.y <= 0 || druppel.hasCollision) {
       resetWaterfles();
       fight = false;
       timedReset = false;
@@ -54,6 +59,12 @@ class Waterfles {
     if (flesScoreCount < 0){
       seeScoreFles = false;
       flesScoreCount = 100;
+    }
+    
+    if (sword.swordX == width * 2 && sword.swordY == height *2 && schild.schildPos.x == width *2 && schild.schildPos.y == height * 2 && flesX == width *2 && flesY == height *2) {
+      reset = true;
+      sword.reset = true;
+      schild.reset = true;
     }
   }
 

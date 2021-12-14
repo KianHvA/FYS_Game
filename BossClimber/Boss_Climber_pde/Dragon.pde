@@ -8,7 +8,7 @@ class Dragon {
   float startx;
   float starty;
   PVector diameter = new PVector(0, 0);
-  boolean isFlipped;
+  boolean isFlipped; //for animation
   float ppos; //for animation
   String Modus;
   int vliegen;
@@ -118,7 +118,7 @@ class Dragon {
       HealthbarDragon.draw();
     }
     if (damageDragon && fight) {
-      //HealthbarDragon.doDamageDragon(20);
+      HealthbarDragon.doDamageDragon(1);
       damageDragon = false;
     }
   }
@@ -143,7 +143,7 @@ class Dragon {
         starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
 
         //mousepressed is een tijdelijke variabele, dit moet verandert worden door iets met wanneer dragon healt lager is dan...
-        if (dragon.dragonHealth<1) {
+        if (dragon.dragonHealth<=1) {
           bossFightRoomFase2 = true;
         }
       }
@@ -309,6 +309,7 @@ class bossFight {
       dragon.vliegen = 0;
       platforms.drawBossRoom=false;
       On = true;
+      dragon.bossFightRoomFase2 = false;
       platforms.moveAmount=platforms.moveAmount+1;
       println("dead");
       println(platforms.moveAmount);

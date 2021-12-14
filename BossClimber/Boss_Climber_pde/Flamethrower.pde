@@ -8,7 +8,7 @@ class Flamethrower {
   final PVector SIZEFLAME = new PVector(60, 100);
   float timer1 = 0, timer2 = 0, hitFlamethrowerCount = 100;
   int distance = 660; //Size screen so that everything stands correctly.
-  int from = 150; //From y = 150 flamethrowers are drawn.
+  int from = -10; //From y = 150 flamethrowers are drawn.
   int minus = 7; //Size base flamethrower.
   int  distBetween = 200; //Distance between bases of flamethrowers.
   final int RIGHTSIDE = 80; //Offset voor de rechterkant.
@@ -16,7 +16,7 @@ class Flamethrower {
   boolean live2 = false; //If the flamethrowers are active this boolean will make sure that the collision activates.
   boolean hasCollision = false;
   boolean seeHitFlamethrower = false;
-  int newY = 660; //Size screen so that everything stands correctly.
+  float newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
 
   void setup() {
@@ -31,9 +31,9 @@ class Flamethrower {
       quad(X1, y, X1, y1, X2+60, y2 + (platforms.platformThickness/4), X2+60, y1 + (platforms.platformThickness/4) - 10); //Bottom left.
     }
     //rechts 
-    for (int y = newY; y > from; y = y - distBetween) {
-      int y1 = y + minus; //Y1 = upper side.
-      int y2 = y1 + minus; //Y2 = under side.
+    for (float y = newY; y > from; y = y - distBetween) {
+      float y1 = y + minus; //Y1 = upper side.
+      float y2 = y1 + minus; //Y2 = under side.
       noStroke();
       fill(255);
       quad(X3, y, X3, y1, X4 + 60, y2 + (platforms.platformThickness/4), X4 + 60, y1 + (platforms.platformThickness/4) - 10); //Bottom right.
@@ -43,18 +43,18 @@ class Flamethrower {
   void draw() {
     newY = distance + platforms.levelMove;
     //links
-    for (int y = newY; y >from; y = y - distBetween) {
-      int y1 = y + minus; //Y1 = upper side.
-      int y2 = y1 + minus; //Y2 = under side.
+    for (float y = newY; y >from; y = y - distBetween) {
+      float y1 = y + minus; //Y1 = upper side.
+      float y2 = y1 + minus; //Y2 = under side.
       noStroke();
       fill(255);
       quad(X1, y, X1, y1, X2, y2 + (platforms.platformThickness/4), X2, y1 + (platforms.platformThickness/4) - 10); //Bottom left.
     }
     newY = distance - RIGHTSIDE + platforms.levelMove; //newY is now 80 less which makes it fit better on the right side.
     //recths
-    for (int y = newY; y > from; y = y - distBetween) {
-      int y1 = y + minus; //Y1 = upper side.
-      int y2 = y1 + minus; //Y2 = under side.
+    for (float y = newY; y > from; y = y - distBetween) {
+      float y1 = y + minus; //Y1 = upper side.
+      float y2 = y1 + minus; //Y2 = under side.
       noStroke();
       fill(255);
       quad(X3, y2  + (platforms.platformThickness/4), X3, y1  + (platforms.platformThickness/4) - 10, X4, y, X4, y1); //Bottom right.
@@ -70,9 +70,9 @@ class Flamethrower {
 
   void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time.
     if (!dragon.fight) {//Not if bossfight is active.
-      for (int y = newY; y>from; y = y- distBetween) {
-        int y1= y - 6; //Y variable links. Picture only needs one Y value.
-        int y2 = y - 90; //Y variabel right. Picture only needs one Y value.
+      for (float y = newY; y>from; y = y- distBetween) {
+        float y1= y - 6; //Y variable links. Picture only needs one Y value.
+        float y2 = y - 90; //Y variabel right. Picture only needs one Y value.
 
         noStroke();
         if (timer2 == 0) {
