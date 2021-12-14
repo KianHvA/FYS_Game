@@ -56,16 +56,11 @@ class Schild {
     //}
     
     if (dragon.fight && !fight){
-      schildPos.x = 2000;
       pickedUp = false;
       fight = true;
-            
-      if (!dragon.fight){
-        reset();
-      }
     }
     
-    if (waterfles.pickedUp && !ResetReset && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && !ResetReset && pickedUp) {
+    if (waterfles.pickedUp /*&& !ResetReset*/ && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && /*!ResetReset &&*/ pickedUp) {
       healthbar.shieldDamage = false;
       pickedUp = false;
       reset = true;
@@ -80,6 +75,8 @@ class Schild {
     //}
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
+    
+    if (!dragon.fight){
     if (collisionHandler.hitPlayer) {
       pickedUp = true;
       health.invincibleB = true;
@@ -90,6 +87,7 @@ class Schild {
       fight = false;
       seeScoreShield = true;
       scoreHandler.score += shieldScore;
+    }
     }
 
     if (livesSet) {

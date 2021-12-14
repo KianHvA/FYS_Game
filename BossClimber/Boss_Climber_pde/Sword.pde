@@ -177,6 +177,8 @@ class Sword {
 
   void reset() {
     newPos = true;
+    swordX = 650;
+    swordY = 1152;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;

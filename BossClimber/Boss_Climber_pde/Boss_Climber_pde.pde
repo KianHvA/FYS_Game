@@ -346,7 +346,7 @@ void update()
     waterfles.resetWaterfles();
   }
   
-  println(waterfles.reset);
+  println(sword.swordY);
   
   //println(resetWaterflesCount);
 
