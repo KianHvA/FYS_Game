@@ -8,7 +8,7 @@ class Dragon {
   float startx;
   float starty;
   PVector diameter = new PVector(0, 0);
-  boolean isFlipped;
+  boolean isFlipped; //for animation
   float ppos; //for animation
   String Modus;
   int vliegen;
@@ -118,7 +118,7 @@ class Dragon {
       HealthbarDragon.draw();
     }
     if (damageDragon && fight) {
-      //HealthbarDragon.doDamageDragon(20);
+      HealthbarDragon.doDamageDragon(1);
       damageDragon = false;
     }
   }
