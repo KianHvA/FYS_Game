@@ -58,7 +58,7 @@ class Platform {
       //dragon.bossFight.startFight();
     }
     if (moveAmount % DRAGON_HEALTH_REGEN_TRIGGER == 0) {
-      dragon.dragonHealth=DRAGON_HEALTH;
+      dragon.dragonHealth = DRAGON_HEALTH;
     }
     levelMove += 0.01;
     newZ = startZ + levelMove; 
