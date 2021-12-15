@@ -177,7 +177,7 @@ class Schild {
   void reset() {
     ResetReset = false;
     NewPos = true;
-    schildLevens = 3;
+    schildLevens = 1;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildPos = spawnPointsPUPS.location;
     FlamethrowerJumping = false;
