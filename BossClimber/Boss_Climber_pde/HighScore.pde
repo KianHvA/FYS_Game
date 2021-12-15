@@ -113,104 +113,60 @@ class HighScore {
     if (k > 62) {
       k = 0;
     }
+    
     if (k < 0) {
       k = 62;
     }
+    
     if (health.dead) {
       nameDef[j] = nameSelector[k]; //When k changes the letter that the player is at changes.
       if (drawn) {
-        //Timer for flashing the letters.
-        //if (timerB == 0) {
-        //  timerA++;
-        //}
-        //if (timerA > 30) {
-        //  flash[j] = color(#FFFFFF, 0);
-        //  timerB++;
-        //}
-
-        //if (timerB > 10) {
-        //  flash[j] = color(#FFFFFF, 1000);
-        //  timerA = 0;
-        //  timerB = 0;
-        //}
         //If the up arrow is pressed the letter goes up.
         if (keysPressed[UP] && !keyUp && !select) {
           keyUp = true;
         }
+        
         if (keyUp) {
           k++;
           delay(90);
           keyUp = false;
         }
+        
         //If the down arrow is pressed the letter goes down.
         if (keysPressed[DOWN] && !keyDown && !select) {
           keyDown = true;
         }
+        
         if (keyDown) {
           k--;
           delay(90);
           keyDown = false;
         }
+        
         //If the a button is pressed the letter gets set.
         if (keysPressed['A'] && !keyDown && !keyUp && !select) {
           select = true;
         }
+        
         if (select) {
           j++;
           delay(160);
           select = false;
         }
+        
         //If the letter is at max the final name gets made.
         if (j >= 5) {
-          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
           delay(100);
-          //myConnection.updateQuery("INSERT INTO Highscore (id, score, name) VALUES (1, 1000, 'Fee Fee')");
           ending = true;//Ending screen!
-          //exit();
-          //if (timerB > 10) {
-          //  flash[j] = color(#FFFFFF, 1000);
-          //  timerA = 0;
-          //  timerB = 0;
-          //}
-          //If the up arrow is pressed the letter goes up.
-          //if (keysPressed[UP] && !keyUp && !select) {
-          //  keyUp = true;
-          //}
-          //if (keyUp) {
-          //  k++;
-          //  delay(90);
-          //  keyUp = false;
-          //}
-          ////If the down arrow is pressed the letter goes down.
-          //if (keysPressed[DOWN] && !keyDown && !select) {
-          //  keyDown = true;
-          //}
-          //if (keyDown) {
-          //  k--;
-          //  delay(90);
-          //  keyDown = false;
-          //}
-          ////If the a button is pressed the letter gets set.
-          //if (keysPressed['A'] && !keyDown && !keyUp && !select) {
-          //  select = true;
-          //}
-          //if (select) {
-          //  j++;
-          //  delay(160);
-          //  select = false;
-          //}
-          //If the letter is at max the final name gets made.
           if (j >= 5) {
             finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
             gameFinished = true;
           }
+          
           if (gameFinished) {
             String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + player.walkAmount + ", " + dragon.fightAmount + ");";
             myConnection.updateQuery(qwery);
-            //String qwery2 = "INSERT INTO Highscore (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + player.walkAmount + ");";
-            //myConnection.updateQuery(qwery2);
-            //String qwery3 = "INSERT INTO Highscore (bossKilled) VALUES (" + dragon.fightAmount + ");";
-            //myConnection.updateQuery(qwery3);
             gameFinished = false;
           }
         }
@@ -227,7 +183,6 @@ class HighScore {
       amountGamePlayed = "Game played total ";
     }
     if (health.dead) {
-      //Drawing the image and all the text.
       imageMode(CORNER);
       image(backgroundDead, 0, 0);
       textMode(CENTER);
@@ -236,8 +191,6 @@ class HighScore {
       text(end, 400, 150);
       text(finalScore + scoreHandler.finalScore, 400, 225);
       for (int i = 0; i < nameLength; i++) {
-        //text("Name: " /*+ fill(flash[i])*/ + nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] + nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9], 400, 285);
-        //text("Name: " + nameDef[i], 400, 285);
         textSize(textSize*0.75);
         text(name, x - 20, y);
         fill(flash[0]);
@@ -250,37 +203,25 @@ class HighScore {
         text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - 75, y);
         fill(flash[4]);
         text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
-        //  fill(flash[5]);
-        //  text(nameDef[5], x + textWidth(name) + textWidth('X') * 5 - 75, y);
-        //  fill(flash[6]);
-        //  text(nameDef[6], x + textWidth(name) + textWidth('X') * 6 - 75, y);
-        //  fill(flash[7]);
-        //  text(nameDef[7], x + textWidth(name) + textWidth('X') * 7 - 75, y);
-        //  fill(flash[8]);
-        //  text(nameDef[8], x + textWidth(name) + textWidth('X') * 8 - 75, y);
-        //  fill(flash[9]);
-        //  text(nameDef[9], x + textWidth(name) + textWidth('X') * 9 - 75, y);
         deadScreenScore();
       }
       drawn = true;
     }
+    
     if (drawn) {
       if (!filledIn[j]) {
         textSize(textSize*0.75);
         fill(#FFFFFF);
-        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 107.5, y - 50);
+        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 110, y - 40);
         textSize(textSize*0.75);
         fill(#FFFFFF);
         pushMatrix();
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 107.5, y + 65);
+        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 110, y + 50);
         rotate(angle1);
         text("^", 0, 0);
         popMatrix();
       }
-      //if (j > 1) {
-      //  flash[j-1] = color(#FFFFFF, 1000);
-      //}
     }
   }
 
@@ -292,12 +233,12 @@ class HighScore {
     int id = databaseTable.getStringColumn(2).length;
     idFix = id;
     }
-    getTable = false;
     textSize(textSize * 0.5);
     textMode(CORNER);
     text(amountGamePlayed + idFix, 800, 450);
     text(amountKilledDragon, 250, 440);
     text(amountJumped, 250, 470);
     text(amountWalked, 250, 500);
+    getTable = false;
   }
 }
