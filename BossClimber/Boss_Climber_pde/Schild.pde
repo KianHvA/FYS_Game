@@ -63,7 +63,8 @@ class Schild {
     if (waterfles.pickedUp /*&& !ResetReset*/ && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && /*!ResetReset &&*/ pickedUp) {
       healthbar.shieldDamage = false;
       pickedUp = false;
-      reset = true;
+      //reset = true;
+      reset();
       schildActivated = false;
       //timedReset = true;
       ResetReset = true;
@@ -137,7 +138,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0 || reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
+    if (schildLevens == 0){ //|| reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
       health.invincibleB = false;
       reset();
       timedReset = false;
@@ -177,7 +178,7 @@ class Schild {
   void reset() {
     ResetReset = false;
     NewPos = true;
-    schildLevens = 3;
+    schildLevens = 1;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildPos = spawnPointsPUPS.location;
     FlamethrowerJumping = false;

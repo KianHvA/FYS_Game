@@ -158,6 +158,7 @@ void update()
   //  default:
   //}
 
+ if (dragon.fight || !dragon.fight){
   if (fireballCount >= 0) {
     fireballCount--;
   }
@@ -325,6 +326,7 @@ void update()
     fireballs[5].playerCollision = false;
     fireballHitCount = 100;
   }
+ }
 
   if (cooldown > 0) {
     cooldown--;
