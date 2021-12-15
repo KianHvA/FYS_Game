@@ -91,7 +91,7 @@ class Schild {
     }
 
     if (livesSet) {
-      schildLevens = 3;
+      schildLevens = schildSaveLevens;
       livesSet = false;
     }
 
