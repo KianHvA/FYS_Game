@@ -11,7 +11,7 @@ class Schild {
   boolean FlamethrowerJumping = false;
   float LevelMoveAmountCurrent = 0;
   float LevelMoveAmountNext = 1;
-  float schildLevens = 3;
+  float schildLevens = 1;
   boolean NewPos = false;
   boolean pickedUp = false;
   boolean hit = false;
@@ -22,7 +22,7 @@ class Schild {
   boolean ResetReset = false;
   boolean timedReset = false;
   boolean seeScoreShield = false;
-  float schildSaveLevens = 3;
+  float schildSaveLevens = schildLevens;
   float schildScoreCount = 100;
   int shieldScore = 50;
 
