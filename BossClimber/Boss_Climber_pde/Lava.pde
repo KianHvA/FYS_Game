@@ -1,3 +1,5 @@
+//Fee Fee: code
+//Kian: sprite
 class Lava {
   float y=576;
   float b = width/12;
