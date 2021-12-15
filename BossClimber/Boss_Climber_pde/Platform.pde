@@ -10,9 +10,9 @@ class Platform {
   Platform platforms;
   int startZ = 801;
   int startY = 660;
-  int newZ;
-  int newY;
-  int levelMove;
+  float newZ;
+  float newY;
+  float levelMove;
   float w = 200;
   float h = 15; 
   int platformThickness = 25;
@@ -22,7 +22,7 @@ class Platform {
   int ySpeed = 10;
   boolean moveStage = false;
   int startMoveAmount = 1;
-  int moveAmount = 3;
+  int moveAmount = 1;
   int maxMoveAmount = 20;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
@@ -42,7 +42,7 @@ class Platform {
       levelMove++;
     }
     if (levelMove >= 600) {
-      scoreHandler.score((int)random(10, 30) * levelMove);
+      scoreHandler.score((int)random(10, 30) * (int)levelMove);
       moveStage = false;
       moveAmount++;
       levelMove = 0;
@@ -60,7 +60,7 @@ class Platform {
     if (moveAmount % DRAGON_HEALTH_REGEN_TRIGGER == 0) {
       dragon.dragonHealth=DRAGON_HEALTH;
     }
-
+    levelMove += 0.01;
     newZ = startZ + levelMove; 
     newY = startY + levelMove; 
     //links boven = 1 
@@ -73,9 +73,9 @@ class Platform {
 
     fill(platColor);
 
-    for (int y = newY; y>0; y = y- 200) {
-      int y1= y + 25;
-      int y2 = y1 + 25;
+    for (float y = newY; y>-200; y = y- 200) {
+      float y1= y + 25;
+      float y2 = y1 + 25;
 
       noStroke();
       fill(147, 147, 147);
@@ -95,7 +95,7 @@ class Platform {
       i += 5;
     }
 
-    for (int z = newZ; z>0; z = z- 200) {//rechterplatform
+    for (float z = newZ; z>-200; z = z- 200) {//rechterplatform
       fill(147, 147, 147);
       quad(x2-120, z, x2-120, z+25, width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z, width-RIGHTPLATFORM_DISTANCE_FROM_WALL, z-25);
       if (bossFightRoom) {

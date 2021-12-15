@@ -45,7 +45,7 @@ class Sword {
   void setup() {
     collisionHandler = new CollisionHandler();
     HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
-    swordStab = loadImage("Knight - Sword - Attack2.png");
+    swordStab = loadImage("Knight - Sword attack.png");
   }
 
   void updateSword() {
@@ -60,13 +60,16 @@ class Sword {
       reset = true;
       timedReset = true;
     }
-    if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
-      swordX = width * 2;
-      swordY = height * 2;
-      pickedUp = true;
-      fight = false;
-      seeScoreSword = true;
-      scoreHandler.score += swordScore;
+    
+    if (!schild.pickedUp){
+      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
+        swordX = width * 2;
+        swordY = height * 2;
+        pickedUp = true;
+        fight = false;
+        seeScoreSword = true;
+        scoreHandler.score += swordScore;
+      }
     }
 
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
@@ -77,7 +80,7 @@ class Sword {
       durabillity = durablillityFight;
     }
 
-    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset){ //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       timedReset = false;
       reset = false;
@@ -140,9 +143,11 @@ class Sword {
     }
     if (attacked) {
       stabAnimation++;
+      println(stabAnimation);
     }
-    if (stabAnimation == 100) {
+    if (stabAnimation >= 10) {
       attacked = false;
+      stabAnimation = 0;
     }
   }
 
@@ -172,6 +177,8 @@ class Sword {
 
   void reset() {
     newPos = true;
+    swordX = 650;
+    swordY = 1152;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;

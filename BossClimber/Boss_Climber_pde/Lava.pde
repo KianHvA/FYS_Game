@@ -1,3 +1,5 @@
+//Fee Fee: code
+//Kian: sprite
 class Lava {
   float y=576;
   float b = width/12;
@@ -15,7 +17,9 @@ class Lava {
     //rect(b, y, width-2*b, height);
     if (!health.dead) {
       if (!dragon.fight) {
-        y -= speed;
+        if (player.posPlayer.y < height - height/8) {
+          y -= speed;
+        }
       }
 
       if (player.posPlayer.y+20 >= y) {

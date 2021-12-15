@@ -24,7 +24,7 @@ class Player {
   boolean jump = false;
   boolean jumped = false;
   float jumpTimer1 = 0;
-  float jumpAmount = 0;
+  int jumpAmount = 0;
   float walkAmount = 0;
   
   void setup() {
@@ -281,7 +281,7 @@ class Player {
       if (!moveLeft && !moveRight && !sword.attacked) {
         Active = rightSW;
       }
-      if (sword.attacked && sword.stabAnimation >= 100) {
+      if (sword.attacked && sword.stabAnimation <= 100) {
        Active = sword.swordStab; 
       }
     }

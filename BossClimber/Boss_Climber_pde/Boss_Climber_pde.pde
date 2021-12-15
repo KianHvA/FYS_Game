@@ -60,7 +60,7 @@ void setup()
   size(1024, 576);
   rectMode(CENTER);
   frameRate(60);
-  smooth(0);
+  smooth(8);
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
@@ -124,7 +124,7 @@ void update()
       switch(randomPowerup) {
       case 1:
         spawnCountDruppel = RspawnCountDruppel;
-        waterfles = new Waterfles();
+        //waterfles = new Waterfles();
         break;
       case 2:
         sword = new Sword();
@@ -158,6 +158,7 @@ void update()
   //  default:
   //}
 
+ if (dragon.fight || !dragon.fight){
   if (fireballCount >= 0) {
     fireballCount--;
   }
@@ -325,23 +326,7 @@ void update()
     fireballs[5].playerCollision = false;
     fireballHitCount = 100;
   }
-  
-  //println(seeHitFireball);
-  //println(fireballCount);
-  //if (dragon.fireBallRain) { //werkt niet ga er nog naar kijken
-  //  for (int i = 0; i > fireballs.length; i++) {
-  //    fireballs[i].posFireball.x = 150;
-  //    fireballs[i].posFireball.y = 50;
-  //    fireballs[i].draw();
-  //  }
-  //}
-
-  //println(fireballCount);
-
-
-
-  //println(fireballs[0].playerCollision);
-
+ }
 
   if (cooldown > 0) {
     cooldown--;
@@ -360,24 +345,10 @@ void update()
 
   if (druppels.posPlayer.y <= 0 || druppels.hasCollision) {//Druppel off screen or hits dragon:
     waterfles.druppelOn = false;
-    if (resetWaterflesCount >= 0) {//Timer when waterfles is spawning again.
-      resetWaterflesCount--;
-    }
-    if (resetWaterflesCount <= 0) {//Resets waterfles.
-      resetWaterflesCount = 600;
-      waterfles.resetWaterfles();
-    }
+    waterfles.resetWaterfles();
   }
-
-  //println(spawnCountDruppel);
-  //for (int i =0; i != fireballs.length; i++) { 
-  // fireballs[i].movementUpdate();
-  //}
-  //for (int i = 0; i != fireballs.length; i++) {
-  //fireballs[i].respawn();
-  //}
-
-  //println(fireballCount);
+  
+  //println(resetWaterflesCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -392,6 +363,8 @@ void restartGame() {//Resets the whole game
   menu.kleur = 255;
   instruction.manual = false;
   instruction.powerExpl = false;
+  healthbar.healthPlayer = 100;
+  health.amount = 4;
 }
 
 void draw()
@@ -470,10 +443,16 @@ void draw()
         fireballs[5].draw();
       }
       
-      if (seeHitFireball){
+      if (seeHitFireball && !schild.pickedUp){
         fill(255);
         textSize(30);
         text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
+      }
+      
+      if (seeHitFireball && schild.pickedUp){
+        fill(255);
+        textSize(30);
+        text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
       }
       
       Doublejump.draw();

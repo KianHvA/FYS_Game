@@ -157,24 +157,24 @@ class HealthBar {
   void draw() {
     healthPlayer = constrain(healthPlayer, 0, 100); //Player has an maximum amount of health.
     //Healthbar being drawn.
-    noFill();
-    stroke(255);
-    //rect(x, y, w, h);
-    colorMode(RGB, 150);
-    float c = map(healthPlayer, 0, 100, 0, w);
-    float d = map(healthPlayer, 0, 100/2, 0, 255);
-    float f = map(healthPlayer, 0, 100, 255, 0);
-    fill(f, d, 0);
-    noStroke();
-    rectMode(CORNER);
-    rect(3, height-25, c, h+1);
-    colorMode(RGB, 400);
+    //noFill();
+    //stroke(255);
+    ////rect(x, y, w, h);
+    //colorMode(RGB, 150);
+    //float c = map(healthPlayer, 0, 100, 0, w);
+    //float d = map(healthPlayer, 0, 100/2, 0, 255);
+    //float f = map(healthPlayer, 0, 100, 255, 0);
+    //fill(f, d, 0);
+    //noStroke();
+    //rectMode(CORNER);
+    //rect(3, height-25, c, h+1);
+    //colorMode(RGB, 400);
 
-    healthPlayer = constrain(healthPlayer, 0, 100);
-    noFill();
-    stroke(255);
-    rectMode(CENTER);
-    rect(x, y, w, h);
+    //healthPlayer = constrain(healthPlayer, 0, 100);
+    //noFill();
+    //stroke(255);
+    //rectMode(CENTER);
+    //rect(x, y, w, h);
   }
 }
 
