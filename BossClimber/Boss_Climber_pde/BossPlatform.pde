@@ -15,17 +15,26 @@
 //PVector[] vertexesBossPlatform = new PVector[8];
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
+final int START_AMOUNT_OF_PLATFORMS = 0;
+final int MAX_AMOUNT_OF_PLATFORMS = 5;
+
 float xxpos = 1;
+float xxposMove = 10;
+float playerUp = height-15;
+float playerYPos = height-40;
 boolean bossFightRoom = false;
+float c = 147; //platform kleur
+float platThick = 20;
+float xPos1 = 0;
+
 
 void Bossplatform() {
   dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
-  fill(147, 147, 147);
-  //background(0);
+  fill(c);
   rectMode(CORNER);
-  rect(0, height-20, xxpos, height);
-  xxpos = xxpos + 10;
+  rect(xPos1, height-platThick, xxpos, height);
+  xxpos = xxpos + xxposMove;
   muur();
   bossFightRoom = true;
   if (bossFightRoom) {
@@ -34,24 +43,24 @@ void Bossplatform() {
 
   //for collision
   //change vertexes in both arrays to match the bossplatform
-  for (int i = 0; i < platforms.vertexesL.length; i += 5) {
-    platforms.vertexesL[i] = new PVector(0, height-20);
-    platforms.vertexesL[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesL[i+2] = new PVector(0, height);
+  for (int i = START_AMOUNT_OF_PLATFORMS; i < platforms.vertexesL.length; i += MAX_AMOUNT_OF_PLATFORMS) {
+    platforms.vertexesL[i] = new PVector(xPos1, height-platThick);
+    platforms.vertexesL[i+1] = new PVector(xxpos, height-platThick);
+    platforms.vertexesL[i+2] = new PVector(xPos1, height);
     platforms.vertexesL[i+3] = new PVector(xxpos, height);
-    platforms.vertexesL[i+4] = new PVector(0, height-20);
+    platforms.vertexesL[i+4] = new PVector(xPos1, height-platThick);
   }
-  for (int i = 0; i < platforms.vertexesR.length; i += 5) {
-    platforms.vertexesR[i] = new PVector(0, height-20);
-    platforms.vertexesR[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesR[i+2] = new PVector(0, height);
+  for (int i = START_AMOUNT_OF_PLATFORMS; i < platforms.vertexesR.length; i += MAX_AMOUNT_OF_PLATFORMS) {
+    platforms.vertexesR[i] = new PVector(xPos1, height-platThick);
+    platforms.vertexesR[i+1] = new PVector(xxpos, height-platThick);
+    platforms.vertexesR[i+2] = new PVector(xPos1, height);
     platforms.vertexesR[i+3] = new PVector(xxpos, height);
-    platforms.vertexesR[i+4] = new PVector(0, height-20);
+    platforms.vertexesR[i+4] = new PVector(xPos1, height-platThick);
   }
 
-  if (player.posPlayer.y>height-15 && bossFightRoom)
+  if (player.posPlayer.y>playerUp && bossFightRoom)
   {
-    player.posPlayer.y=height-40;
+    player.posPlayer.y=playerYPos;
   }
 }
 //}
