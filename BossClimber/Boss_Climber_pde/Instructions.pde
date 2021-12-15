@@ -116,33 +116,31 @@ class Instructions {
     
     rectMode(CORNER);
     fill(125);
-    rect(text.x - 50, text.y + 130, rectSize.x, rectSize.y);
-    rect(text.x - 50, text.y + 380, rectSize.x, rectSize.y);
-    rect(text.x + 430, text.y - 50, rectSize2.x, rectSize2.y);
+    rect(text.x - 50, text.y + 200, rectSize.x, rectSize.y);
+    rect(text.x + 310, text.y - 50, rectSize2.x, rectSize2.y - 180);
+    rect(text.x + 620, text.y - 50, rectSize2.x, rectSize2.y - 180);
     
     rectMode(CENTER);
-    rect(text.x + 475, text.y + 470, sizes.x + 300, sizes.y + 50);
+    rect(text.x + 475, text.y + 370, sizes.x + 300, sizes.y + 50);
     
-    image(inventory.waterflesI, text.x + 140, text.y + 30, imageSize, imageSize);//Images power-ups
-    image(inventory.doubleJump, text.x + 700, text.y + 25, imageSize, imageSize);
-    image(inventory.shieldF, text.x + 140, text.y + 230, imageSize, imageSize);
-    image(inventory.swordI, text.x + 700, text.y + 230, imageSize, imageSize + 50);
+    image(inventory.waterflesI, text.x + 100, text.y + 30, imageSize, imageSize);//Images power-ups
+    image(inventory.shieldF, text.x + 450, text.y + 30, imageSize, imageSize);
+    image(inventory.swordI, text.x + 770, text.y + 20, imageSize, imageSize + 50);
     
     fill(255);
-    textSize(40);
-    text("Water Bottle", text.x + 60, text.y);
-    text("Double Jump", text.x + 600, text.y);
-    text("Shield", text.x + 110, text.y + 200);
-    text("Sword", text.x + 665, text.y + 200);
-    text("Press A to start", text.x + 345, text.y + 480);
+    textSize(30);
+    text("Water Bottle", text.x + 50, text.y);
+    text("Shield", text.x + 435, text.y);
+    text("Sword", text.x + 750, text.y);
+    text("Press A to start", text.x + 370, text.y + 380);
     
-    textSize(20);
+    textSize(15);
     text("Shoot a drop and extinguish the fireballs.", text.x, text.y + 100);
     text("This does also damage on the dragon.", text.x + 5, text.y + 120);
-    text("Gives you an extra jump.", text.x + 620, text.y + 100);
-    //text("This power-up only appears during the boss battle.", text.x + 500, text.y + 120);
-    text("Protects you from fireballs and flamethrowers.", text.x - 30, text.y + 300);
-    text("Defeat the dragon with this power-up.", text.x + 550, text.y + 360);
+    text("Protects you from fireballs", text.x + 390, text.y + 100);
+    text("and flamethrowers.", text.x + 415, text.y + 120);
+    text("Defeat the dragon with", text.x + 720, text.y + 140);
+    text("this power-up.", text.x + 745, text.y + 160);
   }
 
   void draw() {
