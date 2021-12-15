@@ -99,6 +99,10 @@ class Menu {
     String[] scores = databaseTable.getStringColumn(0);
     String[] names = databaseTable.getStringColumn(1);
     
+    fill(125);
+    rect(width/2, 500, 300, 80);
+    
+    fill(255);
     textAlign(CENTER,CENTER);
     text("Highscore:", height/2, height/2 - 100 * 2);
     fill(255);
@@ -107,6 +111,9 @@ class Menu {
       textSize(20);
       
       text(highscore, width/2, height/2 - 100 + i * 20);
+      
+      textSize(30);
+      text("Press A to start", width/2, 500);
     }
   }
 

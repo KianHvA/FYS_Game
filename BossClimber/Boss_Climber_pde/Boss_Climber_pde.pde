@@ -363,7 +363,6 @@ void restartGame() {//Resets the whole game
   menu.kleur = 255;
   instruction.manual = false;
   instruction.powerExpl = false;
-  healthbar.healthPlayer = 100;
   health.amount = 4;
 }
 
