@@ -73,46 +73,51 @@ class Instructions {
     }
     if (platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off) {
       fill(#A57005);
-      rect(posSign[0].x + 30, posSign[0].y + 30, standWidth, standHeight);
-      rect(posSign[0].x, posSign[0].y, sizeSign.x, sizeSign.y);
+      rect(posSign[0].x + 30, posSign[0].y + 30 + platforms.levelMove, standWidth, standHeight);
+      rect(posSign[0].x, posSign[0].y + platforms.levelMove, sizeSign.x, sizeSign.y);
 
       fill(255);
       textSize(50);
-      text("^", text.x + 640, text.y + 472);
-      text("|", text.x + 640, text.y + 472);
+      text("^", text.x + 640, text.y + 472 + platforms.levelMove);
+      text("|", text.x + 640, text.y + 472 + platforms.levelMove);
 
       fill(#A57005);
-      rect(posSign[1].x + 30, posSign[1].y + 30, standWidth, standHeight);
-      rect(posSign[1].x, posSign[1].y, sizeSign.x, sizeSign.y);
+      rect(posSign[1].x + 30, posSign[1].y + 30 + platforms.levelMove, standWidth, standHeight);
+      rect(posSign[1].x, posSign[1].y + platforms.levelMove, sizeSign.x, sizeSign.y);
 
       fill(255);
       textSize(35);
       imageMode(CENTER);
-      image(moveL, posSign[1].x + 15, posSign[1].y + 25, standWidth * 1.5, standHeight);
-      text("=", posSign[1].x + 45, posSign[1].y + 30);
-      image(moveL1, posSign[1].x + 66, posSign[1].y + 30, standWidth, standHeight);
+      image(moveL, posSign[1].x + 15, posSign[1].y + 25 + platforms.levelMove, standWidth * 1.5, standHeight);
+      text("=", posSign[1].x + 45, posSign[1].y + 30 + platforms.levelMove);
+      image(moveL1, posSign[1].x + 66, posSign[1].y + 30 + platforms.levelMove, standWidth, standHeight);
 
       fill(#A57005);
-      rect(width - 55, height - 120, standWidth, standHeight);
-      rect(width - 85, height - 150, sizeSign.x, sizeSign.y * 2);
+      rect(width - 55, height - 120 + platforms.levelMove, standWidth, standHeight);
+      rect(width - 85, height - 150 + platforms.levelMove, sizeSign.x, sizeSign.y * 2);
       textSize(35);
       imageMode(CENTER);
-      image(equip, width - 70, height - 130, standWidth * 1.5, standHeight);
+      image(equip, width - 70, height - 130 + platforms.levelMove, standWidth * 1.5, standHeight);
       fill(255);
       text("=", width-40, height-130);
       image(equip1, width - 70, height - 90);
       text(">", width-50, height - 90);
       image(equip2, width-30, height - 90);
 
+      text("=", width-40, height-130 + platforms.levelMove);
+      image(equip1, width - 70, height - 90 + platforms.levelMove);
+      text(">", width-50, height - 90 + platforms.levelMove);
+      image(equip2, width-30, height - 90 + platforms.levelMove);
+      
       fill(#A57005);
-      rect(posSign[2].x + 30, posSign[2].y + 30, standWidth, standHeight);
-      rect(posSign[2].x, posSign[2].y, sizeSign.x, sizeSign.y);
+      rect(posSign[2].x + 30, posSign[2].y + 30 + platforms.levelMove, standWidth, standHeight);
+      rect(posSign[2].x, posSign[2].y + platforms.levelMove, sizeSign.x, sizeSign.y);
 
       fill(255);
       textSize(35);
       imageMode(CENTER);
-      image(moveUp, posSign[2].x + 15, posSign[2].y + 25, standWidth * 1.5, standHeight * 1.1);
-      text("= ^", posSign[2].x + 55, posSign[2].y + 30);
+      image(moveUp, posSign[2].x + 15, posSign[2].y + 25 + platforms.levelMove, standWidth * 1.5, standHeight * 1.1);
+      text("= ^", posSign[2].x + 55, posSign[2].y + 30 + platforms.levelMove);
     }
   }
 
