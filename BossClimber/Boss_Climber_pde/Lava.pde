@@ -26,10 +26,6 @@ class Lava {
         healthbar.doDamage(100);
       }
 
-      if (player.posPlayer.y+20 >= y) {
-        healthbar.doDamage(100);
-      }
-
       if (lavaBack) {
         y += back; 
         if (y > 700) {
