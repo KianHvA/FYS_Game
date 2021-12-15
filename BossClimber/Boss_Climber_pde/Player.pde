@@ -25,7 +25,7 @@ class Player {
   boolean jumped = false;
   float jumpTimer1 = 0;
   int jumpAmount = 0;
-  int walkAmount = 0;
+  float walkAmount = 0;
   
   void setup() {
     //left

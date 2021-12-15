@@ -165,7 +165,7 @@ class HighScore {
           }
           
           if (gameFinished) {
-            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + player.walkAmount + ", " + dragon.fightAmount + ");";
+            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ");";
             myConnection.updateQuery(qwery);
             gameFinished = false;
           }
@@ -177,7 +177,7 @@ class HighScore {
 
   void draw() {
     if (health.dead && !drawn) {
-      amountWalked = "You have walked " + player.walkAmount + " meter";
+      amountWalked = "You have walked " + (player.walkAmount/5) + " meter";
       amountJumped = "You have jumped " + player.jumpAmount + " times";
       amountKilledDragon = "You have killed the boss " + dragon.fightAmount + " times";
       amountGamePlayed = "Game played total ";
