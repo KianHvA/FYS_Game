@@ -145,7 +145,7 @@ class Sword {
       stabAnimation++;
       println(stabAnimation);
     }
-    if (stabAnimation >= 25) {
+    if (stabAnimation >= 10) {
       attacked = false;
       stabAnimation = 0;
     }
