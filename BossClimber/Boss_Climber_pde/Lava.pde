@@ -20,7 +20,7 @@ class Lava {
       }
 
       if (player.posPlayer.y+20 >= y) {
-        healthbar.doDamage(100);
+        healthbar.doDamage();
       }
 
       if (player.posPlayer.y <= 0 && !dragon.fight) {

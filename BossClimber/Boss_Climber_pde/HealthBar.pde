@@ -149,9 +149,9 @@ class HealthBar {
   }
 
 
-  void doDamage(float damage) {
+  void doDamage() {
     if (!health.invincibleB) {
-      healthPlayer -= damage; // function to do damage.
+      health.amount--; // function to do damage.
     } else shieldDamage = true;
   }
   void draw() {

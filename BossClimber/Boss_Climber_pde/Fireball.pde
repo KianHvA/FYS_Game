@@ -90,7 +90,7 @@ class Fireball {
     }
 
     if (playerCollision) {
-      healthbar.doDamage(damageFireball);
+      healthbar.doDamage();
     }
     posFireball.x += velocity.x;
     posFireball.y += velocity.y;

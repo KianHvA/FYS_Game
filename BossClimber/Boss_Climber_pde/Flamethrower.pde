@@ -112,7 +112,7 @@ class Flamethrower {
           live = false; //Collision check de-activate
           live2 = false; //Collision check de-activate
         }
-        if (hasCollision) healthbar.doDamage(1); //damage
+        if (hasCollision) healthbar.doDamage(); //damage
       }
     }
     
