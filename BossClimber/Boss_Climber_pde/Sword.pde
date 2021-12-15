@@ -62,14 +62,14 @@ class Sword {
     }
     
     if (!schild.pickedUp){
-    if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
-      swordX = width * 2;
-      swordY = height * 2;
-      pickedUp = true;
-      fight = false;
-      seeScoreSword = true;
-      scoreHandler.score += swordScore;
-    }
+      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
+        swordX = width * 2;
+        swordY = height * 2;
+        pickedUp = true;
+        fight = false;
+        seeScoreSword = true;
+        scoreHandler.score += swordScore;
+      }
     }
 
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
@@ -80,7 +80,7 @@ class Sword {
       durabillity = durablillityFight;
     }
 
-    if (reset && !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset){ //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       timedReset = false;
       reset = false;
