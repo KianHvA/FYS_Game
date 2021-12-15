@@ -441,10 +441,16 @@ void draw()
         fireballs[5].draw();
       }
       
-      if (seeHitFireball){
+      if (seeHitFireball && !schild.pickedUp){
         fill(255);
         textSize(30);
         text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
+      }
+      
+      if (seeHitFireball && schild.pickedUp){
+        fill(255);
+        textSize(30);
+        text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
       }
       
       Doublejump.draw();

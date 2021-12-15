@@ -66,6 +66,12 @@ class Flamethrower {
      textSize(30);
      text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
     }
+    
+    if (seeHitFireball && schild.pickedUp){
+     fill(255);
+     textSize(30);
+     text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
+    }
   }
 
   void update() { //I am using an timer (If you know a better way for a timer you can use it) to make sure the fire dispences from time to time.
