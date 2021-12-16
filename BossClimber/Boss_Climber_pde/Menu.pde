@@ -98,6 +98,7 @@ class Menu {
     Table databaseTable = myConnection.runQuery(query);
     String[] scores = databaseTable.getStringColumn(0);
     String[] names = databaseTable.getStringColumn(1);
+    String[] dates = databaseTable.getStringColumn(3);
     
     fill(125);
     rect(width/2, 500, 300, 80);
@@ -107,7 +108,7 @@ class Menu {
     text("Highscore:", height/2, height/2 - 100 * 2);
     fill(255);
     for (int i = 0; i < 10; i++) {
-      highscore = names[i] + ": " + scores[i];
+      highscore = names[i] + ": " + scores[i] + "        " + dates[i];
       textSize(20);
       
       text(highscore, width/2, height/2 - 100 + i * 20);

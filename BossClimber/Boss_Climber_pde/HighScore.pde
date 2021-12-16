@@ -113,11 +113,11 @@ class HighScore {
     if (k > 62) {
       k = 0;
     }
-    
+
     if (k < 0) {
       k = 62;
     }
-    
+
     if (health.dead) {
       nameDef[j] = nameSelector[k]; //When k changes the letter that the player is at changes.
       if (drawn) {
@@ -125,35 +125,35 @@ class HighScore {
         if (keysPressed[UP] && !keyUp && !select) {
           keyUp = true;
         }
-        
+
         if (keyUp) {
           k++;
           delay(90);
           keyUp = false;
         }
-        
+
         //If the down arrow is pressed the letter goes down.
         if (keysPressed[DOWN] && !keyDown && !select) {
           keyDown = true;
         }
-        
+
         if (keyDown) {
           k--;
           delay(90);
           keyDown = false;
         }
-        
+
         //If the a button is pressed the letter gets set.
         if (keysPressed['A'] && !keyDown && !keyUp && !select) {
           select = true;
         }
-        
+
         if (select) {
           j++;
           delay(160);
           select = false;
         }
-        
+
         //If the letter is at max the final name gets made.
         if (j >= 5) {
           finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
@@ -163,9 +163,13 @@ class HighScore {
             finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
             gameFinished = true;
           }
-          
+
           if (gameFinished) {
-            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ");";
+            int day = day();
+            int month = month();
+            int year = year();
+            String date = year + "-" + month + "-" + day;
+            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled, date) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ", " + date + ");";
             myConnection.updateQuery(qwery);
             gameFinished = false;
           }
@@ -207,7 +211,7 @@ class HighScore {
       }
       drawn = true;
     }
-    
+
     if (drawn) {
       if (!filledIn[j]) {
         textSize(textSize*0.75);
@@ -228,10 +232,10 @@ class HighScore {
   void deadScreenScore() {
     getTable = true;
     if (getTable) {
-    String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
-    Table databaseTable = myConnection.runQuery(query);
-    int id = databaseTable.getStringColumn(2).length;
-    idFix = id;
+      String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
+      Table databaseTable = myConnection.runQuery(query);
+      int id = databaseTable.getStringColumn(2).length;
+      idFix = id;
     }
     textSize(textSize * 0.5);
     textMode(CORNER);
