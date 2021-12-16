@@ -25,6 +25,7 @@ HealthBarDragon HealthbarDragon;
 HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
+ParticleSystem ps;
 int cooldown = 100;
 int fireballCount = 1200;
 int spawnCountDruppel = 500;
@@ -85,6 +86,8 @@ void setup()
   instruction = new Instructions();
   schild = new Schild();
   Highscore = new HighScore();
+  ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
+  ;
   level.setup();
   scoreHandler.setup();
 
@@ -103,6 +106,7 @@ void setup()
   inventory.setup();
   player.setup();
   Highscore.setup();
+  //ParticleSystem.setup();
 }
 
 void update()
@@ -158,175 +162,175 @@ void update()
   //  default:
   //}
 
- if (dragon.fight || !dragon.fight){
-  if (fireballCount >= 0) {
-    fireballCount--;
-  }
-
-  if (fireballCount == 1000) {//Counter fireballs
-    fire = true;
-  }
-  if (fireballCount == 800) {
-    fire2 = true;
-  }
-  if (fireballCount == 600) {
-    fire3 = true;
-  }
-
-  if (fire == true) {//Boolean fires == true ---> movementUpdate();
-    fireballs[0].movementUpdate();
-  }
-  if (fire2 == true) {
-    fireballs[1].movementUpdate();
-  }
-  if (fire3 == true) {
-    fireballs[2].movementUpdate();
-  }    
-
-  if (fireballs[0].playerCollision || fireballs[0].posFireball.y >= height) {//Damage fireball && respawning fireball
-    fire = false;
-    fireballCount = 1200;
-    fireballs[0].respawn();
-    fireballs[0].posFireball = fireballs[0].RposFireball;
-  }  
-
-  if (fireballs[1].playerCollision || fireballs[1].posFireball.y >= height) {//Damage fireball && respawning fireball
-    fire2 = false;
-    fireballCount = 1200;
-    fireballs[1].respawn();
-    fireballs[1].posFireball = fireballs[1].RposFireball;
-  }
-  if (fireballs[2].playerCollision || fireballs[2].posFireball.y >= height) {//Damage fireball && respawning fireball
-    fire3 = false;
-    fireballCount = 1200;
-    fireballs[2].respawn();
-    fireballs[2].posFireball = fireballs[2].RposFireball;
-  }
-  
-  if (fireballs[0].playerCollision){//Player sees that he/she is hitting a fireball.
-    seeHitFireball = true;
-  }
-  if (fireballs[1].playerCollision){//Player sees that he/she is hitting a fireball.
-    seeHitFireball = true;
-  }
-  if (fireballs[2].playerCollision){//Player sees that he/she is hitting a fireball.
-    seeHitFireball = true;
-  }
-
-  if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
-    if (fireballCount == 400) {//Counter fireballs
-      fire4 = true;
-    }
-    if (fireballCount == 200) {
-      fire5 = true;
-    }
-    if (fireballCount == 0) {
-      fire6 = true;
+  if (dragon.fight || !dragon.fight) {
+    if (fireballCount >= 0) {
+      fireballCount--;
     }
 
-    if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
-      fireballs[3].movementUpdate();
+    if (fireballCount == 1000) {//Counter fireballs
+      fire = true;
     }
-    if (fire5 == true) {
-      fireballs[4].movementUpdate();
+    if (fireballCount == 800) {
+      fire2 = true;
     }
-    if (fire6 == true) {
-      fireballs[5].movementUpdate();
+    if (fireballCount == 600) {
+      fire3 = true;
+    }
+
+    if (fire == true) {//Boolean fires == true ---> movementUpdate();
+      fireballs[0].movementUpdate();
+    }
+    if (fire2 == true) {
+      fireballs[1].movementUpdate();
+    }
+    if (fire3 == true) {
+      fireballs[2].movementUpdate();
     }    
 
-    if (fireballs[3].playerCollision || fireballs[3].posFireball.y >= height) {//Damage fireball && respawning fireball
+    if (fireballs[0].playerCollision || fireballs[0].posFireball.y >= height) {//Damage fireball && respawning fireball
+      fire = false;
+      fireballCount = 1200;
+      fireballs[0].respawn();
+      fireballs[0].posFireball = fireballs[0].RposFireball;
+    }  
+
+    if (fireballs[1].playerCollision || fireballs[1].posFireball.y >= height) {//Damage fireball && respawning fireball
+      fire2 = false;
+      fireballCount = 1200;
+      fireballs[1].respawn();
+      fireballs[1].posFireball = fireballs[1].RposFireball;
+    }
+    if (fireballs[2].playerCollision || fireballs[2].posFireball.y >= height) {//Damage fireball && respawning fireball
+      fire3 = false;
+      fireballCount = 1200;
+      fireballs[2].respawn();
+      fireballs[2].posFireball = fireballs[2].RposFireball;
+    }
+
+    if (fireballs[0].playerCollision) {//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
+    }
+    if (fireballs[1].playerCollision) {//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
+    }
+    if (fireballs[2].playerCollision) {//Player sees that he/she is hitting a fireball.
+      seeHitFireball = true;
+    }
+
+    if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
+      if (fireballCount == 400) {//Counter fireballs
+        fire4 = true;
+      }
+      if (fireballCount == 200) {
+        fire5 = true;
+      }
+      if (fireballCount == 0) {
+        fire6 = true;
+      }
+
+      if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
+        fireballs[3].movementUpdate();
+      }
+      if (fire5 == true) {
+        fireballs[4].movementUpdate();
+      }
+      if (fire6 == true) {
+        fireballs[5].movementUpdate();
+      }    
+
+      if (fireballs[3].playerCollision || fireballs[3].posFireball.y >= height) {//Damage fireball && respawning fireball
+        fire4 = false;
+        fireballCount = 1200;
+        fireballs[3].respawn();
+        fireballs[3].posFireball = fireballs[3].RposFireball;
+      }  
+
+      if (fireballs[4].playerCollision || fireballs[4].posFireball.y >= height) {//Damage fireball && respawning fireball
+        fire5 = false;
+        fireballCount = 1200;
+        fireballs[4].respawn();
+        fireballs[4].posFireball = fireballs[4].RposFireball;
+      }
+      if (fireballs[5].playerCollision || fireballs[5].posFireball.y >= height) {//Damage fireball && respawning fireball
+        fire6 = false;
+        fireballCount = 1200;
+        fireballs[5].respawn();
+        fireballs[5].posFireball = fireballs[5].RposFireball;
+      }
+
+      if (fireballs[3].playerCollision) {//Player sees that he/she is hitting a fireball.
+        seeHitFireball = true;
+      }
+      if (fireballs[4].playerCollision) {//Player sees that he/she is hitting a fireball.
+        seeHitFireball = true;
+      }
+      if (fireballs[5].playerCollision) {//Player sees that he/she is hitting a fireball.
+        seeHitFireball = true;
+      }
+    }
+
+    if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire = false;
+      fireballCount = 1200;
+      fireballs[0].respawn();
+    }
+    if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire2 = false;
+      fireballCount = 1200;
+      fireballs[1].respawn();
+    }
+    if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire3 = false;
+      fireballCount = 1200;
+      fireballs[2].respawn();
+    }
+    if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
       fire4 = false;
       fireballCount = 1200;
       fireballs[3].respawn();
-      fireballs[3].posFireball = fireballs[3].RposFireball;
-    }  
-
-    if (fireballs[4].playerCollision || fireballs[4].posFireball.y >= height) {//Damage fireball && respawning fireball
+    }
+    if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
       fire5 = false;
       fireballCount = 1200;
       fireballs[4].respawn();
-      fireballs[4].posFireball = fireballs[4].RposFireball;
     }
-    if (fireballs[5].playerCollision || fireballs[5].posFireball.y >= height) {//Damage fireball && respawning fireball
+    if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
       fire6 = false;
       fireballCount = 1200;
       fireballs[5].respawn();
-      fireballs[5].posFireball = fireballs[5].RposFireball;
     }
-    
-    if (fireballs[3].playerCollision){//Player sees that he/she is hitting a fireball.
-      seeHitFireball = true;
-    }
-    if (fireballs[4].playerCollision){//Player sees that he/she is hitting a fireball.
-      seeHitFireball = true;
-    }
-    if (fireballs[5].playerCollision){//Player sees that he/she is hitting a fireball.
-      seeHitFireball = true;
-    }
-  }
 
-  if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire = false;
-    fireballCount = 1200;
-    fireballs[0].respawn();
-  }
-  if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire2 = false;
-    fireballCount = 1200;
-    fireballs[1].respawn();
-  }
-  if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire3 = false;
-    fireballCount = 1200;
-    fireballs[2].respawn();
-  }
-  if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire4 = false;
-    fireballCount = 1200;
-    fireballs[3].respawn();
-  }
-  if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire5 = false;
-    fireballCount = 1200;
-    fireballs[4].respawn();
-  }
-  if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
-    druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-    fire6 = false;
-    fireballCount = 1200;
-    fireballs[5].respawn();
-  }
+    if (platforms.moveStage == true||!On) {
+      fire = false;
+      fire2 = false;
+      fire3 = false;
+      fire4 = false;
+      fire5 = false;
+      fire6 = false;
+      fireballCount = 1200;
+    }
 
-  if (platforms.moveStage == true||!On) {
-    fire = false;
-    fire2 = false;
-    fire3 = false;
-    fire4 = false;
-    fire5 = false;
-    fire6 = false;
-    fireballCount = 1200;
+    if (seeHitFireball) {
+      fireballHitCount--;
+    }
+
+    if (fireballHitCount < 0) {
+      seeHitFireball = false;
+      fireballs[0].playerCollision = false;
+      fireballs[1].playerCollision = false;
+      fireballs[2].playerCollision = false;
+      fireballs[3].playerCollision = false;
+      fireballs[4].playerCollision = false;
+      fireballs[5].playerCollision = false;
+      fireballHitCount = 100;
+    }
   }
-  
-  if (seeHitFireball){
-    fireballHitCount--;
-  }
-  
-  if (fireballHitCount < 0){
-    seeHitFireball = false;
-    fireballs[0].playerCollision = false;
-    fireballs[1].playerCollision = false;
-    fireballs[2].playerCollision = false;
-    fireballs[3].playerCollision = false;
-    fireballs[4].playerCollision = false;
-    fireballs[5].playerCollision = false;
-    fireballHitCount = 100;
-  }
- }
 
   if (cooldown > 0) {
     cooldown--;
@@ -347,7 +351,7 @@ void update()
     waterfles.druppelOn = false;
     waterfles.resetWaterfles();
   }
-  
+
   //println(resetWaterflesCount);
 
   player.movementUpdate();
@@ -418,7 +422,7 @@ void draw()
         player.draw();
         Bossplatform();
       }
-      
+
       if (fire == true) {//Draws fireballs!
         fireballs[0].draw();
       }
@@ -441,19 +445,19 @@ void draw()
       if (fire6 == true) {
         fireballs[5].draw();
       }
-      
-      if (seeHitFireball && !schild.pickedUp){
+
+      if (seeHitFireball && !schild.pickedUp) {
         fill(255);
         textSize(30);
         text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
       }
-      
-      if (seeHitFireball && schild.pickedUp){
+
+      if (seeHitFireball && schild.pickedUp) {
         fill(255);
         textSize(30);
         text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
       }
-      
+
       Doublejump.draw();
       waterfles.draw();
       schild.draw();
@@ -475,6 +479,8 @@ void draw()
       //game overscherm
       //healthbar.draw();
       //health.draw();
+      ps.addParticle();
+      ps.run();
     }
   }
 
