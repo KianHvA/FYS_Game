@@ -38,9 +38,9 @@ class Lava {
       }
       if (player.posPlayer.y >= height-20 && !dragon.fight) {
         lavaBack = false;
-        println("Lava stop");
+        //println("Lava stop");
         y -= speed;
-        println("Lava spawn");
+        //println("Lava spawn");
         if (player.posPlayer.y <= 0 && !dragon.fight) {
           y = 700;
         }
