@@ -69,3 +69,7 @@ class ParticleSystem {
     }
   }
 }
+
+class sparks {
+  
+}

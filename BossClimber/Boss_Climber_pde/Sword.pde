@@ -1,7 +1,7 @@
 //Ömer
 class Sword {
   CollisionHandler collisionHandler;
-  float swordX = spawnPointsPUPS.underL.x, swordY = spawnPointsPUPS.underL.y, swordW, swordH;
+  float swordX = width * 2, swordY = height * 2, swordW, swordH;
   float guardW, guardH;
   float durabillity = 3;
   float durablillityFight = 9;
@@ -49,6 +49,11 @@ class Sword {
   }
 
   void updateSword() {
+    if (!dragon.fight) {
+     swordX = width * 2;
+     swordY = height * 2;
+    }
+    
     if (dragon.fight && !pickedUp && !fight) {
       swordX = spawnPointsPUPS.fightL.x;
       swordY = spawnPointsPUPS.fightL.y;
