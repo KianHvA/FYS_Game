@@ -44,6 +44,7 @@ class Health {
       if (invincible > 300) {
         invincibleB = false;
         hit = false;
+        invincible = 0;
       }
 
       //if (flamethrower.hasCollision && !hit && !invincibleB) {
@@ -71,7 +72,7 @@ class Health {
   void draw() {
     if (healthbar.healthPlayer < 1 && amount >= 0) {
       amount--;
-      healthbar.healthPlayer = 100;
+      healthbar.healthPlayer = 1;
     }
     switch(amount) {
     case 4:/*3 but because of the mulptiplier with damage it can't get to 0*/
@@ -139,13 +140,13 @@ class Health {
 class HealthBar {
   boolean shieldDamage; //If the shield is equiped it takes the damage.
   float x, y, w, h;
-  float healthPlayer = 100;
+  float healthPlayer = 1;
   HealthBar(float Tx, float Ty, float Tw, float Th ) {
     this.x = Tx;
     this.y = Ty;
     this.w = Tw;
     this.h = Th;
-    healthPlayer = 100;
+    healthPlayer = 1;
   }
 
 
@@ -155,7 +156,7 @@ class HealthBar {
     } else shieldDamage = true;
   }
   void draw() {
-    healthPlayer = constrain(healthPlayer, 0, 100); //Player has an maximum amount of health.
+    healthPlayer = constrain(healthPlayer, 0, 3); //Player has an maximum amount of health.
     //Healthbar being drawn.
     //noFill();
     //stroke(255);
