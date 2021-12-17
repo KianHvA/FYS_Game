@@ -171,8 +171,8 @@ class HighScore {
             String date = year + "-" + month + "-" + day;
             String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled, date) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ", " + date + ");";
             String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ");";
-            myConnection.updateQuery(qwery);
-            myConnection.updateQuery(qwery2);
+            myConnection.runQuery(qwery);
+            myConnection.runQuery(qwery2);
             gameFinished = false;
           }
         }

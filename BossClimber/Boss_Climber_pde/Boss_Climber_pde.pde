@@ -356,6 +356,12 @@ void update()
 
   player.movementUpdate();
   spawnPointsPUPS.update();
+  //if (Highscore.gameFinished) {
+  //  Properties props = new Properties();
+  //  props.setProperty("user", "dreijed1");
+  //  props.setProperty("password", "kerPVqZtWlI8M4");
+  //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  //}
 }
 
 void restartGame() {//Resets the whole game
