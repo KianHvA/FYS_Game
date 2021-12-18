@@ -3,7 +3,9 @@
 class ScoreHandler {
   int finalScore;
   int score;
-  int textSize = 30; 
+  int textSize = 30;
+  int seeScoreDragonCount = 100;
+  boolean seeScoreDragon = false;
 
   void setup() {
     score = 0;

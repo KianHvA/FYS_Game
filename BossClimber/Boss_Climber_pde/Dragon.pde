@@ -121,6 +121,12 @@ class Dragon {
       HealthbarDragon.doDamageDragon(1);
       damageDragon = false;
     }
+    
+    if (scoreHandler.seeScoreDragon){
+      fill(255);
+      textSize(30);
+      text("+ 500", player.posPlayer.x, player.posPlayer.y - 40);
+    }
   }
 
 
@@ -311,6 +317,7 @@ class bossFight {
       On = true;
       dragon.bossFightRoomFase2 = false;
       platforms.moveAmount=platforms.moveAmount+1;
+      scoreHandler.seeScoreDragon = true;
       println("dead");
       println(platforms.moveAmount);
     }

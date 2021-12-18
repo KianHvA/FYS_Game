@@ -351,8 +351,17 @@ void update()
     waterfles.druppelOn = false;
     waterfles.resetWaterfles();
   }
+  
+  if (scoreHandler.seeScoreDragon){
+    scoreHandler.seeScoreDragonCount--;
+  }
+  
+  if (scoreHandler.seeScoreDragonCount < 0){
+    scoreHandler.seeScoreDragon = false;
+    scoreHandler.seeScoreDragonCount = 100;
+  }
 
-  //println(resetWaterflesCount);
+  //println(platforms.levelMove);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -374,6 +383,9 @@ void restartGame() {//Resets the whole game
   instruction.manual = false;
   instruction.powerExpl = false;
   health.amount = 4;
+  health.amount0 = false;
+  health.amount1 = false;
+  health.amount2 = false;
 }
 
 void draw()

@@ -20,6 +20,7 @@ class Platform {
   int i = 0;
   int j = 0;
   int ySpeed = 10;
+  int seeScoreStageCount = 100;
   boolean moveStage = false;
   int startMoveAmount = 1;
   int moveAmount = 1;
@@ -28,6 +29,7 @@ class Platform {
   PVector[] vertexesR= new PVector[30];
   float moveY = 0;
   boolean drawBossRoom = false;
+  boolean seeScoreStage = false;
   float finalMoveAmount = 0;
 
   void draw() {
@@ -40,6 +42,8 @@ class Platform {
     }
     if (moveStage) {
       levelMove++;
+      seeScoreStage = true;
+      scoreHandler.score += 1;
     }
     if (levelMove >= 600) {
       scoreHandler.score((int)random(10, 30) * (int)levelMove);
@@ -118,6 +122,18 @@ class Platform {
         dragon.bossFight.End();
       }
       if (health.dead) finalMoveAmount = moveAmount;
+    }
+    
+    if (seeScoreStage){
+      seeScoreStageCount--;
+      fill(255);
+      textSize(30);
+      text("+ 587", player.posPlayer.x, player.posPlayer.y - 40);
+    }
+    
+    if (seeScoreStageCount < 0){
+      seeScoreStage = false;
+      seeScoreStageCount = 100;
     }
   }
 }
