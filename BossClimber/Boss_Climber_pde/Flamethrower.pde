@@ -97,12 +97,12 @@ class Flamethrower {
         }
         
         if (live) {
-          collisionHandler.checkCollisionPlayer(X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x);
+          collisionHandler.checkCollisionPlayer(X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x/2);
           if (collisionHandler.hitPlayer) {
             hasCollision = collisionHandler.hitPlayer;
             seeHitFlamethrower = true;
           } else {
-            collisionHandler.checkCollisionPlayer(X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x);
+            collisionHandler.checkCollisionPlayer(X3 + width/35 + 2, y2 - height/50, SIZEFLAME.x/2);
           }
           hasCollision = collisionHandler.hitPlayer;
         }
