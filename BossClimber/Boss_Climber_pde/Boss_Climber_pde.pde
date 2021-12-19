@@ -317,6 +317,9 @@ void update()
     }
 
     if (seeHitFireball) {
+      if (seeHitFireball && schild.pickedUp){
+        fireballHitCount = -1;
+      }
       fireballHitCount--;
     }
 
