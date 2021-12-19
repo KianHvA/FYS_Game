@@ -76,7 +76,7 @@ class Waterfles {
   void resetWaterfles() {//Reset nieuwe waterfles
     pickedUp = false;
     flesScoreCount = 100;
-    if (!dragon.fight) {
+    if (!dragon.fight || dragon.fight) {
       flesX = spawnPointsPUPS.location.x;
       flesY = spawnPointsPUPS.location.y;
     }

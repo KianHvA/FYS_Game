@@ -361,7 +361,7 @@ void update()
     scoreHandler.seeScoreDragonCount = 100;
   }
 
-  //println(platforms.levelMove);
+  println(waterfles.flesX);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
