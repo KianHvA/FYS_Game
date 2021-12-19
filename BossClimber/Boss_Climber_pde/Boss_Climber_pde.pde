@@ -364,7 +364,7 @@ void update()
     scoreHandler.seeScoreDragonCount = 100;
   }
 
-  println(waterfles.flesX);
+  //println(waterfles.flesX);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -428,7 +428,7 @@ void draw()
     if (menu.start == true) {
       background(0);
       update();
-      //dragon.bossFight.End();
+      dragon.bossFight.End();
       level.draw();
       muur();
 

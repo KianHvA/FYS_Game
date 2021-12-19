@@ -170,7 +170,7 @@ class HighScore {
             int year = year();
             String date = year + "-" + month + "-" + day;
             String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled, date) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ", " + date + ");";
-            String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ");";
+            String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
             myConnection.runQuery(qwery);
             myConnection.runQuery(qwery2);
             gameFinished = false;

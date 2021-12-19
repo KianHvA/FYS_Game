@@ -21,7 +21,7 @@ class Dragon {
   float dragonHealth = 3;
   float dragonHealthS = 3;
   boolean fight = false;
-  int fightAmount = 0;
+  int fightAmount = 1;
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
@@ -244,7 +244,7 @@ class bossFight {
       dragon.fight = true;
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);
-      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
+      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount);
       //startx = lerp(startx, vliegPatroon[0].x, 0.01);
       //starty = lerp(starty, vliegPatroon[0].y, 0.01);
       //if (!dragon.waterFles) {
