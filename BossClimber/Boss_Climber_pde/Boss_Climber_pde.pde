@@ -2,6 +2,7 @@
 
 import samuelal.squelized.*;
 import java.util.Properties;
+import processing.sound.*;
 //import de.bezier.data.sql.*;
 
 Menu menu;
@@ -26,6 +27,7 @@ HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
 ParticleSystem ps;
+SoundFile file;
 int cooldown = 100;
 int fireballCount = 1200;
 int spawnCountDruppel = 500;
@@ -68,6 +70,7 @@ void setup()
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
 
   menu = new Menu();
   level = new Level();
