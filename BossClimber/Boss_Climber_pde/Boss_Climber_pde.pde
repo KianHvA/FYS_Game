@@ -27,7 +27,9 @@ HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
 ParticleSystem ps;
+Music music;
 SoundFile file;
+SoundFile bossFightMusic1;
 int cooldown = 100;
 int fireballCount = 1200;
 int spawnCountDruppel = 500;
@@ -70,7 +72,9 @@ void setup()
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  music = new Music();
   file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
+  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3"); 
 
   menu = new Menu();
   level = new Level();
@@ -109,11 +113,13 @@ void setup()
   inventory.setup();
   player.setup();
   Highscore.setup();
+  music.setup();
   //ParticleSystem.setup();
 }
 
 void update()
 {
+  music.update();
   dragon.update();
   flamethrower.update();
   Doublejump.update();
