@@ -31,6 +31,7 @@ Music music;
 SoundFile file;
 SoundFile bossFightMusic1;
 SoundFile mainMenuMusic1;
+SoundFile GameMusic1;
 int cooldown = 100;
 int fireballCount = 1200;
 int spawnCountDruppel = 500;
@@ -77,6 +78,7 @@ void setup()
   file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
   bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
   mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
 
   menu = new Menu();
   level = new Level();
