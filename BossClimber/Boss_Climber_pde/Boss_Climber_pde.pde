@@ -27,7 +27,11 @@ HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
 ParticleSystem ps;
+Music music;
 SoundFile file;
+SoundFile bossFightMusic1;
+SoundFile mainMenuMusic1;
+SoundFile GameMusic1;
 int cooldown = 100;
 int fireballCount = 1200;
 int bossFireballCount = 1200;
@@ -77,7 +81,11 @@ void setup()
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  music = new Music();
   file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
+  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
+  mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
 
   menu = new Menu();
   level = new Level();
@@ -116,6 +124,7 @@ void setup()
   inventory.setup();
   player.setup();
   Highscore.setup();
+
   
   fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[6].posFireball.y = dragon.starty;
@@ -134,11 +143,15 @@ void setup()
   
   fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[11].posFireball.y = dragon.starty;
+
+  music.setup();
+
   //ParticleSystem.setup();
 }
 
 void update()
 {
+  music.update();
   dragon.update();
   flamethrower.update();
   Doublejump.update();
@@ -529,6 +542,7 @@ void draw()
 
   if (Highscore.ending == false) {
     if (menu.start == false) {
+      music.menuMusic();
       background(0);
       level.draw();
       menu.draw();
