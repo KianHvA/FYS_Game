@@ -30,6 +30,7 @@ ParticleSystem ps;
 SoundFile file;
 int cooldown = 100;
 int fireballCount = 1200;
+int bossFireballCount = 1200;
 int spawnCountDruppel = 500;
 int RspawnCountDruppel = 500; //oorspronkelijke functie
 int resetWaterflesCount = 600;
@@ -41,13 +42,19 @@ float xDragon = 152, yDragon = 10, sizeDragon = 100;
 float textX = width/2;
 float textY = height/2;
 float fireballHitCount = 100;
-int fireballAmount = 6;
+int fireballAmount = 12;
 boolean fire = false;
 boolean fire2 = false;
 boolean fire3 = false;
 boolean fire4 = false;
 boolean fire5 = false;
 boolean fire6 = false;
+boolean fire7 = false;
+boolean fire8 = false;
+boolean fire9 = false;
+boolean fire10 = false;
+boolean fire11 = false;
+boolean fire12 = false;
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
@@ -109,6 +116,24 @@ void setup()
   inventory.setup();
   player.setup();
   Highscore.setup();
+  
+  fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[6].posFireball.y = dragon.starty;
+  
+  fireballs[7].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[7].posFireball.y = dragon.starty;
+  
+  fireballs[8].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[8].posFireball.y = dragon.starty;
+  
+  fireballs[9].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[9].posFireball.y = dragon.starty;
+  
+  fireballs[10].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[10].posFireball.y = dragon.starty;
+  
+  fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+  fireballs[11].posFireball.y = dragon.starty;
   //ParticleSystem.setup();
 }
 
@@ -165,7 +190,7 @@ void update()
   //  default:
   //}
 
-  if (dragon.fight || !dragon.fight) {
+  if (!dragon.fight) {
     if (fireballCount >= 0) {
       fireballCount--;
     }
@@ -337,6 +362,107 @@ void update()
       fireballHitCount = 100;
     }
   }
+  
+  if (bossFightRoom){//While boss fight
+    if (bossFireballCount >= 0){
+      bossFireballCount--;
+    }
+    
+    if (bossFireballCount == 1000){
+      fire7 = true;
+    }
+    if (bossFireballCount == 800){
+      fire8 = true;
+    }
+    if (bossFireballCount == 600){
+      fire9 = true;
+    }
+    if (bossFireballCount == 400){
+      fire10 = true;
+    }
+    if (bossFireballCount == 200){
+      fire11 = true;
+    }
+    if (bossFireballCount == 0){
+      fire12 = true;
+    }
+    
+    if (fire7 == true){//Movement update boss fight fireballs!
+      fireballs[6].movementUpdateBossFight();
+    }
+    if (fire8 == true){//Movement update boss fight fireballs!
+      fireballs[7].movementUpdateBossFight();
+    }
+    if (fire9 == true){//Movement update boss fight fireballs!
+      fireballs[8].movementUpdateBossFight();
+    }
+    if (fire10 == true){//Movement update boss fight fireballs!
+      fireballs[9].movementUpdateBossFight();
+    }
+    if (fire11 == true){//Movement update boss fight fireballs!
+      fireballs[10].movementUpdateBossFight();
+    }
+    if (fire12 == true){//Movement update boss fight fireballs!
+      fireballs[11].movementUpdateBossFight();
+    }
+    
+    if (fireballs[6].playerCollision || fireballs[6].wallCollisonR){//Collision fireballs!
+      fire7 = false;
+      fireballs[6].wallCollisonR = false;
+      fireballs[6].respawn();
+    }
+    if (fireballs[7].playerCollision || fireballs[7].wallCollisonR){//Collision fireballs!
+      fire8 = false;
+      fireballs[7].wallCollisonR = false;
+      fireballs[7].respawn();
+    }
+    if (fireballs[8].playerCollision || fireballs[8].wallCollisonR){//Collision fireballs!
+      fire9 = false;
+      fireballs[8].wallCollisonR = false;
+      fireballs[8].respawn();
+    }
+    if (fireballs[9].playerCollision || fireballs[9].wallCollisonR){//Collision fireballs!
+      fire10 = false;
+      fireballs[9].wallCollisonR = false;
+      fireballs[9].respawn();
+    }
+    if (fireballs[10].playerCollision || fireballs[10].wallCollisonR){//Collision fireballs!
+      fire11 = false;
+      fireballs[10].wallCollisonR = false;
+      fireballs[10].respawn();
+    }
+     if (fireballs[11].playerCollision || fireballs[11].wallCollisonR){//Collision fireballs!
+      fire12 = false;
+      fireballs[11].wallCollisonR = false;
+      bossFireballCount = 1200;
+      fireballs[11].respawn();
+    }
+    
+    if (dragon.dragonHealth == 0){//Resets fireballs for next fight if boss fight is over!
+      fire7 = false;
+      fire8 = false;
+      fire9 = false;
+      fire10 = false;
+      fire11 = false;
+      fire12 = false;
+      
+      fireballs[6].bossOn = false;
+      fireballs[7].bossOn = false;
+      fireballs[8].bossOn = false;
+      fireballs[9].bossOn = false;
+      fireballs[10].bossOn = false;
+      fireballs[11].bossOn = false;
+      
+      fireballs[6].respawn();
+      fireballs[7].respawn();
+      fireballs[8].respawn();
+      fireballs[9].respawn();
+      fireballs[10].respawn();
+      fireballs[11].respawn();
+      
+      bossFireballCount = 1200;
+    }
+  }
 
   if (cooldown > 0) {
     cooldown--;
@@ -367,7 +493,7 @@ void update()
     scoreHandler.seeScoreDragonCount = 100;
   }
 
-  //println(waterfles.flesX);
+  println(bossFireballCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -468,6 +594,36 @@ void draw()
 
       if (fire6 == true) {
         fireballs[5].draw();
+      }
+      
+      if (fire7 == true){//Boss fireballs!
+        fireballs[6].bossOn = true;
+        fireballs[6].draw();
+      }
+      
+      if (fire8 == true){
+        fireballs[7].bossOn = true;
+        fireballs[7].draw();
+      }
+      
+      if (fire9 == true){
+        fireballs[8].bossOn = true;
+        fireballs[8].draw();
+      }
+      
+      if (fire10 == true){
+        fireballs[9].bossOn = true;
+        fireballs[9].draw();
+      }
+      
+      if (fire11 == true){
+        fireballs[10].bossOn = true;
+        fireballs[10].draw();
+      }
+      
+      if (fire12 == true){
+        fireballs[11].bossOn = true;
+        fireballs[11].draw();
       }
 
       if (seeHitFireball && !schild.pickedUp) {
