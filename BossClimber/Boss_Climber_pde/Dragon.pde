@@ -212,6 +212,10 @@ class FireBallRain {
       fireballs[i].movementUpdate();
       fireballs[i].draw();
     }
+    if (dragon.fireBallRain == true) {
+      fireballs[10].damageFireball = 10;
+      collisionHandler.hitPlayer = true;
+    }
   }
 }
 
