@@ -199,6 +199,7 @@ class Dragon {
 }
 
 class FireBallRain {
+  CollisionHandler collisionHandler;
   float startx = xDragon;
   float starty = yDragon;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
