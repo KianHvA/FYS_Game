@@ -250,12 +250,15 @@ void update()
 
     if (fireballs[0].playerCollision) {//Player sees that he/she is hitting a fireball.
       seeHitFireball = true;
+      schild.reset = true;
     }
     if (fireballs[1].playerCollision) {//Player sees that he/she is hitting a fireball.
       seeHitFireball = true;
+      schild.reset = true;
     }
     if (fireballs[2].playerCollision) {//Player sees that he/she is hitting a fireball.
       seeHitFireball = true;
+      schild.reset = true;
     }
 
     if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
@@ -301,12 +304,15 @@ void update()
 
       if (fireballs[3].playerCollision) {//Player sees that he/she is hitting a fireball.
         seeHitFireball = true;
+        schild.reset = true;
       }
       if (fireballs[4].playerCollision) {//Player sees that he/she is hitting a fireball.
         seeHitFireball = true;
+        schild.reset = true;
       }
       if (fireballs[5].playerCollision) {//Player sees that he/she is hitting a fireball.
         seeHitFireball = true;
+        schild.reset = true;
       }
     }
 
@@ -345,6 +351,42 @@ void update()
       fire6 = false;
       fireballCount = 1200;
       fireballs[5].respawn();
+    }
+     if (fireballs[6].fireballDruppel(fireballs[6].posFireball.x, fireballs[6].posFireball.y, fireballs[6].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire7 = false;
+      bossFireballCount = 1200;
+      fireballs[6].respawn();
+    }
+     if (fireballs[7].fireballDruppel(fireballs[7].posFireball.x, fireballs[7].posFireball.y, fireballs[7].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire8 = false;
+      bossFireballCount = 1200;
+      fireballs[7].respawn();
+    }
+     if (fireballs[8].fireballDruppel(fireballs[8].posFireball.x, fireballs[8].posFireball.y, fireballs[8].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire9 = false;
+      bossFireballCount = 1200;
+      fireballs[8].respawn();
+    }
+     if (fireballs[9].fireballDruppel(fireballs[9].posFireball.x, fireballs[9].posFireball.y, fireballs[9].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire10 = false;
+      bossFireballCount = 1200;
+      fireballs[9].respawn();
+    }
+     if (fireballs[10].fireballDruppel(fireballs[10].posFireball.x, fireballs[10].posFireball.y, fireballs[10].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire11 = false;
+      bossFireballCount = 1200;
+      fireballs[10].respawn();
+    }
+     if (fireballs[11].fireballDruppel(fireballs[11].posFireball.x, fireballs[11].posFireball.y, fireballs[11].sizeFireball.x, 
+      druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
+      fire12 = false;
+      bossFireballCount = 1200;
+      fireballs[11].respawn();
     }
 
     if (platforms.moveStage == true||!On) {
@@ -419,6 +461,25 @@ void update()
       fireballs[11].movementUpdateBossFight();
     }
     
+    if (fireballs[6].playerCollision){
+      seeHitFireball = true;
+    }
+     if (fireballs[7].playerCollision){
+      seeHitFireball = true;
+    }
+     if (fireballs[8].playerCollision){
+      seeHitFireball = true;
+    }
+     if (fireballs[9].playerCollision){
+      seeHitFireball = true;
+    }
+     if (fireballs[10].playerCollision){
+      seeHitFireball = true;
+    }
+     if (fireballs[11].playerCollision){
+      seeHitFireball = true;
+    }
+    
     if (fireballs[6].playerCollision || fireballs[6].wallCollisonR){//Collision fireballs!
       fire7 = false;
       fireballs[6].wallCollisonR = false;
@@ -451,7 +512,22 @@ void update()
       fireballs[11].respawn();
     }
     
-    if (dragon.dragonHealth == 0){//Resets fireballs for next fight if boss fight is over!
+    if (seeHitFireball){
+      fireballHitCount--;
+    }
+    
+    if (fireballHitCount < 0){
+      seeHitFireball = false;
+      fireballs[6].playerCollision = false;
+      fireballs[7].playerCollision = false;
+      fireballs[8].playerCollision = false;
+      fireballs[9].playerCollision = false;
+      fireballs[10].playerCollision = false;
+      fireballs[11].playerCollision = false;
+      fireballHitCount = 100;
+    }
+    
+    if (dragon.dragonHealth <= 0 && bossFightRoom){//Resets fireballs for next fight if boss fight is over!
       fire7 = false;
       fire8 = false;
       fire9 = false;
