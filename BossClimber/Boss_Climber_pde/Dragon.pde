@@ -21,7 +21,7 @@ class Dragon {
   float dragonHealth = 3;
   float dragonHealthS = 3;
   boolean fight = false;
-  int fightAmount = 0;
+  int fightAmount = 1;
   boolean fireBallRain = false;
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
@@ -121,6 +121,12 @@ class Dragon {
       HealthbarDragon.doDamageDragon(1);
       damageDragon = false;
     }
+    
+    if (scoreHandler.seeScoreDragon){
+      fill(255);
+      textSize(30);
+      text("+ 500", player.posPlayer.x, player.posPlayer.y - 40);
+    }
   }
 
 
@@ -193,6 +199,7 @@ class Dragon {
 }
 
 class FireBallRain {
+  CollisionHandler collisionHandler;
   float startx = xDragon;
   float starty = yDragon;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
@@ -205,6 +212,10 @@ class FireBallRain {
       fireballs[i].posFireball.y = 50;
       fireballs[i].movementUpdate();
       fireballs[i].draw();
+    }
+    if (dragon.fireBallRain == true) {
+      fireballs[10].damageFireball = 10;
+      collisionHandler.hitPlayer = true;
     }
   }
 }
@@ -238,7 +249,7 @@ class bossFight {
       dragon.fight = true;
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);
-      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount/2);
+      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount);
       //startx = lerp(startx, vliegPatroon[0].x, 0.01);
       //starty = lerp(starty, vliegPatroon[0].y, 0.01);
       //if (!dragon.waterFles) {
@@ -311,6 +322,7 @@ class bossFight {
       On = true;
       dragon.bossFightRoomFase2 = false;
       platforms.moveAmount=platforms.moveAmount+1;
+      scoreHandler.seeScoreDragon = true;
       println("dead");
       println(platforms.moveAmount);
     }

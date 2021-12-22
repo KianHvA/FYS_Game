@@ -15,7 +15,7 @@ class Fireball {
   PVector RposFireball = new PVector(400, 50);
   PImage leftF1, leftF2, rightF1, rightF2; //fireballs
   PImage Active, leftActive, rightActive;
-  boolean left = false, right = true;
+  boolean left = false, right = true, bossOn = false;
   float timerLeft1 = 0, timerLeft2 = 0, timerRight1 = 0, timerRight2 = 0;;
   
   //void fireball(float fireX, float fireY){
@@ -49,7 +49,7 @@ class Fireball {
     rectMode(CENTER);
 
     //Fireball
-    if(On){
+    if(On || bossOn){
     fill(255, 0, 0);
     image(Active,posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
     //ellipse(posFireball.x, posFireball.y, sizeFireball.x, sizeFireball.y);
@@ -145,6 +145,32 @@ class Fireball {
     // posFireball.x  = newPosFireball.x;
     // posFireball.y  = newPosFireball.y;
     //}
+  }
+  
+  void movementUpdateBossFight(){
+    checkCollision(posFireball.x, posFireball.y, sizeFireball.y);
+    collisionHandler.checkCollisionPlayer(posFireball.x, posFireball.y, sizeFireball.x/2);
+
+    hasCollision = collisionHandler.hit;
+    playerCollision = collisionHandler.hitPlayer;
+    wallCollisonR = collisionHandler.hitWallRight;
+    wallCollisonL = collisionHandler.hitWallLeft;
+    if (!hasCollision)
+    {
+      velocity.x = 0;
+      velocity.y += GRAVITY; //werkt alleen als ik niet op een platform sta.
+    } else {
+      collideWithPlatform();
+      velocity.x = 2;
+      //println(wallCollisonR + "  " + wallCollisonL);
+    }
+      
+   if (playerCollision) {
+      healthbar.doDamage(damageFireball);
+    }
+    
+    posFireball.x += velocity.x;
+    posFireball.y += velocity.y;
   }
 
   void respawn() {
