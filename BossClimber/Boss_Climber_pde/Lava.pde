@@ -14,7 +14,6 @@ class Lava {
     noStroke();
     fill(#FAB800);
     image(level.lavaImg, b, y, width-2*b, height);
-    //rect(b, y, width-2*b, height);
     if (!health.dead) {
       if (!dragon.fight) {
         if (player.posPlayer.y < height - height/8) {
@@ -38,36 +37,11 @@ class Lava {
       }
       if (player.posPlayer.y >= height-20 && !dragon.fight) {
         lavaBack = false;
-        //println("Lava stop");
         y -= speed;
-        //println("Lava spawn");
         if (player.posPlayer.y <= 0 && !dragon.fight) {
           y = 700;
         }
-
-        if (platforms.moveAmount == 8) {
-          speed = 0.2;
-        }
-
-        if (platforms.moveAmount == 16) {
-          speed = 0.4;
-        }
-
-        if (platforms.moveAmount == 32) {
-          speed = 0.8;
-        }
       }
-
-      //    if (platforms.moveAmount == 8) {
-      //      speed = 0.2;
-      //    }
-
-      //    if (platforms.moveAmount == 16) {
-      //      speed = 0.4;
-      //    }
-
-      //    if (platforms.moveAmount == 32) {
-      //      speed = 0.8;
     }
   }
 }
