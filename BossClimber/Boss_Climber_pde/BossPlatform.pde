@@ -17,6 +17,7 @@
 //int levelMove = 0;
 float xxpos = 1;
 boolean bossFightRoom = false;
+float lavaGetal = 78;
 
 void Bossplatform() {
   dragon.fight = bossFightRoom;
@@ -26,6 +27,10 @@ void Bossplatform() {
   rectMode(CORNER);
   rect(0, height-20, xxpos, height);
   xxpos = xxpos + 10;
+  noStroke();
+  fill(#FAB800);
+  for (float i = width/12; i<width/12+800; i = i+lavaGetal){
+  rect(i,500,lavaGetal,100);}
   muur();
   bossFightRoom = true;
   if (bossFightRoom) {
