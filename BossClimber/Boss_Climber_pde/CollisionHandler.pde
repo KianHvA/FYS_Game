@@ -1,4 +1,4 @@
-/*Kian    //<>//
+/*Kian     //<>//
  Welkom bij de Collision Class, dit is hoe je hem gebruikt: 
  
  1. maak een collision boolean aan in de global variables:
@@ -72,9 +72,6 @@ class CollisionHandler
       PVector vn = vertices[next];
       //ellipseMode(CENTER);
       //circle(vc.x, vc.y, 10);
-      //if (calculateDistance(vc.x, vc.y, cx, cy) > 500 || calculateDistance(vn.x, vn.y, cx, cy) > 500) {
-      //  continue;
-      //}
       boolean collision = lineCircle(vc.x, vc.y, vn.x, vn.y, cx, cy, r);
       if (collision) return true;
     }
@@ -85,13 +82,13 @@ class CollisionHandler
     return false;
   }
 
-  // LINE/CIRCLE  //<>//
+  // LINE/CIRCLE  
   boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {
 
-    boolean inside1 = pointCircle(x1, y1, cx, cy, r); //<>//
+    boolean inside1 = pointCircle(x1, y1, cx, cy, r);  //<>//
     boolean inside2 = pointCircle(x2, y2, cx, cy, r);
     if (inside1 || inside2) return true;
-
+ //<>//
     // get length of the line
     float distX = x1 - x2;
     float distY = y1 - y2;
@@ -111,7 +108,7 @@ class CollisionHandler
     noStroke();
 
     platformHitPos = new PVector(closestX, closestY);
-    // get distance to closest point
+    //afstand tot dicht bijzijnde vertex
     distX = closestX - cx;
     distY = closestY - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
@@ -121,7 +118,7 @@ class CollisionHandler
       closestHitPos = new PVector(closestX, closestY);
       platformHitPos = closestHitPos;
     }
-    // is the circle on the line?
+    // check of de circle op de lijn is
     if (distance <= r) {
       return true;
     }
@@ -129,24 +126,21 @@ class CollisionHandler
     return false;
   }
 
-  // LINE/POINT
+  // Lijn op Punt detectie
   boolean linePoint(float x1, float y1, float x2, float y2, float px, float py) {
 
-    // get distance from the point to the two ends of the line
+    // verkrijg de afstand van de hoek punten tot het punt op de lijn
     float d1 = dist(px, py, x1, y1);
     float d2 = dist(px, py, x2, y2);
 
-    // get the length of the line
-    float lineLen = dist(x1, y1, x2, y2);
+    // hiervoor hebben we de totale lengte van de lijn nodig
+    float lineLen = calculateDistance(x1, y1, x2, y2);
 
-    // since floats are so minutely accurate, add
-    // a little buffer zone that will give collision
-    float buffer = 0.5;    // higher # = less accurate
+    // Gebruik gemaakt van buffer om trillen van collision objecten te voorkomen
+    float buffer = 10;    // Hoger Nummer geeft minder accuratie
 
-    // if the two distances are equal to the line's
-    // length, the point is on the line!
-    // note we use the buffer here to give a range, rather
-    // than one #
+    // als de afstand tussen de collision object en bijde hoekpunten gelijk is of kleiner is dan de lengte van de lijn -
+    // zitten we op de lijn
     if (d1+d2 >= lineLen-buffer && d1+d2 <= lineLen+buffer) {
       return true;
     }
@@ -156,8 +150,7 @@ class CollisionHandler
   // POINT/CIRCLE
   boolean pointCircle(float px, float py, float cx, float cy, float r) {
 
-    // get distance between the point and circle's center
-    // using the Pythagorean Theorem
+    //gebruik pythagoras om afstand te bepalen
     float distX = px - cx;
     float distY = py - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
@@ -251,15 +244,15 @@ class CollisionHandler
     return false;
   }
 
-  double calculateDistance(
-    double x1, 
-    double y1, 
-    double x2, 
-    double y2) {
+  float calculateDistance(
+    float x1, 
+    float y1, 
+    float x2, 
+    float y2) {
 
     double ac = Math.abs(y2 - y1);
     double cb = Math.abs(x2 - x1);
 
-    return Math.hypot(ac, cb);
+    return (float)Math.hypot(ac, cb);
   }
 }
