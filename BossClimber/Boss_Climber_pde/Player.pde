@@ -28,7 +28,7 @@ class Player {
   float walkAmount = 0;
   boolean checkSound = false;
   boolean playSound = false;
-  
+
   void setup() {
     //left
     left = loadImage("Knight - Left.png");
@@ -66,7 +66,7 @@ class Player {
     rightActiveSW = loadImage("Knight - Right - Sword.png");
     leftActiveW = loadImage("Knight - Left - Water.png");
     rightActiveW = loadImage("Knight - Right - Water.png");
-    
+
     collisionHandler = new CollisionHandler();
   }
 
@@ -284,7 +284,7 @@ class Player {
         Active = rightSW;
       }
       if (sword.attacked && sword.stabAnimation <= 100) {
-       Active = sword.swordStab; 
+        Active = sword.swordStab;
       }
     }
 
@@ -303,14 +303,14 @@ class Player {
       hasDoubleJumped = true;
     }
     if (jumped) {
-     hasCollision = false;
+      hasCollision = false;
       velocity.y = -jumpForce;
       moveUp = true;
       jump = false;
       jumped = false;
     }
     if (!jump) {
-     jumpTimer1++; 
+      jumpTimer1++;
     }
     if (jumpTimer1 == 30) {
       jump = true;
@@ -353,9 +353,9 @@ class Player {
     //add velocity to posPlayer
     posPlayer.x += velocity.x;
     posPlayer.y += velocity.y;
-    
+
     //Audio
-     if (moveLeft && hasCollision || moveRight && hasCollision) {
+    if (moveLeft && hasCollision || moveRight && hasCollision) {
       playSound = true;
     } else playSound = false;
     if (file.isPlaying()) {
@@ -365,20 +365,17 @@ class Player {
       checkSound = false;
     }
     if (playSound && !checkSound) {
-    file.play();
-  } else if (!playSound && checkSound) {
-   file.pause(); 
-  }
+      file.play();
+    } else if (!playSound && checkSound) {
+      file.pause();
+    }
   }
 
   void collideWithPlatform()
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      if (dist(collisionHandler.preplatformHitPos.x, collisionHandler.preplatformHitPos.y, collisionHandler.platformHitPos.x, collisionHandler.platformHitPos.y) > 100) {
-        posPlayer.y = collisionHandler.platformHitPos.y - (sizePlayer.y/2);
-      } else {
-        posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight + sizePlayer.y/2);
-      }
+      posPlayer.y = collisionHandler.platformHitPos.y - (collisionHandler.platformHeight + sizePlayer.y/2);
+
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
       hasCollision = false;
