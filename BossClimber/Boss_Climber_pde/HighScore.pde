@@ -234,10 +234,12 @@ class HighScore {
   void deadScreenScore() {
     getTable = true;
     if (getTable) {
-      String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
+      String query = "SELECT id FROM Highscore where score <> 2147483647 order by score desc;";
       Table databaseTable = myConnection.runQuery(query);
-      int id = databaseTable.getStringColumn(2).length;
+      int id = databaseTable.getStringColumn(1).length;
       idFix = id;
+      //Table id = myConnection.getColumn("Highscore", "id");
+      //idFix = id;
     }
     textSize(textSize * 0.5);
     textMode(CORNER);

@@ -582,7 +582,7 @@ void update()
     scoreHandler.seeScoreDragonCount = 100;
   }
 
-  println(bossFireballCount);
+  //println(bossFireballCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();

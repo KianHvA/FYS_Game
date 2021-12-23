@@ -94,7 +94,7 @@ class Menu {
   void HighscoreDraw() {
     background(0);
     String highscore;
-    String query = "SELECT * FROM Highscore where score <> 2147483647 order by score desc;";
+    String query = "SELECT * FROM Highscore order by score desc limit 10;";
     Table databaseTable = myConnection.runQuery(query);
     String[] scores = databaseTable.getStringColumn(0);
     String[] names = databaseTable.getStringColumn(1);
@@ -107,7 +107,7 @@ class Menu {
     textAlign(CENTER,CENTER);
     text("Highscore:", height/2, height/2 - 100 * 2);
     fill(255);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < scores.length; i++) {
       highscore = names[i] + ": " + scores[i] + "        " + dates[i];
       textSize(20);
       
