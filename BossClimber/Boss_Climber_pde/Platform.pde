@@ -31,8 +31,10 @@ class Platform {
   boolean drawBossRoom = false;
   boolean seeScoreStage = false;
   float finalMoveAmount = 0;
+  int bossDefeated = 4;
 
   void draw() {
+    String defeatBossQuery = "INSERT INTO difficulty VALUES ('COMPLETE!')";
     if (player.posPlayer.y <= moveY && !dragon.fight) {
       player.moveLeft = true;
       player.moveRight = false;
@@ -134,6 +136,10 @@ class Platform {
     if (seeScoreStageCount < 0){
       seeScoreStage = false;
       seeScoreStageCount = 100;
+    }
+    
+    if (moveAmount == bossDefeated){//Receive achievement when boss is defeated.
+      Table databaseTable = myConnection.runQuery(defeatBossQuery);
     }
   }
 }
