@@ -1,3 +1,5 @@
+//Fee Fee
+
 class Particle {
   PVector position;
   PVector gravity;
@@ -25,12 +27,6 @@ class Particle {
   void display() {
     stroke(150, lifespan);
     fill(150, lifespan);
-
-    ////collision
-    //if (position.y> height-45) {
-    //  position.y=height-45;
-    //}
-
     ellipse(position.x, position.y + 20, 5, 5);
   }
 
@@ -71,5 +67,4 @@ class ParticleSystem {
 }
 
 class sparks {
-  
 }
