@@ -157,29 +157,10 @@ class HealthBar {
   }
   void draw() {
     healthPlayer = constrain(healthPlayer, 0, 3); //Player has an maximum amount of health.
-    //Healthbar being drawn.
-    //noFill();
-    //stroke(255);
-    ////rect(x, y, w, h);
-    //colorMode(RGB, 150);
-    //float c = map(healthPlayer, 0, 100, 0, w);
-    //float d = map(healthPlayer, 0, 100/2, 0, 255);
-    //float f = map(healthPlayer, 0, 100, 255, 0);
-    //fill(f, d, 0);
-    //noStroke();
-    //rectMode(CORNER);
-    //rect(3, height-25, c, h+1);
-    //colorMode(RGB, 400);
-
-    //healthPlayer = constrain(healthPlayer, 0, 100);
-    //noFill();
-    //stroke(255);
-    //rectMode(CENTER);
-    //rect(x, y, w, h);
   }
 }
 
-class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
+class HealthBarDragon {
 
   float x, y, w, h;
   HealthBarDragon(float Tx, float Ty, float Tw, float Th ) {
@@ -204,10 +185,11 @@ class HealthBarDragon {  //class + naam van de class (Zoals bovenaan staat)//
     float d = map(dragon.dragonHealth, 0, dragon.dragonHealthS/2, 0, 255);
     float f = map(dragon.dragonHealth, 0, dragon.dragonHealthS, 255, 0);
     fill(f, d, 0);
+    float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
+    fill(255, 0, 0);
     noStroke();
     rectMode(CENTER);
-    rect(width/2, 10, c, h-1);
-    colorMode(RGB, 400);
+    rect(width/2, 10, c, h - 1);
     if (dragon.dragonHealth == 0) dragon.dragonHealth = 0;
 
     dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
