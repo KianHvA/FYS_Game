@@ -30,7 +30,7 @@ void Bossplatform() {
   noStroke();
   fill(#FAB800);
   for (float i = width/12; i<width/12+800; i = i+lavaGetal){
-  rect(i,500,lavaGetal,100);}
+  rect(i,height - 10,lavaGetal,100);}
   muur();
   bossFightRoom = true;
   if (bossFightRoom) {
