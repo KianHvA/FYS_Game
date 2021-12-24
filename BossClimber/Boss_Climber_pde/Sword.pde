@@ -23,7 +23,7 @@ class Sword {
   boolean fastDamageFix = true;
   float timerDamage = 0;
   float damageFixTimer = 0;
-  color damage = #FFFFFF;
+  color damage = #FF0000;
   float damageOpacity = 1000;
   boolean seeScoreSword = false;
   float scoreSwordCount = 100;
@@ -119,7 +119,7 @@ class Sword {
     }
     if (doneDamage) {
       fill(damage, sword.damageOpacity);
-      text("-1", sword.dragonX, sword.dragonY);
+      text("-1000", sword.dragonX, sword.dragonY);
       dragonX++;
       dragonY += 2;
       damageOpacity--;
