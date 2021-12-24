@@ -313,7 +313,7 @@ class bossFight {
       timerAmount = 1;
       dragon.fightAmount += 1;
       scoreHandler.score(250);
-      dragon.dragonHealth *= dragon.fightAmount;
+      dragon.dragonHealth = dragon.dragonHealthS * dragon.fightAmount;
       dragon.healthbarPos = dragon.healthbarPosEnd;
       bossFightRoom = false;
       On=true;
