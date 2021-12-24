@@ -17,6 +17,7 @@ class Fireball {
   PImage Active, leftActive, rightActive;
   boolean left = false, right = true, bossOn = false;
   float timerLeft1 = 0, timerLeft2 = 0, timerRight1 = 0, timerRight2 = 0;;
+  int achievementFireballCount = 0;
   
   //void fireball(float fireX, float fireY){
     //posFireball.x = fireX;
@@ -145,6 +146,13 @@ class Fireball {
     // posFireball.x  = newPosFireball.x;
     // posFireball.y  = newPosFireball.y;
     //}
+  }
+  
+  void achievementUpdateFireball(){
+    if (fireballDruppel(posFireball.x, posFireball.y, sizeFireball.x,
+     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)){
+      achievementFireballCount++;
+   }
   }
   
   void movementUpdateBossFight(){

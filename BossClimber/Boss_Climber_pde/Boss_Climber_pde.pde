@@ -202,6 +202,10 @@ void update()
   //  break;
   //  default:
   //}
+  
+   for (int i = 0; i < fireballs.length; i++){
+    fireballs[i].achievementUpdateFireball();
+  }
 
   if (!dragon.fight) {
     if (fireballCount >= 0) {
@@ -583,7 +587,7 @@ void update()
   }
 
   //println(bossFireballCount);
-
+  
   player.movementUpdate();
   spawnPointsPUPS.update();
   //if (Highscore.gameFinished) {
