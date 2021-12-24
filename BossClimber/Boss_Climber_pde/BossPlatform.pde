@@ -20,6 +20,7 @@ boolean bossFightRoom = false;
 float lavaGetal = 78;
 
 void Bossplatform() {
+  dragon.healthbarDragon.draw();
   dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
   fill(147, 147, 147);

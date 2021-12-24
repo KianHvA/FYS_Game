@@ -22,7 +22,6 @@ ScoreHandler scoreHandler;
 Inventory inventory;
 Instructions instruction;
 Schild schild;
-HealthBarDragon HealthbarDragon;
 HighScore Highscore;
 SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
@@ -582,7 +581,6 @@ void update()
     scoreHandler.seeScoreDragonCount = 100;
   }
 
-  //println(bossFireballCount);
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -592,6 +590,7 @@ void update()
   //  props.setProperty("password", "kerPVqZtWlI8M4");
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
+  println(dragon.dragonHealth);
 }
 
 void restartGame() {//Resets the whole game

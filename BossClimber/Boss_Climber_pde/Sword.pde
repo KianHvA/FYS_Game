@@ -15,7 +15,7 @@ class Sword {
   float extendSword = 10;
   boolean attacked = false;
   boolean reset = false;
-  boolean fight = false;
+  boolean swordPickedUp = false;
   boolean timedReset = false;
   float dragonX = 0;
   float dragonY = 0;
@@ -44,20 +44,19 @@ class Sword {
 
   void setup() {
     collisionHandler = new CollisionHandler();
-    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
     swordStab = loadImage("Knight - Sword attack.png");
   }
 
   void updateSword() {
     if (!dragon.fight) {
-     swordX = width * 2;
-     swordY = height * 2;
+      swordX = width * 2;
+      swordY = height * 2;
     }
-    
-    if (dragon.fight && !pickedUp && !fight) {
-      swordX = spawnPointsPUPS.fightL.x;
-      swordY = spawnPointsPUPS.fightL.y;
-      fight = true;
+
+    if (dragon.fight && !pickedUp && !swordPickedUp) {
+      swordX = spawnPointsPUPS.fightR.x;
+      swordY = spawnPointsPUPS.fightR.y;
+      swordPickedUp = true;
     }
 
     if (waterfles.pickedUp && pickedUp || schild.pickedUp && pickedUp /*|| Doublejump.pickedUp*/) {
@@ -65,13 +64,13 @@ class Sword {
       reset = true;
       timedReset = true;
     }
-    
-    if (!schild.pickedUp){
+
+    if (!schild.pickedUp) {
       if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
         swordX = width * 2;
         swordY = height * 2;
         pickedUp = true;
-        fight = false;
+        swordPickedUp = false;
         seeScoreSword = true;
         scoreHandler.score += swordScore;
       }
@@ -85,7 +84,7 @@ class Sword {
       durabillity = durablillityFight;
     }
 
-    if (reset){ //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset) { //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       timedReset = false;
       reset = false;
@@ -148,7 +147,6 @@ class Sword {
     }
     if (attacked) {
       stabAnimation++;
-      println(stabAnimation);
     }
     if (stabAnimation >= 10) {
       attacked = false;
@@ -175,7 +173,9 @@ class Sword {
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision && !fastDamageFix) {
       doneDamage = true;
-      HealthbarDragon.doDamageDragon(1);
+    }
+    if () {
+      dragon.healthbarDragon.doDamageDragon(1);
       fastDamageFix = true;
     }
   }

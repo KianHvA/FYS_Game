@@ -2,7 +2,7 @@
 class Dragon {
   FireBallRain FireballRain;
   bossFight bossFight;
-  HealthBarDragon HealthbarDragon;
+  HealthBarDragon healthbarDragon;
   int savedTime;
   int totalTime = 1000;
   float startx;
@@ -17,6 +17,7 @@ class Dragon {
   final int b = 300;
   final int c = 350;
   boolean d;
+  boolean oneTickBool = false;
   float randomX = width/2;
   float dragonHealth = 3;
   float dragonHealthS = 3;
@@ -26,7 +27,6 @@ class Dragon {
   PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
   PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
     new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(600, b), new PVector(width/2, height/2), new PVector(600, 3)};
-  //PVector[] vliegPatroonBossFight2 ={new PVector(randomX, 3)};
   PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
@@ -44,7 +44,7 @@ class Dragon {
   Dragon(float x, float y, float diameter) {
     FireballRain = new FireBallRain();
     bossFight = new bossFight();
-    HealthbarDragon = new HealthBarDragon(275, 20, 250, 10);
+    healthbarDragon = new HealthBarDragon(275, 20, 250, 10);
     this.startx = x;
     this.starty = y;
     this.diameter.x = diameter;
@@ -102,12 +102,7 @@ class Dragon {
         if (vliegen >= vliegPatroonBossFight.length) {
           vliegen = 0;
         }
-      }
-      //if (bossFightRoomFase2) {
-      //  if (vliegen>=vliegPatroonBossFight2.length) {
-      //    vliegen = 0;
-      //  } else
-      else if (vliegen >= vliegPatroon.length) {
+      } else if (vliegen >= vliegPatroon.length) {
         vliegen = 0;
       }
 
@@ -115,14 +110,14 @@ class Dragon {
       a = false;
     }
     if (fight) {
-      HealthbarDragon.draw();
+      healthbarDragon.draw();
     }
     if (damageDragon && fight) {
-      HealthbarDragon.doDamageDragon(1);
+      healthbarDragon.doDamageDragon(1);
       damageDragon = false;
     }
-    
-    if (scoreHandler.seeScoreDragon){
+
+    if (scoreHandler.seeScoreDragon) {
       fill(255);
       textSize(30);
       text("+ 500", player.posPlayer.x, player.posPlayer.y - 40);
@@ -135,7 +130,6 @@ class Dragon {
       dragon.healthbarPos.x = -1000; 
       dragon.healthbarPos.y = -1000;
     }
-    //if ( platforms.moveAmount < 4 * fightAmount && platforms.moveAmount > 4 * fightAmount) {
     while (player.posPlayer.y > 80) {
       //voer vlieg routine uit
 
@@ -159,10 +153,11 @@ class Dragon {
           d=false;
           randomX = random(0, 800);
         }
-        if(!On){
-        startx = lerp(startx, randomX, 0.1);
-        starty = lerp(starty, 100, 0.1);
-        FireballRain.spawn();}
+        if (!On) {
+          startx = lerp(startx, randomX, 0.1);
+          starty = lerp(starty, 100, 0.1);
+          FireballRain.spawn();
+        }
       }
       if (On) {
         startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
@@ -183,7 +178,10 @@ class Dragon {
       //FireballRain.spawn();
     }
     if (platforms.moveAmount == 4 /* fightAmount*/) {
-      bossFight.startFight();
+      if (!oneTickBool) {
+        bossFight.startFight();
+        oneTickBool = true;
+      }
     }
     xDragon = startx;
     yDragon = starty;
@@ -215,13 +213,12 @@ class FireBallRain {
     }
     if (dragon.fireBallRain == true) {
       fireballs[10].damageFireball = 10;
-      collisionHandler.hitPlayer = true;
+      //collisionHandler.hitPlayer = true;
     }
   }
 }
 
 class bossFight {
-  HealthBarDragon HealthbarDragon;
   float startx = xDragon;
   float starty = yDragon;
   PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
@@ -240,16 +237,14 @@ class bossFight {
 
   void setup() {
     dragon.healthbarPos = dragon.healthbarPosEnd;
-    HealthbarDragon = new HealthBarDragon(dragon.healthbarPos.x, dragon.healthbarPos.y, 250, 10);
   }
   void startFight() {  
     dragon.healthbarPos = dragon.healthbarPosStart;
     if (fase1) {
-      //println(dragon.fight);
       dragon.fight = true;
       fase1 = true;
       dragon.fightAmount = (platforms.moveAmount/4);
-      dragon.dragonHealth = dragon.dragonHealthS * (dragon.fightAmount);
+      dragon.dragonHealth = dragon.dragonHealthS * dragon.fightAmount;
       //startx = lerp(startx, vliegPatroon[0].x, 0.01);
       //starty = lerp(starty, vliegPatroon[0].y, 0.01);
       //if (!dragon.waterFles) {
@@ -306,6 +301,7 @@ class bossFight {
 
   void End() {
     if (dragon.dragonHealth == 0 && bossFightRoom) {
+      restartGame();
       dragon.fight = false;
       fase2 = false;
       fase1 = true;
@@ -313,7 +309,7 @@ class bossFight {
       timerAmount = 1;
       dragon.fightAmount += 1;
       scoreHandler.score(250);
-      dragon.dragonHealth *= dragon.fightAmount;
+      dragon.dragonHealth = dragon.dragonHealthS * dragon.fightAmount;
       dragon.healthbarPos = dragon.healthbarPosEnd;
       bossFightRoom = false;
       On=true;
@@ -324,7 +320,6 @@ class bossFight {
       platforms.moveAmount=platforms.moveAmount+1;
       scoreHandler.seeScoreDragon = true;
       println("dead");
-      println(platforms.moveAmount);
     }
   }
 }

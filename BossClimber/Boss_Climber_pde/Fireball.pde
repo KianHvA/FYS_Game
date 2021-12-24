@@ -37,7 +37,6 @@ class Fireball {
     //dragon.startx = posFireball.x;
     //dragon.starty = posFireball.y;
     startFireball = posFireball;
-    //println(posFireball.y);
     
     collisionHandler = new CollisionHandler();
   }
