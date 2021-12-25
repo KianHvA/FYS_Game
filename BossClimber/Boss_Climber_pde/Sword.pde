@@ -174,7 +174,7 @@ class Sword {
     if (hasCollision && !fastDamageFix) {
       doneDamage = true;
     }
-    if () {
+    if (doneDamage) {
       dragon.healthbarDragon.doDamageDragon(1);
       fastDamageFix = true;
     }
