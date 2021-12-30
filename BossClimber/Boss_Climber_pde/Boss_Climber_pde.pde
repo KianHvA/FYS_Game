@@ -16,8 +16,8 @@ Fireball[] fireballs;
 Flamethrower flamethrower;
 Dragon dragon;
 Sword sword;
-Waterfles waterfles;
-Druppel druppels;
+WaterBottle waterBottle;
+Drop drops;
 ScoreHandler scoreHandler;
 Inventory inventory;
 Instructions instruction;
@@ -34,8 +34,8 @@ SoundFile GameMusic1;
 int cooldown = 100;
 int fireballCount = 1200;
 int bossFireballCount = 1200;
-int spawnCountDruppel = 500;
-int RspawnCountDruppel = 500; //oorspronkelijke functie
+int spawnCountDrop = 500;
+int RspawnCountDrop = 500; //oorspronkelijke functie
 int resetWaterflesCount = 600;
 int aantalCoins = 2;
 final int maxToetsen = 1024; //kan niet worden aangepast.
@@ -46,7 +46,8 @@ float textX = width/2;
 float textY = height/2;
 float fireballHitCount = 100;
 int fireballAmount = 12;
-boolean fire = false;
+int aantalFires = 12;
+/*boolean fire1 = false;
 boolean fire2 = false;
 boolean fire3 = false;
 boolean fire4 = false;
@@ -57,7 +58,8 @@ boolean fire8 = false;
 boolean fire9 = false;
 boolean fire10 = false;
 boolean fire11 = false;
-boolean fire12 = false;
+boolean fire12 = false;*/
+boolean[] fire = new boolean[aantalFires];
 boolean[] keysPressed = new boolean[maxToetsen]; //als ik op een toets druk, wordt een van de waarden in deze array van false naar true gezet.
 float powerUpTimer1 = 0, powerUpTimer2 = 0;
 boolean powerUpActive = false;
@@ -116,8 +118,8 @@ void setup()
   flamethrower.setup();
   health.setup();
   dragon.setup();
-  waterfles = new Waterfles();
-  druppels = new Druppel();
+  waterBottle = new WaterBottle();
+  drops = new Drop();
   sword = new Sword();
   sword.setup();
   inventory.setup();
@@ -167,14 +169,14 @@ void update()
     if (powerUpTimer1 == 300 && !powerUpActive) {
       switch(randomPowerup) {
       case 1:
-        spawnCountDruppel = RspawnCountDruppel;
+        spawnCountDrop = RspawnCountDrop;
         //waterfles = new Waterfles();
         break;
       case 2:
         sword = new Sword();
         break;
       case 3:
-        waterfles = new Waterfles();
+        waterBottle = new WaterBottle();
         break;
       default:
         powerUpActive = true;
@@ -212,46 +214,46 @@ void update()
     }
 
     if (fireballCount == 1000) {//Counter fireballs
-      fire = true;
+      fire[0] = true;
     }
     if (fireballCount == 800) {
-      fire2 = true;
+      fire[1] = true;
     }
     if (fireballCount == 600) {
-      fire3 = true;
+      fire[2] = true;
     }
 
-    if (fire == true) {//Boolean fires == true ---> movementUpdate();
+    /*if (fire[0]) {//Boolean fires == true ---> movementUpdate();
       fireballs[0].movementUpdate();
     }
-    if (fire2 == true) {
+    if (fire[1]) {
       fireballs[1].movementUpdate();
     }
-    if (fire3 == true) {
+    if (fire[2]) {
       fireballs[2].movementUpdate();
-    }    
-
-    if (fireballs[0].playerCollision || fireballs[0].posFireball.y >= height) {//Damage fireball && respawning fireball
-      fire = false;
+    }*/ 
+    
+    /*if (fireballs[0].playerCollision || fireballs[0].posFireball.y >= height) {//Damage fireball && respawning fireball
+      fire[0] = false;
       fireballCount = 1200;
       fireballs[0].respawn();
       fireballs[0].posFireball = fireballs[0].RposFireball;
     }  
 
     if (fireballs[1].playerCollision || fireballs[1].posFireball.y >= height) {//Damage fireball && respawning fireball
-      fire2 = false;
+      fire[1] = false;
       fireballCount = 1200;
       fireballs[1].respawn();
       fireballs[1].posFireball = fireballs[1].RposFireball;
     }
     if (fireballs[2].playerCollision || fireballs[2].posFireball.y >= height) {//Damage fireball && respawning fireball
-      fire3 = false;
+      fire[2] = false;
       fireballCount = 1200;
       fireballs[2].respawn();
       fireballs[2].posFireball = fireballs[2].RposFireball;
-    }
+    }*/
 
-    if (fireballs[0].playerCollision) {//Player sees that he/she is hitting a fireball.
+    /*if (fireballs[0].playerCollision) {//Player sees that he/she is hitting a fireball.
       seeHitFireball = true;
       schild.reset = true;
     }
@@ -262,44 +264,82 @@ void update()
     if (fireballs[2].playerCollision) {//Player sees that he/she is hitting a fireball.
       seeHitFireball = true;
       schild.reset = true;
+    }*/
+    
+    //First 3 fireballs including movement update && collision.
+    for (int i = 0; i < 3; i++){
+      if (fire[i]){
+        fireballs[i].movementUpdate();
+      }
+      
+      if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
+        fire[i] = false;
+        fireballCount = 1200;
+        fireballs[i].respawn();
+        fireballs[i].posFireball = fireballs[i].RposFireball;
+      }
+      
+      if (fireballs[i].playerCollision){
+        seeHitFireball = true;
+        schild.reset = true;
+      }
     }
 
     if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
       if (fireballCount == 400) {//Counter fireballs
-        fire4 = true;
+        fire[3] = true;
       }
       if (fireballCount == 200) {
-        fire5 = true;
+        fire[4] = true;
       }
       if (fireballCount == 0) {
-        fire6 = true;
+        fire[5] = true;
       }
 
-      if (fire4 == true) {//Boolean fires == true ---> movementUpdate();
+      /*if (fire[3]) {//Boolean fires == true ---> movementUpdate();
         fireballs[3].movementUpdate();
       }
-      if (fire5 == true) {
+      if (fire[4]) {
         fireballs[4].movementUpdate();
       }
-      if (fire6 == true) {
+      if (fire[5]) {
         fireballs[5].movementUpdate();
-      }    
+      }*/
+      
+      //3 new fireballs including movement update && collision.
+      for (int i = 3; i < 6; i++){
+        if (fire[i]){
+          fireballs[i].movementUpdate();
+        }
+        
+        if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
+          fire[i] = false;
+          fireballCount = 1200;
+          fireballs[i].respawn();
+          fireballs[i].posFireball = fireballs[i].RposFireball;
+        }
+        
+        if (fireballs[i].playerCollision){
+          seeHitFireball = true;
+          schild.reset = true;
+        }
+      }
 
-      if (fireballs[3].playerCollision || fireballs[3].posFireball.y >= height) {//Damage fireball && respawning fireball
-        fire4 = false;
+      /*if (fireballs[3].playerCollision || fireballs[3].posFireball.y >= height) {//Damage fireball && respawning fireball
+        fire[3] = false;
         fireballCount = 1200;
         fireballs[3].respawn();
         fireballs[3].posFireball = fireballs[3].RposFireball;
       }  
 
       if (fireballs[4].playerCollision || fireballs[4].posFireball.y >= height) {//Damage fireball && respawning fireball
-        fire5 = false;
+        fire[4] = false;
         fireballCount = 1200;
         fireballs[4].respawn();
         fireballs[4].posFireball = fireballs[4].RposFireball;
       }
       if (fireballs[5].playerCollision || fireballs[5].posFireball.y >= height) {//Damage fireball && respawning fireball
-        fire6 = false;
+        fire[5] = false;
         fireballCount = 1200;
         fireballs[5].respawn();
         fireballs[5].posFireball = fireballs[5].RposFireball;
@@ -316,92 +356,103 @@ void update()
       if (fireballs[5].playerCollision) {//Player sees that he/she is hitting a fireball.
         seeHitFireball = true;
         schild.reset = true;
+      }*/
+    }
+    
+    //Fireballs colliding with drop.
+    for (int i = 0; i < fireballs.length; i++){
+      if (fireballs[i].fireballDrop(fireballs[i].posFireball.x, fireballs[i].posFireball.y, fireballs[i].sizeFireball.x, 
+      drops.posPlayer.x, drops.posPlayer.y, drops.dropDia)){
+        fire[i] = false;
+        fireballCount = 1200;
+        fireballs[i].respawn();
       }
     }
 
-    if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
+    /*if (fireballs[0].fireballDruppel(fireballs[0].posFireball.x, fireballs[0].posFireball.y, fireballs[0].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire = false;
+      fire[0] = false;
       fireballCount = 1200;
       fireballs[0].respawn();
     }
     if (fireballs[1].fireballDruppel(fireballs[1].posFireball.x, fireballs[1].posFireball.y, fireballs[1].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire2 = false;
+      fire[1] = false;
       fireballCount = 1200;
       fireballs[1].respawn();
     }
     if (fireballs[2].fireballDruppel(fireballs[2].posFireball.x, fireballs[2].posFireball.y, fireballs[2].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire3 = false;
+      fire[2] = false;
       fireballCount = 1200;
       fireballs[2].respawn();
     }
     if (fireballs[3].fireballDruppel(fireballs[3].posFireball.x, fireballs[3].posFireball.y, fireballs[3].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire4 = false;
+      fire[3] = false;
       fireballCount = 1200;
       fireballs[3].respawn();
     }
     if (fireballs[4].fireballDruppel(fireballs[4].posFireball.x, fireballs[4].posFireball.y, fireballs[4].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire5 = false;
+      fire[4] = false;
       fireballCount = 1200;
       fireballs[4].respawn();
     }
     if (fireballs[5].fireballDruppel(fireballs[5].posFireball.x, fireballs[5].posFireball.y, fireballs[5].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire6 = false;
+      fire[5] = false;
       fireballCount = 1200;
       fireballs[5].respawn();
     }
      if (fireballs[6].fireballDruppel(fireballs[6].posFireball.x, fireballs[6].posFireball.y, fireballs[6].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire7 = false;
+      fire[6] = false;
       bossFireballCount = 1200;
       fireballs[6].respawn();
     }
      if (fireballs[7].fireballDruppel(fireballs[7].posFireball.x, fireballs[7].posFireball.y, fireballs[7].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire8 = false;
+      fire[7] = false;
       bossFireballCount = 1200;
       fireballs[7].respawn();
     }
      if (fireballs[8].fireballDruppel(fireballs[8].posFireball.x, fireballs[8].posFireball.y, fireballs[8].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire9 = false;
+      fire[8] = false;
       bossFireballCount = 1200;
       fireballs[8].respawn();
     }
      if (fireballs[9].fireballDruppel(fireballs[9].posFireball.x, fireballs[9].posFireball.y, fireballs[9].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire10 = false;
+      fire[9] = false;
       bossFireballCount = 1200;
       fireballs[9].respawn();
     }
      if (fireballs[10].fireballDruppel(fireballs[10].posFireball.x, fireballs[10].posFireball.y, fireballs[10].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire11 = false;
+      fire[10] = false;
       bossFireballCount = 1200;
       fireballs[10].respawn();
     }
      if (fireballs[11].fireballDruppel(fireballs[11].posFireball.x, fireballs[11].posFireball.y, fireballs[11].sizeFireball.x, 
       druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)) {//Collision fireball & druppel
-      fire12 = false;
+      fire[11] = false;
       bossFireballCount = 1200;
       fireballs[11].respawn();
-    }
-
+    }*/
+    
+    //Moving stage means no fireballs.
     if (platforms.moveStage == true||!On) {
-      fire = false;
-      fire2 = false;
-      fire3 = false;
-      fire4 = false;
-      fire5 = false;
-      fire6 = false;
+      fire[0] = false;
+      fire[1] = false;
+      fire[2] = false;
+      fire[3] = false;
+      fire[4] = false;
+      fire[5] = false;
       fireballCount = 1200;
     }
-
+    
     if (seeHitFireball) {
       if (seeHitFireball && schild.pickedUp){
         fireballHitCount = -1;
@@ -421,50 +472,68 @@ void update()
     }
   }
   
+  //Boss battle fireballs.
   if (bossFightRoom){//While boss fight
     if (bossFireballCount >= 0){
       bossFireballCount--;
     }
     
     if (bossFireballCount == 1000){
-      fire7 = true;
+      fire[6] = true;
     }
     if (bossFireballCount == 800){
-      fire8 = true;
+      fire[7] = true;
     }
     if (bossFireballCount == 600){
-      fire9 = true;
+      fire[8] = true;
     }
     if (bossFireballCount == 400){
-      fire10 = true;
+      fire[9] = true;
     }
     if (bossFireballCount == 200){
-      fire11 = true;
+      fire[10] = true;
     }
     if (bossFireballCount == 0){
-      fire12 = true;
+      fire[10] = true;
     }
     
-    if (fire7 == true){//Movement update boss fight fireballs!
+    //Boss fireballs including movement update && collision.
+    for (int i = 6; i < fireballs.length; i++){
+      if (fire[i]){
+        fireballs[i].movementUpdate();
+      }
+      
+      if (fireballs[i].playerCollision){
+        seeHitFireball = true;
+      }
+      
+      if (fireballs[i].playerCollision || fireballs[i].wallCollisonR){
+        fire[i] = false;
+        fireballs[i].wallCollisonR = false;
+        fireballs[i].respawn();
+      }
+    }
+    
+    /*if (fire[6]){//Movement update boss fight fireballs!
       fireballs[6].movementUpdateBossFight();
     }
-    if (fire8 == true){//Movement update boss fight fireballs!
+    if (fire[7]){//Movement update boss fight fireballs!
       fireballs[7].movementUpdateBossFight();
     }
-    if (fire9 == true){//Movement update boss fight fireballs!
+    if (fire[8]){//Movement update boss fight fireballs!
       fireballs[8].movementUpdateBossFight();
     }
-    if (fire10 == true){//Movement update boss fight fireballs!
+    if (fire[9]){//Movement update boss fight fireballs!
       fireballs[9].movementUpdateBossFight();
     }
-    if (fire11 == true){//Movement update boss fight fireballs!
+    if (fire[10]){//Movement update boss fight fireballs!
       fireballs[10].movementUpdateBossFight();
     }
-    if (fire12 == true){//Movement update boss fight fireballs!
+    if (fire[11]){//Movement update boss fight fireballs!
       fireballs[11].movementUpdateBossFight();
-    }
+    }*/
     
-    if (fireballs[6].playerCollision){
+    /*if (fireballs[6].playerCollision){
       seeHitFireball = true;
     }
      if (fireballs[7].playerCollision){
@@ -484,36 +553,36 @@ void update()
     }
     
     if (fireballs[6].playerCollision || fireballs[6].wallCollisonR){//Collision fireballs!
-      fire7 = false;
+      fire[6] = false;
       fireballs[6].wallCollisonR = false;
       fireballs[6].respawn();
     }
     if (fireballs[7].playerCollision || fireballs[7].wallCollisonR){//Collision fireballs!
-      fire8 = false;
+      fire[7] = false;
       fireballs[7].wallCollisonR = false;
       fireballs[7].respawn();
     }
     if (fireballs[8].playerCollision || fireballs[8].wallCollisonR){//Collision fireballs!
-      fire9 = false;
+      fire[8] = false;
       fireballs[8].wallCollisonR = false;
       fireballs[8].respawn();
     }
     if (fireballs[9].playerCollision || fireballs[9].wallCollisonR){//Collision fireballs!
-      fire10 = false;
+      fire[9] = false;
       fireballs[9].wallCollisonR = false;
       fireballs[9].respawn();
     }
     if (fireballs[10].playerCollision || fireballs[10].wallCollisonR){//Collision fireballs!
-      fire11 = false;
+      fire[10] = false;
       fireballs[10].wallCollisonR = false;
       fireballs[10].respawn();
     }
      if (fireballs[11].playerCollision || fireballs[11].wallCollisonR){//Collision fireballs!
-      fire12 = false;
+      fire[11] = false;
       fireballs[11].wallCollisonR = false;
       bossFireballCount = 1200;
       fireballs[11].respawn();
-    }
+    }*/
     
     if (seeHitFireball){
       fireballHitCount--;
@@ -531,12 +600,12 @@ void update()
     }
     
     if (dragon.dragonHealth <= 0 && bossFightRoom){//Resets fireballs for next fight if boss fight is over!
-      fire7 = false;
-      fire8 = false;
-      fire9 = false;
-      fire10 = false;
-      fire11 = false;
-      fire12 = false;
+      fire[6] = false;
+      fire[7] = false;
+      fire[8] = false;
+      fire[9] = false;
+      fire[10] = false;
+      fire[11] = false;
       
       fireballs[6].bossOn = false;
       fireballs[7].bossOn = false;
@@ -560,20 +629,20 @@ void update()
     cooldown--;
   }
 
-  if (spawnCountDruppel > 0) {
-    spawnCountDruppel--;
+  if (spawnCountDrop > 0) {
+    spawnCountDrop--;
   }
 
-  if (waterfles.druppelOn) {//When shooting the druppel.
-    druppels.druppelUpdate();
-    waterfles.pickedUp = false;
+  if (waterBottle.dropOn) {//When shooting the druppel.
+    drops.dropUpdate();
+    waterBottle.pickedUp = false;
     dragon.waterFles = false;
     cooldown = 100;
   }
 
-  if (druppels.posPlayer.y <= 0 || druppels.hasCollision) {//Druppel off screen or hits dragon:
-    waterfles.druppelOn = false;
-    waterfles.resetWaterfles();
+  if (drops.posPlayer.y <= 0 || drops.hasCollision) {//Druppel off screen or hits dragon:
+    waterBottle.dropOn = false;
+    waterBottle.resetWaterBottle();
   }
   
   if (scoreHandler.seeScoreDragon){
@@ -667,55 +736,55 @@ void draw()
         Bossplatform();
       }
 
-      if (fire == true) {//Draws fireballs!
+      if (fire[0] == true) {//Draws fireballs!
         fireballs[0].draw();
       }
-      if (fire2 == true) {  
+      if (fire[1] == true) {  
         fireballs[1].draw();
       }
 
-      if (fire3 == true) {  
+      if (fire[2] == true) {  
         fireballs[2].draw();
       }
 
-      if (fire4 == true) {
+      if (fire[3] == true) {
         fireballs[3].draw();
       }
 
-      if (fire5 == true) {
+      if (fire[4] == true) {
         fireballs[4].draw();
       }
 
-      if (fire6 == true) {
+      if (fire[5] == true) {
         fireballs[5].draw();
       }
       
-      if (fire7 == true){//Boss fireballs!
+      if (fire[6] == true){//Boss fireballs!
         fireballs[6].bossOn = true;
         fireballs[6].draw();
       }
       
-      if (fire8 == true){
+      if (fire[7] == true){
         fireballs[7].bossOn = true;
         fireballs[7].draw();
       }
       
-      if (fire9 == true){
+      if (fire[8] == true){
         fireballs[8].bossOn = true;
         fireballs[8].draw();
       }
       
-      if (fire10 == true){
+      if (fire[9] == true){
         fireballs[9].bossOn = true;
         fireballs[9].draw();
       }
       
-      if (fire11 == true){
+      if (fire[10] == true){
         fireballs[10].bossOn = true;
         fireballs[10].draw();
       }
       
-      if (fire12 == true){
+      if (fire[11] == true){
         fireballs[11].bossOn = true;
         fireballs[11].draw();
       }
@@ -733,7 +802,7 @@ void draw()
       }
 
       Doublejump.draw();
-      waterfles.draw();
+      waterBottle.draw();
       schild.draw();
       dragon.draw();
       sword.draw();
@@ -741,8 +810,8 @@ void draw()
       healthbar.draw();
       health.draw();
 
-      if (waterfles.druppelOn) {//Shooting
-        druppels.draw();
+      if (waterBottle.dropOn) {//Shooting
+        drops.draw();
       }
 
       //teken alle UI hier zodat het op de voorgrond komt

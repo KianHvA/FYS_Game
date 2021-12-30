@@ -344,8 +344,8 @@ class Player {
       sword.attack();
     }
 
-    if (waterfles.pickedUp == true && keysPressed['S'] && cooldown == 0) {//Shooting druppel
-      druppels.shootDruppel(posPlayer.x, posPlayer.y, 0, -4);
+    if (waterfles.pickedUp && keysPressed['S'] && cooldown == 0) {//Shooting druppel
+      drops.shootDrop(posPlayer.x, posPlayer.y, 0, -4);
       waterfles.druppelOn = true;
       waterfles.pickedUp = false;
     }

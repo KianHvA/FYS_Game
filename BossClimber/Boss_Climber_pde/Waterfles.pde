@@ -1,34 +1,34 @@
 //Dion
-class Waterfles {
+class WaterBottle{
   CollisionHandler collisionHandler;
-  Druppel druppel;
-  float flesX = spawnPointsPUPS.underR.x, flesY = spawnPointsPUPS.underR.y, flesB, flesH, resetFlesX, resetFlesY, flesScore, flesScoreCount;
-  boolean druppelOn = false;
+  Drop drops;
+  float bottleX = spawnPointsPUPS.underR.x, bottleY = spawnPointsPUPS.underR.y, bottleWidth, bottleHeight, resetBottleX, resetBottleY, bottleScore, bottleScoreCount;
+  boolean dropOn = false;
   boolean spawnWaterfles = false;
-  boolean druppelOff = false;
+  boolean dropOff = false;
   boolean pickedUp = false; //Needed for inventory
-  boolean catchWaterfles = true;
+  boolean catchWaterBottle = true;
   boolean reset = false;
   boolean fight = false;
   boolean timedReset = false;
-  boolean seeScoreFles = false;
+  boolean seeScoreBottle = false;
 
-  Waterfles() {
+  WaterBottle() {
     collisionHandler = new CollisionHandler();
-    druppel = new Druppel();
+    drops = new Drop();
     //flesX = random(200, 600);
     //flesY = random(0, 600);
-    flesB = 20;
-    flesH = 20;
-    flesScore = 25;
-    flesScoreCount = 100;
+    bottleWidth = 20;
+    bottleHeight = 20;
+    bottleScore = 25;
+    bottleScoreCount = 100;
   }
 
-  void updateWaterfles() {
+  void updateWaterBottle() {
     if (dragon.fight && !pickedUp && !fight) {
-      if (dragon.fight && !pickedUp && !fight && !druppelOn) {
-        flesX = spawnPointsPUPS.fightM.x;
-        flesY = spawnPointsPUPS.fightM.y;
+      if (dragon.fight && !pickedUp && !fight && !dropOn) {
+        bottleX = spawnPointsPUPS.fightM.x;
+        bottleY = spawnPointsPUPS.fightM.y;
         fight = true;
        }
       }
@@ -40,30 +40,30 @@ class Waterfles {
       }
       
       if (!schild.pickedUp){
-      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, flesX, flesY, flesB, flesH)) {//Collision player & waterfles
-        flesX = width * 2;
-        flesY = height * 2;
+      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, bottleX, bottleY, bottleWidth, bottleHeight)) {//Collision player & waterfles
+        bottleX = width * 2;
+        bottleY = height * 2;
         pickedUp = true;
-        scoreHandler.score += flesScore;
+        scoreHandler.score += bottleScore;
         fight = false;
-        seeScoreFles = true;
+        seeScoreBottle = true;
       }
       }
       
       if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/) {
-        resetWaterfles();
+        resetWaterBottle();
         fight = false;
         timedReset = false;
         reset = false;
       }
 
-      if (seeScoreFles) {
-        flesScoreCount--;
+      if (seeScoreBottle) {
+        bottleScoreCount--;
       }
 
-      if (flesScoreCount < 0) {
-        seeScoreFles = false;
-        flesScoreCount = 100;
+      if (bottleScoreCount < 0) {
+        seeScoreBottle = false;
+        bottleScoreCount = 100;
       }
 
       //if (sword.swordX == width * 2 && sword.swordY == height *2 && schild.schildPos.x == width *2 && schild.schildPos.y == height * 2 || flesX == width *2 && flesY == height *2 && schild.schildPos.x == width *2 && schild.schildPos.y == height * 2 || flesX == width *2 && flesY == height *2 && sword.swordX == width * 2 && sword.swordY == height *2) {
@@ -73,25 +73,25 @@ class Waterfles {
       //}
   }
 
-  void resetWaterfles() {//Reset nieuwe waterfles
+  void resetWaterBottle() {//Reset nieuwe waterfles
     pickedUp = false;
-    flesScoreCount = 100;
+    bottleScoreCount = 100;
     if (!dragon.fight || dragon.fight) {
-      flesX = spawnPointsPUPS.location.x;
-      flesY = spawnPointsPUPS.location.y;
+      bottleX = spawnPointsPUPS.location.x;
+      bottleY = spawnPointsPUPS.location.y;
     }
-    flesB = 20;
-    flesH = 20;
-    druppels.posPlayer.x = player.posPlayer.x;
-    druppels.posPlayer.y = player.posPlayer.y;
-    druppels.hasCollision = false;
+    bottleWidth = 20;
+    bottleHeight = 20;
+    drops.posPlayer.x = player.posPlayer.x;
+    drops.posPlayer.y = player.posPlayer.y;
+    drops.hasCollision = false;
   }
 
   void draw() {
     fill(0, 0, 255);
-    image(inventory.waterflesI, flesX, flesY, flesB, flesH);
+    image(inventory.waterflesI, bottleX, bottleY, bottleWidth, bottleHeight);
 
-    if (seeScoreFles) {
+    if (seeScoreBottle) {
       fill(255);
       textSize(30);
       text("+ 25", player.posPlayer.x, player.posPlayer.y - 40);

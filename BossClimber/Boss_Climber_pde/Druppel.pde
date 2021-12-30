@@ -1,28 +1,28 @@
 //Dion
-class Druppel{
+class Drop{
   CollisionHandler collisionHandler;
-  float xSpeedDruppel, ySpeedDruppel, druppelDia;
+  float xSpeedDrop, ySpeedDrop, dropDia;
   PVector posPlayer = new PVector(player.posPlayer.x, player.posPlayer.y);
   boolean hasCollision = false;
   
-  Druppel(){
-    druppelDia = 10;
+  Drop(){
+    dropDia = 10;
     collisionHandler = new CollisionHandler();
   }
   
-  void shootDruppel(float startX, float startY, float druppelSpeedX, float druppelSpeedY){
+  void shootDrop(float startX, float startY, float dropSpeedX, float dropSpeedY){
     posPlayer.x = startX;
     posPlayer.y = startY;
-    xSpeedDruppel = druppelSpeedX;
-    ySpeedDruppel = druppelSpeedY;
+    xSpeedDrop = dropSpeedX;
+    ySpeedDrop = dropSpeedY;
   }
     
   
-  void druppelUpdate(){
-    posPlayer.y += ySpeedDruppel;
-    posPlayer.x += xSpeedDruppel;
+  void dropUpdate(){
+    posPlayer.y += ySpeedDrop;
+    posPlayer.x += xSpeedDrop;
     
-    collisionHandler.checkCollisionDragon(posPlayer.x, posPlayer.y, druppelDia);
+    collisionHandler.checkCollisionDragon(posPlayer.x, posPlayer.y, dropDia);
     hasCollision = collisionHandler.hitDragon;    
     
     if (hasCollision){
@@ -34,6 +34,6 @@ class Druppel{
   
   void draw(){
     fill(0, 0, 255);
-    circle(posPlayer.x, posPlayer.y, druppelDia);
+    circle(posPlayer.x, posPlayer.y, dropDia);
   }
 }

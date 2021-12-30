@@ -211,7 +211,7 @@ class Fireball {
     }
   }
   
-  boolean fireballDruppel(float vuurX, float vuurY, float vuurDia, float drupX, float drupY, float drupDia){//Fireball + druppel
+  boolean fireballDrop(float vuurX, float vuurY, float vuurDia, float drupX, float drupY, float drupDia){//Fireball + druppel
     float distanceX = vuurX - drupX;
     float distanceY = vuurY - drupY;
     
