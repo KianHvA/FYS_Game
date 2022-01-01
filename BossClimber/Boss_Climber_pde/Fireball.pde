@@ -148,8 +148,8 @@ class Fireball {
   }
   
   void achievementUpdateFireball(){
-    if (fireballDruppel(posFireball.x, posFireball.y, sizeFireball.x,
-     druppels.posPlayer.x, druppels.posPlayer.y, druppels.druppelDia)){
+    if (fireballDrop(posFireball.x, posFireball.y, sizeFireball.x,
+     drops.posPlayer.x, drops.posPlayer.y, drops.dropDia)){
       achievementFireballCount++;
    }
   }

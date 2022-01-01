@@ -2,7 +2,7 @@
 class WaterBottle{
   CollisionHandler collisionHandler;
   Drop drops;
-  float bottleX = spawnPointsPUPS.underR.x, bottleY = spawnPointsPUPS.underR.y, bottleWidth, bottleHeight, resetBottleX, resetBottleY, bottleScore, bottleScoreCount;
+  float bottleX = spawnPointsPUPS.underR.x, bottleY = spawnPointsPUPS.underR.y, bottleWidth, bottleHeight, resetBottleX, resetBottleY, bottleScore, bottleScoreCount, resetBottleWidth, resetBottleHeight;
   boolean dropOn = false;
   boolean spawnWaterfles = false;
   boolean dropOff = false;
@@ -22,6 +22,8 @@ class WaterBottle{
     bottleHeight = 20;
     bottleScore = 25;
     bottleScoreCount = 100;
+    resetBottleHeight = 20;
+    resetBottleWidth = 20;
   }
 
   void updateWaterBottle() {
@@ -61,9 +63,9 @@ class WaterBottle{
         bottleScoreCount--;
       }
 
-      if (bottleScoreCount < 0) {
+      if (bottleScoreCount < endSeeScore) {
         seeScoreBottle = false;
-        bottleScoreCount = 100;
+        bottleScoreCount = resetSeeScore;
       }
 
       //if (sword.swordX == width * 2 && sword.swordY == height *2 && schild.schildPos.x == width *2 && schild.schildPos.y == height * 2 || flesX == width *2 && flesY == height *2 && schild.schildPos.x == width *2 && schild.schildPos.y == height * 2 || flesX == width *2 && flesY == height *2 && sword.swordX == width * 2 && sword.swordY == height *2) {
@@ -75,13 +77,13 @@ class WaterBottle{
 
   void resetWaterBottle() {//Reset nieuwe waterfles
     pickedUp = false;
-    bottleScoreCount = 100;
+    bottleScoreCount = resetSeeScore;
     if (!dragon.fight || dragon.fight) {
       bottleX = spawnPointsPUPS.location.x;
       bottleY = spawnPointsPUPS.location.y;
     }
-    bottleWidth = 20;
-    bottleHeight = 20;
+    bottleWidth = resetBottleWidth;
+    bottleHeight = resetBottleHeight;
     drops.posPlayer.x = player.posPlayer.x;
     drops.posPlayer.y = player.posPlayer.y;
     drops.hasCollision = false;

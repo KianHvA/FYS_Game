@@ -47,6 +47,25 @@ float textY = height/2;
 float fireballHitCount = 100;
 int fireballAmount = 12;
 int aantalFires = 12;
+int firstFireballWave = 3;
+int secondFireballWave = 6;
+int zeroFireball = 0;
+int firstFireball = 1000;
+int secondFireball = 800;
+int thirdFireball = 600;
+int fourthFireball = 400;
+int fifthFireball = 200;
+int sixthFireball = 0;
+int resetFireballCount = 1200;
+int newFireballWave = 50000;
+int negative = -1;
+int endCoolDown = 0;
+public int endSeeHit = 0;
+public int endSeeScore = 0;
+public int resetSeeScore = 100;
+int resetCoolDown = 100;
+int resetFireballHitCount = 100;
+int endSpawnDrop = 0;
 /*boolean fire1 = false;
 boolean fire2 = false;
 boolean fire3 = false;
@@ -157,7 +176,7 @@ void update()
   flamethrower.update();
   Doublejump.update();
   health.update();
-  waterfles.updateWaterfles();
+  waterBottle.updateWaterBottle();
   sword.updateSword();
   menu.restart();
   schild.update();
@@ -209,17 +228,17 @@ void update()
   }
 
   if (!dragon.fight) {
-    if (fireballCount >= 0) {
+    if (fireballCount >= zeroFireball) {
       fireballCount--;
     }
 
-    if (fireballCount == 1000) {//Counter fireballs
+    if (fireballCount == firstFireball) {//Counter fireballs
       fire[0] = true;
     }
-    if (fireballCount == 800) {
+    if (fireballCount == secondFireball) {
       fire[1] = true;
     }
-    if (fireballCount == 600) {
+    if (fireballCount == thirdFireball) {
       fire[2] = true;
     }
 
@@ -267,14 +286,14 @@ void update()
     }*/
     
     //First 3 fireballs including movement update && collision.
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < firstFireballWave; i++){
       if (fire[i]){
         fireballs[i].movementUpdate();
       }
       
       if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
         fire[i] = false;
-        fireballCount = 1200;
+        fireballCount = resetFireballCount;
         fireballs[i].respawn();
         fireballs[i].posFireball = fireballs[i].RposFireball;
       }
@@ -285,14 +304,14 @@ void update()
       }
     }
 
-    if (scoreHandler.score >= 50000) {//Score >= 50000 ---> spawning more fireballs!
-      if (fireballCount == 400) {//Counter fireballs
+    if (scoreHandler.score >= newFireballWave) {//Score >= 50000 ---> spawning more fireballs!
+      if (fireballCount == fourthFireball) {//Counter fireballs
         fire[3] = true;
       }
-      if (fireballCount == 200) {
+      if (fireballCount == fifthFireball) {
         fire[4] = true;
       }
-      if (fireballCount == 0) {
+      if (fireballCount == sixthFireball) {
         fire[5] = true;
       }
 
@@ -307,7 +326,7 @@ void update()
       }*/
       
       //3 new fireballs including movement update && collision.
-      for (int i = 3; i < 6; i++){
+      for (int i = 3; i < secondFireballWave; i++){
         if (fire[i]){
           fireballs[i].movementUpdate();
         }
@@ -364,7 +383,7 @@ void update()
       if (fireballs[i].fireballDrop(fireballs[i].posFireball.x, fireballs[i].posFireball.y, fireballs[i].sizeFireball.x, 
       drops.posPlayer.x, drops.posPlayer.y, drops.dropDia)){
         fire[i] = false;
-        fireballCount = 1200;
+        fireballCount = resetFireballCount;
         fireballs[i].respawn();
       }
     }
@@ -450,17 +469,17 @@ void update()
       fire[3] = false;
       fire[4] = false;
       fire[5] = false;
-      fireballCount = 1200;
+      fireballCount = resetFireballCount;
     }
     
     if (seeHitFireball) {
       if (seeHitFireball && schild.pickedUp){
-        fireballHitCount = -1;
+        fireballHitCount = negative;
       }
       fireballHitCount--;
     }
 
-    if (fireballHitCount < 0) {
+    if (fireballHitCount < endSeeHit) {
       seeHitFireball = false;
       fireballs[0].playerCollision = false;
       fireballs[1].playerCollision = false;
@@ -468,32 +487,32 @@ void update()
       fireballs[3].playerCollision = false;
       fireballs[4].playerCollision = false;
       fireballs[5].playerCollision = false;
-      fireballHitCount = 100;
+      fireballHitCount = resetFireballHitCount;
     }
   }
   
   //Boss battle fireballs.
   if (bossFightRoom){//While boss fight
-    if (bossFireballCount >= 0){
+    if (bossFireballCount >= zeroFireball){
       bossFireballCount--;
     }
     
-    if (bossFireballCount == 1000){
+    if (bossFireballCount == firstFireball){
       fire[6] = true;
     }
-    if (bossFireballCount == 800){
+    if (bossFireballCount == secondFireball){
       fire[7] = true;
     }
-    if (bossFireballCount == 600){
+    if (bossFireballCount == thirdFireball){
       fire[8] = true;
     }
-    if (bossFireballCount == 400){
+    if (bossFireballCount == fourthFireball){
       fire[9] = true;
     }
-    if (bossFireballCount == 200){
+    if (bossFireballCount == fifthFireball){
       fire[10] = true;
     }
-    if (bossFireballCount == 0){
+    if (bossFireballCount == sixthFireball){
       fire[10] = true;
     }
     
@@ -588,7 +607,7 @@ void update()
       fireballHitCount--;
     }
     
-    if (fireballHitCount < 0){
+    if (fireballHitCount < endSeeHit){
       seeHitFireball = false;
       fireballs[6].playerCollision = false;
       fireballs[7].playerCollision = false;
@@ -596,7 +615,7 @@ void update()
       fireballs[9].playerCollision = false;
       fireballs[10].playerCollision = false;
       fireballs[11].playerCollision = false;
-      fireballHitCount = 100;
+      fireballHitCount = resetFireballHitCount;
     }
     
     if (dragon.dragonHealth <= 0 && bossFightRoom){//Resets fireballs for next fight if boss fight is over!
@@ -621,15 +640,15 @@ void update()
       fireballs[10].respawn();
       fireballs[11].respawn();
       
-      bossFireballCount = 1200;
+      bossFireballCount = resetFireballCount;
     }
   }
 
-  if (cooldown > 0) {
+  if (cooldown > endCoolDown) {
     cooldown--;
   }
 
-  if (spawnCountDrop > 0) {
+  if (spawnCountDrop > endSpawnDrop) {
     spawnCountDrop--;
   }
 
@@ -637,7 +656,7 @@ void update()
     drops.dropUpdate();
     waterBottle.pickedUp = false;
     dragon.waterFles = false;
-    cooldown = 100;
+    cooldown = resetCoolDown;
   }
 
   if (drops.posPlayer.y <= 0 || drops.hasCollision) {//Druppel off screen or hits dragon:
@@ -649,9 +668,9 @@ void update()
     scoreHandler.seeScoreDragonCount--;
   }
   
-  if (scoreHandler.seeScoreDragonCount < 0){
+  if (scoreHandler.seeScoreDragonCount < endSeeScore){
     scoreHandler.seeScoreDragon = false;
-    scoreHandler.seeScoreDragonCount = 100;
+    scoreHandler.seeScoreDragonCount = resetSeeScore;
   }
 
   //println(bossFireballCount);

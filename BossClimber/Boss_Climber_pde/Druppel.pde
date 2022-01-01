@@ -27,7 +27,7 @@ class Drop{
     
     if (hasCollision){
      sword.doneDamage = true;
-     waterfles.druppelOn = false;
+     waterBottle.dropOn = false;
      dragon.healthbarDragon.doDamageDragon(1);
     }
   }
