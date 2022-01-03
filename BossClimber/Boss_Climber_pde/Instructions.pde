@@ -11,7 +11,8 @@ class Instructions {
   PVector rectSize;
   PVector rectSize2;
   int textSize;
-  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize;
+  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize, endExample, endExample2, endExample3X, endExample3Y;
+  float positiveSpeed, negativeSpeed;
   boolean manual = false;
   boolean powerExpl = false;
   PImage moveL, moveL1, moveR, moveR1, moveUp, equip, equip1, equip2;
@@ -43,6 +44,12 @@ class Instructions {
     equip = loadImage("JoyConButtonA.png");
     equip1 = loadImage("Knight - Left.png");
     equip2 = loadImage("Knight - Left - Shield.png");
+    endExample = 500;
+    endExample2 = 700;
+    endExample3X = 40;
+    endExample3Y = -50;
+    positiveSpeed = 2;
+    negativeSpeed = -2;
   }
 
   void updateInstructions() {
@@ -50,19 +57,19 @@ class Instructions {
     example2.x += exampleSpeedX;
     example3.y += exampleSpeedY;
 
-    if (example.x <= 500) {
+    if (example.x <= endExample) {
       example.x = respawning;
     }
 
-    if (example2.x >= 700) {
+    if (example2.x >= endExample2) {
       example2.x = secondRespawn;
     }
 
-    if (example3.y >= 40) {
-      exampleSpeedY = -2;
+    if (example3.y >= endExample3X) {
+      exampleSpeedY = negativeSpeed;
     }
-    if (example3.y <= -50) {
-      exampleSpeedY = 2;
+    if (example3.y <= endExample3Y) {
+      exampleSpeedY = positiveSpeed;
     }
   }
 
