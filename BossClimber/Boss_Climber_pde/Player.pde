@@ -140,7 +140,7 @@ class Player {
       moveUp = false;
       moveDown = false;
     }
-    if (!schild.pickedUp && !sword.pickedUp && !waterfles.pickedUp) {
+    if (!schild.pickedUp && !sword.pickedUp && !waterBottle.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActive;
         if (timerLeft2 ==0) {
@@ -177,7 +177,7 @@ class Player {
       }
     }
 
-    if (schild.pickedUp && !waterfles.pickedUp && !sword.pickedUp) {
+    if (schild.pickedUp && !waterBottle.pickedUp && !sword.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActiveS;
         if (timerLeft2 ==0) {
@@ -213,7 +213,7 @@ class Player {
       }
     }
 
-    if (!schild.pickedUp && !sword.pickedUp && waterfles.pickedUp) {
+    if (!schild.pickedUp && !sword.pickedUp && waterBottle.pickedUp) {
       if (moveLeft && !moveRight) {
         Active = leftActiveW;
         if (timerLeft2 ==0) {
@@ -249,7 +249,7 @@ class Player {
       }
     }
 
-    if (!schild.pickedUp && sword.pickedUp && !waterfles.pickedUp) {
+    if (!schild.pickedUp && sword.pickedUp && !waterBottle.pickedUp) {
       if (moveLeft && !moveRight && !sword.attacked) {
         Active = leftActiveSW;
         if (timerLeft2 ==0) {
@@ -344,10 +344,10 @@ class Player {
       sword.attack();
     }
 
-    if (waterfles.pickedUp && keysPressed['S'] && cooldown == 0) {//Shooting druppel
+    if (waterBottle.pickedUp && keysPressed['S'] && cooldown == 0) {//Shooting druppel
       drops.shootDrop(posPlayer.x, posPlayer.y, 0, -4);
-      waterfles.druppelOn = true;
-      waterfles.pickedUp = false;
+      waterBottle.dropOn = true;
+      waterBottle.pickedUp = false;
     }
 
     //add velocity to posPlayer

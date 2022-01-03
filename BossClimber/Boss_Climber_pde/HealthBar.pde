@@ -185,7 +185,6 @@ class HealthBarDragon {
     float d = map(dragon.dragonHealth, 0, dragon.dragonHealthS/2, 0, 255);
     float f = map(dragon.dragonHealth, 0, dragon.dragonHealthS, 255, 0);
     fill(f, d, 0);
-    float c = map(dragon.dragonHealth, 0, dragon.dragonHealth, 0, w);
     fill(255, 0, 0);
     noStroke();
     rectMode(CENTER);

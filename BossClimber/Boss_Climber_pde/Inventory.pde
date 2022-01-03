@@ -48,7 +48,7 @@ class Inventory {
     //  inventoryFull = false;
     //}
 
-    if (waterfles.pickedUp) {
+    if (waterBottle.pickedUp) {
       rectMode(CENTER);
       noStroke();
       fill(0, 0, 255);

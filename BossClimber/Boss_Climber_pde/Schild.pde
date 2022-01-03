@@ -60,7 +60,7 @@ class Schild {
       fight = true;
     }
     
-    if (waterfles.pickedUp /*&& !ResetReset*/ && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && /*!ResetReset &&*/ pickedUp) {
+    if (waterBottle.pickedUp /*&& !ResetReset*/ && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && /*!ResetReset &&*/ pickedUp) {
       healthbar.shieldDamage = false;
       pickedUp = false;
       //reset = true;
