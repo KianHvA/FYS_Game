@@ -60,6 +60,8 @@ int resetFireballCount = 1200;
 int newFireballWave = 50000;
 int negative = -1;
 int endCoolDown = 0;
+int extinguishFireball = 0;
+int achievementFireballComplete = 1;
 public int endSeeHit = 0;
 public int endSeeScore = 0;
 public int resetSeeScore = 100;
@@ -86,6 +88,8 @@ boolean damageDragon = false;
 boolean respawnWaterfles = false;
 boolean On = true;
 boolean seeHitFireball = false;
+boolean achievementFireball = false;
+boolean achievementQuery = false;
 SQLConnection myConnection;
 
 
@@ -385,6 +389,7 @@ void update()
         fire[i] = false;
         fireballCount = resetFireballCount;
         fireballs[i].respawn();
+        achievementFireball = true;
       }
     }
 
@@ -672,6 +677,24 @@ void update()
     scoreHandler.seeScoreDragon = false;
     scoreHandler.seeScoreDragonCount = resetSeeScore;
   }
+  
+  if (achievementFireball){
+    extinguishFireball++;
+    achievementFireball = false;
+  }
+  
+  //Achievement completed!
+  /*if (extinguishFireball == achievementFireballComplete){
+    achievementQuery = true;
+  }
+  
+  if (achievementQuery){
+    String fireballQuery = "INSERT INTO userachievement (description) VALUES ('COMPLETE!')";
+    Table databaseTable = myConnection.runQuery(fireballQuery);
+    achievementQuery = false;
+  }*/
+  
+  println(extinguishFireball);
 
   //println(bossFireballCount);
   
