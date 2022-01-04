@@ -129,7 +129,7 @@ class Instructions {
   }
 
   void powerUpInstructions() {//Explanation power-ups
-    if (platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off) {
+    if (/*platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off*/powerExpl) {
       background(0);
 
       rectMode(CORNER);
@@ -163,7 +163,7 @@ class Instructions {
   }
 
   void draw() {
-    if (platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off) {
+    if (/*platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off*/manual) {
       background(0);
 
       fill(125);
