@@ -689,9 +689,8 @@ void update()
   }
   
   if (achievementQuery){
-    String fireballQuery = "INSERT INTO userachievement (description) VALUES ('COMPLETE!')";
+    String fireballQuery = "INSERT INTO achievement (description) VALUES ('COMPLETE!')";
     Table databaseTable = myConnection.runQuery(fireballQuery);
-    achievementQuery = false;
   }*/
   
   println(extinguishFireball);
