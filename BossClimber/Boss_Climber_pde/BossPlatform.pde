@@ -18,7 +18,6 @@
 float xxpos = 1;
 boolean bossFightRoom = false;
 int lavaGetal = 78;
-int[]bossfightlava = new int[11];
 int randomgetal = 0;
 int randomgetal1= 1;
 int randomgetal2 = 2;

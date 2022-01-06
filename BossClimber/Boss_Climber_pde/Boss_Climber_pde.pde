@@ -62,6 +62,7 @@ int negative = -1;
 int endCoolDown = 0;
 int extinguishFireball = 0;
 int achievementFireballComplete = 1;
+int[]bossfightlava = new int[11];
 public int endSeeHit = 0;
 public int endSeeScore = 0;
 public int resetSeeScore = 100;
@@ -136,6 +137,10 @@ void setup()
   for (int i = 0; i < fireballs.length; i++) { 
     fireballs[i] = new Fireball();
     fireballs[i].setup();
+  }
+  
+   for (int i=0; i<bossfightlava.length; i++) {
+    bossfightlava[i] = 0;
   }
 
   flamethrower.setup();
