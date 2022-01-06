@@ -32,6 +32,10 @@ boolean lavaTrigger = false;
 int randomGetalLava;
 int randomGetalLava1;
 int randomGetalLava2;
+int minLava=0;
+int maxLava=10;
+
+
 
 void Bossplatform() {
   dragon.healthbarDragon.draw();
@@ -90,19 +94,21 @@ void BossFightLava() {
     savedTime = millis();
     background(255);
     timer = true;
+    timer2= false;
+    passedTime=0;
   }
 
   for (int i=0; i<bossfightlava.length; i++) {
-    randomgetal = int(random(0, 11));
+    randomgetal = int(random(minLava, maxLava));
 
-    randomgetal1 = int(random(0, 11));
+    randomgetal1 = int(random(minLava, maxLava));
     if (randomgetal1==randomgetal) {
-      randomgetal1=int(random(0, 11));
+      randomgetal1=int(random(minLava, maxLava));
     }
 
-    randomgetal2 = int(random(0, 11));
+    randomgetal2 = int(random(minLava, maxLava));
     if (randomgetal2==randomgetal1||randomgetal2==randomgetal) {
-      randomgetal=int(random(0, 11));
+      randomgetal=int(random(minLava, maxLava));
     }
 
     bossfightlava[i] = width/12+(lavaGetal*i);
@@ -114,11 +120,13 @@ void BossFightLava() {
       text("!", bossfightlava[randomgetal]+8, height-200);
       text("!", bossfightlava[randomgetal1]+8, height-200);
       text("!", bossfightlava[randomgetal2]+8, height-200);
+      if(!timer2){
       timer = false;
-      lavaTrigger = true;
+      lavaTrigger = true;}
       randomGetalLava = this.randomgetal;
       randomGetalLava1 = this.randomgetal1;
       randomGetalLava2 = this.randomgetal2;
+      
     }
 
     if (timer&&lavaTrigger) {
