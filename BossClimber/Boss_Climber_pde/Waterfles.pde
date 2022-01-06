@@ -16,8 +16,6 @@ class WaterBottle{
   WaterBottle() {
     collisionHandler = new CollisionHandler();
     drops = new Drop();
-    //flesX = random(200, 600);
-    //flesY = random(0, 600);
     bottleWidth = 20;
     bottleHeight = 20;
     bottleScore = 25;

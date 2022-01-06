@@ -34,7 +34,6 @@ class Platform {
   int bossDefeated = 4;
 
   void draw() {
-    String defeatBossQuery = "INSERT INTO difficulty VALUES ('COMPLETE!')";
     if (player.posPlayer.y <= moveY && !dragon.fight) {
       player.moveLeft = true;
       player.moveRight = false;
@@ -139,6 +138,7 @@ class Platform {
     }
     
     if (moveAmount == bossDefeated){//Receive achievement when boss is defeated.
+      String defeatBossQuery = "INSERT INTO difficulty VALUES ('COMPLETE!')";
       Table databaseTable = myConnection.runQuery(defeatBossQuery);
     }
   }
