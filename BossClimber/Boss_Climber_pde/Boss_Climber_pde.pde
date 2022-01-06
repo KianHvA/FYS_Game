@@ -764,6 +764,7 @@ void draw()
       dragon.bossFight.End();
       level.draw();
       muur();
+      
 
       instruction.sign();
 
@@ -850,6 +851,7 @@ void draw()
       lava.draw();
       healthbar.draw();
       health.draw();
+     
 
       if (waterBottle.dropOn) {//Shooting
         drops.draw();
