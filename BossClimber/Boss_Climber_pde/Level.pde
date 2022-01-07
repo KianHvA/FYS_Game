@@ -1,5 +1,6 @@
 //Tigo
 class Level {
+  float background = 0;
   int NPLATFORM = 4;
   PImage lavaImg;
   PImage lavaSlicedImg0;
@@ -28,10 +29,10 @@ class Level {
     lavaSlicedImg8 = loadImage("Lava_Sliced.lava09");
     lavaSlicedImg9 = loadImage("Lava_Sliced.lava10");
     lavaSlicedImg10 = loadImage("Lava_Sliced.lava11");
-    
+
 
     //size(800, 600);
-    background (0);
+    background (background);
     platforms.draw();
   }
   void draw() {
