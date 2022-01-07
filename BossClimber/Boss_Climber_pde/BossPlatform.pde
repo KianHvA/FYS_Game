@@ -15,12 +15,20 @@
 //PVector[] vertexesBossPlatform = new PVector[8];
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
-float xxpos = 1;
+float playerPosRect;
+float playerPosReset;
+float background;
+float xPosRect = 0;
+float xPosRect1 = 1;
+float rectClosingNumber = 10;
+float yPosRect = 20;
+float yPosLava = 10;
+float yPosLava1 = 100;
 boolean bossFightRoom = false;
-int lavaGetal = 78;
-int randomgetal = 0;
-int randomgetal1= 1;
-int randomgetal2 = 2;
+int lavaNumber = 1024;
+int randomNumber = 0;
+int randomNumber1= 1;
+int randomNumber2 = 2;
 boolean timer = false;
 boolean timer2 = false;
 int totalTime=2500;
@@ -29,28 +37,33 @@ int totalTime2 = 1000;
 int savedTime2;
 int lavaY = 100;
 boolean lavaTrigger = false;
-int randomGetalLava;
-int randomGetalLava1;
-int randomGetalLava2;
+int randomNumberLava;
+int randomNumberLava1;
+int randomNumberLava2;
 int minLava=0;
 int maxLava=10;
-
+float greyColor = 147;
+int muurGetal = 12;
+float exclamationHeight;
+float exclamationNumber;
+float exclamationSize;
+float exclamationR;
+float exclamationGB;
+float LavaY2;
 
 
 void Bossplatform() {
   dragon.healthbarDragon.draw();
   dragon.fight = bossFightRoom;
   //if (Platform.draw.moveAmount) {
-  fill(147, 147, 147);
+  fill(greyColor);
   //background(0);
   rectMode(CORNER);
-  rect(0, height-20, xxpos, height);
-  xxpos = xxpos + 10;
+  rect(xPosRect, height-yPosRect, xPosRect1, height);
+  xPosRect1 = xPosRect1 + rectClosingNumber;
   noStroke();
   fill(#FAB800);
-  for (float i = width/12; i<width/12+800; i = i+lavaGetal) {
-    rect(i, height - 10, lavaGetal, 100);
-  }
+  rect(xPosRect, height - yPosLava, lavaNumber, yPosLava1);
   muur();
 
   bossFightRoom = true;
@@ -63,23 +76,24 @@ void Bossplatform() {
   //for collision
   //change vertexes in both arrays to match the bossplatform
   for (int i = 0; i < platforms.vertexesL.length; i += 5) {
-    platforms.vertexesL[i] = new PVector(0, height-20);
-    platforms.vertexesL[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesL[i+2] = new PVector(0, height);
-    platforms.vertexesL[i+3] = new PVector(xxpos, height);
-    platforms.vertexesL[i+4] = new PVector(0, height-20);
+    platforms.vertexesL[i] = new PVector(xPosRect, height-yPosRect);
+    platforms.vertexesL[i+1] = new PVector(xPosRect1, height-yPosRect);
+    platforms.vertexesL[i+2] = new PVector(xPosRect, height);
+    platforms.vertexesL[i+3] = new PVector(xPosRect1, height);
+    platforms.vertexesL[i+4] = new PVector(xPosRect, height-yPosRect);
   }
   for (int i = 0; i < platforms.vertexesR.length; i += 5) {
-    platforms.vertexesR[i] = new PVector(0, height-20);
-    platforms.vertexesR[i+1] = new PVector(xxpos, height-20);
-    platforms.vertexesR[i+2] = new PVector(0, height);
-    platforms.vertexesR[i+3] = new PVector(xxpos, height);
-    platforms.vertexesR[i+4] = new PVector(0, height-20);
+    platforms.vertexesR[i] = new PVector(xPosRect, height-yPosRect);
+    platforms.vertexesR[i+1] = new PVector(xPosRect1, height-yPosRect);
+    platforms.vertexesR[i+2] = new PVector(xPosRect, height);
+    platforms.vertexesR[i+3] = new PVector(xPosRect1, height);
+    platforms.vertexesR[i+4] = new PVector(xPosRect, height-yPosRect);
   }
-
-  if (player.posPlayer.y>height-15 && bossFightRoom)
+  playerPosRect = 15;
+  playerPosReset = 40;
+  if (player.posPlayer.y>height-playerPosRect && bossFightRoom)
   {
-    player.posPlayer.y=height-40;
+    player.posPlayer.y=height-playerPosReset;
   }
 }
 
@@ -88,52 +102,58 @@ void BossFightLava() {
   // noStroke();
   fill(#FAB800);
 
-
+  background = 255;
   int passedTime = millis() - savedTime;
   if (passedTime > totalTime) {
     savedTime = millis();
-    background(255);
+    background(background);
     timer = true;
     timer2= false;
-    passedTime=0;
   }
 
   for (int i=0; i<bossfightlava.length; i++) {
-    randomgetal = int(random(minLava, maxLava));
+    randomNumber = int(random(minLava, maxLava));
 
-    randomgetal1 = int(random(minLava, maxLava));
-    if (randomgetal1==randomgetal) {
-      randomgetal1=int(random(minLava, maxLava));
+    randomNumber1 = int(random(minLava, maxLava));
+    if (randomNumber1==randomNumber) {
+      randomNumber1=int(random(minLava, maxLava));
     }
 
-    randomgetal2 = int(random(minLava, maxLava));
-    if (randomgetal2==randomgetal1||randomgetal2==randomgetal) {
-      randomgetal=int(random(minLava, maxLava));
+    randomNumber2 = int(random(minLava, maxLava));
+    if (randomNumber2==randomNumber1||randomNumber2==randomNumber) {
+      randomNumber=int(random(minLava, maxLava));
     }
 
-    bossfightlava[i] = width/12+(lavaGetal*i);
+    bossfightlava[i] = width/muurGetal+(lavaNumber*i);
     if (timer&&!lavaTrigger) {
 
+      exclamationHeight = 200;
+      exclamationNumber = 8;
+      exclamationSize = 200;
+      exclamationR = 255;
+      exclamationGB = 0;
 
-      textSize(200);
-      fill(255, 0, 0);
-      text("!", bossfightlava[randomgetal]+8, height-200);
-      text("!", bossfightlava[randomgetal1]+8, height-200);
-      text("!", bossfightlava[randomgetal2]+8, height-200);
-      if(!timer2){
-      timer = false;
-      lavaTrigger = true;}
-      randomGetalLava = this.randomgetal;
-      randomGetalLava1 = this.randomgetal1;
-      randomGetalLava2 = this.randomgetal2;
-      
+      textSize(exclamationSize);
+      fill(exclamationR, exclamationGB, exclamationGB);
+      text("!", bossfightlava[randomNumber]+exclamationNumber, height-exclamationHeight);
+      text("!", bossfightlava[randomNumber1]+exclamationNumber, height-exclamationHeight);
+      text("!", bossfightlava[randomNumber2]+exclamationNumber, height-exclamationHeight);
+      if (!timer2) {
+        timer = false;
+        lavaTrigger = true;
+      }
+      randomNumberLava = this.randomNumber;
+      randomNumberLava1 = this.randomNumber1;
+      randomNumberLava2 = this.randomNumber2;
     }
 
     if (timer&&lavaTrigger) {
 
-      rect(bossfightlava[randomGetalLava], height-lavaY, lavaGetal, 100);
-      rect(bossfightlava[randomGetalLava1], height-lavaY, lavaGetal, 100);
-      rect(bossfightlava[randomGetalLava2], height-lavaY, lavaGetal, 100);
+      LavaY2 = 100;
+      
+      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
 
 
 
