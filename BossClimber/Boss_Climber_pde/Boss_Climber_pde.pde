@@ -45,6 +45,7 @@ float xDragon = 152, yDragon = 10, sizeDragon = 100;
 float textX = width/2;
 float textY = height/2;
 float fireballHitCount = 100;
+float endDrop = 0;
 int fireballAmount = 12;
 int aantalFires = 12;
 int firstFireballWave = 3;
@@ -62,6 +63,8 @@ int negative = -1;
 int endCoolDown = 0;
 int extinguishFireball = 0;
 int achievementFireballComplete = 1;
+int fireballAchievementCount = 300;
+final int endFireballAchievement = 0;
 int[]bossfightlava = new int[11];
 public int endSeeHit = 0;
 public int endSeeScore = 0;
@@ -80,6 +83,7 @@ boolean On = true;
 boolean seeHitFireball = false;
 boolean achievementFireball = false;
 boolean achievementQuery = false;
+boolean seeFireballAchievement = false;
 SQLConnection myConnection;
 
 
@@ -164,6 +168,10 @@ void setup()
 
   music.setup();
 
+  if (platforms.moveAmount == 3/*platforms.bossDefeated*/){//Receive achievement when boss is defeated.
+    String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
+    Table databaseTable = myConnection.runQuery(defeatBossQuery);
+  }
   //ParticleSystem.setup();
 }
 
@@ -278,7 +286,7 @@ void update()
         
         if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
           fire[i] = false;
-          fireballCount = 1200;
+          fireballCount = resetFireballCount;
           fireballs[i].respawn();
           fireballs[i].posFireball = fireballs[i].RposFireball;
         }
@@ -429,7 +437,7 @@ void update()
     cooldown = resetCoolDown;
   }
 
-  if (drops.posPlayer.y <= 0 || drops.hasCollision) {//Druppel off screen or hits dragon:
+  if (drops.posPlayer.y <= endDrop || drops.hasCollision) {//Druppel off screen or hits dragon:
     waterBottle.dropOn = false;
     waterBottle.resetWaterBottle();
   }
@@ -448,24 +456,36 @@ void update()
     achievementFireball = false;
   }
   
-  println(spawnPointsPUPS.random);
-  
   //Achievement completed!
-  /*if (extinguishFireball == achievementFireballComplete){
+  if (extinguishFireball == achievementFireballComplete){
     achievementQuery = true;
   }
   
   if (achievementQuery){
-    String fireballQuery = "INSERT INTO achievement (description) VALUES ('COMPLETE!')";
-    myConnection.runQuery(fireballQuery);
-  }*/
+    seeFireballAchievement = true;
+    //String fireballQuery = "INSERT INTO achievement (description) VALUES ('COMPLETE!')";
+    //myConnection.runQuery(fireballQuery);
+  }
+  
+  if (seeFireballAchievement){
+    fireballAchievementCount--;
+    fill(125);
+    rect(platforms.achievementX, platforms.achievementY, platforms.achievementWidth, platforms.achievementHeight);
+    textSize(20);
+    fill(255);
+    text("Achievement complete!", platforms.achievementTextX, platforms.achievementTextY);
+  }
+  
+  if (fireballAchievementCount <= endFireballAchievement){
+    achievementQuery = false;
+    seeFireballAchievement = false;
+  }
   
   println(platforms.moveAmount);
-
-  //println(bossFireballCount);
   
   player.movementUpdate();
   spawnPointsPUPS.update();
+  platforms.bossAchievement();
   //if (Highscore.gameFinished) {
   //  Properties props = new Properties();
   //  props.setProperty("user", "dreijed1");

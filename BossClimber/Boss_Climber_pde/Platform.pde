@@ -32,6 +32,10 @@ class Platform {
   boolean seeScoreStage = false;
   float finalMoveAmount = 0;
   int bossDefeated = 4;
+  int bossAchievementCount = 300;
+  final int endBossAchievementCount = 0;
+  boolean seeBossAchievement = false;
+  float achievementX = 800, achievementY = 100, achievementWidth = 250, achievementHeight = 50, achievementTextX = 805, achievementTextY = 95;
 
   void draw() {
     if (player.posPlayer.y <= moveY && !dragon.fight) {
@@ -136,10 +140,22 @@ class Platform {
       seeScoreStage = false;
       seeScoreStageCount = 100;
     }
-    
-    if (moveAmount == bossDefeated){//Receive achievement when boss is defeated.
-      String defeatBossQuery = "INSERT INTO difficulty VALUES ('COMPLETE!')";
-      Table databaseTable = myConnection.runQuery(defeatBossQuery);
-    }
   }
+  
+   void bossAchievement(){//Achievement boss defeated
+    if (moveAmount == bossDefeated){//Receive achievement when boss is defeated.
+      seeBossAchievement = true;
+    }
+    if (seeBossAchievement){
+      bossAchievementCount--;
+      fill(125);
+      rect(achievementX, achievementY, achievementWidth, achievementHeight);
+      fill(255);
+      textSize(20);
+      text("Achievement complete!", achievementTextX, achievementTextY);
+    }
+    if (bossAchievementCount <= endBossAchievementCount){
+      seeBossAchievement = false;
+    }
+   }
 }
