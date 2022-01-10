@@ -448,6 +448,8 @@ void update()
     achievementFireball = false;
   }
   
+  println(spawnPointsPUPS.random);
+  
   //Achievement completed!
   /*if (extinguishFireball == achievementFireballComplete){
     achievementQuery = true;
