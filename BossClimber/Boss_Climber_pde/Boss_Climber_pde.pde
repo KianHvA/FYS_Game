@@ -168,11 +168,19 @@ void setup()
 
   music.setup();
 
-  if (platforms.moveAmount == 3/*platforms.bossDefeated*/){//Receive achievement when boss is defeated.
-    String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
-    Table databaseTable = myConnection.runQuery(defeatBossQuery);
-  }
+  //if (platforms.moveAmount == 3/*platforms.bossDefeated*/){//Receive achievement when boss is defeated.
+    //String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
+    //Table databaseTable = myConnection.runQuery(defeatBossQuery);
+  //}
   //ParticleSystem.setup();
+}
+
+void ExecuteSQL(String defeatBossQuery){
+  defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
+  
+  if (platforms.moveAmount == 3/*platforms.bossDefeated*/){//Receive achievement when boss is defeated.
+    myConnection.runQuery(defeatBossQuery);
+  }
 }
 
 void update()
