@@ -29,12 +29,15 @@ int lavaNumber = 1024;
 int randomNumber = 0;
 int randomNumber1= 1;
 int randomNumber2 = 2;
+
+int totalTime = 100; //100 frames * 60 fps = 6000 milliseconds
+int savedTime;
+int savedTime2;
+int savedTime3;
 boolean timer = false;
 boolean timer2 = false;
-int totalTime=2500;
-int savedTime;
-int totalTime2 = 1000;
-int savedTime2;
+boolean timer3 = false;
+
 int lavaY = 100;
 boolean lavaTrigger = false;
 int randomNumberLava;
@@ -98,18 +101,47 @@ void Bossplatform() {
 }
 
 void BossFightLava() {
-
-  // noStroke();
   fill(#FAB800);
 
-  background = 255;
-  int passedTime = millis() - savedTime;
-  if (passedTime > totalTime) {
-    savedTime = millis();
-    background(background);
-    timer = true;
-    timer2= false;
+  if (!timer) {
+    int passedTime = savedTime++;
+    println("1e timer: " + savedTime);
+
+    if (passedTime > totalTime) {
+      println("1e timer is kaar");
+
+      timer = true;
+      timer2 = false;
+      timer3 = false;
+      savedTime = 0;
+    }
   }
+  if (!timer2 && timer) {
+    int passedTime2 = savedTime2++;
+    println("2e timer: " + savedTime2);
+
+    if (passedTime2 > totalTime) {
+      println("2e timer is kaar");
+
+      timer2 = true;
+      lavaTrigger = true;
+      savedTime2 = 0;
+    }
+  }
+  if (lavaTrigger) {
+    int passedTime3 = savedTime3++;
+    println("3e timer: " + savedTime3);
+
+    if (passedTime3 > totalTime) {
+      println("3e timer is kaar");
+
+      lavaTrigger = false;
+      timer = false;
+      timer2 = false;
+      savedTime3 = 0;
+    }
+  }
+  
 
   for (int i=0; i<bossfightlava.length; i++) {
     randomNumber = int(random(minLava, maxLava));
@@ -125,7 +157,15 @@ void BossFightLava() {
     }
 
     bossfightlava[i] = width/muurGetal+(lavaNumber*i);
-    if (timer&&!lavaTrigger) {
+    if (lavaTrigger) {
+
+      LavaY2 = 100;
+
+      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
+    }
+    if (timer && !lavaTrigger) {
 
       exclamationHeight = 200;
       exclamationNumber = 8;
@@ -138,31 +178,15 @@ void BossFightLava() {
       text("!", bossfightlava[randomNumber]+exclamationNumber, height-exclamationHeight);
       text("!", bossfightlava[randomNumber1]+exclamationNumber, height-exclamationHeight);
       text("!", bossfightlava[randomNumber2]+exclamationNumber, height-exclamationHeight);
-      if (!timer2) {
-        timer = false;
-        lavaTrigger = true;
-      }
+
+
       randomNumberLava = this.randomNumber;
       randomNumberLava1 = this.randomNumber1;
       randomNumberLava2 = this.randomNumber2;
     }
-
-    if (timer&&lavaTrigger) {
-
-      LavaY2 = 100;
-      
-      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
-
-
-
-      timer=false;
-      lavaTrigger = false;
-    }
   }
+  println("lavaTrigger: " + lavaTrigger);
 }
-//}
 
 //if(bossFightRoom){
 //playerpos
