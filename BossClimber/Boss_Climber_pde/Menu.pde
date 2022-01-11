@@ -1,12 +1,14 @@
 //Tristan
 //Dion: handleiding
 //Kian: showing highscore
+//Ömer: showing Achievements
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
   boolean start = false, drawn = false, displayHighscore = false;
   PVector placement1 = new PVector(width/3 + 50, 250);
   PVector placement2 = new PVector(width/3 + 200, 250);
   PVector placement3 = new PVector(width/2, 250);
+  PVector placement4 = new PVector(width/2 + 140, 410);
   boolean highlight1 = true, highlight2 = false;
   color normal = 125;
   color highlight = #EFF03F;
@@ -60,6 +62,7 @@ class Menu {
     rect(placement1.x - 175, placement1.y, size.x, size.y);
     rect(placement2.x, placement2.y, size.x, size.y);
     rect(placement3.x - size.x/2, placement3.y+size.y + 10, size.x, size.y/1.5);
+    rect(placement4.x, placement4.y, size.x - 5 , size.y - 10);
     rectMode(CENTER);
     textFont(f, 50); //size of the texts
     fill(kleur); //color
@@ -70,7 +73,14 @@ class Menu {
     textLeading(40);
     text("Press X for\n Highscore", placement3.x - size.x/3, placement3.y+(size.y*1.35)); // press X on pc
     textSize(72);
+    textSize(40);
+    textLeading(50);
+    text("Press B for\n Achievement", placement4.x + size.x/15, placement4.y + size.y/3);
     drawn = true;
+
+     if (keysPressed['B']) {
+      displayAchievement = true;
+    }
 
     if (keysPressed['A']) {
       start = true;
@@ -126,6 +136,24 @@ class Menu {
     String[] descriptions = databaseAchievement.getStringColumn(0);
     String[] requirements = databaseAchievement.getStringColumn(1);
     String[] dates = databaseAchievement.getStringColumn(2);
+    
+     
+    fill(125);
+    rect(width/2, 250, 300, 40);
+    
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text("Achievement:", height/2, height/2 - 100  * 2);
+    fill(255);
+    for (int i = 0; i < requirements.length; i++) {
+      Achievement = descriptions[i] + ": " + requirements[i] + "      " + dates[i];
+      textSize(20);
+      
+      text(Achievement, width/2, height/2 - 100 + i * 10);
+      
+      textSize(30);
+      text("Press B for Achievements", width/2, 200);
+    }
   }
 
 
