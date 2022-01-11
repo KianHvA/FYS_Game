@@ -35,6 +35,7 @@ class Platform {
   int bossAchievementCount = 300;
   final int endBossAchievementCount = 0;
   boolean seeBossAchievement = false;
+  boolean bossComplete = false;
   float achievementX = 800, achievementY = 100, achievementWidth = 250, achievementHeight = 50, achievementTextX = 805, achievementTextY = 95;
 
   void draw() {
@@ -139,6 +140,10 @@ class Platform {
     if (seeScoreStageCount < 0){
       seeScoreStage = false;
       seeScoreStageCount = 100;
+    }
+    
+    if (moveAmount >= 3){
+      bossComplete = true;
     }
   }
   

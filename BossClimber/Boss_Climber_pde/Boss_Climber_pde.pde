@@ -167,12 +167,27 @@ void setup()
   fireballs[11].posFireball.y = dragon.starty;
 
   music.setup();
+  
+  executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')", Highscore.ending);
 
-  if (platforms.moveAmount == platforms.bossDefeated){//Receive achievement when boss is defeated.
+  /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
     java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
     myConnection.updateQuery(defeatBossQuery);
+  }*/
+  
+  if (extinguishFireball == achievementFireballComplete){
+    seeFireballAchievement = true;
+    java.lang.String fireballQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 5 fireballs', 'COMPLETE')";
+    myConnection.updateQuery(fireballQuery);
+    println("Yes");
   }
   //ParticleSystem.setup();
+}
+
+public void executeSQL(java.lang.String defeatBossQuery, boolean oneGame){  
+  if (oneGame){
+  myConnection.updateQuery(defeatBossQuery);
+  }
 }
 
 void update()
@@ -455,17 +470,9 @@ void update()
     extinguishFireball++;
     achievementFireball = false;
   }
+  println(extinguishFireball);
   
   //Achievement completed!
-  if (extinguishFireball == achievementFireballComplete){
-    achievementQuery = true;
-  }
-  
-  if (achievementQuery){
-    seeFireballAchievement = true;
-    //String fireballQuery = "INSERT INTO achievement (description) VALUES ('COMPLETE!')";
-    //myConnection.runQuery(fireballQuery);
-  }
   
   if (seeFireballAchievement){
     fireballAchievementCount--;
@@ -481,8 +488,6 @@ void update()
     seeFireballAchievement = false;
   }
   
-  println(platforms.moveAmount);
-  
   player.movementUpdate();
   spawnPointsPUPS.update();
   platforms.bossAchievement();
@@ -492,7 +497,6 @@ void update()
   //  props.setProperty("password", "kerPVqZtWlI8M4");
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
-  println(dragon.dragonHealth);
 }
 
 void restartGame() {//Resets the whole game
@@ -657,7 +661,7 @@ void draw()
     }
   }
 
-  if (Highscore.ending == true && keysPressed['D']) {
+  if (Highscore.ending && keysPressed['D']) {
     health.dead = false;
     Highscore.drawn = false;
     Highscore.ending = false;
