@@ -117,6 +117,16 @@ class Menu {
       text("Press A to start", width/2, 500);
     }
   }
+  
+  void AchievementsSection() {
+    background(0);
+    String Achievement;
+    String query = "";
+    Table databaseAchievement = myConnection.runQuery(query);
+    String[] descriptions = databaseAchievement.getStringColumn(0);
+    String[] requirements = databaseAchievement.getStringColumn(1);
+    String[] dates = databaseAchievement.getStringColumn(2);
+  }
 
 
   //void highlight() {

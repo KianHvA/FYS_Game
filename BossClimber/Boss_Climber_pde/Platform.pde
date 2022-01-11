@@ -23,7 +23,7 @@ class Platform {
   int seeScoreStageCount = 100;
   boolean moveStage = false;
   int startMoveAmount = 1;
-  int moveAmount = 3;
+  int moveAmount = 1;
   int maxMoveAmount = 20;
   PVector[] vertexesL= new PVector[30];
   PVector[] vertexesR= new PVector[30];
