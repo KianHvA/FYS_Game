@@ -156,15 +156,16 @@ void BossFightLava() {
       randomNumber=int(random(minLava, maxLava));
     }
 
+    //bossfightlava[i] = width/muurGetal+(lavaNumber*i);
+    //if (lavaTrigger) {
+
+    //  LavaY2 = 100;
+
+    //  rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
+    //  rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
+    //  rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
+    //}
     bossfightlava[i] = width/muurGetal+(lavaNumber*i);
-    if (lavaTrigger) {
-
-      LavaY2 = 100;
-
-      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
-    }
     if (timer && !lavaTrigger) {
 
       exclamationHeight = 200;
@@ -183,6 +184,15 @@ void BossFightLava() {
       randomNumberLava = this.randomNumber;
       randomNumberLava1 = this.randomNumber1;
       randomNumberLava2 = this.randomNumber2;
+    }
+        
+    if (lavaTrigger) {
+
+      LavaY2 = 100;
+
+      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
+      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
     }
   }
   println("lavaTrigger: " + lavaTrigger);
