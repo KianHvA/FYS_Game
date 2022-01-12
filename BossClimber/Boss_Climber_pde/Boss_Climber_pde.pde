@@ -170,7 +170,7 @@ void setup()
 
   music.setup();
 
-  if (platforms.moveAmount == 1){
+  if (platforms.moveAmount == 1) {
     myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
   }
 
@@ -464,8 +464,8 @@ void update()
     achievementFireball = false;
   }
   println(extinguishFireball);
-  
-  if (extinguishFireball >= achievementFireballComplete){
+
+  if (extinguishFireball >= achievementFireballComplete) {
     extinguishQuery = true;
   }
 
@@ -542,17 +542,13 @@ void draw()
       if (keysPressed['B']) {
         achievement.summary = true;
       }
+      if (achievement.summary) {// Player 
+        //achievement.updateAchievements();
+        //achievement.draw();
+      }
       if (instruction.manual) {//Player reads instructions.
         instruction.updateInstructions();
         instruction.draw();
-        
-         if (achievement.summary) {// Player 
-          //achievement.updateAchievements();
-          //achievement.draw();
-
-
-
-
 
         if (keysPressed['S']) {
           instruction.powerExpl = true;
