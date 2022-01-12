@@ -84,7 +84,9 @@ boolean seeHitFireball = false;
 boolean achievementFireball = false;
 boolean achievementQuery = false;
 boolean seeFireballAchievement = false;
+boolean onceRunSQL = false;
 SQLConnection myConnection;
+
 
 
 void setup() 
@@ -131,8 +133,8 @@ void setup()
     fireballs[i] = new Fireball();
     fireballs[i].setup();
   }
-  
-   for (int i=0; i<bossfightlava.length; i++) {
+
+  for (int i=0; i<bossfightlava.length; i++) {
     bossfightlava[i] = 0;
   }
 
@@ -147,35 +149,35 @@ void setup()
   player.setup();
   Highscore.setup();
 
-  
+
   fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[6].posFireball.y = dragon.starty;
-  
+
   fireballs[7].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[7].posFireball.y = dragon.starty;
-  
+
   fireballs[8].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[8].posFireball.y = dragon.starty;
-  
+
   fireballs[9].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[9].posFireball.y = dragon.starty;
-  
+
   fireballs[10].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[10].posFireball.y = dragon.starty;
-  
+
   fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[11].posFireball.y = dragon.starty;
 
   music.setup();
-  
-  executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')", Highscore.ending);
+
+
 
   /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
-    java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
-    myConnection.updateQuery(defeatBossQuery);
-  }*/
-  
-  if (extinguishFireball == achievementFireballComplete){
+   java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
+   myConnection.updateQuery(defeatBossQuery);
+   }*/
+
+  if (extinguishFireball == achievementFireballComplete) {
     seeFireballAchievement = true;
     java.lang.String fireballQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 5 fireballs', 'COMPLETE')";
     myConnection.updateQuery(fireballQuery);
@@ -184,11 +186,7 @@ void setup()
   //ParticleSystem.setup();
 }
 
-public void executeSQL(java.lang.String defeatBossQuery, boolean oneGame){  
-  if (oneGame){
-  myConnection.updateQuery(defeatBossQuery);
-  }
-}
+
 
 void update()
 {
@@ -243,8 +241,8 @@ void update()
   //  break;
   //  default:
   //}
-  
-   for (int i = 0; i < fireballs.length; i++){
+
+  for (int i = 0; i < fireballs.length; i++) {
     fireballs[i].achievementUpdateFireball();
   }
 
@@ -262,21 +260,21 @@ void update()
     if (fireballCount == thirdFireball) {
       fire[2] = true;
     }
-    
+
     //First 3 fireballs including movement update && collision.
-    for (int i = 0; i < firstFireballWave; i++){
-      if (fire[i]){
+    for (int i = 0; i < firstFireballWave; i++) {
+      if (fire[i]) {
         fireballs[i].movementUpdate();
       }
-      
-      if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
+
+      if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height) {
         fire[i] = false;
         fireballCount = resetFireballCount;
         fireballs[i].respawn();
         fireballs[i].posFireball = fireballs[i].RposFireball;
       }
-      
-      if (fireballs[i].playerCollision){
+
+      if (fireballs[i].playerCollision) {
         seeHitFireball = true;
         schild.reset = true;
       }
@@ -292,38 +290,38 @@ void update()
       if (fireballCount == sixthFireball) {
         fire[5] = true;
       }
-      
+
       //3 new fireballs including movement update && collision.
-      for (int i = 3; i < secondFireballWave; i++){
-        if (fire[i]){
+      for (int i = 3; i < secondFireballWave; i++) {
+        if (fire[i]) {
           fireballs[i].movementUpdate();
         }
-        
-        if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height){
+
+        if (fireballs[i].playerCollision || fireballs[i].posFireball.y >= height) {
           fire[i] = false;
           fireballCount = resetFireballCount;
           fireballs[i].respawn();
           fireballs[i].posFireball = fireballs[i].RposFireball;
         }
-        
-        if (fireballs[i].playerCollision){
+
+        if (fireballs[i].playerCollision) {
           seeHitFireball = true;
           schild.reset = true;
         }
       }
     }
-    
+
     //Fireballs colliding with drop.
-    for (int i = 0; i < fireballs.length; i++){
+    for (int i = 0; i < fireballs.length; i++) {
       if (fireballs[i].fireballDrop(fireballs[i].posFireball.x, fireballs[i].posFireball.y, fireballs[i].sizeFireball.x, 
-      drops.posPlayer.x, drops.posPlayer.y, drops.dropDia)){
+        drops.posPlayer.x, drops.posPlayer.y, drops.dropDia)) {
         fire[i] = false;
         fireballCount = resetFireballCount;
         fireballs[i].respawn();
         achievementFireball = true;
       }
     }
-    
+
     //Moving stage means no fireballs.
     if (platforms.moveStage == true||!On) {
       fire[0] = false;
@@ -334,9 +332,9 @@ void update()
       fire[5] = false;
       fireballCount = resetFireballCount;
     }
-    
+
     if (seeHitFireball) {
-      if (seeHitFireball && schild.pickedUp){
+      if (seeHitFireball && schild.pickedUp) {
         fireballHitCount = negative;
       }
       fireballHitCount--;
@@ -353,54 +351,54 @@ void update()
       fireballHitCount = resetFireballHitCount;
     }
   }
-  
+
   //Boss battle fireballs.
-  if (bossFightRoom){//While boss fight
-    if (bossFireballCount >= zeroFireball){
+  if (bossFightRoom) {//While boss fight
+    if (bossFireballCount >= zeroFireball) {
       bossFireballCount--;
     }
-    
-    if (bossFireballCount == firstFireball){
+
+    if (bossFireballCount == firstFireball) {
       fire[6] = true;
     }
-    if (bossFireballCount == secondFireball){
+    if (bossFireballCount == secondFireball) {
       fire[7] = true;
     }
-    if (bossFireballCount == thirdFireball){
+    if (bossFireballCount == thirdFireball) {
       fire[8] = true;
     }
-    if (bossFireballCount == fourthFireball){
+    if (bossFireballCount == fourthFireball) {
       fire[9] = true;
     }
-    if (bossFireballCount == fifthFireball){
+    if (bossFireballCount == fifthFireball) {
       fire[10] = true;
     }
-    if (bossFireballCount == sixthFireball){
+    if (bossFireballCount == sixthFireball) {
       fire[10] = true;
     }
-    
+
     //Boss fireballs including movement update && collision.
-    for (int i = 6; i < fireballs.length; i++){
-      if (fire[i]){
+    for (int i = 6; i < fireballs.length; i++) {
+      if (fire[i]) {
         fireballs[i].movementUpdate();
       }
-      
-      if (fireballs[i].playerCollision){
+
+      if (fireballs[i].playerCollision) {
         seeHitFireball = true;
       }
-      
-      if (fireballs[i].playerCollision || fireballs[i].wallCollisonR){
+
+      if (fireballs[i].playerCollision || fireballs[i].wallCollisonR) {
         fire[i] = false;
         fireballs[i].wallCollisonR = false;
         fireballs[i].respawn();
       }
     }
-    
-    if (seeHitFireball){
+
+    if (seeHitFireball) {
       fireballHitCount--;
     }
-    
-    if (fireballHitCount < endSeeHit){
+
+    if (fireballHitCount < endSeeHit) {
       seeHitFireball = false;
       fireballs[6].playerCollision = false;
       fireballs[7].playerCollision = false;
@@ -410,29 +408,29 @@ void update()
       fireballs[11].playerCollision = false;
       fireballHitCount = resetFireballHitCount;
     }
-    
-    if (dragon.dragonHealth <= 0 && bossFightRoom){//Resets fireballs for next fight if boss fight is over!
+
+    if (dragon.dragonHealth <= 0 && bossFightRoom) {//Resets fireballs for next fight if boss fight is over!
       fire[6] = false;
       fire[7] = false;
       fire[8] = false;
       fire[9] = false;
       fire[10] = false;
       fire[11] = false;
-      
+
       fireballs[6].bossOn = false;
       fireballs[7].bossOn = false;
       fireballs[8].bossOn = false;
       fireballs[9].bossOn = false;
       fireballs[10].bossOn = false;
       fireballs[11].bossOn = false;
-      
+
       fireballs[6].respawn();
       fireballs[7].respawn();
       fireballs[8].respawn();
       fireballs[9].respawn();
       fireballs[10].respawn();
       fireballs[11].respawn();
-      
+
       bossFireballCount = resetFireballCount;
     }
   }
@@ -456,25 +454,25 @@ void update()
     waterBottle.dropOn = false;
     waterBottle.resetWaterBottle();
   }
-  
-  if (scoreHandler.seeScoreDragon){
+
+  if (scoreHandler.seeScoreDragon) {
     scoreHandler.seeScoreDragonCount--;
   }
-  
-  if (scoreHandler.seeScoreDragonCount < endSeeScore){
+
+  if (scoreHandler.seeScoreDragonCount < endSeeScore) {
     scoreHandler.seeScoreDragon = false;
     scoreHandler.seeScoreDragonCount = resetSeeScore;
   }
-  
-  if (achievementFireball){
+
+  if (achievementFireball) {
     extinguishFireball++;
     achievementFireball = false;
   }
   println(extinguishFireball);
-  
+
   //Achievement completed!
-  
-  if (seeFireballAchievement){
+
+  if (seeFireballAchievement) {
     fireballAchievementCount--;
     fill(125);
     rect(platforms.achievementX, platforms.achievementY, platforms.achievementWidth, platforms.achievementHeight);
@@ -482,12 +480,12 @@ void update()
     fill(255);
     text("Achievement complete!", platforms.achievementTextX, platforms.achievementTextY);
   }
-  
-  if (fireballAchievementCount <= endFireballAchievement){
+
+  if (fireballAchievementCount <= endFireballAchievement) {
     achievementQuery = false;
     seeFireballAchievement = false;
   }
-  
+
   player.movementUpdate();
   spawnPointsPUPS.update();
   platforms.bossAchievement();
@@ -497,8 +495,19 @@ void update()
   //  props.setProperty("password", "kerPVqZtWlI8M4");
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
+  if (onceRunSQL) {
+    
+    onceRunSQL = false;
+  }
 }
 
+public void executeSQL(java.lang.String defeatBossQuery, boolean oneGame) {  
+  if (oneGame) {
+    myConnection.updateQuery(defeatBossQuery);
+    println("Exicute SQl");
+    oneGame = false;
+  }
+}
 void restartGame() {//Resets the whole game
   scoreHandler.score = 0;
   Highscore.j = 0;
@@ -552,10 +561,11 @@ void draw()
     if (menu.start == true) {
       background(0);
       update();
+
       dragon.bossFight.End();
       level.draw();
       muur();
-      
+
 
       instruction.sign();
 
@@ -591,33 +601,33 @@ void draw()
       if (fire[5] == true) {
         fireballs[5].draw();
       }
-      
-      if (fire[6] == true){//Boss fireballs!
+
+      if (fire[6] == true) {//Boss fireballs!
         fireballs[6].bossOn = true;
         fireballs[6].draw();
       }
-      
-      if (fire[7] == true){
+
+      if (fire[7] == true) {
         fireballs[7].bossOn = true;
         fireballs[7].draw();
       }
-      
-      if (fire[8] == true){
+
+      if (fire[8] == true) {
         fireballs[8].bossOn = true;
         fireballs[8].draw();
       }
-      
-      if (fire[9] == true){
+
+      if (fire[9] == true) {
         fireballs[9].bossOn = true;
         fireballs[9].draw();
       }
-      
-      if (fire[10] == true){
+
+      if (fire[10] == true) {
         fireballs[10].bossOn = true;
         fireballs[10].draw();
       }
-      
-      if (fire[11] == true){
+
+      if (fire[11] == true) {
         fireballs[11].bossOn = true;
         fireballs[11].draw();
       }
@@ -642,7 +652,7 @@ void draw()
       lava.draw();
       healthbar.draw();
       health.draw();
-     
+
 
       if (waterBottle.dropOn) {//Shooting
         drops.draw();

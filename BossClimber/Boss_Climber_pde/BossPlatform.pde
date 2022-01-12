@@ -163,9 +163,13 @@ for (int i=0; i<bossfightlava.length; i++) {
     //  rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
     //  rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
     //  rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
-    //}
+
    //for (int i=0; i<bossfightlava.length; i++) {
     bossfightlava[i] = width/muurGetal+(lavaNumber*i);}
+
+    bossfightlava[i] = width/muurGetal+(lavaNumber*i);
+    println(bossfightlava[i]);
+
     if (timer && !lavaTrigger) {
 
       exclamationHeight = 200;
@@ -176,10 +180,16 @@ for (int i=0; i<bossfightlava.length; i++) {
 
       textSize(exclamationSize);
       fill(exclamationR, exclamationGB, exclamationGB);
+
       text("!", bossfightlava[randomNumber]+exclamationNumber, height-exclamationHeight);
       text("!", bossfightlava[randomNumber1]+exclamationNumber, height-exclamationHeight);
       text("!", bossfightlava[randomNumber2]+exclamationNumber, height-exclamationHeight);
       println(bossfightlava[randomNumber]+exclamationNumber);
+
+      text("!", bossfightlava[(int)random(0,width)]+exclamationNumber, height-exclamationHeight);
+      text("!", bossfightlava[(int)random(0,width)]+exclamationNumber, height-exclamationHeight);
+      text("!", bossfightlava[(int)random(0,width)]+exclamationNumber, height-exclamationHeight);
+
 
 
       randomNumberLava = this.randomNumber;

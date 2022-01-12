@@ -29,6 +29,7 @@ class Health {
 
 
   void update() {
+    
     if (!dead) { //As long as the player is alive.
       //regenTimer++;
       if (healthbar.healthPlayer == 100) regen = false;
