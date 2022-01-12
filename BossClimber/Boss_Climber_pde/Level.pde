@@ -3,7 +3,7 @@ class Level {
   float background = 0;
   int NPLATFORM = 4;
   PImage lavaImg;
-  PImage[] lavaSlicedImg;
+  PImage[] lavaSlicedImg = new PImage[11];
 
 
   void setup() {
