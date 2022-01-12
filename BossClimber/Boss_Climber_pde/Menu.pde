@@ -78,9 +78,9 @@ class Menu {
     text("Press B for\n Achievement", placement4.x + size.x/15, placement4.y + size.y/3);
     drawn = true;
 
-     if (keysPressed['B']) {
-      displayAchievement = true;
-    }
+    // if (keysPressed['B']) {
+    //  //displayAchievement = true;
+    //}
 
     if (keysPressed['A']) {
       start = true;
