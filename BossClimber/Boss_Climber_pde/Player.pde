@@ -355,20 +355,20 @@ class Player {
     posPlayer.y += velocity.y;
 
     //Audio
-    if (moveLeft && hasCollision || moveRight && hasCollision) {
-      playSound = true;
-    } else playSound = false;
-    if (file.isPlaying()) {
-      checkSound = true;
-    }
-    if (!file.isPlaying()) {
-      checkSound = false;
-    }
-    if (playSound && !checkSound) {
-      file.play();
-    } else if (!playSound && checkSound) {
-      file.pause();
-    }
+    //if (moveLeft && hasCollision || moveRight && hasCollision) {
+    //  playSound = true;
+    //} else playSound = false;
+    //if (file.isPlaying()) {
+    //  checkSound = true;
+    //}
+    //if (!file.isPlaying()) {
+    //  checkSound = false;
+    //}
+    //if (playSound && !checkSound) {
+    //  file.play();
+    //} else if (!playSound && checkSound) {
+    //  file.pause();
+    //}
   }
 
   void collideWithPlatform()

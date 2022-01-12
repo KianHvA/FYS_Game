@@ -80,6 +80,7 @@ class Menu {
 
     // if (keysPressed['B']) {
     //  //displayAchievement = true;
+    //  displayAchievement = true;
     //}
 
     if (keysPressed['A']) {
