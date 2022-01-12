@@ -66,6 +66,7 @@ int achievementFireballComplete = 1;
 int fireballAchievementCount = 300;
 final int endFireballAchievement = 0;
 int[]bossfightlava = new int[11];
+
 public int endSeeHit = 0;
 public int endSeeScore = 0;
 public int resetSeeScore = 100;

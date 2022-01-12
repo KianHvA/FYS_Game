@@ -15,6 +15,8 @@
 //PVector[] vertexesBossPlatform = new PVector[8];
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
+
+
 float playerPosRect;
 float playerPosReset;
 float background;
@@ -194,11 +196,11 @@ void BossFightLava() {
 
     if (lavaTrigger) {
 
-      LavaY2 = 100;
+      LavaY2 = 200;
 
-      rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
-      rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[10],bossfightlava[10], height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[randomNumberLava1],bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[randomNumberLava2],bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
     }
 
     println("lavaTrigger: " + lavaTrigger);
