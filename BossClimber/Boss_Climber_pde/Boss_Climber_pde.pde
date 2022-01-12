@@ -546,6 +546,10 @@ void draw()
       if (instruction.manual) {//Player reads instructions.
         instruction.updateInstructions();
         instruction.draw();
+        
+         if (achievement.summary) {// Player 
+          achievement.updateAchievements();
+          achievement.draw();
 
         
       if (keysPressed['B']) {
@@ -686,6 +690,7 @@ void draw()
     menu.start = false;
     restartGame();
   }
+}
 }
 
 void keyPressed()
