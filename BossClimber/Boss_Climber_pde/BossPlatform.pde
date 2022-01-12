@@ -21,7 +21,7 @@ float background;
 float xPosRect = 0;
 float xPosRect1 = 1;
 float rectClosingNumber = 100;
-float yPosRect = 100;
+float yPosRect = 50;
 float yPosLava = 10;
 float yPosLava1 = 100;
 boolean bossFightRoom = false;
