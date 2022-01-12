@@ -126,7 +126,7 @@ void setup()
   schild = new Schild();
   Highscore = new HighScore();
   ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
-  ;
+  achievement = new Achievements();
   level.setup();
   scoreHandler.setup();
 
@@ -497,7 +497,7 @@ void update()
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
   if (onceRunSQL) {
-    
+
     onceRunSQL = false;
   }
 }
@@ -542,17 +542,17 @@ void draw()
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-
+      if (keysPressed['B']) {
+        achievement.summary = true;
+      }
       if (instruction.manual) {//Player reads instructions.
         instruction.updateInstructions();
         instruction.draw();
 
-        
-      if (keysPressed['B']) {
-        achievement.summary = true;
-      }
- 
-  
+
+
+
+
         if (keysPressed['S']) {
           instruction.powerExpl = true;
         }
