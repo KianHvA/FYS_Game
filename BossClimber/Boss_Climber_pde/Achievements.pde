@@ -26,6 +26,7 @@ class Achievements {
   int textSize;
   float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize, endExample, endExample2, endExample3X, endExample3Y;
   float positiveSpeed, negativeSpeed;
+  boolean summary = false;
   boolean manual = false;
   boolean powerExpl = false;
   PImage moveL, moveL1, moveR, moveR1, moveUp, equip, equip1, equip2;
