@@ -100,10 +100,10 @@ void setup()
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   music = new Music();
-  file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
-  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
-  mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
-  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  //file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
+  //bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
+  //mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+  //GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
 
   menu = new Menu();
   level = new Level();
