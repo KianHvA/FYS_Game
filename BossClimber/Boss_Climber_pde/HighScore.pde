@@ -173,7 +173,7 @@ class HighScore {
             String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
             myConnection.runQuery(qwery);
             myConnection.runQuery(qwery2);
-            executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')", true);
+            executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
             gameFinished = false;
           }
         }

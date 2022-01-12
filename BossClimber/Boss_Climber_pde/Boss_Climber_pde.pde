@@ -6,6 +6,7 @@ import processing.sound.*;
 //import de.bezier.data.sql.*;
 
 Menu menu;
+Achievements achievement;
 Player player;
 Platform platforms;
 Health health;
@@ -86,9 +87,8 @@ boolean achievementFireball = false;
 boolean achievementQuery = false;
 boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
+boolean extinguishQuery = false;
 SQLConnection myConnection;
-
-
 
 void setup() 
 {
@@ -126,7 +126,7 @@ void setup()
   schild = new Schild();
   Highscore = new HighScore();
   ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
-  ;
+  achievement = new Achievements();
   level.setup();
   scoreHandler.setup();
 
@@ -171,19 +171,14 @@ void setup()
 
   music.setup();
 
-
+  if (platforms.moveAmount == 1) {
+    myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
+  }
 
   /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
    java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
    myConnection.updateQuery(defeatBossQuery);
    }*/
-
-  if (extinguishFireball == achievementFireballComplete) {
-    seeFireballAchievement = true;
-    java.lang.String fireballQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 5 fireballs', 'COMPLETE')";
-    myConnection.updateQuery(fireballQuery);
-    println("Yes");
-  }
   //ParticleSystem.setup();
 }
 
@@ -471,6 +466,10 @@ void update()
   }
   println(extinguishFireball);
 
+  if (extinguishFireball >= achievementFireballComplete) {
+    extinguishQuery = true;
+  }
+
   //Achievement completed!
 
   if (seeFireballAchievement) {
@@ -483,7 +482,6 @@ void update()
   }
 
   if (fireballAchievementCount <= endFireballAchievement) {
-    achievementQuery = false;
     seeFireballAchievement = false;
   }
 
@@ -497,14 +495,14 @@ void update()
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
   if (onceRunSQL) {
-    
+
     onceRunSQL = false;
   }
 }
 
-public void executeSQL(java.lang.String defeatBossQuery, boolean oneGame) {  
+public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
   if (oneGame) {
-    myConnection.updateQuery(defeatBossQuery);
+    myConnection.updateQuery(fireballQuery);
     println("Exicute SQl");
     oneGame = false;
   }
@@ -516,6 +514,7 @@ void restartGame() {//Resets the whole game
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
   menu.kleur = 255;
+  achievement.summary = false;
   instruction.manual = false;
   instruction.powerExpl = false;
   health.amount = 4;
@@ -541,7 +540,13 @@ void draw()
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-
+      if (keysPressed['B']) {
+        achievement.summary = true;
+      }
+      if (achievement.summary) {// Player 
+        //achievement.updateAchievements();
+        //achievement.draw();
+      }
       if (instruction.manual) {//Player reads instructions.
         instruction.updateInstructions();
         instruction.draw();
@@ -679,6 +684,7 @@ void draw()
     menu.start = false;
     restartGame();
   }
+}
 }
 
 void keyPressed()
