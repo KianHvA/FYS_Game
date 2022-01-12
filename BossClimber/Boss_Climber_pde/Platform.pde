@@ -61,7 +61,11 @@ class Platform {
     if (moveAmount == maxMoveAmount) {
       moveAmount = startMoveAmount;
     }
+    if (moveAmount % BOSSROOM_TRIGGER - 1 == 0) {
+    }
     if (moveAmount % BOSSROOM_TRIGGER == 0) {
+      player.posPlayer.y = 10;
+      player.posPlayer.x = width - width / 6;
       drawBossRoom = true;
       //Bossplatform();
       //dragon.bossFight.startFight();
@@ -129,29 +133,29 @@ class Platform {
       }
       if (health.dead) finalMoveAmount = moveAmount;
     }
-    
-    if (seeScoreStage){
+
+    if (seeScoreStage) {
       seeScoreStageCount--;
       fill(255);
       textSize(30);
       text("+ 587", player.posPlayer.x, player.posPlayer.y - 40);
     }
-    
-    if (seeScoreStageCount < 0){
+
+    if (seeScoreStageCount < 0) {
       seeScoreStage = false;
       seeScoreStageCount = 100;
     }
-    
-    if (moveAmount >= 3){
+
+    if (moveAmount >= 3) {
       bossComplete = true;
     }
   }
-  
-   void bossAchievement(){//Achievement boss defeated
-    if (moveAmount == bossDefeated){//Receive achievement when boss is defeated.
+
+  void bossAchievement() {//Achievement boss defeated
+    if (moveAmount == bossDefeated) {//Receive achievement when boss is defeated.
       seeBossAchievement = true;
     }
-    if (seeBossAchievement){
+    if (seeBossAchievement) {
       bossAchievementCount--;
       fill(125);
       rect(achievementX, achievementY, achievementWidth, achievementHeight);
@@ -159,8 +163,8 @@ class Platform {
       textSize(20);
       text("Achievement complete!", achievementTextX, achievementTextY);
     }
-    if (bossAchievementCount <= endBossAchievementCount){
+    if (bossAchievementCount <= endBossAchievementCount) {
       seeBossAchievement = false;
     }
-   }
+  }
 }

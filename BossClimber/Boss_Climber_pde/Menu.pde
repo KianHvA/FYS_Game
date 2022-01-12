@@ -4,7 +4,7 @@
 //Ömer: showing Achievements
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
-  boolean start = false, drawn = false, displayHighscore = false;
+  boolean start = false, drawn = false, displayHighscore = false , displayAchievement = false;
   PVector placement1 = new PVector(width/3 + 50, 250);
   PVector placement2 = new PVector(width/3 + 200, 250);
   PVector placement3 = new PVector(width/2, 250);

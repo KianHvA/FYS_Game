@@ -6,6 +6,7 @@ import processing.sound.*;
 //import de.bezier.data.sql.*;
 
 Menu menu;
+Achievements achievement;
 Player player;
 Platform platforms;
 Health health;
@@ -508,6 +509,7 @@ void restartGame() {//Resets the whole game
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
   menu.kleur = 255;
+  achievement.summary = false;
   instruction.manual = false;
   instruction.powerExpl = false;
   health.amount = 4;
@@ -537,7 +539,17 @@ void draw()
       if (instruction.manual) {//Player reads instructions.
         instruction.updateInstructions();
         instruction.draw();
+        
+         if (achievement.summary) {// Player 
+          achievement.updateAchievements();
+          achievement.draw();
 
+        
+      if (keysPressed['B']) {
+        achievement.summary = true;
+      }
+ 
+  
         if (keysPressed['S']) {
           instruction.powerExpl = true;
         }
@@ -671,6 +683,7 @@ void draw()
     menu.start = false;
     restartGame();
   }
+}
 }
 
 void keyPressed()
