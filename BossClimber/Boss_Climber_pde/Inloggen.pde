@@ -158,12 +158,14 @@ class Inloggen {
       }
       if (loggedIn) {
         String queryForNameUser = "SELECT name FROM User where name = '"+ userName +"';";
+        //String queryTimesPlayed = "DECLARE @IncrementValue int SET @IncrementValue = 1 UPDATE User SET timesPlayed = timesPlayed + @IncrementValue";
         Table NameTable = myConnection.runQuery(queryForNameUser);
         if (NameTable.getRowCount() == 0) {
           println("no name found");
           myConnection.updateQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
         } else {
           println("name found");
+          
         }
         //String query = "SELECT name FROM User where name = '"+ userName +"';";
         //Table databaseTable = myConnection.runQuery(query);

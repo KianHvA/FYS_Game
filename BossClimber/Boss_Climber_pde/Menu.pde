@@ -107,8 +107,8 @@ class Menu {
     String highscore;
     String query = "SELECT * FROM Highscore order by score desc limit 10;";
     Table databaseTable = myConnection.runQuery(query);
-    String[] scores = databaseTable.getStringColumn(0);
-    String[] names = databaseTable.getStringColumn(1);
+    String[] scores = databaseTable.getStringColumn(1);
+    String[] names = databaseTable.getStringColumn(2);
     String[] dates = databaseTable.getStringColumn(3);
     
     fill(125);
