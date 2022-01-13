@@ -21,7 +21,7 @@ class Inloggen {
   boolean keyUp = false; //To check if arrow Up is pressed.
   boolean keyDown = false; //To check if arrow Down is pressed.
   boolean select = false; //To check if the player selects that letter.
-  String finalName = "12345"; //The final name when the player is done
+  String userName = "12345"; //The final name when the player is done
   String Name = "What is your username?";
   String Press = "Press B to continue."; //Need to change later
   color userNameText = (#FFFFFF); //#FFFFFF = white.
@@ -148,7 +148,7 @@ class Inloggen {
 
       //If the letter is at max the final name gets made.
       if (j >= 5) {
-        finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
+        userName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
         loggedIn = true;
         //ending = true;//Ending screen!
         //if (j >= 5) {
