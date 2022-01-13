@@ -175,9 +175,9 @@ void setup()
 
   music.setup();
 
-  if (platforms.moveAmount == 1) {
-    myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
-  }
+  //if (platforms.moveAmount == 1) {
+    //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
+  //}
 
   /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
    java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
@@ -490,6 +490,11 @@ void update()
     seeFireballAchievement = false;
     begin = false;
   }
+  
+  //Boss fight query
+  if (bossFightRoom){
+    challenge.dragonQuery = true;
+  }
 
   player.movementUpdate();
   spawnPointsPUPS.update();
@@ -505,6 +510,8 @@ void update()
     onceRunSQL = false;
   }
   challenge.fireballQuery();
+  challenge.reachBossQuery();
+  challenge.playGameQuery();
 }
 
 //Extinguish fireballs achievement
