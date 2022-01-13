@@ -55,6 +55,9 @@ class HighScore {
           Table compare = myConnection.runQuery(qweryS);
           //for (int i = 0; i < compare.getStringColumn(0).length; i++) {
           int[] score = new int[compare.getStringColumn(0).length];
+          
+          //SELECT * FROM Highscore where name = 'CCCCC';
+          
           score = compare.getIntColumn(0);
           if (scoreHandler.finalScore < score[0]) {
             highScore = false;
