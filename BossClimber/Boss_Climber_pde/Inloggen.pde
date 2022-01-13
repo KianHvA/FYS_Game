@@ -144,16 +144,16 @@ class Inloggen {
           select = false;
         }
 
-        ////If the letter is at max the final name gets made.
-        //if (j >= 5) {
-        //  finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
-        //  delay(100);
-        //  ending = true;//Ending screen!
-        //  if (j >= 5) {
-        //    finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+        //If the letter is at max the final name gets made.
+        if (j >= 5) {
+          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
+          delay(100);
+          //ending = true;//Ending screen!
+          if (j >= 5) {
+            finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
         //    gameFinished = true;
-        //  }
-        //}
+          }
+        }
     }
   }
   
