@@ -88,6 +88,7 @@ boolean achievementQuery = false;
 boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
 boolean extinguishQuery = false;
+boolean begin = true;
 SQLConnection myConnection;
 
 void setup() 
@@ -439,14 +440,14 @@ void update()
     spawnCountDrop--;
   }
 
-  if (waterBottle.dropOn) {//When shooting the druppel.
+  if (waterBottle.dropOn) {//When shooting the drop.
     drops.dropUpdate();
     waterBottle.pickedUp = false;
     dragon.waterFles = false;
     cooldown = resetCoolDown;
   }
 
-  if (drops.posPlayer.y <= endDrop || drops.hasCollision) {//Druppel off screen or hits dragon:
+  if (drops.posPlayer.y <= endDrop || drops.hasCollision) {//Drop off screen or hits dragon:
     waterBottle.dropOn = false;
     waterBottle.resetWaterBottle();
   }
@@ -468,11 +469,11 @@ void update()
 
   if (extinguishFireball >= achievementFireballComplete) {
     extinguishQuery = true;
+    seeFireballAchievement = true;
   }
 
-  //Achievement completed!
-
-  if (seeFireballAchievement) {
+  //Player sees achievement complete
+  if (seeFireballAchievement && begin) {
     fireballAchievementCount--;
     fill(125);
     rect(platforms.achievementX, platforms.achievementY, platforms.achievementWidth, platforms.achievementHeight);
@@ -480,9 +481,11 @@ void update()
     fill(255);
     text("Achievement complete!", platforms.achievementTextX, platforms.achievementTextY);
   }
-
+  
+  //Achievement Complete announcement is over.
   if (fireballAchievementCount <= endFireballAchievement) {
     seeFireballAchievement = false;
+    begin = false;
   }
 
   player.movementUpdate();
@@ -500,6 +503,7 @@ void update()
   }
 }
 
+//Extinguish fireballs achievement
 public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
   if (oneGame) {
     myConnection.updateQuery(fireballQuery);
@@ -685,7 +689,7 @@ void draw()
     restartGame();
   }
 }
-}
+//}
 
 void keyPressed()
 {
