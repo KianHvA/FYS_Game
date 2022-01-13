@@ -90,6 +90,7 @@ boolean achievementQuery = false;
 boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
 boolean begin = true;
+boolean showAchievement = false;
 SQLConnection myConnection;
 
 void setup() 
@@ -564,9 +565,18 @@ void draw() {
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-      if (keysPressed['B']) {
-        achievement.summary = true;
+      
+      if (keysPressed['V']) {
+        showAchievement = true;
       }
+      
+      if (showAchievement){
+        background(0);
+        textSize(50);
+        text("Challenges", 400, 100);
+        challenge.showChallenges();
+      }
+      
       if (achievement.summary) {// Player 
         //achievement.updateAchievements();
         //achievement.draw();
