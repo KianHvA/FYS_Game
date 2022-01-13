@@ -210,7 +210,6 @@ class HighScore {
         text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - 75, y);
         fill(flash[4]);
         text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
-        challenge.gamePlayed = true;
         deadScreenScore();
       }
       drawn = true;
