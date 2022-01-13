@@ -32,16 +32,17 @@ class Challenge{
   
   void showChallenges(){
     String achievement;
-    String challenges = "SELECT description, difficulty AS complete FROM Achievement LIMIT 3;";
+    String challenges = "SELECT DISTINCT description, difficulty FROM Achievement";
     Table databaseTable = myConnection.runQuery(challenges);
-    String[] descriptions = databaseTable.getStringColumn(0);
-    String[] complete = databaseTable.getStringColumn(1);
+    //String[] descriptions = databaseTable.getStringColumn(0);
+    //String[] complete = databaseTable.getStringColumn(1);
     
-    for (int i = 0; i < descriptions.length; i++) {
-      achievement = descriptions[i] + ": " + complete[i];
-      textSize(20);
+    for (int i = 0; i < databaseTable.getStringColumn(0).length; i++) {
+      achievement = databaseTable.getStringColumn(0)[i] + ": " + databaseTable.getStringColumn(1)[i];
+      textSize(30);
       
-      text(achievement, width/2, height/2 - 100 + i * 20);
+      text(achievement, 250, height/2 - 100 + i * 20);
     }
+    //println(databaseTable.getStringColumn(0)[0]);
   }
 }
