@@ -35,6 +35,8 @@ class HighScore {
   boolean getTable = false;
   boolean gameFinished2 = true;
   int idFix = 0;
+  boolean highScore = false;
+  boolean same = false;
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -51,8 +53,21 @@ class HighScore {
         String qwery = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
         String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
         myConnection.updateQuery(qwery);
-        //myConnection.updateQuery(qwery2);
+        myConnection.updateQuery(qwery2);
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
+        String qweryS = "SELECT score FROM Highscore  where score <> 2147483647 order by score desc;";
+        Table compare = myConnection.runQuery(qweryS);
+        //for (int i = 0; i < compare.getStringColumn(0).length; i++) {
+        int[] score = new int[compare.getStringColumn(0).length];
+        score = compare.getIntColumn(0);
+        if (scoreHandler.finalScore < score[0]) {
+          highScore = false;
+        } else if (scoreHandler.finalScore == score[0]) {
+          same = true;
+        } else if (scoreHandler.finalScore > score[0]) {
+          highScore = true;
+        }
+        //}
         gameFinished2 = false;
       }
     }
