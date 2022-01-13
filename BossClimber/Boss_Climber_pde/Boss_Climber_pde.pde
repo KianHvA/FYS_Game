@@ -684,7 +684,7 @@ void draw() {
       //teken alle UI hier zodat het op de voorgrond komt
       scoreHandler.draw();
       inventory.draw();
-      //Highscore.draw();
+      Highscore.draw();
 
       //game overscherm
       //healthbar.draw();

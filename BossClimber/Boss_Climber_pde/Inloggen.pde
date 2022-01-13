@@ -23,7 +23,7 @@ class Inloggen {
   boolean select = false; //To check if the player selects that letter.
   String userName = "12345"; //The final name when the player is done
   String Name = "What is your username?";
-  String Press = "Press B to continue."; //Need to change later
+  String Press = "Press B for next."; //Need to change later
   color userNameText = (#FFFFFF); //#FFFFFF = white.
   boolean loggedIn = false;
 

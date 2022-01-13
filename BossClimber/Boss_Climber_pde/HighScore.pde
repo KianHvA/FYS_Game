@@ -75,7 +75,15 @@ class HighScore {
       amountGamePlayed = "Game played total ";
     }
     if (health.dead) {
-      deadScreenScore();
+      imageMode(CORNER);
+      image(backgroundDead, 0, 0);
+      textMode(CENTER);
+      fill(endText);
+      textSize(textSize);
+      text(end, 400, 150);
+      text(finalScore + scoreHandler.finalScore, 400, 225);
+      challenge.gamePlayed = true;
+      //deadScreenScore();
     }
     drawn = true;
   }
