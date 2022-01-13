@@ -198,7 +198,7 @@ class HighScore {
       text(end, 400, 150);
       text(finalScore + scoreHandler.finalScore, 400, 225);
       challenge.gamePlayed = true;
-      //deadScreenScore();
+      deadScreenScore();
       drawn = true;
     }
   }
@@ -208,7 +208,7 @@ class HighScore {
     if (getTable) {
       String query = "SELECT id FROM Highscore where score <> 2147483647 order by score desc;";
       Table databaseTable = myConnection.runQuery(query);
-      int id = databaseTable.getStringColumn(1).length;
+      int id = databaseTable.getStringColumn(0).length;
       idFix = id;
       //Table id = myConnection.getColumn("Highscore", "id");
       //idFix = id;
