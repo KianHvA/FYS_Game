@@ -24,7 +24,7 @@ class Challenge {
 
   void playGameQuery() {
     if (gamePlayed && inDatabase3) {
-      myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
+      myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE!')");
       gamePlayed = false;
       inDatabase3 = false;
     }
@@ -41,7 +41,7 @@ class Challenge {
       achievement = databaseTable.getStringColumn(0)[i] + ": " + databaseTable.getStringColumn(1)[i];
       textSize(30);
 
-      text(achievement, 250, height/2 - 100 + i * 20);
+      text(achievement, 250, height/2 - 100 + i * 40);
     }
   }
 }
