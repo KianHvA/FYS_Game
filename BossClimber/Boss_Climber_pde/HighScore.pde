@@ -49,8 +49,8 @@ class HighScore {
         String date = year + "-" + month + "-" + day;
         String qwery = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
         String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
-        myConnection.runQuery(qwery);
-        myConnection.runQuery(qwery2);
+        myConnection.updateQuery(qwery);
+        //myConnection.updateQuery(qwery2);
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
         gameFinished = false;
       }
