@@ -685,7 +685,7 @@ void draw()
     restartGame();
   }
 }
-}
+
 
 void keyPressed()
 {
