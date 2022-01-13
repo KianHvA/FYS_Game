@@ -8,7 +8,7 @@ class Challenge{
   
   void fireballQuery(){
     if (extinguishQuery && inDatabase){
-      myConnection.updateQuery("INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')");
+      myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')");
       extinguishQuery = false;
       inDatabase = false;
     }
@@ -16,7 +16,7 @@ class Challenge{
   
   void reachBossQuery(){
     if (dragonQuery && inDatabase2){
-      myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Reach the boss fight', 'COMPLETE!')");
+      myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Reach the boss fight', 'COMPLETE!')");
       dragonQuery = false;
       inDatabase2 = false;
     }
@@ -24,7 +24,7 @@ class Challenge{
   
   void playGameQuery(){
     if (gamePlayed && inDatabase3){
-      myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
+      myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
       gamePlayed = false;
       inDatabase3 = false;
     }

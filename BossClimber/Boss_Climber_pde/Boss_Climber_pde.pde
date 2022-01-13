@@ -490,12 +490,19 @@ void update()
     seeFireballAchievement = false;
     begin = false;
   }
-  
-  //Boss fight query
+ 
+  //Achievement in boss room
   if (bossFightRoom){
     challenge.dragonQuery = true;
   }
-
+  
+  //Achievement in game
+  if (platforms.moveAmount >= 1){
+    challenge.gamePlayed = true;
+  }
+  
+  println(challenge.dragonQuery);
+  //println(challenge.dragonQuery);
   player.movementUpdate();
   spawnPointsPUPS.update();
   platforms.bossAchievement();
