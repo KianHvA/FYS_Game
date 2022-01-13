@@ -66,7 +66,7 @@ class HighScore {
           oneTimeRun = false;
         }
         if (highScore) {
-          String update = "UPDATE Highscore SET score = 1000 WHERE name = '" + inloggen.userName + "';";
+          String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "';";
           myConnection.updateQuery(update);
           showHighScore = true;
           highScore = false;
