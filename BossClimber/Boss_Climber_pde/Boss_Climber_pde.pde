@@ -469,7 +469,7 @@ void update()
     extinguishFireball++;
     achievementFireball = false;
   }
-  println(extinguishFireball);
+  //println(extinguishFireball);
 
   if (extinguishFireball >= achievementFireballComplete) {
     challenge.extinguishQuery = true;
@@ -502,7 +502,7 @@ void update()
     challenge.gamePlayed = true;
   }
   
-  println(challenge.dragonQuery);
+  //println(challenge.dragonQuery);
   //println(challenge.dragonQuery);
   player.movementUpdate();
   spawnPointsPUPS.update();
