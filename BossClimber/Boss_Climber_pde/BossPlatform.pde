@@ -16,9 +16,8 @@
 //int newX1, newX2, newRW, newRH, newRY, newQX1, newQH, newQH2;
 //int levelMove = 0;
 
-
-float playerPosRect;
-float playerPosReset;
+float playerPosRect = 15;
+float playerPosReset = 40;
 float background;
 float xPosRect = 0;
 float xPosRect1 = 1;
@@ -28,6 +27,7 @@ float yPosLava = 10;
 float yPosLava1 = 100;
 boolean bossFightRoom = false;
 int lavaNumber = 78;
+int lavaCenter = 39;
 int randomNumber = 0;
 int randomNumber1= 1;
 int randomNumber2 = 2;
@@ -40,21 +40,25 @@ boolean timer = false;
 boolean timer2 = false;
 boolean timer3 = false;
 
-int lavaY = 100;
+int lavaY = 0;
 boolean lavaTrigger = false;
 int randomNumberLava;
 int randomNumberLava1;
 int randomNumberLava2;
 int minLava=0;
 int maxLava=10;
+int maxLavaLength = 100;
 float greyColor = 147;
 int muurGetal = 12;
-float exclamationHeight;
-float exclamationNumber;
-float exclamationSize;
-float exclamationR;
-float exclamationGB;
-float LavaY2;
+float exclamationHeight = 200;
+float exclamationNumber = 8;
+float exclamationSize = 200;
+float exclamationR = 255;
+float exclamationGB = 0;
+float LavaY2 = 200;
+float lavaImgHeight = 55;
+boolean lavaUp = false;
+boolean lavaDown = false;
 
 
 void Bossplatform() {
@@ -94,8 +98,7 @@ void Bossplatform() {
     platforms.vertexesR[i+3] = new PVector(xPosRect1, height);
     platforms.vertexesR[i+4] = new PVector(xPosRect, height-yPosRect);
   }
-  playerPosRect = 15;
-  playerPosReset = 40;
+
   if (player.posPlayer.y>height-playerPosRect && bossFightRoom)
   {
     player.posPlayer.y=height-playerPosReset;
@@ -116,7 +119,7 @@ void BossFightLava() {
       timer2 = false;
       timer3 = false;
       savedTime = 0;
-      
+
       randomNumber = int(random(minLava, maxLava));
 
       randomNumber1 = int(random(minLava, maxLava));
@@ -171,40 +174,58 @@ void BossFightLava() {
     //for (int i=0; i<bossfightlava.length; i++) {
 
     bossfightlava[i] = width/muurGetal+(lavaNumber*i);
-    println(bossfightlava[i]);
+    //println(bossfightlava[i]);
+
 
     if (timer && !lavaTrigger) {
-
-      exclamationHeight = 200;
-      exclamationNumber = 8;
-      exclamationSize = 200;
-      exclamationR = 255;
-      exclamationGB = 0;
 
       textSize(exclamationSize);
       fill(exclamationR, exclamationGB, exclamationGB);
 
-      text("!", bossfightlava[randomNumber]+exclamationNumber, height-exclamationHeight);
-      text("!", bossfightlava[randomNumber1]+exclamationNumber, height-exclamationHeight);
-      text("!", bossfightlava[randomNumber2]+exclamationNumber, height-exclamationHeight);
+      text("!", bossfightlava[randomNumber]+lavaCenter, height-exclamationHeight);
+      text("!", bossfightlava[randomNumber1]+lavaCenter, height-exclamationHeight);
+      text("!", bossfightlava[randomNumber2]+lavaCenter, height-exclamationHeight);
       println(bossfightlava[randomNumber]+exclamationNumber);
+
 
       randomNumberLava = this.randomNumber;
       randomNumberLava1 = this.randomNumber1;
       randomNumberLava2 = this.randomNumber2;
+      lavaY = 0;
+      lavaUp = true;
+      lavaDown = false;
+    }
+    for (int j = 0; j<level.lavaSlicedImg.length; j++) {
+      image(level.lavaSlicedImg[j], bossfightlava[j]+lavaCenter, height+lavaImgHeight, lavaNumber, LavaY2);
     }
 
     if (lavaTrigger) {
 
-      LavaY2 = 200;
 
-      image(level.lavaSlicedImg[10],bossfightlava[10], height-lavaY, lavaNumber, LavaY2);
-      image(level.lavaSlicedImg[randomNumberLava1],bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
-      image(level.lavaSlicedImg[randomNumberLava2],bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[randomNumberLava], bossfightlava[randomNumberLava]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[randomNumberLava1], bossfightlava[randomNumberLava1]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
+      image(level.lavaSlicedImg[randomNumberLava2], bossfightlava[randomNumberLava2]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
+      if (lavaUp) {
+        if (lavaY<=maxLavaLength) {
+          lavaY++;
+        }
+        if (lavaY==maxLavaLength) {
+          lavaUp = false;
+          lavaDown = true;
+        }
+      }
+      if (lavaDown) {
+        lavaY--;
+      }
     }
 
     println("lavaTrigger: " + lavaTrigger);
+    //line(bossfightlava[randomNumber]+lavaCenter,0,bossfightlava[randomNumber]+lavaCenter,height);
   }
+  //for (int i = 0; i<level.lavaSlicedImg.length; i++) {
+  //     image(level.lavaSlicedImg[i],bossfightlava[i]+lavaCenter, height+55, lavaNumber, LavaY2);
+
+  //   }
 }
 
 //if(bossFightRoom){

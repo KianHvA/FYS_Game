@@ -26,6 +26,9 @@ class Level {
     platforms.draw();
   }
   void draw() {
+   
+     
+    
     if (On) {
       platforms.draw();
     }
