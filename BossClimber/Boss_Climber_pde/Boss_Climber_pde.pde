@@ -33,6 +33,7 @@ SoundFile file;
 SoundFile bossFightMusic1;
 SoundFile mainMenuMusic1;
 SoundFile GameMusic1;
+Inloggen inloggen;
 int cooldown = 100;
 int fireballCount = 1200;
 int bossFireballCount = 1200;
@@ -113,7 +114,7 @@ void setup()
   level = new Level();
   player = new Player();
   platforms = new Platform();
-
+  inloggen = new Inloggen();
   lava = new Lava();
   health = new Health();
   healthbar = new HealthBar(width/8, height - 20, 250, 10);
@@ -151,6 +152,7 @@ void setup()
   inventory.setup();
   player.setup();
   Highscore.setup();
+  inloggen.setup();
 
 
   fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
@@ -515,7 +517,7 @@ void update()
 }*/
 void restartGame() {//Resets the whole game
   scoreHandler.score = 0;
-  Highscore.j = 0;
+  inloggen.j = 0;
   platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
@@ -532,12 +534,15 @@ void restartGame() {//Resets the whole game
 void draw()
 {
   background(0);
+  if (!inloggen.loggedIn) {
+    inloggen.draw();
+    inloggen.update();
+  }
 
-  textSize(40);
-  text("Press Y to go to the title screen", width/2, height/2);
-
-  if (Highscore.ending == false) {
-    if (menu.start == false) {
+  if (!Highscore.ending && inloggen.loggedIn) {
+    textSize(40);
+    text("Press Y to go to the title screen", width/4, height/4);
+    if (!menu.start) {
       music.menuMusic();
       background(0);
       level.draw();
@@ -685,8 +690,8 @@ void draw()
 
   if (Highscore.ending && keysPressed['D']) {
     health.dead = false;
-    Highscore.drawn = false;
-    Highscore.ending = false;
+    //Highscore.drawn = false;
+    //Highscore.ending = false;
     menu.start = false;
     restartGame();
   }
