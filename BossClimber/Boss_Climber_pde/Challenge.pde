@@ -42,14 +42,6 @@ class Challenge {
       textSize(30);
 
       text(achievement, 250, height/2 - 100 + i * 20);
-      String[] descriptions = databaseTable.getStringColumn(0);
-      String[] complete = databaseTable.getStringColumn(1);
-      for (int i = 0; i < descriptions.length; i++) {
-        achievement = descriptions[i] + ": " + complete[i];
-        textSize(20);
-
-        text(achievement, width/2, height/2 - 100 + i * 20);
-      }
-      //println(databaseTable.getStringColumn(0)[0]);
     }
   }
+}
