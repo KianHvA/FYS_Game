@@ -98,7 +98,7 @@ class Inloggen {
   }
 
   void update() {
-    if (keysPressed['A']) {
+    if (keysPressed['Q']) {
       loggedIn = true; 
     }
     constrain(j, 0, nameLength); //Max length of the name.
