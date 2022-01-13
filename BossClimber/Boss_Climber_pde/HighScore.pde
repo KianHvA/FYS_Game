@@ -41,29 +41,27 @@ class HighScore {
 
   void update() {
 
-        //If the letter is at max the final name gets made.
-        if (j >= 5) {
-          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
-          delay(100);
-          ending = true;//Ending screen!
-          if (j >= 5) {
-            finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
-            gameFinished = true;
-          }
+    //If the letter is at max the final name gets made.
+    if (j >= 5) {
+      finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
+      delay(100);
+      ending = true;//Ending screen!
+      if (j >= 5) {
+        finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+        gameFinished = true;
+      }
 
-          if (gameFinished) {
-            int day = day();
-            int month = month();
-            int year = year();
-            String date = year + "-" + month + "-" + day;
-            String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled, date) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ", " + date + ");";
-            String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
-            myConnection.runQuery(qwery);
-            myConnection.runQuery(qwery2);
-            //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
-            gameFinished = false;
-          }
-        }
+      if (gameFinished) {
+        int day = day();
+        int month = month();
+        int year = year();
+        String date = year + "-" + month + "-" + day;
+        String qwery = "INSERT INTO Highscore (score, name, jumpAmount, amountWalked, bossKilled, date) VALUES (" + scoreHandler.finalScore + ", '" + finalName + "',"  + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + dragon.fightAmount + ", " + date + ");";
+        String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
+        myConnection.runQuery(qwery);
+        myConnection.runQuery(qwery2);
+        //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
+        gameFinished = false;
       }
     }
   }
@@ -77,9 +75,9 @@ class HighScore {
       amountGamePlayed = "Game played total ";
     }
     if (health.dead) {
-        deadScreenScore();
-      }
-      drawn = true;  
+      deadScreenScore();
+    }
+    drawn = true;
   }
 
   void deadScreenScore() {
