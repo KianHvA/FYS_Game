@@ -165,6 +165,14 @@ class Inloggen {
         } else {
           println("name found");
         }
+        //String query = "SELECT name FROM User where name = '"+ userName +"';";
+        //Table databaseTable = myConnection.runQuery(query);
+        //if (databaseTable.getRowCount() == 0) {
+        //  println("no name found");
+        //  myConnection.runQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
+        //} else {
+        //  println("name found");
+        //}
       }
     }
   }
