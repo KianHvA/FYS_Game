@@ -98,6 +98,9 @@ class Inloggen {
   }
 
   void update() {
+    if (keysPressed['A']) {
+      loggedIn = true; 
+    }
     constrain(j, 0, nameLength); //Max length of the name.
     if (k > 62) {
       k = 0;
@@ -106,8 +109,6 @@ class Inloggen {
     if (k < 0) {
       k = 62;
     }
-
-    if (health.dead) {
       nameDef[j] = nameSelector[k]; //When k changes the letter that the player is at changes.
       if (drawn) {
         //If the up arrow is pressed the letter goes up.
@@ -153,19 +154,16 @@ class Inloggen {
         //    gameFinished = true;
         //  }
         //}
-      }
     }
   }
   
   void draw() {
-   
-    if (health.dead) {
       imageMode(CORNER);
       image(Highscore.backgroundDead, 0, 0);
       textMode(CENTER);
       fill(userNameText);
       textSize(textSize);
-      text(Name, 400, 150);
+      text(Name, 125, 225);
       //text(finalScore + scoreHandler.finalScore, 400, 225);
       for (int i = 0; i < nameLength; i++) {
         textSize(textSize*0.75);
@@ -182,7 +180,6 @@ class Inloggen {
         text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
       }
       drawn = true;
-    }
 
     if (drawn) {
       if (!filledIn[j]) {
