@@ -79,10 +79,10 @@ class HighScore {
         println(date);
         //Querrys for inserting and updates
         //String UpdateHighscore = "UPDATE Highscore SET score = "+ scoreHandler.finalScore +" WHERE name = '"+ inloggen.userName +"';";
-        //String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
+        String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
         String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
 
-        //myConnection.updateQuery(insertHighscrore);
+        myConnection.updateQuery(insertHighscrore);
         myConnection.updateQuery(qwery2);
 
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
@@ -112,7 +112,7 @@ class HighScore {
       text(finalScore + scoreHandler.finalScore, 400, 225);
       if (showHighScore) {
         textMode(CENTER);
-        text(newHighScore, width/2, 100);
+        text(newHighScore, width/2, height/2);
       }
       challenge.gamePlayed = true;
       deadScreenScore();
