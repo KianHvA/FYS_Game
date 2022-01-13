@@ -50,6 +50,10 @@ class HighScore {
       gameFinished = true;
 
       if (gameFinished && gameFinished2) {
+        int day = day();
+        int month = month();
+        int year = year();
+        String date = "'" + day + "/" + month + "/" + year + "'";
         if (oneTimeRun) {
           String qweryS = "SELECT score FROM Highscore  where score <> 2147483647 order by score desc;";
           Table compare = myConnection.runQuery(qweryS);
@@ -69,16 +73,12 @@ class HighScore {
           oneTimeRun = false;
         }
         if (highScore) {
-          String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "';";
+          String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
           myConnection.updateQuery(update);
           showHighScore = true;
           highScore = false;
         }
         //}
-        int day = day();
-        int month = month();
-        int year = year();
-        String date = "'" + day + "/" + month + "/" + year + "'";
         println(date);
         //Querrys for inserting and updates
         //String UpdateHighscore = "UPDATE Highscore SET score = "+ scoreHandler.finalScore +" WHERE name = '"+ inloggen.userName +"';";
