@@ -28,6 +28,7 @@ SpawnPointsPUPS spawnPointsPUPS;
 Lava lava;
 ParticleSystem ps;
 Music music;
+Challenge challenge;
 SoundFile file;
 SoundFile bossFightMusic1;
 SoundFile mainMenuMusic1;
@@ -87,7 +88,6 @@ boolean achievementFireball = false;
 boolean achievementQuery = false;
 boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
-boolean extinguishQuery = false;
 boolean begin = true;
 SQLConnection myConnection;
 
@@ -128,6 +128,7 @@ void setup()
   Highscore = new HighScore();
   ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
   achievement = new Achievements();
+  challenge = new Challenge();
   level.setup();
   scoreHandler.setup();
 
@@ -468,7 +469,7 @@ void update()
   println(extinguishFireball);
 
   if (extinguishFireball >= achievementFireballComplete) {
-    extinguishQuery = true;
+    challenge.extinguishQuery = true;
     seeFireballAchievement = true;
   }
 
@@ -501,16 +502,17 @@ void update()
 
     onceRunSQL = false;
   }
+  challenge.fireballQuery();
 }
 
 //Extinguish fireballs achievement
-public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
+/*public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
   if (oneGame) {
     myConnection.updateQuery(fireballQuery);
     println("Exicute SQl");
     oneGame = false;
   }
-}
+}*/
 void restartGame() {//Resets the whole game
   scoreHandler.score = 0;
   Highscore.j = 0;
