@@ -545,8 +545,7 @@ void restartGame() {//Resets the whole game
   health.amount2 = false;
 }
 
-void draw()
-{
+void draw() {
   background(0);
   if (!inloggen.loggedIn) {
     inloggen.draw();
@@ -692,7 +691,7 @@ void draw()
       //teken alle UI hier zodat het op de voorgrond komt
       scoreHandler.draw();
       inventory.draw();
-      Highscore.draw();
+      //Highscore.draw();
 
       //game overscherm
       //healthbar.draw();
@@ -712,14 +711,12 @@ void draw()
 }
 //}
 
-void keyPressed()
-{
+void keyPressed() {
   //we hebben een toets ingedrukt.
   keysPressed[keyCode] = true;
 }
 
-void keyReleased()
-{
+void keyReleased() {
   //we hebben een toets losgelaten.
   keysPressed[keyCode] = false;
 }
