@@ -23,7 +23,7 @@ class Inloggen {
   boolean select = false; //To check if the player selects that letter.
   String finalName = "12345"; //The final name when the player is done
   String Name = "What is your username?";
-  //String
+  String Press = "Press B to continue."; //Need to change later
   color userNameText = (#FFFFFF); //#FFFFFF = white.
   boolean loggedIn = false;
 
@@ -102,6 +102,7 @@ class Inloggen {
     if (keysPressed['Q']) {
       loggedIn = true;
     }
+    
     constrain(j, 0, nameLength); //Max length of the name.
     if (k > 62) {
       k = 0;
@@ -135,7 +136,7 @@ class Inloggen {
       }
 
       //If the a button is pressed the letter gets set.
-      if (keysPressed['A'] && !keyDown && !keyUp && !select) {
+      if (keysPressed['B'] && !keyDown && !keyUp && !select) {
         select = true;
       }
 
@@ -148,12 +149,12 @@ class Inloggen {
       //If the letter is at max the final name gets made.
       if (j >= 5) {
         finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
-        delay(100);
+        loggedIn = true;
         //ending = true;//Ending screen!
-        if (j >= 5) {
-          finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
-          //gameFinished = true;
-        }
+        //if (j >= 5) {
+        //  finalName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4] /*+ nameDef[5] + nameDef[6] + nameDef[7] + nameDef[8] + nameDef[9]*/;
+        //  //gameFinished = true;
+        //}
       }
     }
   }
@@ -165,7 +166,7 @@ class Inloggen {
     fill(userNameText);
     textSize(textSize);
     text(Name, 125, 225);
-    //text(finalScore + scoreHandler.finalScore, 400, 225);
+    text(Press /*+ scoreHandler.finalScore*/, 200, 506);
     for (int i = 0; i < nameLength; i++) {
       
       textSize(textSize*0.75);
