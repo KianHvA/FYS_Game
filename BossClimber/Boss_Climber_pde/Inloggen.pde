@@ -190,7 +190,7 @@ class Inloggen {
         fill(#FFFFFF);
         pushMatrix();
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 110, y + 50);
+        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 110 + textWidth('X'), y + 50);
         rotate(angle1);
         text("^", 0, 0);
         popMatrix();
