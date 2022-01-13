@@ -36,7 +36,10 @@ class HighScore {
   boolean gameFinished2 = true;
   int idFix = 0;
   boolean highScore = false;
+  boolean showHighScore = false;
   boolean same = false;
+  boolean oneTimeRun = true;
+  String newHighScore = "New Highscore";
 
   void setup() {
     backgroundDead = loadImage("tijdelijke achtergrond zodat Tristan kan testen met dingen.png"); //Loading picture.
@@ -45,8 +48,30 @@ class HighScore {
   void update() {
     if (health.dead) {
       gameFinished = true;
-      
+
       if (gameFinished && gameFinished2) {
+        if (oneTimeRun) {
+          String qweryS = "SELECT score FROM Highscore  where score <> 2147483647 order by score desc;";
+          Table compare = myConnection.runQuery(qweryS);
+          //for (int i = 0; i < compare.getStringColumn(0).length; i++) {
+          int[] score = new int[compare.getStringColumn(0).length];
+          score = compare.getIntColumn(0);
+          if (scoreHandler.finalScore < score[0]) {
+            highScore = false;
+          } else if (scoreHandler.finalScore == score[0]) {
+            same = true;
+          } else if (scoreHandler.finalScore > score[0]) {
+            highScore = true;
+          }
+          oneTimeRun = false;
+        }
+        if (highScore) {
+          String update = "UPDATE Highscore SET score = 1000 WHERE name = 'MARKO';";
+          myConnection.updateQuery(update);
+          showHighScore = true;
+          highScore = false;
+        }
+        //}
         int day = day();
         int month = month();
         int year = year();
@@ -54,29 +79,16 @@ class HighScore {
         println(date);
         //Querrys for inserting and updates
         //String UpdateHighscore = "UPDATE Highscore SET score = "+ scoreHandler.finalScore +" WHERE name = '"+ inloggen.userName +"';";
-        String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
+        //String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
         String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
 
-        myConnection.updateQuery(insertHighscrore);
+        //myConnection.updateQuery(insertHighscrore);
         myConnection.updateQuery(qwery2);
-        
+
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
-        String qweryS = "SELECT score FROM Highscore  where score <> 2147483647 order by score desc;";
-        Table compare = myConnection.runQuery(qweryS);
-        //for (int i = 0; i < compare.getStringColumn(0).length; i++) {
-        int[] score = new int[compare.getStringColumn(0).length];
-        score = compare.getIntColumn(0);
-        if (scoreHandler.finalScore < score[0]) {
-          highScore = false;
-        } else if (scoreHandler.finalScore == score[0]) {
-          same = true;
-        } else if (scoreHandler.finalScore > score[0]) {
-          highScore = true;
-        }
-        //}
         //Querrys for 
-        myConnection.updateQuery(insertHighscrore);
-        myConnection.updateQuery(qwery2);
+        //myConnection.updateQuery(insertHighscrore);
+        //myConnection.updateQuery(qwery2);
         gameFinished2 = false;
       }
     }
@@ -98,6 +110,10 @@ class HighScore {
       textSize(textSize);
       text(end, 400, 150);
       text(finalScore + scoreHandler.finalScore, 400, 225);
+      if (showHighScore) {
+        textMode(CENTER);
+        text(newHighScore, width/2, 100);
+      }
       challenge.gamePlayed = true;
       deadScreenScore();
       drawn = true;
