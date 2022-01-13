@@ -33,6 +33,7 @@ class HighScore {
   String amountGamePlayed;
   boolean gameFinished = false;
   boolean getTable = false;
+  boolean gameFinished2 = true;
   int idFix = 0;
 
   void setup() {
@@ -42,7 +43,7 @@ class HighScore {
   void update() {
     if (health.dead) {
       gameFinished = true;
-      if (gameFinished) {
+      if (gameFinished && gameFinished2) {
         int day = day();
         int month = month();
         int year = year();
@@ -52,7 +53,7 @@ class HighScore {
         myConnection.runQuery(qwery);
         myConnection.runQuery(qwery2);
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
-        gameFinished = false;
+        gameFinished2 = false;
       }
     }
   }

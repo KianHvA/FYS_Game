@@ -543,6 +543,8 @@ void restartGame() {//Resets the whole game
   health.amount0 = false;
   health.amount1 = false;
   health.amount2 = false;
+  Highscore.gameFinished2 = true;
+  Highscore.gameFinished = false;
 }
 
 void draw() {
