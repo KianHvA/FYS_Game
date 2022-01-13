@@ -102,7 +102,7 @@ class Inloggen {
     if (keysPressed['Q']) {
       loggedIn = true;
     }
-    
+
     constrain(j, 0, nameLength); //Max length of the name.
     if (k > 62) {
       k = 0;
@@ -156,6 +156,24 @@ class Inloggen {
         //  //gameFinished = true;
         //}
       }
+      if (loggedIn) {
+        String queryForNameUser = "SELECT name FROM User where name = '"+ userName +"';";
+        Table NameTable = myConnection.runQuery(queryForNameUser);
+        if (NameTable.getRowCount() == 0) {
+          println("no name found");
+          myConnection.updateQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
+        } else {
+          println("name found");
+        }
+        //String query = "SELECT name FROM User where name = '"+ userName +"';";
+        //Table databaseTable = myConnection.runQuery(query);
+        //if (databaseTable.getRowCount() == 0) {
+        //  println("no name found");
+        //  myConnection.runQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
+        //} else {
+        //  println("name found");
+        //}
+      }
     }
   }
 
@@ -168,7 +186,7 @@ class Inloggen {
     text(Name, 125, 225);
     text(Press /*+ scoreHandler.finalScore*/, 200, 506);
     for (int i = 0; i < nameLength; i++) {
-      
+
       textSize(textSize*0.75);
       text(name, x - 20, y);
       fill(flash[0]);
