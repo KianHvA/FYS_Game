@@ -13,6 +13,7 @@ class Inloggen {
   color[] flash = new color[nameLength]; //Color for the flashing of the name.
   int x = 300; //X coördinates.
   int y = 355; //Y coördinates.
+  int offsetLetters = 10;
   String name = "Name:";
   int j = 0;  //Number how much is filled in.
   int k = 61; //Number for where the player is with choosing letters.
@@ -166,31 +167,33 @@ class Inloggen {
     text(Name, 125, 225);
     //text(finalScore + scoreHandler.finalScore, 400, 225);
     for (int i = 0; i < nameLength; i++) {
+      
       textSize(textSize*0.75);
       text(name, x - 20, y);
       fill(flash[0]);
-      text(nameDef[0], x + textWidth(name) - 75, y);
+      text(nameDef[0], x + textWidth(name) - offsetLetters, y);
       fill(flash[1]);
-      text(nameDef[1], x + textWidth(name) + textWidth('X') - 75, y);
+      text(nameDef[1], x + textWidth(name) + textWidth('X') - offsetLetters, y);
       fill(flash[2]);
-      text(nameDef[2], x + textWidth(name) + textWidth('X') * 2 - 75, y);
+      text(nameDef[2], x + textWidth(name) + textWidth('X') * 2 - offsetLetters, y);
       fill(flash[3]);
-      text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - 75, y);
+      text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - offsetLetters, y);
       fill(flash[4]);
-      text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - 75, y);
+      text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - offsetLetters, y);
     }
     drawn = true;
 
     if (drawn) {
       if (!filledIn[j]) {
+        int offsetArrows = 45;
         textSize(textSize*0.75);
         fill(#FFFFFF);
-        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - 110, y - 40);
+        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - offsetArrows, y - 40);
         textSize(textSize*0.75);
         fill(#FFFFFF);
         pushMatrix();
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth('X') * (j + 1) - 110 + textWidth('X'), y + 50);
+        translate(x + textWidth(name) + textWidth('X') * (j + 1) - offsetArrows + textWidth('X'), y + 10);
         rotate(angle1);
         text("^", 0, 0);
         popMatrix();
