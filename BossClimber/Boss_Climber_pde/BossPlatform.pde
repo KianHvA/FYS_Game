@@ -110,10 +110,8 @@ void BossFightLava() {
 
   if (!timer) {
     int passedTime = savedTime++;
-    println("1e timer: " + savedTime);
 
     if (passedTime > 10) {
-      println("1e timer is kaar");
 
       timer = true;
       timer2 = false;
@@ -135,10 +133,8 @@ void BossFightLava() {
   }
   if (!timer2 && timer) {
     int passedTime2 = savedTime2++;
-    println("2e timer: " + savedTime2);
 
     if (passedTime2 > totalTime) {
-      println("2e timer is kaar");
 
       timer2 = true;
       lavaTrigger = true;
@@ -147,10 +143,8 @@ void BossFightLava() {
   }
   if (lavaTrigger) {
     int passedTime3 = savedTime3++;
-    println("3e timer: " + savedTime3);
 
     if (passedTime3 > totalTime) {
-      println("3e timer is kaar");
 
       lavaTrigger = false;
       timer = false;
@@ -228,19 +222,17 @@ void BossFightLava() {
         lavaY--;
       }
             for (int j = 0; j<level.lavaSlicedImg.length; j++) {
-        if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
+        if (player.posPlayer.y>height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
           healthbar.doDamage(100);
           
-        } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
+        } else if (player.posPlayer.y>height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
           healthbar.doDamage(100);
           
-        } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.y>+height-lavaY+LavaY2&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
+        } else if (player.posPlayer.y>height-lavaY&&player.posPlayer.y>+height-lavaY+LavaY2&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
           healthbar.doDamage(100);
         }
       }
     }
-
-    println("lavaTrigger: " + lavaTrigger);
     //line(bossfightlava[randomNumber]+lavaCenter,0,bossfightlava[randomNumber]+lavaCenter,height);
   }
   //for (int i = 0; i<level.lavaSlicedImg.length; i++) {
