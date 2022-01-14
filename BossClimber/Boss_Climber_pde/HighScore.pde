@@ -59,18 +59,20 @@ class HighScore {
           Table compare = myConnection.runQuery(qweryS);
           //for (int i = 0; i < compare.getStringColumn(0).length; i++) {
           int[] score = new int[compare.getStringColumn(0).length];
-          
+
           //SELECT * FROM Highscore where name = 'CCCCC';
-          
+
           score = compare.getIntColumn(0);
-          if (scoreHandler.finalScore < score[0]) {
-            highScore = false;
-          } else if (scoreHandler.finalScore == score[0]) {
-            same = true;
-          } else if (scoreHandler.finalScore > score[0]) {
-            highScore = true;
+          if (score.length != 0) {
+            if (scoreHandler.finalScore < score[0]) {
+              highScore = false;
+            } else if (scoreHandler.finalScore == score[0]) {
+              same = true;
+            } else if (scoreHandler.finalScore > score[0]) {
+              highScore = true;
+            }
+            oneTimeRun = false;
           }
-          oneTimeRun = false;
         }
         if (highScore) {
           String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
@@ -90,6 +92,17 @@ class HighScore {
         }
         myConnection.updateQuery(qwery2);
 
+        String getTimePlayed = "SELECT averagePlayTime FROM GameData;";
+        Table playtime = myConnection.runQuery(getTimePlayed);
+        int averagePlayTime = (playtime.getIntColumn(0)[0] + (timePlayedSeconds/60)) / 2;
+        String updateTimePlayed = "UPDATE GameData SET averagePlayTime = " + averagePlayTime + ";";
+        myConnection.updateQuery(updateTimePlayed);
+
+        String getTotalGamesPlayed = "SELECT totalGamesPlayed FROM GameData;";
+        Table totalGames = myConnection.runQuery(getTotalGamesPlayed);
+        int addToGamesPlayed = (totalGames.getIntColumn(0)[0]++);
+        String updateTotalGamesPlayed = "UPDATE GameData SET averagePlayTime = " + addToGamesPlayed + ";";
+        myConnection.updateQuery(updateTotalGamesPlayed);
         //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
         //Querrys for 
         //myConnection.updateQuery(insertHighscrore);

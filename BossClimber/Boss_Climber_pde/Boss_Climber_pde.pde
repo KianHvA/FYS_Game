@@ -91,6 +91,7 @@ boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
 boolean begin = true;
 boolean showAchievement = false;
+int timePlayedSeconds = 0;
 SQLConnection myConnection;
 
 void setup() 
@@ -191,6 +192,7 @@ void setup()
 
 void update()
 {
+  timePlayedSeconds++;
   music.update();
   dragon.update();
   flamethrower.update();
