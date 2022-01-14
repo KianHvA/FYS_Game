@@ -64,50 +64,52 @@ class HighScore {
 
           score = compare.getIntColumn(0);
           if (score.length != 0) {
-            if (scoreHandler.finalScore < score[0]) {
-              highScore = false;
-            } else if (scoreHandler.finalScore == score[0]) {
-              same = true;
-            } else if (scoreHandler.finalScore > score[0]) {
-              highScore = true;
+            if (inloggen.nameExist) {
+              score = compare.getIntColumn(0);
+              if (scoreHandler.finalScore < score[0]) {
+                highScore = false;
+              } else if (scoreHandler.finalScore == score[0]) {
+                same = true;
+              } else if (scoreHandler.finalScore > score[0]) {
+                highScore = true;
+              }
+              oneTimeRun = false;
             }
-            oneTimeRun = false;
           }
-        }
-        if (highScore) {
-          String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
-          myConnection.updateQuery(update);
-          showHighScore = true;
-          highScore = false;
-        }
-        //}
-        println(date);
-        //Querrys for inserting and updates
-        //String UpdateHighscore = "UPDATE Highscore SET score = "+ scoreHandler.finalScore +" WHERE name = '"+ inloggen.userName +"';";
-        String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
-        String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
+          if (highScore) {
+            String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
+            myConnection.updateQuery(update);
+            showHighScore = true;
+            highScore = false;
+          }
+          //}
+          //Querrys for inserting and updates
+          //String UpdateHighscore = "UPDATE Highscore SET score = "+ scoreHandler.finalScore +" WHERE name = '"+ inloggen.userName +"';";
+          String insertHighscrore = "INSERT INTO Highscore (score, name, date) VALUES (" + scoreHandler.finalScore + ", '" + inloggen.userName + "'," + date + ");";
+          String qwery2 = "INSERT INTO Gegevens (jumpAmount, amountWalked, bossKilled) VALUES (" + player.jumpAmount + ", " + (player.walkAmount/5) + ", " + (dragon.fightAmount - 1) + ");";
 
-        if (!highScore) {
-          myConnection.updateQuery(insertHighscrore);
+          if (!highScore) {
+            myConnection.updateQuery(insertHighscrore);
+          }
+          myConnection.updateQuery(qwery2);
+
+          String getTimePlayed = "SELECT averagePlayTime FROM GameData;";
+          Table playtime = myConnection.runQuery(getTimePlayed);
+          int averagePlayTime = (playtime.getIntColumn(0)[0] + (timePlayedSeconds/60)) / 2;
+          String updateTimePlayed = "UPDATE GameData SET averagePlayTime = " + averagePlayTime + ";";
+          myConnection.updateQuery(updateTimePlayed);
+
+          String getTotalGamesPlayed = "SELECT totalGamesPlayed FROM GameData;";
+          Table totalGames = myConnection.runQuery(getTotalGamesPlayed);
+          int addToGamesPlayed = (totalGames.getIntColumn(0)[0]++);
+          String updateTotalGamesPlayed = "UPDATE GameData SET averagePlayTime = " + addToGamesPlayed + ";";
+          myConnection.updateQuery(updateTotalGamesPlayed);
+          //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
+          //Querrys for 
+          //myConnection.updateQuery(insertHighscrore);
+          //myConnection.updateQuery(qwery2);
+          gameFinished2 = false;
         }
-        myConnection.updateQuery(qwery2);
-
-        String getTimePlayed = "SELECT averagePlayTime FROM GameData;";
-        Table playtime = myConnection.runQuery(getTimePlayed);
-        int averagePlayTime = (playtime.getIntColumn(0)[0] + (timePlayedSeconds/60)) / 2;
-        String updateTimePlayed = "UPDATE GameData SET averagePlayTime = " + averagePlayTime + ";";
-        myConnection.updateQuery(updateTimePlayed);
-
-        String getTotalGamesPlayed = "SELECT totalGamesPlayed FROM GameData;";
-        Table totalGames = myConnection.runQuery(getTotalGamesPlayed);
-        int addToGamesPlayed = (totalGames.getIntColumn(0)[0]++);
-        String updateTotalGamesPlayed = "UPDATE GameData SET averagePlayTime = " + addToGamesPlayed + ";";
-        myConnection.updateQuery(updateTotalGamesPlayed);
-        //executeSQL( "INSERT INTO achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')", extinguishQuery);
-        //Querrys for 
-        //myConnection.updateQuery(insertHighscrore);
-        //myConnection.updateQuery(qwery2);
-        gameFinished2 = false;
       }
     }
   }

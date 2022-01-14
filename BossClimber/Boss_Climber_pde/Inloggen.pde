@@ -26,6 +26,7 @@ class Inloggen {
   String Press = "Press B for next."; //Need to change later
   color userNameText = (#FFFFFF); //#FFFFFF = white.
   boolean loggedIn = false;
+  boolean nameExist = false;
 
   void setup() {
     nameSelector[0] = "A";
@@ -162,10 +163,11 @@ class Inloggen {
         Table NameTable = myConnection.runQuery(queryForNameUser);
         if (NameTable.getRowCount() == 0) {
           println("no name found");
+          nameExist = false;
           myConnection.updateQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
         } else {
           println("name found");
-          
+          nameExist = true;
         }
         //String query = "SELECT name FROM User where name = '"+ userName +"';";
         //Table databaseTable = myConnection.runQuery(query);
