@@ -200,7 +200,17 @@ void BossFightLava() {
     }
 
     if (lavaTrigger) {
-
+      //for (int j = 0; j<level.lavaSlicedImg.length; j++) {
+      //  if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
+      //    healthbar.doDamage(100);
+          
+      //  } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
+      //    healthbar.doDamage(100);
+          
+      //  } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
+      //    healthbar.doDamage(100);
+      //  }
+      //}
 
       image(level.lavaSlicedImg[randomNumberLava], bossfightlava[randomNumberLava]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
       image(level.lavaSlicedImg[randomNumberLava1], bossfightlava[randomNumberLava1]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
@@ -216,6 +226,17 @@ void BossFightLava() {
       }
       if (lavaDown) {
         lavaY--;
+      }
+            for (int j = 0; j<level.lavaSlicedImg.length; j++) {
+        if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
+          healthbar.doDamage(100);
+          
+        } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
+          healthbar.doDamage(100);
+          
+        } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.y>+height-lavaY+LavaY2&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
+          healthbar.doDamage(100);
+        }
       }
     }
 
