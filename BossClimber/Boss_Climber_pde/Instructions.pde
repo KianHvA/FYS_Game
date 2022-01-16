@@ -19,7 +19,7 @@ class Instructions {
   PVector posImgWater = new PVector(150, 80);
   PVector posImgShield = new PVector(500, 80);
   PVector posImgSword = new PVector(820, 70);
-  PVector imgSwordSize = new PVector(50, 100);
+  PVector imgSwordSize = new PVector(20, 100);
   PVector powerTextW = new PVector(100, 50);
   PVector powerTextShield = new PVector(485, 50);
   PVector powerTextSword = new PVector(800, 50);
@@ -160,8 +160,14 @@ class Instructions {
       rectMode(CENTER);
       rect(rect4.x, rect4.y, buttonSize.x, buttonSize.y);
 
-      image(inventory.waterflesI, posImgWater.x, posImgWater.y, imageSize, imageSize);//Images power-ups
+      //Images power-ups
+      image(inventory.waterflesIOutline, posImgWater.x, posImgWater.y, imageSize+1, imageSize+1);
+      image(inventory.waterflesI, posImgWater.x, posImgWater.y, imageSize, imageSize);
+      
+      image(inventory.shieldOutline, posImgShield.x, posImgShield.y, imageSize+1, imageSize+1);
       image(inventory.shieldF, posImgShield.x, posImgShield.y, imageSize, imageSize);
+      
+      image(inventory.swordIOutline, posImgSword.x, posImgSword.y, imgSwordSize.x+1, imgSwordSize.y+1);
       image(inventory.swordI, posImgSword.x, posImgSword.y, imgSwordSize.x, imgSwordSize.y);
 
       fill(255);
