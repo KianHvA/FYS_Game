@@ -65,7 +65,7 @@ int newFireballWave = 50000;
 int negative = -1;
 int endCoolDown = 0;
 int extinguishFireball = 0;
-int achievementFireballComplete = 1;//NOG AANPASSEN NAAR 3, MAG PAS NA DATABASE PRESENTATIE!!!!!!!!
+int achievementFireballComplete = 3;
 int fireballAchievementCount = 300;
 final int endFireballAchievement = 0;
 int[]bossfightlava = new int[11];
@@ -471,7 +471,7 @@ void update()
     extinguishFireball++;
     achievementFireball = false;
   }
-  //println(extinguishFireball);
+  //println();
 
   if (extinguishFireball >= achievementFireballComplete) {
     challenge.extinguishQuery = true;
@@ -515,10 +515,7 @@ void update()
   //  props.setProperty("password", "kerPVqZtWlI8M4");
   //  myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   //}
-  if (onceRunSQL) {
 
-    onceRunSQL = false;
-  }
   challenge.fireballQuery();
   challenge.reachBossQuery();
   challenge.playGameQuery();

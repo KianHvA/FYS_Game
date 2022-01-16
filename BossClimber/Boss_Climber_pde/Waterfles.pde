@@ -30,32 +30,32 @@ class WaterBottle{
   }
 
   void updateWaterBottle() {
-    if (dragon.fight && !pickedUp && !fight) {
-      if (dragon.fight && !pickedUp && !fight && !dropOn) {
+     if (dragon.fight && !pickedUp && !fight) {
+       if (dragon.fight && !pickedUp && !fight && !dropOn) {
         bottleX = spawnPointsPUPS.fightM.x;
         bottleY = spawnPointsPUPS.fightM.y;
         fight = true;
        }
       }
 
-      if (schild.pickedUp && pickedUp  /*|| Doublejump.pickedUp*/ || sword.pickedUp && pickedUp) {
+      if (schild.pickedUp && pickedUp || sword.pickedUp && pickedUp) {
         pickedUp = false;
         reset = true;
         timedReset = true;
       }
       
       if (!schild.pickedUp){
-      if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, bottleX, bottleY, bottleWidth, bottleHeight)) {//Collision player & waterfles
-        bottleX = farAwayX;
-        bottleY = farAwayY;
-        pickedUp = true;
-        scoreHandler.score += bottleScore;
-        fight = false;
-        seeScoreBottle = true;
-      }
+        if (bottlePlayer(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y, bottleX, bottleY, bottleWidth, bottleHeight)) {//Collision player & waterfles
+          bottleX = farAwayX;
+          bottleY = farAwayY;
+          pickedUp = true;
+          scoreHandler.score += bottleScore;
+          fight = false;
+          seeScoreBottle = true;
+        }
       }
       
-      if (reset /*&& !schild.pickedUp && !Doublejump.pickedUp && !sword.pickedUp && !pickedUp*/) {
+      if (reset) {
         resetWaterBottle();
         fight = false;
         timedReset = false;
@@ -95,5 +95,14 @@ class WaterBottle{
       textSize(30);
       text("+ 25", player.posPlayer.x, player.posPlayer.y - 40);
     }
+  }
+  
+  //Collision player & waterbottle
+  boolean bottlePlayer(float bx, float by, float bw, float bh, float px, float py, float pw, float ph){
+    if (bx <= px + pw && bx + bw >= px &&
+        by <= py + ph && by + bh >= py){
+      return true;
+    }
+     return false;
   }
 }

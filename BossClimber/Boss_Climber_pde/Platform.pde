@@ -36,6 +36,7 @@ class Platform {
   final int endBossAchievementCount = 0;
   boolean seeBossAchievement = false;
   boolean bossComplete = false;
+  boolean see = true;
   float achievementX = 800, achievementY = 100, achievementWidth = 250, achievementHeight = 50, achievementTextX = 805, achievementTextY = 95;
 
   void draw() {
@@ -52,7 +53,7 @@ class Platform {
       scoreHandler.score += 1;
     }
     if (levelMove >= 600) {
-      scoreHandler.score((int)random(10, 30) * (int)levelMove);
+      //scoreHandler.score((int)random(10, 30) * (int)levelMove);
       moveStage = false;
       moveAmount++;
       levelMove = 0;
@@ -155,16 +156,17 @@ class Platform {
     if (moveAmount == bossDefeated) {//Receive achievement when boss is defeated.
       seeBossAchievement = true;
     }
-    if (seeBossAchievement) {
+    if (seeBossAchievement && see) {
       bossAchievementCount--;
       fill(125);
       rect(achievementX, achievementY, achievementWidth, achievementHeight);
-      fill(255);
+      fill(0);
       textSize(20);
       text("Achievement complete!", achievementTextX, achievementTextY);
     }
     if (bossAchievementCount <= endBossAchievementCount) {
       seeBossAchievement = false;
+      see = false;
     }
   }
 }
