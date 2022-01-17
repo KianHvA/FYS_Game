@@ -308,6 +308,7 @@ class Player {
       moveUp = true;
       jump = false;
       jumped = false;
+      jumpSound.play();
     }
     if (!jump) {
       jumpTimer1++;
@@ -358,16 +359,16 @@ class Player {
     //if (moveLeft && hasCollision || moveRight && hasCollision) {
     //  playSound = true;
     //} else playSound = false;
-    //if (file.isPlaying()) {
+    //if (footstepSound.isPlaying()) {
     //  checkSound = true;
     //}
-    //if (!file.isPlaying()) {
+    //if (!footstepSound.isPlaying()) {
     //  checkSound = false;
     //}
     //if (playSound && !checkSound) {
-    //  file.play();
+    //  footstepSound.play();
     //} else if (!playSound && checkSound) {
-    //  file.pause();
+    //  footstepSound.pause();
     //}
   }
 

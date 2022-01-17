@@ -1,5 +1,5 @@
 //Tigo
-//zorgen dat er nieuwe ladders en ladder lijnen spawnen.
+//this function is not used anymore.
 
 void ladders() {
   for (float z = 805; z>0; z = z- 200) {//linkerladders

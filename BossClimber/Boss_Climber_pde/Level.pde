@@ -32,6 +32,6 @@ class Level {
     if (On) {
       platforms.draw();
     }
-    muur();
+    wall();
   }
 }

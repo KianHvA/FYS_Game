@@ -29,11 +29,10 @@ Lava lava;
 ParticleSystem ps;
 Music music;
 Challenge challenge;
-SoundFile file;
-SoundFile bossFightMusic1;
-SoundFile mainMenuMusic1;
-SoundFile GameMusic1;
+SoundFile bossFightMusic1,mainMenuMusic1,GameMusic1;//music
+SoundFile jumpSound, footstepSound, wallMoving;//sound effects
 Inloggen inloggen;
+
 int cooldown = 100;
 int fireballCount = 1200;
 int bossFireballCount = 1200;
@@ -61,7 +60,7 @@ int fourthFireball = 400;
 int fifthFireball = 200;
 int sixthFireball = 0;
 int resetFireballCount = 1200;
-int newFireballWave = 50000;
+int newFireballWave = 500;
 int negative = -1;
 int endCoolDown = 0;
 int extinguishFireball = 0;
@@ -97,15 +96,18 @@ SQLConnection myConnection;
 void setup() 
 {
   size(1024, 576);
+  background(0);
   rectMode(CENTER);
   frameRate(60);
   smooth(8);
+  
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  
   music = new Music();
   if (music.music) {
     file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
@@ -113,6 +115,13 @@ void setup()
     mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
     GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
   }
+  //footstepSound = new SoundFile(this, "Footsteps-Sound-Effects.mp3");
+  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
+  mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  //wallMoving = new SoundFile(this, "WallMoving.mp3");
+  jumpSound = new SoundFile(this, "jump.wav");
+  jumpSound.amp(0.3);
 
   menu = new Menu();
   level = new Level();
@@ -134,30 +143,25 @@ void setup()
   ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
   achievement = new Achievements();
   challenge = new Challenge();
-  level.setup();
-  scoreHandler.setup();
-
-  for (int i = 0; i < fireballs.length; i++) { 
-    fireballs[i] = new Fireball();
-    fireballs[i].setup();
-  }
-
-  for (int i=0; i<bossfightlava.length; i++) {
-    bossfightlava[i] = 0;
-  }
-
-  flamethrower.setup();
-  health.setup();
-  dragon.setup();
   waterBottle = new WaterBottle();
   drops = new Drop();
   sword = new Sword();
+  
+  level.setup();
+  scoreHandler.setup();
+  flamethrower.setup();
+  health.setup();
+  dragon.setup();
   sword.setup();
   inventory.setup();
   player.setup();
   Highscore.setup();
   inloggen.setup();
 
+  for (int i = 0; i < fireballs.length; i++) { 
+    fireballs[i] = new Fireball();
+    fireballs[i].setup();
+  }
 
   fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[6].posFireball.y = dragon.starty;
@@ -188,9 +192,15 @@ void setup()
    myConnection.updateQuery(defeatBossQuery);
    }*/
   //ParticleSystem.setup();
+  for (int i=0; i<bossfightlava.length; i++) {
+    bossfightlava[i] = 0;
+  }
+  
+  for (int i = 6; i < fireballs.length; i++) {
+    fireballs[i].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+    fireballs[i].posFireball.y = dragon.starty;
+  }
 }
-
-
 
 void update()
 {
@@ -205,6 +215,7 @@ void update()
   menu.restart();
   schild.update();
   Highscore.update();
+
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
   if (!dragon.fight) {
@@ -232,20 +243,6 @@ void update()
       }
     }
   }
-
-  //int randomPowerup = randomizer(3);
-  //switch(randomPowerup) {
-  //case 1:
-  //  waterfles = new Waterfles();
-  //  break;
-  //case 2:
-  //  sword = new Sword();
-  //  break;
-  //case 3:
-  //  waterfles = new Waterfles();
-  //  break;
-  //  default:
-  //}
 
   for (int i = 0; i < fireballs.length; i++) {
     fireballs[i].achievementUpdateFireball();
@@ -607,7 +604,7 @@ void draw() {
 
       dragon.bossFight.End();
       level.draw();
-      muur();
+      wall();
 
 
       instruction.sign();
