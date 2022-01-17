@@ -7,8 +7,8 @@ class Menu {
   boolean start = false, drawn = false, displayHighscore = false , displayAchievement = false;
   PVector placement1 = new PVector(width/3 + 50, 250);
   PVector placement2 = new PVector(width/3 + 200, 250);
-  PVector placement3 = new PVector(width/2, 250);
-  PVector placement4 = new PVector(width/2 + 140, 410);
+  PVector placement3 = new PVector(width/2 - 300, 250);
+  PVector placement4 = new PVector(width/2 + 25, 410);
   boolean highlight1 = true, highlight2 = false;
   color normal = 125;
   color highlight = #EFF03F;
@@ -36,8 +36,13 @@ class Menu {
   PVector spawnP2 = new PVector(400, 250);
   PVector spawnP3 = new PVector(600, 250);
   PVector spawnBS = new PVector(width/2, height/2);
+  final PVector pressText = new PVector(425, 510);
+  final PVector titleAchievement = new PVector(400, 100);
+  final PVector press = new PVector(525, 500);
+  final PVector pressSize = new PVector(300, 50);
   final PVector Rplacement1 = new PVector(150, 250);
   final PVector Rplacement2 = new PVector(400, 250);
+  final float textSize = 36;
   float Check3 = 0, Timer3 = 0;
 
 
@@ -61,27 +66,22 @@ class Menu {
     fill(125);
     rect(placement1.x - 175, placement1.y, size.x, size.y);
     rect(placement2.x, placement2.y, size.x, size.y);
-    rect(placement3.x - size.x/2, placement3.y+size.y + 10, size.x, size.y/1.5);
-    rect(placement4.x, placement4.y, size.x - 5 , size.y - 10);
+    rect(placement3.x, placement3.y+size.y + 10, size.x, size.y/1.5);
+    rect(placement4.x, placement4.y, size.x, size.y/1.5);
     rectMode(CENTER);
     textFont(f, 50); //size of the texts
     fill(kleur); //color
     textLeading(50);
     text("Press A\n to start", placement1.x - 125, placement1.y + 65); //press A on pc
     text("Press Y for\ninstructions", placement1.x + 160, placement1.y + 65); //press D on pc
-    textSize(72/2);
+    textSize(textSize);
     textLeading(40);
-    text("Press X for\n Highscore", placement3.x - size.x/3, placement3.y+(size.y*1.35)); // press X on pc
+    text("Press X for\n Highscore", placement3.x + size.x/5, placement3.y+(size.y*1.35)); // press X on pc
     textSize(72);
-    textSize(40);
+    textSize(textSize);
     textLeading(50);
-    text("Press B for\n Achievement", placement4.x + size.x/15, placement4.y + size.y/3);
+    text("Press -> for\n Achievements", placement4.x + size.x/13, placement4.y + size.y/3.5);
     drawn = true;
-
-    // if (keysPressed['B']) {
-    //  //displayAchievement = true;
-    //  displayAchievement = true;
-    //}
 
     if (keysPressed['A']) {
       start = true;

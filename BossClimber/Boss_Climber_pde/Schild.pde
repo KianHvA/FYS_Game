@@ -25,6 +25,8 @@ class Schild {
   float schildSaveLevens = schildLevens;
   float schildScoreCount = 100;
   int shieldScore = 50;
+  final float TEXT_SIZE = 30;
+  PVector seeScoreDistance = new PVector(10, 40);
 
   Schild() {
     GRAVITYSchild = 0.98;
@@ -169,9 +171,9 @@ class Schild {
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     
     if (seeScoreShield){
-     fill(255);
-     textSize(30);
-     text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+     fill(white);
+     textSize(TEXT_SIZE);
+     text("+ 50", player.posPlayer.x - seeScoreDistance.x, player.posPlayer.y - seeScoreDistance.y);
     }
   }
 

@@ -4,6 +4,7 @@ class WaterBottle{
   Drop drops;
   float bottleX = spawnPointsPUPS.underR.x, bottleY = spawnPointsPUPS.underR.y, bottleWidth, bottleHeight, resetBottleX, resetBottleY, bottleScore, bottleScoreCount, resetBottleWidth, resetBottleHeight,
         farAwayX, farAwayY;
+  color blue = color(0, 0, 255);
   boolean dropOn = false;
   boolean spawnWaterfles = false;
   boolean dropOff = false;
@@ -13,6 +14,7 @@ class WaterBottle{
   boolean fight = false;
   boolean timedReset = false;
   boolean seeScoreBottle = false;
+  final float TEXT_SIZE = 30;
 
   WaterBottle() {
     collisionHandler = new CollisionHandler();
@@ -44,8 +46,9 @@ class WaterBottle{
         timedReset = true;
       }
       
+      //Collision player & waterfles
       if (!schild.pickedUp){
-        if (bottlePlayer(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y, bottleX, bottleY, bottleWidth, bottleHeight)) {//Collision player & waterfles
+        if (bottlePlayer(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, player.sizePlayer.y, bottleX, bottleY, bottleWidth, bottleHeight)) {
           bottleX = farAwayX;
           bottleY = farAwayY;
           pickedUp = true;
@@ -62,6 +65,7 @@ class WaterBottle{
         reset = false;
       }
 
+      //Timer goes on when you hit the waterbottle
       if (seeScoreBottle) {
         bottleScoreCount--;
       }
@@ -87,13 +91,13 @@ class WaterBottle{
   }
 
   void draw() {
-    fill(0, 0, 255);
+    fill(blue);
     image(inventory.waterflesI, bottleX, bottleY, bottleWidth, bottleHeight);
 
     if (seeScoreBottle) {
-      fill(255);
-      textSize(30);
-      text("+ 25", player.posPlayer.x, player.posPlayer.y - 40);
+      fill(white);
+      textSize(TEXT_SIZE);
+      text("+ 25", player.posPlayer.x, player.posPlayer.y - schild.seeScoreDistance.y);
     }
   }
   

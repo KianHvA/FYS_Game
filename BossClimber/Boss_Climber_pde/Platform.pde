@@ -38,6 +38,7 @@ class Platform {
   boolean bossComplete = false;
   boolean see = true;
   float achievementX = 800, achievementY = 100, achievementWidth = 250, achievementHeight = 50, achievementTextX = 805, achievementTextY = 95;
+  final float TEXT_SIZE = 20;
 
   void draw() {
     if (player.posPlayer.y <= moveY && !dragon.fight) {
@@ -158,10 +159,10 @@ class Platform {
     }
     if (seeBossAchievement && see) {
       bossAchievementCount--;
-      fill(125);
+      fill(gray);
       rect(achievementX, achievementY, achievementWidth, achievementHeight);
-      fill(0);
-      textSize(20);
+      fill(black);
+      textSize(TEXT_SIZE);
       text("Achievement complete!", achievementTextX, achievementTextY);
     }
     if (bossAchievementCount <= endBossAchievementCount) {

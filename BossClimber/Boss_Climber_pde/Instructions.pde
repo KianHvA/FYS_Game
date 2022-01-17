@@ -32,6 +32,8 @@ class Instructions {
   int textSize;
   float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize, endExample, endExample2, endExample3X, endExample3Y;
   float positiveSpeed, negativeSpeed;
+  float startTextSize;
+  float instructionSize;
   boolean manual = false;
   boolean powerExpl = false;
   PImage moveL, moveL1, moveR, moveR1, moveUp, equip, equip1, equip2;
@@ -69,6 +71,8 @@ class Instructions {
     endExample3Y = -50;
     positiveSpeed = 2;
     negativeSpeed = -2;
+    startTextSize = 40;
+    instructionSize = 30;
   }
 
   void updateInstructions() {
@@ -149,10 +153,10 @@ class Instructions {
 
   void powerUpInstructions() {//Explanation power-ups
     if (/*platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off*/powerExpl) {
-      background(0);
+      background(black);
 
       rectMode(CORNER);
-      fill(125);
+      fill(gray);
       rect(rect.x, rect.y, rectSize.x, rectSize.y);
       rect(rect2.x, rect2.y, rectSizeVertical.x, rectSizeVertical.y);
       rect(rect3.x, rect3.y, rectSizeVertical.x, rectSizeVertical.y);
@@ -164,8 +168,8 @@ class Instructions {
       image(inventory.shieldF, posImgShield.x, posImgShield.y, imageSize, imageSize);
       image(inventory.swordI, posImgSword.x, posImgSword.y, imgSwordSize.x, imgSwordSize.y);
 
-      fill(255);
-      textSize(30);
+      fill(white);
+      textSize(instructionSize);
       text("Water Bottle", powerTextW.x, powerTextW.y);
       text("Shield", powerTextShield.x, powerTextShield.y);
       text("Sword", powerTextSword.x, powerTextShield.y);
@@ -182,20 +186,20 @@ class Instructions {
   }
 
   void draw() {
-    if (/*platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off*/manual) {
-      background(0);
+    if (manual) {
+      background(black);
 
-      fill(125);
+      fill(gray);
       rect(rect5.x, rect5.y, rectSizeHorizontal[0].x, rectSizeHorizontal[0].y);
       rect(rect6.x, rect6.y, rectSizeHorizontal[1].x, rectSizeHorizontal[1].y);
 
-      fill(125);//Example of movement.
+      fill(gray);//Example of movement.
       image(moveL1, example.x, example.y, sizes.x, sizes.y);
       image(moveR1, example2.x, example2.y, sizes.x, sizes.y);
       image(moveR1, example3.x, example3.y, sizes.x, sizes.y);
 
-      textSize(30);//All text instructions
-      fill(255);
+      textSize(instructionSize);//All text instructions
+      fill(white);
       text("Press <   to move to the left:", textInstr[0].x, textInstr[0].y);
       text("--", textInstr[1].x, textInstr[1].y);
       text("Press   > to move to the right:", textInstr[2].x, textInstr[2].y);
@@ -207,7 +211,7 @@ class Instructions {
       text("Press S to see the power-ups", textInstr[8].x, textInstr[8].y);
       text("Goal: Chase the dragon by climbing the building!", textInstr[9].x, textInstr[9].y);
 
-      textSize(40);
+      textSize(startTextSize);
       text("Press A to start", textInstr[10].x, textInstr[10].y);
     }
   }

@@ -3,6 +3,7 @@ class Drop{
   CollisionHandler collisionHandler;
   float xSpeedDrop, ySpeedDrop, dropDia;
   PVector posPlayer = new PVector(player.posPlayer.x, player.posPlayer.y);
+  color blue = color(0, 0, 255);
   boolean hasCollision = false;
   
   Drop(){
@@ -33,7 +34,7 @@ class Drop{
   }
   
   void draw(){
-    fill(0, 0, 255);
+    fill(blue);
     circle(posPlayer.x, posPlayer.y, dropDia);
   }
 }

@@ -30,6 +30,9 @@ class Sword {
   int swordScore = 50;
   PImage swordStab;
   float stabAnimation = 0;
+  float resetScoreCount = 100;
+  final float END_TIME = 0;
+  final float TEXT_SIZE = 30;
 
   Sword() {
     //swordX = random(100, 400);
@@ -141,7 +144,7 @@ class Sword {
       scoreSwordCount--;
     }
 
-    if (scoreSwordCount < 0) {
+    if (scoreSwordCount < END_TIME) {
       seeScoreSword = false;
       scoreSwordCount = 100;
     }
@@ -150,7 +153,7 @@ class Sword {
     }
     if (stabAnimation >= 10) {
       attacked = false;
-      stabAnimation = 0;
+      stabAnimation = resetScoreCount;
     }
   }
 
@@ -162,9 +165,9 @@ class Sword {
     //rect(swordX, swordY + 15, guardW, guardH);
 
     if (seeScoreSword) {
-      fill(255);
-      textSize(30);
-      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+      fill(white);
+      textSize(TEXT_SIZE);
+      text("+ 50", player.posPlayer.x - schild.seeScoreDistance.x, player.posPlayer.y - schild.seeScoreDistance.y);
     }
   }
 
