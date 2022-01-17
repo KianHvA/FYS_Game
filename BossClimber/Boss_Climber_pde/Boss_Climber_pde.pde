@@ -605,7 +605,7 @@ void draw() {
 
       dragon.bossFight.End();
       level.draw();
-      muur();
+      wall();
 
 
       instruction.sign();

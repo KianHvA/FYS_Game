@@ -27,7 +27,7 @@ float yPosLava = 10;
 float yPosLava1 = 100;
 boolean bossFightRoom = false;
 int lavaNumber = 78;
-int lavaCenter = 39;
+int lavaCenter = 39; // picture width/2 so the picture is not in the center
 int randomNumber = 0;
 int randomNumber1= 1;
 int randomNumber2 = 2;
@@ -48,8 +48,8 @@ int randomNumberLava2;
 int minLava=0;
 int maxLava=10;
 int maxLavaLength = 100;
-float greyColor = 147;
-int muurGetal = 12;
+float greyColor = 147; 
+int wallGetal = 12;
 float exclamationHeight = 200;
 float exclamationNumber = 8;
 float exclamationSize = 200;
@@ -68,16 +68,15 @@ void Bossplatform() {
   fill(greyColor);
   //background(0);
   rectMode(CORNER);
-  rect(xPosRect, height-yPosRect, xPosRect1, height);
+  rect(xPosRect, height-yPosRect, xPosRect1, height);//platform in bossroom
   xPosRect1 = xPosRect1 + rectClosingNumber;
   noStroke();
   fill(#FAB800);
-  rect(xPosRect, height - yPosLava, lavaNumber, yPosLava1);
-  muur();
+  wall();
 
   bossFightRoom = true;
   if (bossFightRoom) {
-    On = false;
+    On = false; // the normal level gets turned off
     BossFightLava();
   }
 
@@ -107,7 +106,7 @@ void Bossplatform() {
 
 void BossFightLava() {
   fill(#FAB800);
-
+  //in the next lines of code there are 3 timers and 3 random numbers these are used for spawning lava
   if (!timer) {
     int passedTime = savedTime++;
 
@@ -118,8 +117,9 @@ void BossFightLava() {
       timer3 = false;
       savedTime = 0;
 
-      randomNumber = int(random(minLava, maxLava));
+      //these 3 randomnumbers decide where to spawn lava
 
+      randomNumber = int(random(minLava, maxLava));
       randomNumber1 = int(random(minLava, maxLava));
       if (randomNumber1==randomNumber) {
         randomNumber1=int(random(minLava, maxLava));
@@ -131,7 +131,8 @@ void BossFightLava() {
       }
     }
   }
-  if (!timer2 && timer) {
+  //these timers are used too get time between the lava spawns and exclamation marks
+  if (!timer2 && timer) { 
     int passedTime2 = savedTime2++;
 
     if (passedTime2 > totalTime) {
@@ -155,24 +156,12 @@ void BossFightLava() {
 
   for (int i=0; i<bossfightlava.length; i++) {
 
-
-    //bossfightlava[i] = width/muurGetal+(lavaNumber*i);
-    //if (lavaTrigger) {
-
-    //  LavaY2 = 100;
-
-    //  rect(bossfightlava[randomNumberLava], height-lavaY, lavaNumber, LavaY2);
-    //  rect(bossfightlava[randomNumberLava1], height-lavaY, lavaNumber, LavaY2);
-    //  rect(bossfightlava[randomNumberLava2], height-lavaY, lavaNumber, LavaY2);
-
-    //for (int i=0; i<bossfightlava.length; i++) {
-
-    bossfightlava[i] = width/muurGetal+(lavaNumber*i);
+    bossfightlava[i] = width/wallGetal+(lavaNumber*i);
     //println(bossfightlava[i]);
 
 
     if (timer && !lavaTrigger) {
-
+      //the exclamation marks will be drawn at the position where the lava spawns
       textSize(exclamationSize);
       fill(exclamationR, exclamationGB, exclamationGB);
 
@@ -194,17 +183,7 @@ void BossFightLava() {
     }
 
     if (lavaTrigger) {
-      //for (int j = 0; j<level.lavaSlicedImg.length; j++) {
-      //  if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
-      //    healthbar.doDamage(100);
-          
-      //  } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
-      //    healthbar.doDamage(100);
-          
-      //  } else if (player.posPlayer.y<height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
-      //    healthbar.doDamage(100);
-      //  }
-      //}
+      //the lava spawns after the timer which triggers lavaTrigger
 
       image(level.lavaSlicedImg[randomNumberLava], bossfightlava[randomNumberLava]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
       image(level.lavaSlicedImg[randomNumberLava1], bossfightlava[randomNumberLava1]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
@@ -221,32 +200,20 @@ void BossFightLava() {
       if (lavaDown) {
         lavaY--;
       }
-            for (int j = 0; j<level.lavaSlicedImg.length; j++) {
+      for (int j = 0; j<level.lavaSlicedImg.length; j++) {
         if (player.posPlayer.y>height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
           healthbar.doDamage(100);
-          
         } else if (player.posPlayer.y>height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava1]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava1]) {
           healthbar.doDamage(100);
-          
         } else if (player.posPlayer.y>height-lavaY&&player.posPlayer.y>+height-lavaY+LavaY2&&player.posPlayer.x<bossfightlava[randomNumberLava2]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava2]) {
           healthbar.doDamage(100);
         }
       }
     }
-    //line(bossfightlava[randomNumber]+lavaCenter,0,bossfightlava[randomNumber]+lavaCenter,height);
   }
-  //for (int i = 0; i<level.lavaSlicedImg.length; i++) {
-  //     image(level.lavaSlicedImg[i],bossfightlava[i]+lavaCenter, height+55, lavaNumber, LavaY2);
-
-  //   }
 }
 
-//if(bossFightRoom){
-//playerpos
-//dragonpos
-//powerups uit
-
-
+//some code I made but we removed it
 
 //bpX = width/12;
 //bpY = 50+platforms.levelMove;

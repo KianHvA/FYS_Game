@@ -240,7 +240,7 @@ class Menu {
   //  }
   //  fill(0);
   //  rect(spawnBS.x, spawnBS.y, width, height);
-  //  muur();
+  //  wall();
   //  fill(Rgb);
   //  ellipse(spawnP1.x, spawnP1.y, 20, 20);
   //  fill(rGb);
