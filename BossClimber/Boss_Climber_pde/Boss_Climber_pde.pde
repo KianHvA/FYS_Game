@@ -29,11 +29,10 @@ Lava lava;
 ParticleSystem ps;
 Music music;
 Challenge challenge;
-SoundFile file;
-SoundFile bossFightMusic1;
-SoundFile mainMenuMusic1;
-SoundFile GameMusic1;
+SoundFile bossFightMusic1,mainMenuMusic1,GameMusic1;//music
+SoundFile jumpSound, footstepSound, wallMoving;//sound effects
 Inloggen inloggen;
+
 int cooldown = 100;
 int fireballCount = 1200;
 int bossFireballCount = 1200;
@@ -61,7 +60,7 @@ int fourthFireball = 400;
 int fifthFireball = 200;
 int sixthFireball = 0;
 int resetFireballCount = 1200;
-int newFireballWave = 50000;
+int newFireballWave = 500;
 int negative = -1;
 int endCoolDown = 0;
 int extinguishFireball = 0;
@@ -97,20 +96,26 @@ SQLConnection myConnection;
 void setup() 
 {
   size(1024, 576);
+  background(0);
   rectMode(CENTER);
   frameRate(60);
   smooth(8);
+  
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
+  
   music = new Music();
-  //file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
-  //bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
-  //mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
-  //GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  //footstepSound = new SoundFile(this, "Footsteps-Sound-Effects.mp3");
+  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
+  mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  //wallMoving = new SoundFile(this, "WallMoving.mp3");
+  jumpSound = new SoundFile(this, "jump.wav");
+  jumpSound.amp(0.3);
 
   menu = new Menu();
   level = new Level();
@@ -132,8 +137,20 @@ void setup()
   ps = new ParticleSystem(new PVector(player.posPlayer.x, player.posPlayer.y));
   achievement = new Achievements();
   challenge = new Challenge();
+  waterBottle = new WaterBottle();
+  drops = new Drop();
+  sword = new Sword();
+  
   level.setup();
   scoreHandler.setup();
+  flamethrower.setup();
+  health.setup();
+  dragon.setup();
+  sword.setup();
+  inventory.setup();
+  player.setup();
+  Highscore.setup();
+  inloggen.setup();
 
   for (int i = 0; i < fireballs.length; i++) { 
     fireballs[i] = new Fireball();
@@ -143,52 +160,12 @@ void setup()
   for (int i=0; i<bossfightlava.length; i++) {
     bossfightlava[i] = 0;
   }
-
-  flamethrower.setup();
-  health.setup();
-  dragon.setup();
-  waterBottle = new WaterBottle();
-  drops = new Drop();
-  sword = new Sword();
-  sword.setup();
-  inventory.setup();
-  player.setup();
-  Highscore.setup();
-  inloggen.setup();
-
-
-  fireballs[6].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[6].posFireball.y = dragon.starty;
-
-  fireballs[7].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[7].posFireball.y = dragon.starty;
-
-  fireballs[8].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[8].posFireball.y = dragon.starty;
-
-  fireballs[9].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[9].posFireball.y = dragon.starty;
-
-  fireballs[10].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[10].posFireball.y = dragon.starty;
-
-  fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
-  fireballs[11].posFireball.y = dragon.starty;
-
-  music.setup();
-
-  //if (platforms.moveAmount == 1) {
-    //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
-  //}
-
-  /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
-   java.lang.String defeatBossQuery = "INSERT INTO achievement (description, difficulty) VALUES ('Defeat the boss', 'COMPLETE!')";
-   myConnection.updateQuery(defeatBossQuery);
-   }*/
-  //ParticleSystem.setup();
+  
+  for (int i = 6; i < fireballs.length; i++) {
+    fireballs[i].posFireball.x = dragon.startx;//Start locations of boss fireballs!
+    fireballs[i].posFireball.y = dragon.starty;
+  }
 }
-
-
 
 void update()
 {
@@ -203,6 +180,7 @@ void update()
   menu.restart();
   schild.update();
   Highscore.update();
+
   //3 is amount off power-ups need change later
   int randomPowerup = randomizer(3);
   if (!dragon.fight) {
@@ -230,20 +208,6 @@ void update()
       }
     }
   }
-
-  //int randomPowerup = randomizer(3);
-  //switch(randomPowerup) {
-  //case 1:
-  //  waterfles = new Waterfles();
-  //  break;
-  //case 2:
-  //  sword = new Sword();
-  //  break;
-  //case 3:
-  //  waterfles = new Waterfles();
-  //  break;
-  //  default:
-  //}
 
   for (int i = 0; i < fireballs.length; i++) {
     fireballs[i].achievementUpdateFireball();
@@ -487,23 +451,23 @@ void update()
     fill(255);
     text("Achievement complete!", platforms.achievementTextX, platforms.achievementTextY);
   }
-  
+
   //Achievement Complete announcement is over.
   if (fireballAchievementCount <= endFireballAchievement) {
     seeFireballAchievement = false;
     begin = false;
   }
- 
+
   //Achievement in boss room
-  if (bossFightRoom){
+  if (bossFightRoom) {
     challenge.dragonQuery = true;
   }
-  
+
   //Achievement in game
-  if (platforms.moveAmount >= 1){
+  if (platforms.moveAmount >= 1) {
     challenge.gamePlayed = true;
   }
-  
+
   //println(challenge.dragonQuery);
   //println(challenge.dragonQuery);
   player.movementUpdate();
@@ -523,12 +487,12 @@ void update()
 
 //Extinguish fireballs achievement
 /*public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
-  if (oneGame) {
-    myConnection.updateQuery(fireballQuery);
-    println("Exicute SQl");
-    oneGame = false;
-  }
-}*/
+ if (oneGame) {
+ myConnection.updateQuery(fireballQuery);
+ println("Exicute SQl");
+ oneGame = false;
+ }
+ }*/
 void restartGame() {//Resets the whole game
   scoreHandler.score = 0;
   inloggen.j = 0;
@@ -566,18 +530,18 @@ void draw() {
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-      
+
       if (keysPressed['V']) {
         showAchievement = true;
       }
-      
-      if (showAchievement){
+
+      if (showAchievement) {
         background(0);
         textSize(50);
         text("Challenges", 400, 100);
         challenge.showChallenges();
       }
-      
+
       if (achievement.summary) {// Player 
         //achievement.updateAchievements();
         //achievement.draw();
