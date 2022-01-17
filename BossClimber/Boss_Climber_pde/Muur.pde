@@ -7,6 +7,7 @@ void wall() {
   int sGetal2 = 44;
   int wallRColor = 131;
   int wallGBColor = 19;
+  int lineCoordinate = 30;
   
   
   
@@ -26,8 +27,8 @@ void wall() {
   }
   //verticale lijnen
   for (int x=30; x<900; x=x+60) {
-    int y = x+30; //y coordinaat voor de linkerlijnen
-    int z = x-30; // y coordinaat voor de rechterlijnen
+    int y = x+lineCoordinate; //y coordinaat voor de linkerlijnen
+    int z = x-lineCoordinate; // y coordinaat voor de rechterlijnen
     line(wallWidth/3*2, x, wallWidth/3*2, y); //linkerkant linker strepen
     line(wallWidth/3, x, wallWidth/3, z); // linkerkant rechter strepen
     line(width-sGetal, x, width-sGetal, z); //rechterkant rechter strepen
