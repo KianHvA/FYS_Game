@@ -29,7 +29,7 @@ Lava lava;
 ParticleSystem ps;
 Music music;
 Challenge challenge;
-SoundFile bossFightMusic1,mainMenuMusic1,GameMusic1;//music
+SoundFile bossFightMusic1, mainMenuMusic1, GameMusic1;//music
 SoundFile jumpSound, footstepSound, wallMoving;//sound effects
 Inloggen inloggen;
 
@@ -100,28 +100,24 @@ void setup()
   rectMode(CENTER);
   frameRate(60);
   smooth(8);
-  
+
   Properties props = new Properties();
   props.setProperty("user", "dreijed1");
   props.setProperty("password", "kerPVqZtWlI8M4");
 
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
-  
+
   music = new Music();
   if (music.music) {
+    //footstepSound = new SoundFile(this, "Footsteps-Sound-Effects.mp3");
     bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
     mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
     GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+    //wallMoving = new SoundFile(this, "WallMoving.mp3");
+    jumpSound = new SoundFile(this, "jump.wav");
+    jumpSound.amp(0.3);
   }
-  //footstepSound = new SoundFile(this, "Footsteps-Sound-Effects.mp3");
-  bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
-  mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
-  GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
-  //wallMoving = new SoundFile(this, "WallMoving.mp3");
-  jumpSound = new SoundFile(this, "jump.wav");
-  jumpSound.amp(0.3);
-
   menu = new Menu();
   level = new Level();
   player = new Player();
@@ -145,7 +141,7 @@ void setup()
   waterBottle = new WaterBottle();
   drops = new Drop();
   sword = new Sword();
-  
+
   level.setup();
   scoreHandler.setup();
   flamethrower.setup();
@@ -194,7 +190,7 @@ void setup()
   for (int i=0; i<bossfightlava.length; i++) {
     bossfightlava[i] = 0;
   }
-  
+
   for (int i = 6; i < fireballs.length; i++) {
     fireballs[i].posFireball.x = dragon.startx;//Start locations of boss fireballs!
     fireballs[i].posFireball.y = dragon.starty;
