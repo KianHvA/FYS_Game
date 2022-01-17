@@ -12,7 +12,7 @@ class Music {
   boolean playingGame = false;
   boolean playingGame2 = false;
   float timeDelayGame = 0;
-  boolean music = true;
+  boolean music = false;
 
   void setup() {
   }

@@ -109,7 +109,7 @@ void setup()
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
 
   music = new Music();
-  if (music.music) {
+  if (music.music) {//If you want the music to be off or on you can change the music boolean in the Music class/tab.
     //footstepSound = new SoundFile(this, "Footsteps-Sound-Effects.mp3");
     bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
     mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
