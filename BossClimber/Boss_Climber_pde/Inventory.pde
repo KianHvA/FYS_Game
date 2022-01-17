@@ -1,6 +1,6 @@
 //Tristan:  Inventory display
 //Fee Fee: Inventory full
-//Ömer: Zwaard inplementatie
+//Ömer: Sword implementation
 class Inventory {
   int breedte = width/13;
   int hoogte = height/12;
@@ -9,6 +9,7 @@ class Inventory {
   boolean inventoryFull = false;
 
   void setup() {
+    //Loading of all the pictures
     shieldF = loadImage("Shield - Front.png");
     shieldB = loadImage("Shield - Back.png");
     swordI = loadImage("Sword.png");
@@ -17,7 +18,6 @@ class Inventory {
     shieldOutline = loadImage("ShieldOutline.png");
     swordIOutline = loadImage("SwordOutline.png");
     waterflesIOutline = loadImage("WaterflesOutline.png");
-    
   }
   
   void draw() {
@@ -26,8 +26,6 @@ class Inventory {
 
     ellipseMode(CORNER);
     textAlign(CENTER, CENTER);
-    //fill(255);
-    //text("S", width-55, height-70);
     fill(0);
     ellipse(width-60, height-60, 50, 50);
 
@@ -36,22 +34,6 @@ class Inventory {
     } else {
       //println("Empty");
     }
-
-
-    //if (Doublejump.pickedUp) {
-    //  rectMode(CENTER);
-    //  noStroke();
-    //  fill(147);
-    //  imageMode(CENTER);
-    //  image(doubleJump, width-35, height-35, 40, 50);
-    //  //rect(width-35, height-35, 50, 50);
-    //  inventoryFull = true;
-    //  //schild.pickedUp = false;
-    //  //sword.pickedUp = false;
-    //  //waterfles.pickedUp = false;
-    //} else {
-    //  inventoryFull = false;
-    //}
 
     if (waterBottle.pickedUp) {
       rectMode(CENTER);

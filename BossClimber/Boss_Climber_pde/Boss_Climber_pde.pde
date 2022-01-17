@@ -107,10 +107,12 @@ void setup()
   spawnPointsPUPS = new SpawnPointsPUPS();
   myConnection = new MySQLConnection("jdbc:mysql://oege.ie.hva.nl/zdreijed1?serverTimezone=UTC", props);//Connection database.
   music = new Music();
-  //file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
-  //bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
-  //mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
-  //GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  if (music.music) {
+    file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
+    bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
+    mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
+    GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
+  }
 
   menu = new Menu();
   level = new Level();
@@ -178,7 +180,7 @@ void setup()
   music.setup();
 
   //if (platforms.moveAmount == 1) {
-    //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
+  //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
   //}
 
   /*if (platforms.moveAmount == 1){//Achievement when boss is defeated.
@@ -487,23 +489,23 @@ void update()
     fill(255);
     text("Achievement complete!", platforms.achievementTextX, platforms.achievementTextY);
   }
-  
+
   //Achievement Complete announcement is over.
   if (fireballAchievementCount <= endFireballAchievement) {
     seeFireballAchievement = false;
     begin = false;
   }
- 
+
   //Achievement in boss room
-  if (bossFightRoom){
+  if (bossFightRoom) {
     challenge.dragonQuery = true;
   }
-  
+
   //Achievement in game
-  if (platforms.moveAmount >= 1){
+  if (platforms.moveAmount >= 1) {
     challenge.gamePlayed = true;
   }
-  
+
   //println(challenge.dragonQuery);
   //println(challenge.dragonQuery);
   player.movementUpdate();
@@ -523,15 +525,15 @@ void update()
 
 //Extinguish fireballs achievement
 /*public void executeSQL(java.lang.String fireballQuery, boolean oneGame) {  
-  if (oneGame) {
-    myConnection.updateQuery(fireballQuery);
-    println("Exicute SQl");
-    oneGame = false;
-  }
-}*/
+ if (oneGame) {
+ myConnection.updateQuery(fireballQuery);
+ println("Exicute SQl");
+ oneGame = false;
+ }
+ }*/
 void restartGame() {//Resets the whole game
   scoreHandler.score = 0;
-  inloggen.j = 0;
+  inloggen.amountFilled = 0;
   platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
@@ -566,18 +568,18 @@ void draw() {
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-      
+
       if (keysPressed['V']) {
         showAchievement = true;
       }
-      
-      if (showAchievement){
+
+      if (showAchievement) {
         background(0);
         textSize(50);
         text("Challenges", 400, 100);
         challenge.showChallenges();
       }
-      
+
       if (achievement.summary) {// Player 
         //achievement.updateAchievements();
         //achievement.draw();
