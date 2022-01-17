@@ -110,7 +110,6 @@ void setup()
   
   music = new Music();
   if (music.music) {
-    file = new SoundFile(this, "Footsteps Sound Effects !!! Metal steps.wav");
     bossFightMusic1 = new SoundFile(this, "battle-of-the-dragons-8037.mp3");
     mainMenuMusic1 = new SoundFile(this, "cinematic-dramatic-11120.mp3");
     GameMusic1 = new SoundFile(this, "carried-by-the-wind-calm-classical-orchestral-2754.mp3");
