@@ -628,6 +628,7 @@ void draw() {
             instruction.draw();
             inAchievement = false;
             inHighScore = false;
+          }
 
             if (keysPressed[LEFT]) {
               instruction.manual = false;
@@ -664,6 +665,7 @@ void draw() {
         }
       }
     }
+    
     //Start game, have fun!
     if (menu.start == true) {
       background(0);
@@ -794,7 +796,6 @@ void draw() {
       menu.start = false;
       restartGame();
     }
-  }
 }
 
 void keyPressed() {
