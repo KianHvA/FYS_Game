@@ -173,19 +173,19 @@ class Schild {
     image(inventory.shieldOutline, schildPos.x, schildPos.y, schildSize.x * 1.2, schildSize.y  * 1.2);
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
-    
-    if (seeScoreShield){
-     fill(white);
-     textSize(TEXT_SIZE);
-     text("+ 50", player.posPlayer.x - seeScoreDistance.x, player.posPlayer.y - seeScoreDistance.y);
 
     if (seeScoreShield) {
-      fill(255);
-      textSize(30);
-      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+      fill(white);
+      textSize(TEXT_SIZE);
+      text("+ 50", player.posPlayer.x - seeScoreDistance.x, player.posPlayer.y - seeScoreDistance.y);
+
+      if (seeScoreShield) {
+        fill(255);
+        textSize(30);
+        text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+      }
     }
   }
-
   void reset() {
     ResetReset = false;
     NewPos = true;
