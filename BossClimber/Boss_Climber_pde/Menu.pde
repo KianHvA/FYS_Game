@@ -21,12 +21,12 @@ class Menu {
   float Check = 0;
   float Time = 0;
   boolean personalize = false;
-  final PVector size = new PVector(275, 150);
+  final PVector SIZE = new PVector(275, 150);
   float timer2 = 0;
-  final PVector placeBS = new PVector(300, 150);
-  final PVector sizeBS = new PVector(1, 1);
+  final PVector PLACEBS = new PVector(300, 150);
+  final PVector SIZEBS = new PVector(1, 1);
   float timer3 = 0;
-  final color player = 255;
+  final color PLAYER = 255;
   float Check2 = 0, Time2 = 0;
   boolean restart = false;
   PVector spawnP1 = new PVector(200, 250);
@@ -69,10 +69,10 @@ class Menu {
     textAlign(CORNER, CORNER);
     text("BOSS CLIMBER", placement1.x - TEXT1.x, TEXT1.y); 
     fill(125);
-    rect(placement1.x - RECTCORRECTION1, placement1.y, size.x, size.y);
-    rect(placement2.x, placement2.y, size.x, size.y);
-    rect(placement3.x, placement3.y + size.y + RECTCORRECTION2, size.x, size.y / RECTCORRECTION3);
-    rect(placement4.x, placement4.y, size.x, size.y / RECTCORRECTION3);
+    rect(placement1.x - RECTCORRECTION1, placement1.y, SIZE.x, SIZE.y);
+    rect(placement2.x, placement2.y, SIZE.x, SIZE.y);
+    rect(placement3.x, placement3.y + SIZE.y + RECTCORRECTION2, SIZE.x, SIZE.y / RECTCORRECTION3);
+    rect(placement4.x, placement4.y, SIZE.x, SIZE.y / RECTCORRECTION3);
     rectMode(CENTER);
     textFont(f, TEXTFONT1); //size of the texts
     fill(KLEUR); //color
@@ -81,11 +81,11 @@ class Menu {
     text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
     textSize(textSize);
     textLeading(TEXTFONT2);
-    text("Press X for\n Highscore", placement3.x + size.x/5, placement3.y+(size.y*1.35)); // press X on pc
+    text("Press X for\n Highscore", placement3.x + SIZE.x/5, placement3.y+(SIZE.y*1.35)); // press X on pc
     textSize(72);
     textSize(textSize);
     textLeading(TEXTFONT1);
-    text("Press -> for\n Achievements", placement4.x + size.x/13, placement4.y + size.y/3.5);
+    text("Press -> for\n Achievements", placement4.x + SIZE.x/13, placement4.y + SIZE.y/3.5);
     drawn = true;
 
     if (keysPressed['A']) {

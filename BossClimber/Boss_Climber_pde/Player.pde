@@ -76,7 +76,7 @@ class Player {
     rectMode(CENTER);
 
     //player
-    fill(menu.player);
+    fill(menu.PLAYER);
     imageMode(CENTER);
     image(Active, posPlayer.x, posPlayer.y, sizeSprite.x, sizeSprite.y);
     //ellipse(posPlayer.x, posPlayer.y, sizePlayer.x, sizePlayer.y);
@@ -377,7 +377,7 @@ class Player {
   void collideWithPlatform()
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y -= sizePlayer.y/2);
+      posPlayer.y -= (sizePlayer.y/2);
 
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
