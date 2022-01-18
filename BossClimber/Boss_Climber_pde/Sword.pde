@@ -1,6 +1,7 @@
 //Ömer
 class Sword {
   CollisionHandler collisionHandler;
+  //variables
   float swordX = width * 2, swordY = height * 2, swordW, swordH;
   float guardW, guardH;
   float durabillity = 3;
