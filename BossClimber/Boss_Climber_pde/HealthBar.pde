@@ -118,12 +118,12 @@ class Health {
 
       //println("hoi"); Used for checks
       //rectMode(CORNER); 
-      fill(0);
-      rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
-      textFont(f, 36); //size of the texts
-      fill(255); //color
-      text("GAME OVER", halfX, halfY);
-      text("Score: " + scoreHandler.score, halfX, halfY + 30);
+      //fill(0);
+      ////rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
+      //textFont(f, 36); //size of the texts
+      //fill(255); //color
+      //text("GAME OVER", halfX, halfY);
+      //text("Score: " + scoreHandler.score, halfX, halfY + 30);
       //rectMode(CENTER); 
       //fill(0);
       //rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
