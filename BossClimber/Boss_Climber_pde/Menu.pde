@@ -64,7 +64,7 @@ class Menu {
     rectMode(CORNER);
     //colorMode(rect1);
     //menu.highlight();
-    fill(kleur);
+    fill(KLEUR);
     textSize(72);
     textAlign(CORNER, CORNER);
     text("BOSS CLIMBER", placement1.x - TEXT1.x, TEXT1.y); 
@@ -75,7 +75,7 @@ class Menu {
     rect(placement4.x, placement4.y, size.x, size.y / RECTCORRECTION3);
     rectMode(CENTER);
     textFont(f, TEXTFONT1); //size of the texts
-    fill(kleur); //color
+    fill(KLEUR); //color
     textLeading(TEXTFONT1);
     text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
     text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
