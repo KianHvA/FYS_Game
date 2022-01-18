@@ -59,12 +59,12 @@ class Menu {
   final int TEXTCORRECTION7 = 2;
   final int TEXTCORRECTION8 = 100;
   final int TEXTCORRECTION9 = 10;
-  final int TEXTCOÖRDINATES1 = 500;
-  final int TEXTCOÖRDINATES2 = 300;
-  final int TEXTCOÖRDINATES3 = 80;
-  final int TEXTCOÖRDINATES4 = 250;
-  final int TEXTCOÖRDINATES5 = 40;
-  final int TEXTCOÖRDINATES6 = 200;
+  final int TEXTCOORDINATES1 = 500;
+  final int TEXTCOORDINATES2 = 300;
+  final int TEXTCOORDINATES3 = 80;
+  final int TEXTCOORDINATES4 = 250;
+  final int TEXTCOORDINATES5 = 40;
+  final int TEXTCOORDINATES6 = 200;
   final int COLORS1 = 125;
   final int COLORS2 = 255;
 
@@ -123,7 +123,7 @@ class Menu {
     String[] dates = databaseTable.getStringColumn(3);
     
     fill(COLORS1);
-    rect(width/TEXTCORRECTION7, TEXTCOÖRDINATES1, TEXTCOÖRDINATES2, TEXTCOÖRDINATES3);
+    rect(width/TEXTCORRECTION7, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
     
     fill(COLORS2);
     textAlign(CENTER,CENTER);
@@ -136,7 +136,7 @@ class Menu {
       text(highscore, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTFONT4);
       
       textSize(TEXTFONT5);
-      text("Press A to start", width/TEXTCORRECTION7, TEXTCOÖRDINATES1);
+      text("Press A to start", width/TEXTCORRECTION7, TEXTCOORDINATES1);
     }
   }
   
@@ -151,7 +151,7 @@ class Menu {
     
      
     fill(COLORS1);
-    rect(width/TEXTCORRECTION7, TEXTCOÖRDINATES4, TEXTCOÖRDINATES2, TEXTCOÖRDINATES5);
+    rect(width/TEXTCORRECTION7, TEXTCOORDINATES4, TEXTCOORDINATES2, TEXTCOORDINATES5);
     
     fill(COLORS2);
     textAlign(CENTER, CENTER);
@@ -164,7 +164,7 @@ class Menu {
       text(Achievement, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTCORRECTION9);
       
       textSize(TEXTFONT5);
-      text("Press B for Achievements", width/TEXTCORRECTION7, TEXTCOÖRDINATES6);
+      text("Press B for Achievements", width/TEXTCORRECTION7, TEXTCOORDINATES6);
     }
   }
   void restart() {

@@ -52,6 +52,10 @@ class Health {
   }
 
   void draw() {
+    if (healthbar.healthPlayer < 1 && amount >= 0) {
+      amount--;
+      healthbar.healthPlayer = 1;
+    }
     switch(amount) {
     case 4:/*3 but because of the mulptiplier with damage it can't get to 0*/
       fill(255);
@@ -83,22 +87,6 @@ class Health {
     if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600 || amount0) { //Player is out of lives or walked out of the screen to die.
       halfX = xBegin;
       halfY = yBegin;
-
-      //println("hoi"); Used for checks
-      //rectMode(CORNER); 
-      //fill(0);
-      ////rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
-      //textFont(f, 36); //size of the texts
-      //fill(255); //color
-      //text("GAME OVER", halfX, halfY);
-      //text("Score: " + scoreHandler.score, halfX, halfY + 30);
-      //rectMode(CENTER); 
-      //fill(0);
-      //rect(halfX, halfY, width, height); //Black screen if you know a better way pleaso do it
-      //textFont(f, 36); //size of the texts
-      //fill(255); //color
-      //text("GAME OVER", halfX, halfY);
-      //text("Score: " + scoreHandler.score, halfX, halfY + 30);
  
       fill(0);
       rect(halfX, halfY, width, height);
