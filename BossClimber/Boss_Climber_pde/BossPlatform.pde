@@ -188,10 +188,13 @@ void BossFightLava() {
       image(level.lavaSlicedImg[randomNumberLava], bossfightlava[randomNumberLava]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
       image(level.lavaSlicedImg[randomNumberLava1], bossfightlava[randomNumberLava1]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
       image(level.lavaSlicedImg[randomNumberLava2], bossfightlava[randomNumberLava2]+lavaCenter, height-lavaY, lavaNumber, LavaY2);
+      
+      //the lava goes up until it reached its max height
       if (lavaUp) {
         if (lavaY<=maxLavaLength) {
           lavaY++;
         }
+        //if it reached its max height the lava will go down
         if (lavaY==maxLavaLength) {
           lavaUp = false;
           lavaDown = true;
@@ -200,6 +203,7 @@ void BossFightLava() {
       if (lavaDown) {
         lavaY--;
       }
+      //the lines of code below are to damage the player when they get hit by lava
       for (int j = 0; j<level.lavaSlicedImg.length; j++) {
         if (player.posPlayer.y>height-lavaY&&player.posPlayer.x<bossfightlava[randomNumberLava]+lavaNumber&&player.posPlayer.x>bossfightlava[randomNumberLava]) {
           healthbar.doDamage(100);
