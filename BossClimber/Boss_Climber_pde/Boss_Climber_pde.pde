@@ -1,5 +1,11 @@
-//prototype IG-103-2
-
+//Boss_Climber IG-103-2
+/*
+Keyboard to controller
+A = A
+S = B
+Z = Y
+X = X
+*/
 import samuelal.squelized.*;
 import java.util.Properties;
 import processing.sound.*;
@@ -186,8 +192,6 @@ void setup()
 
   fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[11].posFireball.y = dragon.starty;
-
-  music.setup();
 
   //if (platforms.moveAmount == 1) {
   //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
@@ -585,6 +589,9 @@ void draw() {
 
       //Achievement page
       if (aChievement){
+      if (showAchievement) {
+        background(black);
+
         if (showAchievement) {
           background(0);
           textSize(50);

@@ -58,12 +58,14 @@ class Sword {
     swordStab = loadImage("Knight - Sword attack.png");
   }
 
+  
   void updateSword() {
     if (!dragon.fight) {
       swordX = width * 2;
       swordY = height * 2;
     }
-
+  
+     
     if (dragon.fight && !pickedUp && !swordPickedUp) {
       swordX = spawnPointsPUPS.fightR.x;
       swordY = spawnPointsPUPS.fightR.y;
@@ -87,14 +89,17 @@ class Sword {
       }
     }
 
+    //wanneer je het zwaard oppakt en als je op s klikt dan wordt de zwaard geactiveerd
     if (swordW == 0 && swordH == 0 && keysPressed['S'] && !swordOff && cooldown == 0) {
       swordOn = true;
     }
 
+    //als
     if (pickedUp && dragon.fight) {
       durabillity = durablillityFight;
     }
 
+    //hier wordt de zwaard gereset
     if (reset) { //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
       reset();
       timedReset = false;
@@ -106,6 +111,7 @@ class Sword {
     //  attack();
     //}
 
+     //als je op s drukt en oppakt dan kan je slaan met het zwaard
     if (keysPressed['S'] && pickedUp) {
       attacked = true;
       attack();
@@ -135,11 +141,14 @@ class Sword {
       damageOpacity--;
       timerDamage++;
     }
+    
+    //
     if (timerDamage >= timer) {
       doneDamage = false;
       timerDamage = timeDmg;
     }
 
+    //hier wordt de damage gefixed daarna wordt de damagefixtimer increment
     if (fastDamageFix) {
       damageFixTimer++;
     }
@@ -151,7 +160,7 @@ class Sword {
     if (seeScoreSword) {
       scoreSwordCount--;
     }
-
+       
     if (scoreSwordCount < scoreCount) {
       seeScoreSword = false;
       scoreSwordCount = score2Count;
@@ -159,6 +168,8 @@ class Sword {
     if (attacked) {
       stabAnimation++;
     }
+    
+    //wanneer je slaat met het zwaard dan komt er een animatie
     if (stabAnimation >= Animation) {
       attacked = false;
       stabAnimation = Animation2;
@@ -181,6 +192,7 @@ class Sword {
     }
   }
 
+  //hier kan je slaan met de zwaard en krijgt de draak damage
   void attack() {    
     collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
     hasCollision = collisionHandler.hitDragon;

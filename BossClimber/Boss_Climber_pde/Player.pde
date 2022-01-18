@@ -7,6 +7,7 @@ class Player {
   PVector sizePlayer = new PVector(20, 20);//for collision 
   PVector sizeSprite = new PVector(sizePlayer.x, sizePlayer.y * (3/2)*2);//for sprite
   PVector velocity = new PVector(0, 0);
+  float wallRepelForce = 3;
   final float GRAVITY = 0.4f;
   float jumpForce = 10;
   boolean hasJumped = false, hasDoubleJumped = false, hasCollision = false, wallCollisonR = false, wallCollisonL = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
@@ -23,11 +24,13 @@ class Player {
   final float SPEED = 5;
   boolean jump = false;
   boolean jumped = false;
+  int jumpCooldown= 30;
   float jumpTimer1 = 0;
   int jumpAmount = 0;
   float walkAmount = 0;
   boolean checkSound = false;
   boolean playSound = false;
+  float timerAnimations = 5;
 
   void setup() {
     //left
@@ -109,10 +112,10 @@ class Player {
     }
     if (wallCollisonR) {
       velocity.x = 0;
-      velocity.x -= 3;
+      velocity.x -= wallRepelForce;
     } else if (wallCollisonL) {
       velocity.x = 0;
-      velocity.x += 3;
+      velocity.x += wallRepelForce;
     }
     //handle movement on x-axes
     if (keysPressed[LEFT] /*&& !collisionHandler.hitWallLeft*/ && !platforms.moveStage  && !wallCollisonL && !wallCollisonR)
@@ -146,11 +149,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= 5) {
+        if (timerLeft1 >= timerAnimations) {
           leftActive = left1;
           timerLeft2++;
         }
-        if (timerLeft2 >= 5) {
+        if (timerLeft2 >= timerAnimations) {
           leftActive = left2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -162,11 +165,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= 5) {
+        if (timerRight1 >= timerAnimations) {
           rightActive = right1;
           timerRight2++;
         }
-        if (timerRight2 >= 5) {
+        if (timerRight2 >= timerAnimations) {
           rightActive = right2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -183,11 +186,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= 5) {
+        if (timerLeft1 >= timerAnimations) {
           leftActiveS = leftS1;
           timerLeft2++;
         }
-        if (timerLeft2 >= 5) {
+        if (timerLeft2 >= timerAnimations) {
           leftActiveS = leftS2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -198,11 +201,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= 5) {
+        if (timerRight1 >= timerAnimations) {
           rightActiveS = rightS1;
           timerRight2++;
         }
-        if (timerRight2 >= 5) {
+        if (timerRight2 >= timerAnimations) {
           rightActiveS = rightS2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -219,11 +222,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= 5) {
+        if (timerLeft1 >= timerAnimations) {
           leftActiveW = leftW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= 5) {
+        if (timerLeft2 >= timerAnimations) {
           leftActiveW = leftW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -234,11 +237,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= 5) {
+        if (timerRight1 >= timerAnimations) {
           rightActiveW = rightW1;
           timerRight2++;
         }
-        if (timerRight2 >= 5) {
+        if (timerRight2 >= timerAnimations) {
           rightActiveW = rightW2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -255,11 +258,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= 5) {
+        if (timerLeft1 >= timerAnimations) {
           leftActiveSW = leftSW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= 5) {
+        if (timerLeft2 >= timerAnimations) {
           leftActiveSW = leftSW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -270,11 +273,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= 5) {
+        if (timerRight1 >= timerAnimations) {
           rightActiveSW = rightSW1;
           timerRight2++;
         }
-        if (timerRight2 >= 5) {
+        if (timerRight2 >= timerAnimations) {
           rightActiveSW = rightSW2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -290,7 +293,7 @@ class Player {
 
 
     //handle jump
-    if (hasCollision && keysPressed[UP]  && !platforms.moveStage && jump && !jumped)
+    if (hasCollision && (keysPressed[UP] || keysPressed['A'])  && !platforms.moveStage && jump && !jumped)
     {
       jumpAmount++;
       jumped = true;
@@ -315,7 +318,7 @@ class Player {
     if (!jump) {
       jumpTimer1++;
     }
-    if (jumpTimer1 == 30) {
+    if (jumpTimer1 == jumpCooldown) {
       jump = true;
       jumpTimer1 = 0;
     }
@@ -377,7 +380,7 @@ class Player {
   void collideWithPlatform()
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y -= (sizePlayer.y/2);
+      posPlayer.y = posPlayer.y - GRAVITY;
 
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {

@@ -147,7 +147,7 @@ class Inloggen {
       }
 
       //If the a button is pressed the letter gets set.
-      if (keysPressed['B'] && !keyDown && !keyUp && !select) {
+      if (keysPressed['Z'] && !keyDown && !keyUp && !select) {
         select = true;
       }
 
