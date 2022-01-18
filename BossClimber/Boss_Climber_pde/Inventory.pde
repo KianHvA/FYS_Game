@@ -36,6 +36,7 @@ class Inventory {
     ellipseMode(CORNER);
     textAlign(CENTER, CENTER);
     fill(0);
+<<<<<<< Updated upstream
     ellipse(width - CORRECTION1, height - CORRECTION1, YELLIPSE1, YELLIPSE1);
     
     //We just draw a new picture inside the ellipse so that the player notices that he/she grabbed it.
@@ -44,20 +45,62 @@ class Inventory {
       noStroke();
       fill(0, 0, 255);
       image(waterflesI, width - CORRECTION2, height - CORRECTION3, YELLIPSE2, YELLIPSE3);
+=======
+    ellipse(width-60, height-60, 50, 50);
+
+
+    //if (Doublejump.pickedUp) {
+    //  rectMode(CENTER);
+    //  noStroke();
+    //  fill(147);
+    //  imageMode(CENTER);
+    //  image(doubleJump, width-35, height-35, 40, 50);
+    //  //rect(width-35, height-35, 50, 50);
+    //  inventoryFull = true;
+    //  //schild.pickedUp = false;
+    //  //sword.pickedUp = false;
+    //  //waterfles.pickedUp = false;
+    //} else {
+    //  inventoryFull = false;
+    //}
+
+    if (waterBottle.pickedUp) {
+      rectMode(CENTER);
+      noStroke();
+      fill(0, 0, 255);
+      image(waterflesI, width-52, height-55, 35, 40);
+      inventoryFull = true;
+    } else {
+      inventoryFull = false;
+>>>>>>> Stashed changes
     }
     
     if (schild.pickedUp) {//Inventory code for the shield.
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
+<<<<<<< Updated upstream
       image(shieldF, width - CORRECTION2, height - CORRECTION4, YELLIPSE2, YELLIPSE3);
+=======
+      image(shieldF, width-52, height-54, 35, 40);
+      inventoryFull = true;
+    } else {
+      inventoryFull = false;
+>>>>>>> Stashed changes
     }
     
     if (sword.pickedUp) {//Inventory code for the sword.
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
+<<<<<<< Updated upstream
       image(swordI, width - CORRECTION5, height - CORRECTION5, YELLIPSE4, YELLIPSE1);
+=======
+      image(swordI, width-45, height-55, 15, 50);
+      inventoryFull = true;
+    } else {
+      inventoryFull = false;
+>>>>>>> Stashed changes
     }
   }
 }

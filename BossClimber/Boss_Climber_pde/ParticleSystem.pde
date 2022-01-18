@@ -5,6 +5,8 @@ class Particle {
   PVector gravity;
   PVector speed;
   float lifespan;
+  float particleSize = 5;
+  float particleColour = 150;
 
   Particle(PVector life) {
     gravity= new PVector(0, 0.01);
@@ -24,10 +26,11 @@ class Particle {
     lifespan -= 3;
   }
 
+  //Draw particle
   void display() {
-    stroke(150, lifespan);
-    fill(150, lifespan);
-    ellipse(position.x, position.y + 20, 5, 5);
+    stroke(particleColour, lifespan);
+    fill(particleColour, lifespan);
+    circle(position.x, position.y + 20, particleSize);
   }
 
   boolean Dead() {
@@ -64,7 +67,4 @@ class ParticleSystem {
       }
     }
   }
-}
-
-class sparks {
 }
