@@ -28,7 +28,7 @@ class Inloggen {
   boolean select = false; //To check if the player selects that letter.
   String userName = "12345"; //The name the player uses.
   String Name = "What is your username?";
-  final String PRESSS = "Press B for next character."; //Need to change later
+  final String PRESSS = "Press Z for next character."; //Need to change later
   final color USERNAMETEXT = (#FFFFFF); //#FFFFFF = white.
   boolean loggedIn = false; //This boolean will go on true if the player has entered his/her name
   boolean nameExist = false; //If this boolean goes on true the name the player has already exists
@@ -147,7 +147,7 @@ class Inloggen {
       }
 
       //If the a button is pressed the letter gets set.
-      if (keysPressed['B'] && !keyDown && !keyUp && !select) {
+      if (keysPressed['Z'] && !keyDown && !keyUp && !select) {
         select = true;
       }
 
