@@ -377,7 +377,7 @@ class Player {
   void collideWithPlatform()
   {
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
-      posPlayer.y -= (sizePlayer.y/2);
+      posPlayer.y = posPlayer.y - GRAVITY;
 
       collisionHandler.preplatformHitPos = collisionHandler.platformHitPos;
     } else {
