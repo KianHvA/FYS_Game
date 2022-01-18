@@ -38,6 +38,10 @@ class Sword {
   float damageOpacity = 1000;
   boolean seeScoreSword = false;
   float scoreSwordCount = 100;
+  float posPlayerX = 10;
+  float posPlayerY = 40;
+  float swordinvPos = 1.2;
+  float extendswordpos = 5;
   int swordScore = 50;
   PImage swordStab;
   float stabAnimation = 0;
@@ -72,7 +76,7 @@ class Sword {
       swordPickedUp = true;
     }
 
-    if (waterBottle.pickedUp && pickedUp || schild.pickedUp && pickedUp /*|| Doublejump.pickedUp*/) {
+    if (waterBottle.pickedUp && pickedUp || schild.pickedUp && pickedUp) {
       pickedUp = false;
       reset = true;
       timedReset = true;
@@ -94,35 +98,27 @@ class Sword {
       swordOn = true;
     }
 
-    //als
+    //wanneer je het zwaard oppakt 
     if (pickedUp && dragon.fight) {
       durabillity = durablillityFight;
     }
 
     //hier wordt de zwaard gereset
-    if (reset) { //&& !schild.pickedUp /*&& !Doublejump.pickedUp*/ && !sword.pickedUp && !waterfles.pickedUp) {
+    if (reset) { 
       reset();
       timedReset = false;
       reset = false;
     }
 
 
-    //if (attacked && swordOn) {
-    //  attack();
-    //}
+   
 
      //als je op s drukt en oppakt dan kan je slaan met het zwaard
     if (keysPressed['S'] && pickedUp) {
       attacked = true;
       attack();
     }
-    //if (timedReset) {
-    // delay (5000);
-    // reset();
-    // reset = false;
-    // fight = false;
-    // timedReset = false;
-    //}
+    
     if (newPos) {
       swordX = spawnPointsPUPS.location.x;
       swordY = spawnPointsPUPS.location.y;
@@ -142,7 +138,7 @@ class Sword {
       timerDamage++;
     }
     
-    //
+    //hier wordt er geen damage gedaan
     if (timerDamage >= timer) {
       doneDamage = false;
       timerDamage = timeDmg;
@@ -153,18 +149,23 @@ class Sword {
       damageFixTimer++;
     }
 
+    //wanneer 0 groter of gelijk aan 60 is dan wordt the damage niet gefixed
     if (damageFixTimer >= damageTimer) {
       fastDamageFix = false;
     }
-
+     
+     //hier wordt de score van het zwaard getelt
     if (seeScoreSword) {
       scoreSwordCount--;
     }
        
+       //hier zie je de punten wanneer je het zwaard oppakt
     if (scoreSwordCount < scoreCount) {
       seeScoreSword = false;
       scoreSwordCount = score2Count;
     }
+    
+    //hier wordt er aangevallen met het zwaard en de animatie wordt aangegeven
     if (attacked) {
       stabAnimation++;
     }
@@ -180,31 +181,32 @@ class Sword {
     fill(255);
     rectMode(CENTER);
     ellipseMode(CENTER);
-    image(inventory.swordIOutline, swordX, swordY, swordW * 1.2, swordH * 1.2);
+    image(inventory.swordIOutline, swordX, swordY, swordW * swordinvPos, swordH * swordinvPos);
     image(inventory.swordI, swordX, swordY, swordW, swordH);
-    //rect(swordX, swordY, swordW, swordH);
-    //rect(swordX, swordY + 15, guardW, guardH);
-
+    
+    //hier kan je het zwaard zien en je kan de punten zien wanneer je het zwaard pakt
     if (seeScoreSword) {
       fill(255);
       textSize(30);
-      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+      text("+ 50", player.posPlayer.x - posPlayerX, player.posPlayer.y - posPlayerY);
     }
   }
 
   //hier kan je slaan met de zwaard en krijgt de draak damage
   void attack() {    
-    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, 5);
+    collisionHandler.checkCollisionDragon(player.posPlayer.x, player.posPlayer.y - extendSword, extendswordpos);
     hasCollision = collisionHandler.hitDragon;
     if (hasCollision && !fastDamageFix) {
       doneDamage = true;
     }
+    //hier krijgt de draak dmg wanneer je met de zwaard slaat
     if (doneDamage) {
       dragon.healthbarDragon.doDamageDragon(1);
       fastDamageFix = true;
     }
   }
 
+  //wanneer je het zwaard verliest dan wordt het gereset
   void reset() {
     newPos = true;
     swordX = swordXpos;
