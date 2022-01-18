@@ -186,7 +186,6 @@ class Schild {
       }
     }
   }
-
   void reset() {
     ResetReset = false;
     NewPos = true;

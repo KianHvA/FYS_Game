@@ -742,6 +742,14 @@ void draw() {
         menu.start = false;
         restartGame();
       }
+    //Game over and returning to title screen
+    if (Highscore.ending && keysPressed['D']) {
+      health.dead = false;
+      //Highscore.drawn = false;
+      //Highscore.ending = false;
+      menu.start = false;
+      restartGame();
+    }
   }
 }
 
