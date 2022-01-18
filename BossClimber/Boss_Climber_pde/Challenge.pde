@@ -1,3 +1,4 @@
+//Dion
 class Challenge {
   boolean extinguishQuery = false;
   boolean dragonQuery = false;
@@ -5,7 +6,8 @@ class Challenge {
   boolean inDatabase = true;
   boolean inDatabase2 = true;
   boolean inDatabase3 = true;
-
+  
+  //Extinguish 3 fireballs to complete this challenge
   void fireballQuery() {
     if (extinguishQuery && inDatabase) {
       myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Extinguish 3 fireballs', 'COMPLETE!')");
@@ -14,6 +16,7 @@ class Challenge {
     }
   }
 
+  //Reach the boss fight to complete this challenge
   void reachBossQuery() {
     if (dragonQuery && inDatabase2) {
       myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Reach the boss fight', 'COMPLETE!')");
@@ -22,6 +25,7 @@ class Challenge {
     }
   }
 
+  //Play one game of Boss Climber to complete this challenge
   void playGameQuery() {
     if (gamePlayed && inDatabase3) {
       myConnection.updateQuery("INSERT INTO Achievement (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE!')");
@@ -30,6 +34,7 @@ class Challenge {
     }
   }
 
+  //Displays challenges
   void showChallenges() {
     String achievement;
     String challenges = "SELECT DISTINCT description, difficulty FROM Achievement";
