@@ -6,7 +6,8 @@ class Flamethrower {
   final float X3 = width/6 + width/2; //X coördinates right.
   final float X4 = width/6 + width/2 + 60;
   final PVector SIZEFLAME = new PVector(60, 100);
-  float timer1 = 0, timer2 = 0, hitFlamethrowerCount = 100;
+  final float TOTAL_TIME = 250;
+  float timer1 = 0, timer2 = 0, hitFlamethrowerCount = 100, damageTimer = 250, resetDamageTimer = 250, noTime = 0;
   int distance = 660; //Size screen so that everything stands correctly.
   int from = -10; //From y = 150 flamethrowers are drawn.
   int minus = 7; //Size base flamethrower.
@@ -19,6 +20,7 @@ class Flamethrower {
   float newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
   boolean sparkStage;
+  boolean countdown = false;
 
   void setup() {
     collisionHandler = new CollisionHandler();
@@ -118,9 +120,25 @@ class Flamethrower {
           live = false; //Collision check de-activate
           live2 = false; //Collision check de-activate
         }
-        if (hasCollision) healthbar.doDamage(1); //damage
+        
+        //Damage and timer is counting when the player gets damage
+        if (damageTimer == TOTAL_TIME){
+          if (hasCollision){
+            healthbar.doDamage(1);
+            countdown = true;
+       }
       }
-    }
+      
+      if (countdown){
+        damageTimer--;
+      }
+      
+      //Resets damage timer
+      if (damageTimer <= noTime){
+        damageTimer = resetDamageTimer;
+        countdown = false;
+      }
+     }
 
     if (seeHitFlamethrower) {
       hitFlamethrowerCount--;
@@ -131,4 +149,5 @@ class Flamethrower {
       hitFlamethrowerCount = 100;
     }
   }
+ }
 }

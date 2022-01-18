@@ -194,7 +194,7 @@ class Instructions {
   }
 
   void draw() {
-    if (manual) {
+    //if (manual) {
       background(black);
 
       fill(gray);
@@ -223,6 +223,6 @@ class Instructions {
 
       textSize(startTextSize);
       text("Press A to start", textInstr[10].x, textInstr[10].y);
-    }
+   // }
   }
 }

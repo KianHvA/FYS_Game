@@ -95,7 +95,8 @@ class Menu {
     fill(KLEUR); //color
     textLeading(TEXTFONT1);
     text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
-    text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
+    textSize(40);
+    text("Press DOWN \nfor instructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
     textSize(TEXTSIZE);
     textLeading(TEXTFONT2);
     text("Press X for\n Highscore", placement3.x + SIZE.x/TEXTCORRECTION4, placement3.y+(SIZE.y*TEXTCORRECTION5)); // press X on pc
