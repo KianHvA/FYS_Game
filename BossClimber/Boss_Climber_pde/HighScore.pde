@@ -72,7 +72,7 @@ class HighScore {
             }
           }
           if (highScore) {//If the player got a new highscore it will be updated in the database.
-            String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
+            String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + ",date = " + date + "' WHERE name = '" + inloggen.userName + "';";
             myConnection.updateQuery(update);
             showHighScore = true;
             highScore = false;

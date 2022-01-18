@@ -309,7 +309,7 @@ class Player {
       jump = false;
       jumped = false;
       if (music.music) {
-      jumpSound.play();
+        jumpSound.play();
       }
     }
     if (!jump) {

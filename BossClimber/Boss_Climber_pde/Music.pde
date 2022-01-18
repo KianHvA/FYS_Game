@@ -20,6 +20,9 @@ class Music {
 
   void update() {
     if (music) {
+      if (player.jumped) {
+       jumpSound.play(); 
+      }
       if (menu.start) {
         mainMenuMusic1.stop();
       }
