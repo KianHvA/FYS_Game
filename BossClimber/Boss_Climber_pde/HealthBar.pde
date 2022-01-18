@@ -83,7 +83,6 @@ class Health {
     if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600 || amount0) { //Player is out of lives or walked out of the screen to die.
       halfX = xBegin;
       halfY = yBegin;
-<<<<<<< Updated upstream
 
       //println("hoi"); Used for checks
       //rectMode(CORNER); 
@@ -100,7 +99,6 @@ class Health {
       //fill(255); //color
       //text("GAME OVER", halfX, halfY);
       //text("Score: " + scoreHandler.score, halfX, halfY + 30);
-=======
  
       fill(0);
       rect(halfX, halfY, width, height);
@@ -108,7 +106,6 @@ class Health {
       fill(255);
       text("GAME OVER", halfX, halfY);
       text("Score: " + scoreHandler.score, halfX, halfY + 30);
->>>>>>> Stashed changes
       dead = true;
     }
   }

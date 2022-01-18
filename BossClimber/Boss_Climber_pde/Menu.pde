@@ -17,7 +17,7 @@ class Menu {
   final color NORMALL = 125;
   final color RECT1 = 0;
   final color RECT2 = 0;
-  final color kleur = #FFFFFF;
+  final color KLEUR = #FFFFFF;
   float Check = 0;
   float Time = 0;
   boolean personalize = false;

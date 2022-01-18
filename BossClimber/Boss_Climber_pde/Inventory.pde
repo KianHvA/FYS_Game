@@ -44,6 +44,7 @@ class Inventory {
       noStroke();
       fill(0, 0, 255);
       image(waterflesI, width - CORRECTION2, height - CORRECTION3, YELLIPSE2, YELLIPSE3);
+      inventoryFull = true;
     }
 
     if (schild.pickedUp) {//Inventory code for the shield.
