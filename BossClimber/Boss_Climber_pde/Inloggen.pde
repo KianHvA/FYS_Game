@@ -1,3 +1,4 @@
+//Tristan, Kian
 class Inloggen {
   int characterAmount = 63; //The maximum amount of characters.
   String[] nameSelector  = new String[characterAmount]; //String that will hold all the letters.
@@ -21,7 +22,7 @@ class Inloggen {
   boolean keyUp = false; //To check if arrow Up is pressed.
   boolean keyDown = false; //To check if arrow Down is pressed.
   boolean select = false; //To check if the player selects that letter.
-  String userName = "12345"; //The final name when the player is done
+  String userName = "12345"; //The name the player uses.
   String Name = "What is your username?";
   String Press = "Press B for next."; //Need to change later
   color userNameText = (#FFFFFF); //#FFFFFF = white.

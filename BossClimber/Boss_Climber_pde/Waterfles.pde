@@ -91,7 +91,12 @@ class WaterBottle{
   }
 
   void draw() {
+<<<<<<< HEAD
     fill(blue);
+=======
+    fill(0, 0, 255);
+    image(inventory.waterflesIOutline, bottleX, bottleY, bottleWidth*1.2, bottleHeight*1.2);
+>>>>>>> d8dc88e18d7e9232a618086501e47e116839d3bf
     image(inventory.waterflesI, bottleX, bottleY, bottleWidth, bottleHeight);
 
     if (seeScoreBottle) {

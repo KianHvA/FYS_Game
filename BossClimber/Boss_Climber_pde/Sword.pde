@@ -160,6 +160,8 @@ class Sword {
   void draw() {
     fill(255);
     rectMode(CENTER);
+    ellipseMode(CENTER);
+    image(inventory.swordIOutline, swordX, swordY, swordW * 1.2, swordH * 1.2);
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     //rect(swordX, swordY, swordW, swordH);
     //rect(swordX, swordY + 15, guardW, guardH);

@@ -4,7 +4,8 @@
 class Inventory {
   int breedte = width/13;
   int hoogte = height/12;
-  PImage shieldF /*shield front*/, shieldB /*shield back*/, swordI, doubleJump, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
+  PImage shieldF /*shield front*/, shieldB /*shield back*/, swordI, waterflesI /*I staat erachter omdat anders de pickedUp ding raar doet*/;
+  PImage shieldOutline, swordIOutline,waterflesIOutline /*Outlines voor powerups*/;
   boolean inventoryFull = false;
 
   void setup() {
@@ -12,7 +13,11 @@ class Inventory {
     shieldB = loadImage("Shield - Back.png");
     swordI = loadImage("Sword.png");
     waterflesI = loadImage("Waterfles.png");
-    doubleJump = loadImage("Jump - Boost.png");
+    
+    shieldOutline = loadImage("ShieldOutline.png");
+    swordIOutline = loadImage("SwordOutline.png");
+    waterflesIOutline = loadImage("WaterflesOutline.png");
+    
   }
   
   void draw() {
