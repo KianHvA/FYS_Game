@@ -1,11 +1,11 @@
 //Boss_Climber IG-103-2
 /*
 Keyboard to controller
-A = A
-S = B
-Z = Y
-X = X
-*/
+ A = A
+ S = B
+ Z = Y
+ X = X
+ */
 import samuelal.squelized.*;
 import java.util.Properties;
 import processing.sound.*;
@@ -450,7 +450,7 @@ void update()
       bossFireballCount = resetFireballCount;
     }
   }
-  
+
   //println(flamethrower.damageTimer);
 
   if (cooldown > endCoolDown) {
@@ -588,31 +588,31 @@ void draw() {
       }
 
       //Achievement page
-      if (aChievement){
-      if (showAchievement) {
-        background(black);
-
+      if (aChievement) {
         if (showAchievement) {
-          background(0);
-          textSize(50);
-          text("Challenges", 400, 100);
-          challenge.showChallenges();
-          fill(gray);
-          rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
-          fill(white);
-          textSize(30);
-          text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
-          textSize(50);
-          text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
-          inHighScore = false;
-          inStructions = false;
-          
-          if (keysPressed[LEFT]){
-            showAchievement = false;
-            aChievement = true;
-            inHighScore = true;
-            inInstructions = true;
-           }
+          background(black);
+
+          if (showAchievement) {
+            background(0);
+            textSize(50);
+            text("Challenges", 400, 100);
+            challenge.showChallenges();
+            fill(gray);
+            rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            fill(white);
+            textSize(30);
+            text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+            textSize(50);
+            text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
+            inHighScore = false;
+            inStructions = false;
+
+            if (keysPressed[LEFT]) {
+              showAchievement = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
+            }
           }
         }
 
@@ -622,46 +622,46 @@ void draw() {
         }
 
         //Instruction page
-        if (inInstructions){
+        if (inInstructions) {
           if (instruction.manual) {//Player reads instructions.
             instruction.updateInstructions();
             instruction.draw();
             inAchievement = false;
             inHighScore = false;
-            
-           if (keysPressed[LEFT]){
-             instruction.manual = false;
-             instruction.powerExpl = false;
-             aChievement = true;
-             inHighScore = true;
-             inInstructions = true;
-           }
-  
+
+            if (keysPressed[LEFT]) {
+              instruction.manual = false;
+              instruction.powerExpl = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
+            }
+
             if (keysPressed['S']) {
               instruction.powerExpl = true;
             }
-  
+
             if (instruction.powerExpl) {
               instruction.powerUpInstructions();
-             }
             }
           }
-        
+        }
+
         //Highscore page
-        if (inHighScore){
-            if (menu.displayHighscore) {
-              menu.HighscoreDraw();
-              aChievement = false;
-              inStructions = false;
-            
-              if (keysPressed[LEFT]){
-                menu.displayHighscore = false;
-                aChievement = true;
-                inHighScore = true;
-                inInstructions = true;
-               }
+        if (inHighScore) {
+          if (menu.displayHighscore) {
+            menu.HighscoreDraw();
+            aChievement = false;
+            inStructions = false;
+
+            if (keysPressed[LEFT]) {
+              menu.displayHighscore = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
             }
           }
+        }
       }
     }
     //Start game, have fun!
@@ -776,23 +776,24 @@ void draw() {
       ps.addParticle();
       ps.run();
     }
-  //}
+    //}
 
-  //Game over and returning to title screen
-  if (Highscore.ending && keysPressed['D']) {
-    health.dead = false;
-    //Highscore.drawn = false;
-    //Highscore.ending = false;
-    menu.start = false;
-    restartGame();
-  }
-  //Game over and returning to title screen
-  if (Highscore.ending && keysPressed['D']) {
-    health.dead = false;
-    //Highscore.drawn = false;
-    //Highscore.ending = false;
-    menu.start = false;
-    restartGame();
+    //Game over and returning to title screen
+    if (Highscore.ending && keysPressed['D']) {
+      health.dead = false;
+      //Highscore.drawn = false;
+      //Highscore.ending = false;
+      menu.start = false;
+      restartGame();
+    }
+    //Game over and returning to title screen
+    if (Highscore.ending && keysPressed['D']) {
+      health.dead = false;
+      //Highscore.drawn = false;
+      //Highscore.ending = false;
+      menu.start = false;
+      restartGame();
+    }
   }
 }
 
