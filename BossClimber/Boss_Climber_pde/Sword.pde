@@ -17,6 +17,17 @@ class Sword {
   boolean reset = false;
   boolean swordPickedUp = false;
   boolean timedReset = false;
+  int damageNum = 1000;
+  int timer = 60;
+  int damageTimer = 60;
+  int scoreCount = 0;
+  int score2Count = 100;
+  int Animation = 10;
+  int Animation2 = 0;
+  int timeDmg = 0;
+  int dragonposY = 2;
+  int swordXpos = 650;
+  int swordYpos = 1152;
   float dragonX = 0;
   float dragonY = 0;
   boolean doneDamage = false;
@@ -30,9 +41,6 @@ class Sword {
   int swordScore = 50;
   PImage swordStab;
   float stabAnimation = 0;
-  float resetScoreCount = 100;
-  final float END_TIME = 0;
-  final float TEXT_SIZE = 30;
 
   Sword() {
     //swordX = random(100, 400);
@@ -117,26 +125,26 @@ class Sword {
     if (!doneDamage) {
       dragonX = dragon.startx;
       dragonY = dragon.starty;
-      damageOpacity = 1000;
+      damageOpacity = damageNum;
     }
     if (doneDamage) {
       fill(damage, sword.damageOpacity);
       text("-1000", sword.dragonX, sword.dragonY);
       dragonX++;
-      dragonY += 2;
+      dragonY += dragonposY;
       damageOpacity--;
       timerDamage++;
     }
-    if (timerDamage >= 60) {
+    if (timerDamage >= timer) {
       doneDamage = false;
-      timerDamage = 0;
+      timerDamage = timeDmg;
     }
 
     if (fastDamageFix) {
       damageFixTimer++;
     }
 
-    if (damageFixTimer >= 60) {
+    if (damageFixTimer >= damageTimer) {
       fastDamageFix = false;
     }
 
@@ -144,16 +152,16 @@ class Sword {
       scoreSwordCount--;
     }
 
-    if (scoreSwordCount < END_TIME) {
+    if (scoreSwordCount < scoreCount) {
       seeScoreSword = false;
-      scoreSwordCount = 100;
+      scoreSwordCount = score2Count;
     }
     if (attacked) {
       stabAnimation++;
     }
-    if (stabAnimation >= 10) {
+    if (stabAnimation >= Animation) {
       attacked = false;
-      stabAnimation = resetScoreCount;
+      stabAnimation = Animation2;
     }
   }
 
@@ -167,9 +175,9 @@ class Sword {
     //rect(swordX, swordY + 15, guardW, guardH);
 
     if (seeScoreSword) {
-      fill(white);
-      textSize(TEXT_SIZE);
-      text("+ 50", player.posPlayer.x - schild.seeScoreDistance.x, player.posPlayer.y - schild.seeScoreDistance.y);
+      fill(255);
+      textSize(30);
+      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
     }
   }
 
@@ -187,8 +195,8 @@ class Sword {
 
   void reset() {
     newPos = true;
-    swordX = 650;
-    swordY = 1152;
+    swordX = swordXpos;
+    swordY = swordYpos;
     image(inventory.swordI, swordX, swordY, swordW, swordH);
     swordOn = false;
     pickedUp = false;

@@ -79,10 +79,8 @@ class WaterBottle{
   void resetWaterBottle() {//Reset new waterbottle
     pickedUp = false;
     bottleScoreCount = resetSeeScore;
-    if (!dragon.fight || dragon.fight) {
-      bottleX = resetBottleX;
-      bottleY = resetBottleY;
-    }
+    bottleX = resetBottleX;
+    bottleY = resetBottleY;
     bottleWidth = resetBottleWidth;
     bottleHeight = resetBottleHeight;
     drops.posPlayer.x = player.posPlayer.x;
@@ -92,7 +90,6 @@ class WaterBottle{
 
   void draw() {
     fill(blue);
-    fill(0, 0, 255);
     image(inventory.waterflesIOutline, bottleX, bottleY, bottleWidth*1.2, bottleHeight*1.2);
     image(inventory.waterflesI, bottleX, bottleY, bottleWidth, bottleHeight);
 
