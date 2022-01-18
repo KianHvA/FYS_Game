@@ -37,20 +37,22 @@ class Inventory {
     textAlign(CENTER, CENTER);
     fill(0);
     ellipse(width - CORRECTION1, height - CORRECTION1, YELLIPSE1, YELLIPSE1);
-    
+
     //We just draw a new picture inside the ellipse so that the player notices that he/she grabbed it.
     if (waterBottle.pickedUp) {//Inventory code for the waterbottle.
       rectMode(CENTER);
       noStroke();
       fill(0, 0, 255);
       image(waterflesI, width - CORRECTION2, height - CORRECTION3, YELLIPSE2, YELLIPSE3);
-    
+    }
+
     if (schild.pickedUp) {//Inventory code for the shield.
       rectMode(CENTER);
       noStroke();
       fill(255, 0, 0);
       image(shieldF, width - CORRECTION2, height - CORRECTION4, YELLIPSE2, YELLIPSE3);
-    
+    }
+
     if (sword.pickedUp) {//Inventory code for the sword.
       rectMode(CENTER);
       noStroke();
