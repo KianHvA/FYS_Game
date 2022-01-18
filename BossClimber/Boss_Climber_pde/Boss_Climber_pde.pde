@@ -1,5 +1,11 @@
-//prototype IG-103-2
-
+//Boss_Climber IG-103-2
+/*
+Keyboard to controller
+A = A
+S = B
+Z = Y
+X = X
+*/
 import samuelal.squelized.*;
 import java.util.Properties;
 import processing.sound.*;
@@ -579,10 +585,6 @@ void draw() {
       //Achievement page
       if (showAchievement) {
         background(black);
-
-        if (keysPressed['V']) {
-          showAchievement = true;
-        }
 
         if (showAchievement) {
           background(0);

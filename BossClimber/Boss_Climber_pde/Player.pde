@@ -290,7 +290,7 @@ class Player {
 
 
     //handle jump
-    if (hasCollision && keysPressed[UP]  && !platforms.moveStage && jump && !jumped)
+    if (hasCollision && (keysPressed[UP] || keysPressed['A'])  && !platforms.moveStage && jump && !jumped)
     {
       jumpAmount++;
       jumped = true;

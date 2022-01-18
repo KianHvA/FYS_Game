@@ -24,10 +24,10 @@ class Dragon {
   boolean fight = false;
   int fightAmount = 1;
   boolean fireBallRain = false;
-  PVector[] vliegPatroon = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
-  PVector[] vliegPatroonBossFight = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
+  final PVector[] VLIEGPATROON = {new PVector(150, 3), new PVector(500, 10), new PVector(630, 80), new PVector(500, 10)};
+  final PVector[] VLIEGPATROONBOSSFIGHT = {new PVector(150, 3), new PVector(150, b), new PVector(200, c), new PVector(250, b), new PVector(300, c), new PVector(350, b), 
     new PVector(400, c), new PVector(450, b), new PVector(500, c), new PVector(550, b), new PVector(600, c), new PVector(600, b), new PVector(width/2, height/2), new PVector(600, 3)};
-  PVector[] stageMovePatroon = {new PVector(150, -100), new PVector(400, -200)};
+  final PVector[] STAGEMOVEPATROON = {new PVector(150, -100), new PVector(400, -200)};
   PVector healthbarPos = new PVector(-1000, -1000);
   PVector healthbarPosStart = new PVector(275, 20);
   PVector healthbarPosEnd = new PVector(-1000, -1000);
@@ -99,10 +99,10 @@ class Dragon {
       //ga naar volgende positie in array
       vliegen++;
       if (bossFightRoom) {
-        if (vliegen >= vliegPatroonBossFight.length) {
+        if (vliegen >= VLIEGPATROONBOSSFIGHT.length) {
           vliegen = 0;
         }
-      } else if (vliegen >= vliegPatroon.length) {
+      } else if (vliegen >= VLIEGPATROON.length) {
         vliegen = 0;
       }
 
@@ -133,8 +133,8 @@ class Dragon {
     while (player.posPlayer.y > height/2) {
       //voer vlieg routine uit
       if (bossFightRoom && !bossFightRoomFase2) { 
-        startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.01);
-        starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.01);
+        startx = lerp(startx, VLIEGPATROONBOSSFIGHT[vliegen].x, 0.01);
+        starty = lerp(starty, VLIEGPATROONBOSSFIGHT[vliegen].y, 0.01);
 
         if (dragon.dragonHealth<=1) {
           bossFightRoomFase2 = true;
@@ -153,8 +153,8 @@ class Dragon {
         }
       }
       if (On) {
-        startx = lerp(startx, vliegPatroon[vliegen].x, 0.1);
-        starty = lerp(starty, vliegPatroon[vliegen].y, 0.1);
+        startx = lerp(startx, VLIEGPATROON[vliegen].x, 0.1);
+        starty = lerp(starty, VLIEGPATROON[vliegen].y, 0.1);
       }
       //als de spelers zijn positie kleiner word dan y = 80 dan gebeurt het onderste gedeelte.
       break;
@@ -163,9 +163,8 @@ class Dragon {
     //}
     //ga terug naar begin positie
     if (fireBallRain || player.posPlayer.y < height/2 && !fight) {
-      println("dragoon goes away");
-      startx = lerp(startx, stageMovePatroon[0].x, 0.1);
-      starty = lerp(starty, stageMovePatroon[0].y, 0.1);
+      startx = lerp(startx, STAGEMOVEPATROON[0].x, 0.1);
+      starty = lerp(starty, STAGEMOVEPATROON[0].y, 0.1);
     }
 
     if (platforms.moveAmount == 3 * fightAmount) {
@@ -194,11 +193,11 @@ class FireBallRain {
   CollisionHandler collisionHandler;
   float startx = xDragon;
   float starty = yDragon;
-  PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
+  final PVector[] VLIEGPATROON = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   void spawn() {
     dragon.fireBallRain = true;
-    startx = lerp(startx, vliegPatroon[0].x, 0.01);
-    starty = lerp(starty, vliegPatroon[0].y, 0.01);
+    startx = lerp(startx, VLIEGPATROON[0].x, 0.01);
+    starty = lerp(starty, VLIEGPATROON[0].y, 0.01);
     for (int i = 0; i > fireballs.length; i++) {
       fireballs[i].posFireball.x = 150;
       fireballs[i].posFireball.y = 50;
@@ -215,7 +214,7 @@ class FireBallRain {
 class bossFight {
   float startx = xDragon;
   float starty = yDragon;
-  PVector[] vliegPatroon = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
+  PVector[] VLIEGPATROON = {new PVector(150, 50), new PVector(600, 50), new PVector(630, 80)};
   PVector vliegPatroonF1 = new PVector(400, -100);
   PVector vliegPatroonF2 = new PVector(400, -50);
   PVector vliegPatroonF3 = new PVector(400, 300);
