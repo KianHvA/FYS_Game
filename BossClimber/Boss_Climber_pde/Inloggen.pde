@@ -1,35 +1,48 @@
 //Tristan, Kian
 class Inloggen {
-  int characterAmount = 63; //The maximum amount of characters.
-  String[] nameSelector  = new String[characterAmount]; //String that will hold all the letters.
+  final int CHARACTERAMOUNT = 63; //The maximum amount of characters.
+  final int CHARACTERSWAP1 = 62; //When 
+  final int CHARACTERSWAP2 = -1;
+  String[] nameSelector  = new String[CHARACTERAMOUNT]; //String that will hold all the letters.
   float nameNumber = 0;
   float nameNumberStart = 0;
   int nameLength = 6;
   String[] nameDef = new String[nameLength + 1]; //String that will hold the players choice of letters for his/her name.
-  float timerA = 0, timerB = 0;
+  float timerA = 0;
+  float timerB = 0;
   boolean drawn = false;
   boolean[] filledIn = new boolean[nameLength + 1]; //How much letters the player has filled in.
-  float textSize = 70;
+  final float TEXTSIZE = 70;
+  final float TEXTSIZE2 = 52.5;
   int nameNumberAt = 1;
   color[] flash = new color[nameLength]; //Color for the flashing of the name.
-  int x = 300; //X coördinates.
-  int y = 355; //Y coördinates.
-  int offsetLetters = 10;
+  final int X0 = 300; //X coördinates.
+  final int Y0 = 355; //Y coördinates.
+  final int OFFSETLETTERS = 10;
   String name = "Name:";
-  int j = 0;  //Number how much is filled in.
-  int k = 61; //Number for where the player is with choosing letters.
+  int amountFilled = 0;  //Number how much is filled in.
+  int currentLetter = 61; //Number for where the player is with choosing letters.
   float filled = 0;
   boolean keyUp = false; //To check if arrow Up is pressed.
   boolean keyDown = false; //To check if arrow Down is pressed.
   boolean select = false; //To check if the player selects that letter.
   String userName = "12345"; //The name the player uses.
   String Name = "What is your username?";
-  String Press = "Press B for next."; //Need to change later
-  color userNameText = (#FFFFFF); //#FFFFFF = white.
-  boolean loggedIn = false;
-  boolean nameExist = false;
+  final String PRESSS = "Press B for next character."; //Need to change later
+  final color USERNAMETEXT = (#FFFFFF); //#FFFFFF = white.
+  boolean loggedIn = false; //This boolean will go on true if the player has entered his/her name
+  boolean nameExist = false; //If this boolean goes on true the name the player has already exists
+  final int OFFSETARROWSX = 45; //This int is to offset the arrows so they are correctly lined up.
+  final int OFFSETARROWSY1 = 40;
+  final int OFFSETARROWSY2 = 10;
+  final int ZERO = 0;
+  final int X1 = 125;
+  final int Y1 = 225;
+  final int X2 = 75;
+  final int Y2 = 506;
 
   void setup() {
+    //Putting all the letters in and matching them to their numbers.
     nameSelector[0] = "A";
     nameSelector[1] = "B";
     nameSelector[2] = "C";
@@ -94,26 +107,22 @@ class Inloggen {
     nameSelector[61] = "_";
     nameSelector[62] = " ";
     for ( int i = 0; i < nameLength; i++) {
-      nameDef[i] = nameSelector[j]; //Giving the name an start lay-out.
+      nameDef[i] = nameSelector[amountFilled]; //Giving the name an start lay-out.
       filledIn[i] = false;
       flash[i] = color(#FFFFFF, 1000);
     }
   }
 
   void update() {
-    if (keysPressed['Q']) {
-      loggedIn = true;
+    constrain(amountFilled, ZERO, nameLength); //Max length of the name.
+    if (currentLetter > 62) {
+      currentLetter = ZERO;
     }
 
-    constrain(j, 0, nameLength); //Max length of the name.
-    if (k > 62) {
-      k = 0;
+    if (currentLetter < ZERO) {
+      currentLetter = 62;
     }
-
-    if (k < 0) {
-      k = 62;
-    }
-    nameDef[j] = nameSelector[k]; //When k changes the letter that the player is at changes.
+    nameDef[amountFilled] = nameSelector[currentLetter]; //When k changes the letter that the player is at changes.
     if (drawn) {
       //If the up arrow is pressed the letter goes up.
       if (keysPressed[UP] && !keyUp && !select) {
@@ -121,7 +130,7 @@ class Inloggen {
       }
 
       if (keyUp) {
-        k++;
+        currentLetter++;
         delay(90);
         keyUp = false;
       }
@@ -132,7 +141,7 @@ class Inloggen {
       }
 
       if (keyDown) {
-        k--;
+        currentLetter--;
         delay(90);
         keyDown = false;
       }
@@ -143,13 +152,13 @@ class Inloggen {
       }
 
       if (select) {
-        j++;
+        amountFilled++;
         delay(160);
         select = false;
       }
 
       //If the letter is at max the final name gets made.
-      if (j >= 5) {
+      if (amountFilled >= 5) {
         userName = nameDef[0] + nameDef[1] + nameDef[2] + nameDef[3] + nameDef[4];
         loggedIn = true;
         //ending = true;//Ending screen!
@@ -162,7 +171,7 @@ class Inloggen {
         String queryForNameUser = "SELECT name FROM User where name = '"+ userName +"';";
         //String queryTimesPlayed = "DECLARE @IncrementValue int SET @IncrementValue = 1 UPDATE User SET timesPlayed = timesPlayed + @IncrementValue";
         Table NameTable = myConnection.runQuery(queryForNameUser);
-        if (NameTable.getRowCount() == 0) {
+        if (NameTable.getRowCount() == ZERO) {
           println("no name found");
           nameExist = false;
           myConnection.updateQuery("INSERT INTO User (name) VALUE ('"+ userName +"')");
@@ -183,41 +192,41 @@ class Inloggen {
   }
 
   void draw() {
+    //The background image and the texts get placed.
     imageMode(CORNER);
-    image(Highscore.backgroundDead, 0, 0);
+    image(Highscore.backgroundDead, ZERO, ZERO);
     textMode(CENTER);
-    fill(userNameText);
-    textSize(textSize);
-    text(Name, 125, 225);
-    text(Press /*+ scoreHandler.finalScore*/, 200, 506);
+    fill(USERNAMETEXT);
+    textSize(TEXTSIZE);
+    text(Name, X1, Y1);
+    text(PRESSS /*+ scoreHandler.finalScore*/, X2, Y2);
     for (int i = 0; i < nameLength; i++) {
-
-      textSize(textSize*0.75);
-      text(name, x - 20, y);
+      //This is to place each letter individualy so it can be changed.
+      textSize(TEXTSIZE2);
+      text(name, X0 - 20, Y0);
       fill(flash[0]);
-      text(nameDef[0], x + textWidth(name) - offsetLetters, y);
+      text(nameDef[0], X0 + textWidth(name) - OFFSETLETTERS, Y0);
       fill(flash[1]);
-      text(nameDef[1], x + textWidth(name) + textWidth('X') - offsetLetters, y);
+      text(nameDef[1], X0 + textWidth(name) + textWidth('X') - OFFSETLETTERS, Y0);
       fill(flash[2]);
-      text(nameDef[2], x + textWidth(name) + textWidth('X') * 2 - offsetLetters, y);
+      text(nameDef[2], X0 + textWidth(name) + textWidth('X') * 2 - OFFSETLETTERS, Y0);
       fill(flash[3]);
-      text(nameDef[3], x + textWidth(name) + textWidth('X') * 3 - offsetLetters, y);
+      text(nameDef[3], X0 + textWidth(name) + textWidth('X') * 3 - OFFSETLETTERS, Y0);
       fill(flash[4]);
-      text(nameDef[4], x + textWidth(name) + textWidth('X') * 4 - offsetLetters, y);
+      text(nameDef[4], X0 + textWidth(name) + textWidth('X') * 4 - OFFSETLETTERS, Y0);
     }
     drawn = true;
 
     if (drawn) {
-      if (!filledIn[j]) {
-        int offsetArrows = 45;
-        textSize(textSize*0.75);
+      if (!filledIn[amountFilled]) {//This makes sure the arrows are only drawn when the user is on that character.
+        textSize(TEXTSIZE2);
         fill(#FFFFFF);
-        text("^", x + textWidth(name) + textWidth('X') * (j + 1) - offsetArrows, y - 40);
-        textSize(textSize*0.75);
+        text("^", X0 + textWidth(name) + textWidth('X') * (amountFilled + 1) - OFFSETARROWSX, Y0 - OFFSETARROWSY1);
+        textSize(TEXTSIZE2);
         fill(#FFFFFF);
-        pushMatrix();
+        pushMatrix(); //The push- and popMatrix are used here to flip the arrow upside down.
         float angle1 = radians(180);
-        translate(x + textWidth(name) + textWidth('X') * (j + 1) - offsetArrows + textWidth('X'), y + 10);
+        translate(X0 + textWidth(name) + textWidth('X') * (amountFilled + 1) - OFFSETARROWSX + textWidth('X'), Y0 + OFFSETARROWSY2);
         rotate(angle1);
         text("^", 0, 0);
         popMatrix();

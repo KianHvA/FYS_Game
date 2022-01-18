@@ -1,4 +1,4 @@
-//Tristan
+//Tristan: first implementation
 //Dion: handleiding
 //Kian: showing highscore
 //Ömer: showing Achievements

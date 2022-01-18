@@ -18,6 +18,7 @@ class Flamethrower {
   boolean seeHitFlamethrower = false;
   float newY = 660; //Size screen so that everything stands correctly.
   PImage flamethrower;
+  boolean sparkStage;
 
   void setup() {
     collisionHandler = new CollisionHandler();
@@ -60,17 +61,17 @@ class Flamethrower {
       quad(X3, y2  + (platforms.platformThickness/4), X3, y1  + (platforms.platformThickness/4) - 10, X4, y, X4, y1); //Bottom right.
     }
     newY = distance + platforms.levelMove; //Putting back newY so it works correctly in update().
-    
-    if (seeHitFlamethrower && !schild.pickedUp){
-     fill(255);
-     textSize(30);
-     text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
+
+    if (seeHitFlamethrower && !schild.pickedUp) {
+      fill(255);
+      textSize(30);
+      text("Ouch!", player.posPlayer.x, player.posPlayer.y - 40);
     }
-    
-    if (seeHitFireball && schild.pickedUp){
-     fill(255);
-     textSize(30);
-     text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
+
+    if (seeHitFireball && schild.pickedUp) {
+      fill(255);
+      textSize(30);
+      text("Protected!", player.posPlayer.x, player.posPlayer.y - 40);
     }
   }
 
@@ -84,6 +85,11 @@ class Flamethrower {
         if (timer2 == 0) {
           timer1++;
         } 
+        if (timer1 > 100 && timer1 < 900) {
+          sparkStage = true;
+        } else {
+          sparkStage = false;
+        }
         if (timer1 > 900) {
           imageMode(CENTER);
           rectMode(CENTER);
@@ -95,7 +101,7 @@ class Flamethrower {
           timer2++;
           timer1 = 910;
         }
-        
+
         if (live) {
           collisionHandler.checkCollisionPlayer(X1 + width/35 + 2, y1 - height/50, SIZEFLAME.x/2);
           if (collisionHandler.hitPlayer) {
@@ -115,12 +121,12 @@ class Flamethrower {
         if (hasCollision) healthbar.doDamage(1); //damage
       }
     }
-    
-    if (seeHitFlamethrower){
+
+    if (seeHitFlamethrower) {
       hitFlamethrowerCount--;
     }
-    
-    if (hitFlamethrowerCount < 0){
+
+    if (hitFlamethrowerCount < 0) {
       seeHitFlamethrower = false;
       hitFlamethrowerCount = 100;
     }

@@ -3,7 +3,8 @@ class HighScore {
   PImage backgroundDead;
   String end = "Game Over";
   String finalScore = "final score = ";
-  float textSize = 70;
+  final float TEXTSIZE1 = 70;
+  final float TEXTSIZE2 = 35;
   color endText = (#FFFFFF); //#FFFFFF = white.
   boolean drawn = false; //A boolean to show that the background and the text have been put on screen.
   boolean ending = false; //This boolean is used in other classes.
@@ -33,7 +34,6 @@ class HighScore {
   final int YTEXT4 = 440;
   final int YTEXT5 = 470;
   final int YTEXT6 = 500;
-  final float HALF = 0.5;
   final int XTEXT3 = 800;
   final int YTEXT3 = 450;
 
@@ -44,7 +44,7 @@ class HighScore {
   void update() {
     if (health.dead) {
       gameFinished = true;
-      
+
       if (gameFinished && gameFinished2) {
         //Getting the date to implement into the database with the highscore.
         int day = day();
@@ -52,10 +52,10 @@ class HighScore {
         int year = year();
         String date = "'" + day + "/" + month + "/" + year + "'";
         if (oneTimeRun) {
-          String qweryS = "SELECT score FROM Highscore where score <> 2147483647 order by score desc;"; // name = " + inloggen.userName + ";" //Moet nog gefixt worden.
+          String qweryS = "SELECT score FROM Highscore WHERE name = '" + inloggen.userName + "';"; 
           Table compare = myConnection.runQuery(qweryS);
           int[] score = new int[compare.getStringColumn(ZERO).length];
-          
+
           score = compare.getIntColumn(ZERO);
           if (score.length != ZERO) {
             if (inloggen.nameExist) {
@@ -71,7 +71,7 @@ class HighScore {
               gameFinished2 = false;
             }
           }
-          if (highScore) {
+          if (highScore) {//If the player got a new highscore it will be updated in the database.
             String update = "UPDATE Highscore SET score = " + scoreHandler.finalScore + "WHERE name = '" + inloggen.userName + "' and SET date = " + date + ";";
             myConnection.updateQuery(update);
             showHighScore = true;
@@ -109,17 +109,19 @@ class HighScore {
 
   void draw() {
     if (health.dead && !drawn) {
+      //These lines will be displayed on the screen and are prepped here.
       amountWalked = "You have walked " + (player.walkAmount/FIFTH) + " meter";
       amountJumped = "You have jumped " + player.jumpAmount + " times";
       amountKilledDragon = "You have killed the boss " + dragon.fightAmount + " times";
       amountGamePlayed = "Game played total ";
     }
     if (health.dead) {
+      //Loading an placement of the background and the text.
       imageMode(CORNER);
       image(backgroundDead, ZERO, ZERO);
       textMode(CENTER);
       fill(endText);
-      textSize(textSize);
+      textSize(TEXTSIZE1);
       text(end, XTEXT1_2, YTEXT1);
       text(finalScore + scoreHandler.finalScore, XTEXT1_2, YTEXT2);
       if (showHighScore) {
@@ -131,7 +133,7 @@ class HighScore {
       drawn = true;
     }
   }
-
+  //Here we pull data from the database which tells us how many times the game has been played.
   void deadScreenScore() {
     getTable = true;
     if (getTable) {
@@ -142,7 +144,8 @@ class HighScore {
       //Table id = myConnection.getColumn("Highscore", "id");
       //idFix = id;
     }
-    textSize(textSize * HALF);
+    //Placement of more texts.
+    textSize(TEXTSIZE2);
     textMode(CORNER);
     text(amountGamePlayed + idFix, XTEXT3, YTEXT3);
     text(amountKilledDragon, XTEXT4_5_6, YTEXT4);
