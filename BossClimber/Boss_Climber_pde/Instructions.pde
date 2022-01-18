@@ -30,7 +30,7 @@ class Instructions {
   PVector rectSize;
   PVector rectSizeVertical;
   int textSize;
-  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize, endExample, endExample2, endExample3X, endExample3Y;
+  float exampleSpeedX, exampleSpeedY, respawning, secondRespawn, standWidth, standHeight, imageSize, endExample, endExample2, endExample3, endExample3Y;
   float positiveSpeed, negativeSpeed;
   float startTextSize;
   float instructionSize;
@@ -67,8 +67,8 @@ class Instructions {
     equip2 = loadImage("Knight - Left - Shield.png");
     endExample = 500;
     endExample2 = 700;
-    endExample3X = 40;
-    endExample3Y = -50;
+    endExample3 = 230;
+    endExample3Y = 150;
     positiveSpeed = 2;
     negativeSpeed = -2;
     startTextSize = 40;
@@ -89,7 +89,7 @@ class Instructions {
       example2.x = secondRespawn;
     }
 
-    if (example3.y >= endExample3X) {
+    if (example3.y >= endExample3) {
       exampleSpeedY = negativeSpeed;
     }
     if (example3.y <= endExample3Y) {
@@ -164,7 +164,14 @@ class Instructions {
       rect(rect3.x, rect3.y, rectSizeVertical.x, rectSizeVertical.y);
 
       rectMode(CENTER);
-      rect(rect4.x, rect4.y, buttonSize.x, buttonSize.y);
+      fill(gray);
+      rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+      rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            
+      fill(white);
+      textSize(TEXT_SIZE);
+      text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+      text("Press LEFT to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
 
       //Images power-ups
       image(inventory.waterflesIOutline, posImgWater.x, posImgWater.y, imageSize+1, imageSize+1);
@@ -181,7 +188,6 @@ class Instructions {
       text("Water Bottle", powerTextW.x, powerTextW.y);
       text("Shield", powerTextShield.x, powerTextShield.y);
       text("Sword", powerTextSword.x, powerTextShield.y);
-      text("Press A to start", buttonText.x, buttonText.y);
 
       textSize(15);
       text("Shoot a drop and extinguish the fireballs.", explainText[0].x, explainText[0].y);
@@ -198,7 +204,7 @@ class Instructions {
       background(black);
 
       fill(gray);
-      rect(rect5.x, rect5.y, rectSizeHorizontal[0].x, rectSizeHorizontal[0].y);
+      //rect(rect5.x, rect5.y, rectSizeHorizontal[0].x, rectSizeHorizontal[0].y);
       rect(rect6.x, rect6.y, rectSizeHorizontal[1].x, rectSizeHorizontal[1].y);
       
       //Example of movement.
@@ -217,12 +223,17 @@ class Instructions {
       text("Press ^ to jump:", textInstr[4].x, textInstr[4].y);
       text("|", textInstr[5].x, textInstr[5].y);
       text("If you have a powerup in your inventory,", textInstr[6].x, textInstr[6].y);
-      text("press S to use the power-up.", textInstr[7].x, textInstr[7].y);
-      text("Press S to see the power-ups", textInstr[8].x, textInstr[8].y);
+      text("press B to use the power-up.", textInstr[7].x, textInstr[7].y);
+      text("Press B to see the power-ups", textInstr[8].x, textInstr[8].y);
       text("Goal: Chase the dragon by climbing the building!", textInstr[9].x, textInstr[9].y);
 
-      textSize(startTextSize);
-      text("Press A to start", textInstr[10].x, textInstr[10].y);
-   // }
+      fill(gray);
+      rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+      rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            
+      fill(white);
+      textSize(TEXT_SIZE);
+      text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+      text("Press DOWN to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
   }
 }

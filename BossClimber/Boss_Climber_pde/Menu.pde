@@ -32,10 +32,12 @@ class Menu {
   PVector spawnP2 = new PVector(400, 250);
   PVector spawnP3 = new PVector(600, 250);
   PVector spawnBS = new PVector(width/2, height/2);
-  final PVector PRESSTEXT = new PVector(425, 510);
+  final PVector PRESSTEXT = new PVector(600, 510);
+  final PVector PRESS_BACK_TEXT = new PVector(150, 510);
   final PVector TITLEACHIEVEMENT = new PVector(400, 100);
-  final PVector PRES = new PVector(525, 500);
+  final PVector PRES = new PVector(700, 500);
   final PVector PRESSSIZE = new PVector(300, 50);
+  final PVector PRES_BACK = new PVector(300, 500);
   final PVector RPLACEMENT1 = new PVector(150, 250);
   final PVector RPLACEMENT2 = new PVector(400, 250);
   final float TEXTSIZE = 36;
@@ -101,11 +103,11 @@ class Menu {
     textFont(f, TEXTFONT1); //textFont changes the type of font (the style in which the letters, numbers, etc. are drawn).
     fill(WHITE); 
     textLeading(TEXTFONT1);
-    text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
+    //text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
     textSize(40);
     text("Press DOWN \nfor instructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
     text(PRESSA, placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
-    text(PRESSY, placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press Arrow Down on pc
+    //text(PRESSY, placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press Arrow Down on pc
     textSize(TEXTSIZE);
     textLeading(TEXTFONT2);
     text(PRESSX, placement3.x + SIZE.x/TEXTCORRECTION4, placement3.y+(SIZE.y*TEXTCORRECTION5)); // press X on pc
@@ -125,7 +127,7 @@ class Menu {
 
   void HighscoreDraw() {
     //Getting the highscore from the datbase.
-    background(0);
+    //background(0);
     String highscore;
     String query = "SELECT * FROM Highscore order by score desc limit 10;";
     Table databaseTable = myConnection.runQuery(query);
@@ -135,7 +137,7 @@ class Menu {
     String[] dates = databaseTable.getStringColumn(3);
     
     fill(GREY);
-    rect(WIDTH2, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
+    //rect(WIDTH2, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
     
     fill(WHITE);
     textAlign(CENTER,CENTER);
@@ -147,8 +149,8 @@ class Menu {
       
       text(highscore, WIDTH2, HEIGHT2 - TEXTCORRECTION8 + i * TEXTFONT4);
       
-      textSize(TEXTFONT5);
-      text(PRESSA, WIDTH2, TEXTCOORDINATES1);
+      //textSize(TEXTFONT5);
+      //text(PRESSA, WIDTH2, TEXTCOORDINATES1);
     }
   }
   

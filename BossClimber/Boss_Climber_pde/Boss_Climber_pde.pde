@@ -55,6 +55,7 @@ float textY = height/2;
 float fireballHitCount = 100;
 float endDrop = 0;
 final float TEXT_SIZE = 30;
+final float TITLE_TEXT_SIZE = 50;
 int fireballAmount = 12;
 int aantalFires = 12;
 int firstFireballWave = 3;
@@ -574,7 +575,7 @@ void draw() {
     text("Press Y to go to the title screen", width/4, height/4);
     if (!menu.start) {
       music.menuMusic();
-      background(0);
+      background(black);
       level.draw();
       menu.draw();
       println(aChievement);
@@ -593,16 +594,16 @@ void draw() {
           background(black);
 
           if (showAchievement) {
-            background(0);
-            textSize(50);
-            text("Challenges", 400, 100);
+            background(black);
             challenge.showChallenges();
             fill(gray);
             rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
             fill(white);
-            textSize(30);
+            textSize(TEXT_SIZE);
             text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
-            textSize(50);
+            text("Press LEFT to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
+            textSize(TITLE_TEXT_SIZE);
             text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
             inHighScore = false;
             inStructions = false;
@@ -614,11 +615,6 @@ void draw() {
               inInstructions = true;
             }
           }
-        }
-
-        if (achievement.summary) {// Player 
-          //achievement.updateAchievements();
-          //achievement.draw();
         }
 
         //Instruction page
@@ -638,7 +634,7 @@ void draw() {
               inInstructions = true;
             }
 
-            if (keysPressed['S']) {
+            if (keysPressed['S'] && instruction.manual) {
               instruction.powerExpl = true;
             }
 
@@ -651,6 +647,16 @@ void draw() {
         //Highscore page
         if (inHighScore) {
           if (menu.displayHighscore) {
+            background(black);
+            fill(gray);
+            rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            
+            fill(white);
+            textSize(TEXT_SIZE);
+            text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+            text("Press LEFT to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
+            
             menu.HighscoreDraw();
             aChievement = false;
             inStructions = false;
