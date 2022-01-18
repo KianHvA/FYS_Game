@@ -17,7 +17,6 @@ class Menu {
   final color NORMALL = 125;
   final color RECT1 = 0;
   final color RECT2 = 0;
-  final color KLEUR = #FFFFFF;
   float Check = 0;
   float Time = 0;
   boolean personalize = false;
@@ -33,10 +32,12 @@ class Menu {
   PVector spawnP2 = new PVector(400, 250);
   PVector spawnP3 = new PVector(600, 250);
   PVector spawnBS = new PVector(width/2, height/2);
-  final PVector PRESSTEXT = new PVector(425, 510);
+  final PVector PRESSTEXT = new PVector(600, 510);
+  final PVector PRESS_BACK_TEXT = new PVector(150, 510);
   final PVector TITLEACHIEVEMENT = new PVector(400, 100);
-  final PVector PRES = new PVector(525, 500);
+  final PVector PRES = new PVector(700, 500);
   final PVector PRESSSIZE = new PVector(300, 50);
+  final PVector PRES_BACK = new PVector(300, 500);
   final PVector RPLACEMENT1 = new PVector(150, 250);
   final PVector RPLACEMENT2 = new PVector(400, 250);
   final float TEXTSIZE = 36;
@@ -56,7 +57,6 @@ class Menu {
   final int TEXTCORRECTION4 = 5;
   final float TEXTCORRECTION5 = 1.35;
   final int TEXTCORRECTION6 = 13;
-  final int TEXTCORRECTION7 = 2;
   final int TEXTCORRECTION8 = 100;
   final int TEXTCORRECTION9 = 10;
   final float TEXTCORRECTION10 = 3.5;
@@ -66,8 +66,17 @@ class Menu {
   final int TEXTCOORDINATES4 = 250;
   final int TEXTCOORDINATES5 = 40;
   final int TEXTCOORDINATES6 = 200;
-  final int COLORS1 = 125;
-  final int COLORS2 = 255;
+  final int GREY = 125;
+  final int WHITE = 255;
+  final String TITLE = "BOSS CLIMBER";
+  final String PRESSA = "Press A\n to start";
+  final String PRESSY = "Press Y for\ninstructions";
+  final String PRESSX = "Press X for\n Highscore";
+  final String PRESSARROW = "Press -> for\n Achievements";
+  final String HIGHSCORE = "Highscore:";
+  final String ACHIEVEMENT = "Achievement:";
+  final int WIDTH2 = width/2;
+  final int HEIGHT2 = height/2;
 
 
   Menu() {
@@ -77,33 +86,35 @@ class Menu {
 
 
   void draw() {
+    //Loading and placing all the rectangles and the text that belongs to them.
     restart = false;    
     stroke(RECT1);
     rectMode(CORNER);
-    //colorMode(rect1);
-    //menu.highlight();
-    fill(KLEUR);
+    fill(WHITE); //color
     textSize(TEXTFONT3);
     textAlign(CORNER, CORNER);
-    text("BOSS CLIMBER", placement1.x - TEXT1.x, TEXT1.y); 
-    fill(COLORS1);
+    text(TITLE, placement1.x - TEXT1.x, TEXT1.y); 
+    fill(GREY);
     rect(placement1.x - RECTCORRECTION1, placement1.y, SIZE.x, SIZE.y);
     rect(placement2.x, placement2.y, SIZE.x, SIZE.y);
     rect(placement3.x, placement3.y + SIZE.y + RECTCORRECTION2, SIZE.x, SIZE.y / RECTCORRECTION3);
     rect(placement4.x, placement4.y, SIZE.x, SIZE.y / RECTCORRECTION3);
     rectMode(CENTER);
-    textFont(f, TEXTFONT1); //size of the texts
-    fill(KLEUR); //color
+    textFont(f, TEXTFONT1); //textFont changes the type of font (the style in which the letters, numbers, etc. are drawn).
+    fill(WHITE); 
     textLeading(TEXTFONT1);
-    text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
-    text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
+    //text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
+    textSize(40);
+    text("Press DOWN \nfor instructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
+    text(PRESSA, placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
+    //text(PRESSY, placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press Arrow Down on pc
     textSize(TEXTSIZE);
     textLeading(TEXTFONT2);
-    text("Press X for\n Highscore", placement3.x + SIZE.x/TEXTCORRECTION4, placement3.y+(SIZE.y*TEXTCORRECTION5)); // press X on pc
+    text(PRESSX, placement3.x + SIZE.x/TEXTCORRECTION4, placement3.y+(SIZE.y*TEXTCORRECTION5)); // press X on pc
     textSize(TEXTFONT3);
     textSize(TEXTSIZE);
     textLeading(TEXTFONT1);
-    text("Press -> for\n Achievements", placement4.x + SIZE.x/TEXTCORRECTION6, placement4.y + SIZE.y/TEXTCORRECTION10);
+    text(PRESSARROW, placement4.x + SIZE.x/TEXTCORRECTION6, placement4.y + SIZE.y/TEXTCORRECTION10);
     drawn = true;
 
     if (keysPressed['A']) {
@@ -115,60 +126,36 @@ class Menu {
   }
 
   void HighscoreDraw() {
-    background(0);
+    //Getting the highscore from the datbase.
+    //background(0);
     String highscore;
     String query = "SELECT * FROM Highscore order by score desc limit 10;";
     Table databaseTable = myConnection.runQuery(query);
+    //Saving the data from the database.
     String[] scores = databaseTable.getStringColumn(1);
     String[] names = databaseTable.getStringColumn(2);
     String[] dates = databaseTable.getStringColumn(3);
     
-    fill(COLORS1);
-    rect(width/TEXTCORRECTION7, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
+    fill(GREY);
+    //rect(WIDTH2, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
     
-    fill(COLORS2);
+    fill(WHITE);
     textAlign(CENTER,CENTER);
-    text("Highscore:", height/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 * TEXTCORRECTION7);
-    fill(COLORS2);
+    text(HIGHSCORE, HEIGHT2, HEIGHT2 - TEXTCORRECTION8 * 2);
+    fill(WHITE);
     for (int i = 0; i < scores.length; i++) {
       highscore = names[i] + ": " + scores[i] + "        " + dates[i];
       textSize(TEXTFONT4);
       
-      text(highscore, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTFONT4);
+      text(highscore, WIDTH2, HEIGHT2 - TEXTCORRECTION8 + i * TEXTFONT4);
       
-      textSize(TEXTFONT5);
-      text("Press A to start", width/TEXTCORRECTION7, TEXTCOORDINATES1);
+      //textSize(TEXTFONT5);
+      //text(PRESSA, WIDTH2, TEXTCOORDINATES1);
     }
   }
   
-  void AchievementsSection() {
-    background(0);
-    String Achievement;
-    String query = "";
-    Table databaseAchievement = myConnection.runQuery(query);
-    String[] descriptions = databaseAchievement.getStringColumn(0);
-    String[] requirements = databaseAchievement.getStringColumn(1);
-    String[] dates = databaseAchievement.getStringColumn(2);
-    
-     
-    fill(COLORS1);
-    rect(width/TEXTCORRECTION7, TEXTCOORDINATES4, TEXTCOORDINATES2, TEXTCOORDINATES5);
-    
-    fill(COLORS2);
-    textAlign(CENTER, CENTER);
-    text("Achievement:", height/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 * TEXTCORRECTION7);
-    fill(COLORS2);
-    for (int i = 0; i < requirements.length; i++) {
-      Achievement = descriptions[i] + ": " + requirements[i] + "      " + dates[i];
-      textSize(TEXTFONT4);
-      
-      text(Achievement, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTCORRECTION9);
-      
-      textSize(TEXTFONT5);
-      text("Press B for Achievements", width/TEXTCORRECTION7, TEXTCOORDINATES6);
-    }
-  }
   void restart() {
+    //If needed this can be used to restart the menu
     if (restart && keysPressed['Z']) {
       placement1 = RPLACEMENT1; 
       placement2 = RPLACEMENT2;

@@ -1,5 +1,11 @@
-//prototype IG-103-2
-
+//Boss_Climber IG-103-2
+/*
+Keyboard to controller
+ A = A
+ S = B
+ Z = Y
+ X = X
+ */
 import samuelal.squelized.*;
 import java.util.Properties;
 import processing.sound.*;
@@ -49,6 +55,7 @@ float textY = height/2;
 float fireballHitCount = 100;
 float endDrop = 0;
 final float TEXT_SIZE = 30;
+final float TITLE_TEXT_SIZE = 50;
 int fireballAmount = 12;
 int aantalFires = 12;
 int firstFireballWave = 3;
@@ -96,6 +103,11 @@ boolean seeFireballAchievement = false;
 boolean onceRunSQL = false;
 boolean begin = true;
 boolean showAchievement = false;
+boolean inAchievement = true;
+boolean inHighScore = true;
+boolean inStructions = true;
+boolean inInstructions = true;
+boolean aChievement = true;
 int timePlayedSeconds = 0;
 SQLConnection myConnection;
 
@@ -181,8 +193,6 @@ void setup()
 
   fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[11].posFireball.y = dragon.starty;
-
-  music.setup();
 
   //if (platforms.moveAmount == 1) {
   //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
@@ -442,6 +452,8 @@ void update()
     }
   }
 
+  //println(flamethrower.damageTimer);
+
   if (cooldown > endCoolDown) {
     cooldown--;
   }
@@ -480,7 +492,6 @@ void update()
     extinguishFireball++;
     achievementFireball = false;
   }
-  //println();
 
   //Extinguished 3 fireballs
   if (extinguishFireball >= achievementFireballComplete) {
@@ -564,11 +575,12 @@ void draw() {
     text("Press Y to go to the title screen", width/4, height/4);
     if (!menu.start) {
       music.menuMusic();
-      background(0);
+      background(black);
       level.draw();
       menu.draw();
+      println(aChievement);
 
-      if (keysPressed['D']) {
+      if (keysPressed[DOWN]) {
         instruction.manual = true;
       }
 
@@ -577,50 +589,89 @@ void draw() {
       }
 
       //Achievement page
-      if (showAchievement) {
-        background(black);
-
-        if (keysPressed['V']) {
-          showAchievement = true;
-        }
-
+      if (aChievement) {
         if (showAchievement) {
-          background(0);
-          textSize(50);
-          text("Challenges", 400, 100);
-          challenge.showChallenges();
-          fill(gray);
-          rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
-          fill(white);
-          textSize(30);
-          text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
-          textSize(50);
-          text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
-        }
+          background(black);
 
-        if (achievement.summary) {// Player 
-          //achievement.updateAchievements();
-          //achievement.draw();
+          if (showAchievement) {
+            background(black);
+            challenge.showChallenges();
+            fill(gray);
+            rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            fill(white);
+            textSize(TEXT_SIZE);
+            text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+            text("Press LEFT to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
+            textSize(TITLE_TEXT_SIZE);
+            text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
+            inHighScore = false;
+            inStructions = false;
+
+            if (keysPressed[LEFT]) {
+              showAchievement = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
+            }
+          }
         }
 
         //Instruction page
-        if (instruction.manual) {//Player reads instructions.
-          instruction.updateInstructions();
-          instruction.draw();
-
-          if (keysPressed['S']) {
-            instruction.powerExpl = true;
+        if (inInstructions) {
+          if (instruction.manual) {//Player reads instructions.
+            instruction.updateInstructions();
+            instruction.draw();
+            inAchievement = false;
+            inHighScore = false;
           }
 
-          if (instruction.powerExpl) {
-            instruction.powerUpInstructions();
+            if (keysPressed[LEFT]) {
+              instruction.manual = false;
+              instruction.powerExpl = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
+            }
+
+            if (keysPressed['S'] && instruction.manual) {
+              instruction.powerExpl = true;
+            }
+
+            if (instruction.powerExpl) {
+              instruction.powerUpInstructions();
+            }
           }
         }
-        if (menu.displayHighscore) {
-          menu.HighscoreDraw();
+
+        //Highscore page
+        if (inHighScore) {
+          if (menu.displayHighscore) {
+            background(black);
+            fill(gray);
+            rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            rect(menu.PRES_BACK.x, menu.PRES_BACK.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
+            
+            fill(white);
+            textSize(TEXT_SIZE);
+            text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
+            text("Press LEFT to return", menu.PRESS_BACK_TEXT.x, menu.PRESS_BACK_TEXT.y);
+            
+            menu.HighscoreDraw();
+            aChievement = false;
+            inStructions = false;
+
+            if (keysPressed[LEFT]) {
+              menu.displayHighscore = false;
+              aChievement = true;
+              inHighScore = true;
+              inInstructions = true;
+            }
+          }
         }
       }
     }
+    
     //Start game, have fun!
     if (menu.start == true) {
       background(0);
@@ -733,24 +784,24 @@ void draw() {
       ps.addParticle();
       ps.run();
     }
-  }
+    //}
 
-  //Game over and returning to title screen
-  if (Highscore.ending && keysPressed['D']) {
-    health.dead = false;
-    //Highscore.drawn = false;
-    //Highscore.ending = false;
-    menu.start = false;
-    restartGame();
-  }
-  //Game over and returning to title screen
-  if (Highscore.ending && keysPressed['D']) {
-    health.dead = false;
-    //Highscore.drawn = false;
-    //Highscore.ending = false;
-    menu.start = false;
-    restartGame();
-  }
+    //Game over and returning to title screen
+    if (Highscore.ending && keysPressed['D']) {
+      health.dead = false;
+      //Highscore.drawn = false;
+      //Highscore.ending = false;
+      menu.start = false;
+      restartGame();
+    }
+    //Game over and returning to title screen
+    if (Highscore.ending && keysPressed['D']) {
+      health.dead = false;
+      //Highscore.drawn = false;
+      //Highscore.ending = false;
+      menu.start = false;
+      restartGame();
+    }
 }
 
 void keyPressed() {
