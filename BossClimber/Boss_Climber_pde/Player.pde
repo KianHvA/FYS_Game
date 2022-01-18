@@ -393,6 +393,7 @@ class Player {
   //Collision checks
   void collideWithPlatform()
   {
+    //keep player on platform by counteracting gravity
     if (collisionHandler.platformHitPos.y > posPlayer.y) {
       posPlayer.y = posPlayer.y - GRAVITY;
 

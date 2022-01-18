@@ -546,7 +546,6 @@ void update()
  }
  }*/
 void restartGame() {//Resets the whole game
-  scoreHandler.score = 0;
   inloggen.amountFilled = 0;
   platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
@@ -787,7 +786,7 @@ void draw() {
     //}
 
     //Game over and returning to title screen
-    if (Highscore.ending && keysPressed['D']) {
+    if (Highscore.ending && keysPressed['A']) {
       health.dead = false;
       //Highscore.drawn = false;
       //Highscore.ending = false;
@@ -795,7 +794,7 @@ void draw() {
       restartGame();
     }
     //Game over and returning to title screen
-    if (Highscore.ending && keysPressed['D']) {
+    if (Highscore.ending && keysPressed['A']) {
       health.dead = false;
       //Highscore.drawn = false;
       //Highscore.ending = false;

@@ -27,7 +27,7 @@ class CollisionHandler
   PVector closestHitPos;
   PVector preplatformHitPos = new PVector(0,0);
   PVector platformHitPos;
-  float platformHeight;
+  float platformHeight = 10;
   PVector posBeforeCollision;
 
   float buffer = 0;
