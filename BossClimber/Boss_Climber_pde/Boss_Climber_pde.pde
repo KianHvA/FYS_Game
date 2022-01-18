@@ -540,7 +540,6 @@ void restartGame() {//Resets the whole game
   platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
-  menu.kleur = 255;
   achievement.summary = false;
   instruction.manual = false;
   instruction.powerExpl = false;
@@ -591,12 +590,12 @@ void draw() {
           text("Challenges", 400, 100);
           challenge.showChallenges();
           fill(gray);
-          rect(menu.press.x, menu.press.y, menu.pressSize.x, menu.pressSize.y);
+          rect(menu.PRES.x, menu.PRES.y, menu.PRESSSIZE.x, menu.PRESSSIZE.y);
           fill(white);
           textSize(30);
-          text("Press A to start", menu.pressText.x, menu.pressText.y);
+          text("Press A to start", menu.PRESSTEXT.x, menu.PRESSTEXT.y);
           textSize(50);
-          text("Challenges", menu.titleAchievement.x, menu.titleAchievement.y);
+          text("Challenges", menu.TITLEACHIEVEMENT.x, menu.TITLEACHIEVEMENT.y);
         }
 
         if (achievement.summary) {// Player 

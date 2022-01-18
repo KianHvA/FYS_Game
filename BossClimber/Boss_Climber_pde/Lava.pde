@@ -1,10 +1,11 @@
 //Fee Fee: code
 //Kian: sprite
 class Lava {
-  float y=576;
-  float b = width/12;
-  float speed = 0.3;
+  float y = 576;
+  float b = width/12; //With of the walls
+  float speed = 0.3; //Speed of rising lava
   float back = 2.4;
+  float playerHeight = 20;
   boolean lavaBack = false;
   boolean lavaStop = false;
   boolean lavaUp = false;
@@ -21,10 +22,11 @@ class Lava {
         }
       }
 
-      if (player.posPlayer.y+20 >= y) {
+      if (player.posPlayer.y+playerHeight >= y) {
         healthbar.doDamage(100);
       }
 
+      // Next level, lava drops
       if (lavaBack) {
         y += back; 
         if (y > 700) {
