@@ -134,9 +134,6 @@ class Menu {
     String[] names = databaseTable.getStringColumn(2);
     String[] dates = databaseTable.getStringColumn(3);
     
-    fill(GREY);
-    rect(WIDTH2, TEXTCOORDINATES1, TEXTCOORDINATES1, TEXTCOORDINATES1);
-    
     fill(WHITE);
     textAlign(CENTER,CENTER);
     text(HIGHSCORE, HEIGHT2, HEIGHT2 - TEXTCORRECTION8 * 2);

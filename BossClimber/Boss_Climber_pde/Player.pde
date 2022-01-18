@@ -31,7 +31,7 @@ class Player {
   float walkAmount = 0;
   boolean checkSound = false;
   boolean playSound = false;
-  float timerAnimations = 5;
+  final float TIMERANIMATIONS = 5;
   final int SIZESHIELD = 50;
   final int SHIELDCOORDINATES = 30;
   final color SHIELDCOLOR = #EBFA90;
@@ -163,11 +163,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActive = left1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActive = left2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -179,11 +179,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActive = right1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActive = right2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -200,11 +200,11 @@ class Player {
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveS = leftS1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveS = leftS2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -215,11 +215,11 @@ class Player {
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveS = rightS1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveS = rightS2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -236,11 +236,11 @@ class Player {
         if (timerLeft2 == 0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveW = leftW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveW = leftW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -251,11 +251,11 @@ class Player {
         if (timerRight2 == 0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveW = rightW1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveW = rightW2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -266,17 +266,17 @@ class Player {
       }
     }
 
-    if (!schild.pickedUp && sword.pickedUp && !waterBottle.pickedUp) {
+    if (!schild.pickedUp && sword.pickedUp && !waterBottle.pickedUp) {//With the shield
       if (moveLeft && !moveRight && !sword.attacked) {
         Active = leftActiveSW;
         if (timerLeft2 == 0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveSW = leftSW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveSW = leftSW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
@@ -287,11 +287,11 @@ class Player {
         if (timerRight2 == 0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveSW = rightSW1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveSW = rightSW2;
           timerRight1 = 0;
           timerRight2 = 0;
