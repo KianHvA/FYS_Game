@@ -25,11 +25,16 @@ class Schild {
   float schildSaveLevens = schildLevens;
   float schildScoreCount = 100;
   int shieldScore = 50;
-  final float TEXT_SIZE = 30;
-  PVector seeScoreDistance = new PVector(10, 40);
+  int incrementNum = 1;
+  int posPlayerDecrease = 15;
+  int posPlayernumLess = 0;
+  int AantalLevensschild = 0;
+  int scoreCountLess = 0;
+  int scoreCount = 100;
+  float Gravity = 0.98;
 
   Schild() {
-    GRAVITYSchild = 0.98;
+    GRAVITYSchild = Gravity;
     timerSD = new PVector(0, 0);
     collisionHandler = new CollisionHandler();
   }
@@ -78,7 +83,7 @@ class Schild {
     //}
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
-
+    
     if (!dragon.fight) {
       if (collisionHandler.hitPlayer) {
         pickedUp = true;
@@ -110,13 +115,13 @@ class Schild {
       schildLevens = schildSaveLevens;
       FlamethrowerJumping = true;
       LevelMoveAmountCurrent = platforms.moveAmount;
-      LevelMoveAmountNext = LevelMoveAmountCurrent + 1;
+      LevelMoveAmountNext = LevelMoveAmountCurrent + incrementNum;
     }
 
 
     if (FlamethrowerJumping) {
-      player.posPlayer.y -= 15;
-      if (player.posPlayer.y < 0) {
+      player.posPlayer.y -= posPlayerDecrease;
+      if (player.posPlayer.y < posPlayernumLess) {
         FlamethrowerJumping = false;
       }
     }
@@ -140,7 +145,7 @@ class Schild {
       health.invincibleB = true;
     }
 
-    if (schildLevens == 0) { //|| reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
+    if (schildLevens == AantalLevensschild) { //|| reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
       health.invincibleB = false;
       reset();
       timedReset = false;
@@ -157,9 +162,9 @@ class Schild {
       schildScoreCount--;
     }
 
-    if (schildScoreCount < 0) {
+    if (schildScoreCount < scoreCountLess) {
       seeScoreShield = false;
-      schildScoreCount = 100;
+      schildScoreCount = scoreCount;
     }
   }
 
@@ -175,17 +180,12 @@ class Schild {
     //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
 
     if (seeScoreShield) {
-      fill(white);
-      textSize(TEXT_SIZE);
-      text("+ 50", player.posPlayer.x - seeScoreDistance.x, player.posPlayer.y - seeScoreDistance.y);
-
-      if (seeScoreShield) {
-        fill(255);
-        textSize(30);
-        text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
-      }
+      fill(255);
+      textSize(30);
+      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
     }
   }
+
   void reset() {
     ResetReset = false;
     NewPos = true;
