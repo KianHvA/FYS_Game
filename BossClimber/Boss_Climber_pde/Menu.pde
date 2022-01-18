@@ -39,7 +39,7 @@ class Menu {
   final PVector PRESSSIZE = new PVector(300, 50);
   final PVector RPLACEMENT1 = new PVector(150, 250);
   final PVector RPLACEMENT2 = new PVector(400, 250);
-  final float textSize = 36;
+  final float TEXTSIZE = 36;
   float Check3 = 0, Timer3 = 0;
   final PVector TEXT1 = new PVector(133, 200);  
   final int RECTCORRECTION1 = 175;
@@ -47,13 +47,30 @@ class Menu {
   final float RECTCORRECTION3 = 1.5;
   final int TEXTFONT1 = 50;
   final int TEXTFONT2 = 40;
+  final int TEXTFONT3 = 72;
+  final int TEXTFONT4 = 20;
+  final int TEXTFONT5 = 30;
   final int TEXTCORRECTION1 = 125;
   final int TEXTCORRECTION2 = 65;
   final int TEXTCORRECTION3 = 160;
   final int TEXTCORRECTION4 = 5;
+  final float TEXTCORRECTION5 = 3.5;
+  final int TEXTCORRECTION6 = 13;
+  final int TEXTCORRECTION7 = 2;
+  final int TEXTCORRECTION8 = 100;
+  final int TEXTCORRECTION9 = 10;
+  final int TEXTCOÖRDINATES1 = 500;
+  final int TEXTCOÖRDINATES2 = 300;
+  final int TEXTCOÖRDINATES3 = 80;
+  final int TEXTCOÖRDINATES4 = 250;
+  final int TEXTCOÖRDINATES5 = 40;
+  final int TEXTCOÖRDINATES6 = 200;
+  final int COLORS1 = 125;
+  final int COLORS2 = 255;
 
 
   Menu() {
+    //To make sure the menu doesn't load in instantly we make sure the contructer put's the boolean on false;
     start = false;
   }
 
@@ -65,10 +82,10 @@ class Menu {
     //colorMode(rect1);
     //menu.highlight();
     fill(KLEUR);
-    textSize(72);
+    textSize(TEXTFONT3);
     textAlign(CORNER, CORNER);
     text("BOSS CLIMBER", placement1.x - TEXT1.x, TEXT1.y); 
-    fill(125);
+    fill(COLORS1);
     rect(placement1.x - RECTCORRECTION1, placement1.y, SIZE.x, SIZE.y);
     rect(placement2.x, placement2.y, SIZE.x, SIZE.y);
     rect(placement3.x, placement3.y + SIZE.y + RECTCORRECTION2, SIZE.x, SIZE.y / RECTCORRECTION3);
@@ -79,13 +96,13 @@ class Menu {
     textLeading(TEXTFONT1);
     text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
     text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
-    textSize(textSize);
+    textSize(TEXTSIZE);
     textLeading(TEXTFONT2);
-    text("Press X for\n Highscore", placement3.x + SIZE.x/5, placement3.y+(SIZE.y*1.35)); // press X on pc
-    textSize(72);
-    textSize(textSize);
+    text("Press X for\n Highscore", placement3.x + SIZE.x/TEXTCORRECTION4, placement3.y+(SIZE.y*TEXTCORRECTION5)); // press X on pc
+    textSize(TEXTFONT3);
+    textSize(TEXTSIZE);
     textLeading(TEXTFONT1);
-    text("Press -> for\n Achievements", placement4.x + SIZE.x/13, placement4.y + SIZE.y/3.5);
+    text("Press -> for\n Achievements", placement4.x + SIZE.x/TEXTCORRECTION6, placement4.y + SIZE.y/TEXTCORRECTION5);
     drawn = true;
 
     if (keysPressed['A']) {
@@ -94,17 +111,6 @@ class Menu {
     if (keysPressed['X']) {
       displayHighscore = true;
     }
-
-    //stroke(rect2);
-    //rectMode(CORNER);
-    //fill(125);
-    ////colorMode(rect2);
-    //rect(placement2.x, placement2.y, size.x, size.y);
-    //rectMode(CENTER);
-    //textFont(f, 36); //size of the texts
-    //fill(255); //color
-    //text("Personalise", placement2.x + 10, placement2.y + 60);
-    //drawn = true;
   }
 
   void HighscoreDraw() {
@@ -116,21 +122,21 @@ class Menu {
     String[] names = databaseTable.getStringColumn(2);
     String[] dates = databaseTable.getStringColumn(3);
     
-    fill(125);
-    rect(width/2, 500, 300, 80);
+    fill(COLORS1);
+    rect(width/TEXTCORRECTION7, TEXTCOÖRDINATES1, TEXTCOÖRDINATES2, TEXTCOÖRDINATES3);
     
-    fill(255);
+    fill(COLORS2);
     textAlign(CENTER,CENTER);
-    text("Highscore:", height/2, height/2 - 100 * 2);
-    fill(255);
+    text("Highscore:", height/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 * TEXTCORRECTION7);
+    fill(COLORS2);
     for (int i = 0; i < scores.length; i++) {
       highscore = names[i] + ": " + scores[i] + "        " + dates[i];
-      textSize(20);
+      textSize(TEXTFONT4);
       
-      text(highscore, width/2, height/2 - 100 + i * 20);
+      text(highscore, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTFONT4);
       
-      textSize(30);
-      text("Press A to start", width/2, 500);
+      textSize(TEXTFONT5);
+      text("Press A to start", width/TEXTCORRECTION7, TEXTCOÖRDINATES1);
     }
   }
   
@@ -144,196 +150,25 @@ class Menu {
     String[] dates = databaseAchievement.getStringColumn(2);
     
      
-    fill(125);
-    rect(width/2, 250, 300, 40);
+    fill(COLORS1);
+    rect(width/TEXTCORRECTION7, TEXTCOÖRDINATES4, TEXTCOÖRDINATES2, TEXTCOÖRDINATES5);
     
-    fill(255);
+    fill(COLORS2);
     textAlign(CENTER, CENTER);
-    text("Achievement:", height/2, height/2 - 100  * 2);
-    fill(255);
+    text("Achievement:", height/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 * TEXTCORRECTION7);
+    fill(COLORS2);
     for (int i = 0; i < requirements.length; i++) {
       Achievement = descriptions[i] + ": " + requirements[i] + "      " + dates[i];
-      textSize(20);
+      textSize(TEXTFONT4);
       
-      text(Achievement, width/2, height/2 - 100 + i * 10);
+      text(Achievement, width/TEXTCORRECTION7, height/TEXTCORRECTION7 - TEXTCORRECTION8 + i * TEXTCORRECTION9);
       
-      textSize(30);
-      text("Press B for Achievements", width/2, 200);
+      textSize(TEXTFONT5);
+      text("Press B for Achievements", width/TEXTCORRECTION7, TEXTCOÖRDINATES6);
     }
   }
-
-
-  //void highlight() {
-  //  if (highlight1) {
-  //    highlight1 = true;
-  //    highlight2 = false;
-  //    rect1 = highlight;
-  //    rect2 = normal;
-  //  }
-  //  if (highlight2) {
-  //    highlight1 = false;
-  //    highlight2 = true;
-  //    rect2 = highlight;
-  //    rect1 = normal;
-  //  }
-
-  //  if (keysPressed[RIGHT] && Check == 0) {
-  //    if (rect1 == highlight) {
-  //      highlight1 = false;
-  //      highlight2 = true;
-  //      rect2 = highlight;
-  //      rect1 = normal;
-  //    } else if (rect2 == highlight) {
-  //      highlight1 = true;
-  //      highlight2 = false;
-  //      rect1 = highlight;
-  //      rect2 = normal;
-  //    } 
-  //    Check++;
-  //  }
-  //  if (keysPressed[LEFT] && Check == 0) {
-  //    if (rect1 == highlight) {
-  //      highlight1 = false;
-  //      highlight2 = true;
-  //      rect2 = highlight;
-  //      rect1 = normal;
-  //    } else if (rect2 == highlight) {
-  //      highlight1 = true;
-  //      highlight2 = false;
-  //      rect1 = highlight;
-  //      rect2 = normal;
-  //    } 
-  //    Check++;
-  //  }
-  //  if (Check > 0) Time++;
-  //  if (Time > 20) {
-  //    Check = 0;
-  //    Time = 0;
-  //  }
-  //  if (keysPressed[65] && highlight1) { //If you press the key 'A' (keyCode = 65) the menu will disapear and the game will start
-  //    start = true;
-  //    Check3++;
-  //  } else if (keysPressed[65] && highlight2) {
-  //    personalize = true;
-  //    Check3++;
-  //  }
-  //  if (start == true) {
-  //    placement1.x = -100;
-  //    placement1.y = -100;
-  //    placement2.x = -100;
-  //    placement2.y = -100;
-  //  }
-  //  if (personalize == true) {
-  //    placement1.x += 50;
-  //    placement1.y += 50;
-  //    placement2.x += 50;
-  //    placement2.y += 50;
-  //    timer2++;
-  //  }
-
-  //  if (timer2 > 5) {
-  //    timer2 = 6;
-  //    Personalize();
-  //  }
-  //}
-
-  //void Personalize() {
-  //  if (Check3 > 0) Timer3++;
-  //  if (Timer3 > 20) {
-  //    Check3 = 0;
-  //    Timer3 = 0;
-  //  }
-  //  fill(0);
-  //  rect(spawnBS.x, spawnBS.y, width, height);
-  //  wall();
-  //  fill(Rgb);
-  //  ellipse(spawnP1.x, spawnP1.y, 20, 20);
-  //  fill(rGb);
-  //  ellipse(spawnP2.x, spawnP2.y, 20, 20);
-  //  fill(rgB);
-  //  ellipse(spawnP3.x, spawnP3.y, 20, 20);
-
-  //  fill(125);
-  //  stroke(rect3);
-  //  rect(spawnP1.x - 40, spawnP1.y + 100, 75, 25);
-  //  stroke(rect4);
-  //  rect(spawnP2.x - 40, spawnP2.y + 100, 75, 25);
-  //  stroke(rect5);
-  //  rect(spawnP3.x - 40, spawnP3.y + 100, 75, 25);
-  //  if (keysPressed[RIGHT] && Check2 == 0 && Check3 == 0) {
-  //    if (rect3 == highlight) {
-  //      highlight3 = false;
-  //      highlight4 = true;
-  //      highlight5 = false;
-  //      rect3 = normal;
-  //      rect4 = highlight;
-  //      rect5 = normal;
-  //    } else if (rect4 == highlight) {
-  //      highlight3 = false;
-  //      highlight4 = false;
-  //      highlight5 = true;
-  //      rect3 = normal;
-  //      rect4 = normal;
-  //      rect5 = highlight;
-  //    } else if (rect5 == highlight) {
-  //      highlight3 = true;
-  //      highlight4 = false;
-  //      highlight5 = false;
-  //      rect3 = highlight;
-  //      rect4 = normal;
-  //      rect5 = normal;
-  //    }
-  //    Check2++;
-  //  }
-  //  if (keysPressed[LEFT] && Check2 == 0) {
-  //    if (rect3 == highlight) {
-  //      highlight3 = false;
-  //      highlight4 = false;
-  //      highlight5 = true;
-  //      rect3 = normal;
-  //      rect4 = normal;
-  //      rect5 = highlight;
-  //    } else if (rect4 == highlight) {
-  //      highlight3 = true;
-  //      highlight4 = false;
-  //      highlight5 = false;
-  //      rect3 = highlight;
-  //      rect4 = normal;
-  //      rect5 = normal;
-  //    } else if (rect5 == highlight) {
-  //      highlight3 = false;
-  //      highlight4 = true;
-  //      highlight5 = false;
-  //      rect3 = normal;
-  //      rect4 = highlight;
-  //      rect5 = normal;
-  //    }
-  //    Check2++;
-  //  }
-  //  if (Check2 > 0) Time2++;
-  //  if (Time2 > 20) {
-  //    Check2 = 0;
-  //    Time2 = 0;
-  //  }
-
-  //  if (keysPressed[65] && rect3 == highlight) {
-  //    player = Rgb;
-  //    start = true;
-  //  } else if (keysPressed[65] && rect4 == highlight) {
-  //    player = rGb;
-  //    start = true;
-  //  } else if (keysPressed[65] && rect5 == highlight) {
-  //    player = rgB;
-  //    start = true;
-  //  }
-  //}
-
   void restart() {
     if (restart && keysPressed['Z']) {
-      halfX = -1000;
-      halfY = -1000;
-      //Health.xBegin = -1000;
-      //Health.yBegin = -1000;
       placement1 = RPLACEMENT1; 
       placement2 = RPLACEMENT2;
       start = false;
