@@ -456,8 +456,11 @@ void update()
     cooldown = resetCoolDown;
   }
 
-  if (drops.posPlayer.y <= endDrop || drops.hasCollision) {//Drop off screen or hits dragon:
+  //Drop off screen or hits dragon and that resets the waterbottle
+  if (drops.posPlayer.y <= endDrop || drops.hasCollision) {
     waterBottle.dropOn = false;
+    drops.posPlayer.y = waterBottle.resetBottleY;
+    drops.hasCollision = false;
     waterBottle.resetWaterBottle();
   }
 
@@ -466,11 +469,13 @@ void update()
     scoreHandler.seeScoreDragonCount--;
   }
 
+  //See score if player defeats dragon
   if (scoreHandler.seeScoreDragonCount < endSeeScore) {
     scoreHandler.seeScoreDragon = false;
     scoreHandler.seeScoreDragonCount = resetSeeScore;
   }
 
+  //Count amount of fireballs which are extinguished
   if (achievementFireball) {
     extinguishFireball++;
     achievementFireball = false;
@@ -506,10 +511,6 @@ void update()
 
   //Achievement in game
   if (platforms.moveAmount >= levelOne) {
-    challenge.gamePlayed = true;
-  }
-
-  if (platforms.moveAmount >= 1) {
     challenge.gamePlayed = true;
   }
 

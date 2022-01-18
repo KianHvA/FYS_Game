@@ -11,6 +11,7 @@ class Drop{
     collisionHandler = new CollisionHandler();
   }
   
+  //Positions drop is same as positions player
   void shootDrop(float startX, float startY, float dropSpeedX, float dropSpeedY){
     posPlayer.x = startX;
     posPlayer.y = startY;
@@ -23,6 +24,7 @@ class Drop{
     posPlayer.y += ySpeedDrop;
     posPlayer.x += xSpeedDrop;
     
+    //Collision with dragon
     collisionHandler.checkCollisionDragon(posPlayer.x, posPlayer.y, dropDia);
     hasCollision = collisionHandler.hitDragon;    
     

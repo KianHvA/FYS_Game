@@ -170,9 +170,8 @@ class Fireball {
     posFireball.y += velocity.y;
   }
 
-  void respawn() {
-    //Fireball
-    
+  //Respawn fireball
+  void respawn() {    
     posFireball.x = resetFireball.x;
     posFireball.y = resetFireball.y;
   }

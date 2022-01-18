@@ -75,6 +75,7 @@ class Instructions {
     instructionSize = 30;
   }
 
+  //Moving animations which shows the movement if an button is pushed (these are instructions!)
   void updateInstructions() {
     example.x -= exampleSpeedX;
     example2.x += exampleSpeedX;
@@ -151,7 +152,8 @@ class Instructions {
     }
   }
 
-  void powerUpInstructions() {//Explanation power-ups
+  //Explanation power-ups
+  void powerUpInstructions() {
     if (/*platforms.moveAmount < 2 && player.posPlayer.y <= 580 && !off*/powerExpl) {
       background(black);
 
@@ -198,13 +200,15 @@ class Instructions {
       fill(gray);
       rect(rect5.x, rect5.y, rectSizeHorizontal[0].x, rectSizeHorizontal[0].y);
       rect(rect6.x, rect6.y, rectSizeHorizontal[1].x, rectSizeHorizontal[1].y);
-
-      fill(gray);//Example of movement.
+      
+      //Example of movement.
+      fill(gray);
       image(moveL1, example.x, example.y, sizes.x, sizes.y);
       image(moveR1, example2.x, example2.y, sizes.x, sizes.y);
       image(moveR1, example3.x, example3.y, sizes.x, sizes.y);
 
-      textSize(instructionSize);//All text instructions
+      //All text instructions
+      textSize(instructionSize);
       fill(white);
       text("Press <   to move to the left:", textInstr[0].x, textInstr[0].y);
       text("--", textInstr[1].x, textInstr[1].y);

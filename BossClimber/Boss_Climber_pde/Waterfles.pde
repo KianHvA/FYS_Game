@@ -40,6 +40,7 @@ class WaterBottle{
        }
       }
 
+      //If player picks an other powerup
       if (schild.pickedUp && pickedUp || sword.pickedUp && pickedUp) {
         pickedUp = false;
         reset = true;
@@ -70,22 +71,22 @@ class WaterBottle{
         bottleScoreCount--;
       }
 
+      //See score is ending
       if (bottleScoreCount < endSeeScore) {
         seeScoreBottle = false;
         bottleScoreCount = resetSeeScore;
       }
      }
 
-  void resetWaterBottle() {//Reset new waterbottle
+  //Reset new waterbottle
+  void resetWaterBottle() {
     pickedUp = false;
     bottleScoreCount = resetSeeScore;
     bottleX = resetBottleX;
     bottleY = resetBottleY;
     bottleWidth = resetBottleWidth;
     bottleHeight = resetBottleHeight;
-    drops.posPlayer.x = player.posPlayer.x;
-    drops.posPlayer.y = player.posPlayer.y;
-    drops.hasCollision = false;
+    drops.posPlayer.x = resetBottleX;
   }
 
   void draw() {
@@ -93,6 +94,7 @@ class WaterBottle{
     image(inventory.waterflesIOutline, bottleX, bottleY, bottleWidth*1.2, bottleHeight*1.2);
     image(inventory.waterflesI, bottleX, bottleY, bottleWidth, bottleHeight);
 
+    //Shows score of waterbottle
     if (seeScoreBottle) {
       fill(white);
       textSize(TEXT_SIZE);
