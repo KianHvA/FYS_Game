@@ -539,7 +539,6 @@ void restartGame() {//Resets the whole game
   platforms.moveAmount = 1;
   player.posPlayer.x = width/1.8;
   player.posPlayer.y = height/1.2;
-  menu.kleur = 255;
   achievement.summary = false;
   instruction.manual = false;
   instruction.powerExpl = false;

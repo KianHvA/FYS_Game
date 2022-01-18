@@ -3,6 +3,8 @@ class Schild {
   CollisionHandler collisionHandler;
   PVector schildPos = spawnPointsPUPS.upperL;
   PVector schildSize = new PVector(25, 30);
+  final float TEXT_SIZE = 30;
+  PVector seeScoreDistance = new PVector(10, 40);
   PVector timerSD;
   final float GRAVITYSchild;
   boolean schildOn = false;
