@@ -4,48 +4,50 @@
 //Ömer: showing Achievements
 class Menu {
   PFont f = createFont("Arial", 16, true); //TypeStyle = Arial
-  boolean start = false, drawn = false, displayHighscore = false , displayAchievement = false;
+  boolean start = false;
+  boolean drawn = false;
+  boolean displayHighscore = false;
+  boolean displayAchievement = false;
   PVector placement1 = new PVector(width/3 + 50, 250);
   PVector placement2 = new PVector(width/3 + 200, 250);
   PVector placement3 = new PVector(width/2 - 300, 250);
   PVector placement4 = new PVector(width/2 + 25, 410);
-  boolean highlight1 = true, highlight2 = false;
-  color normal = 125;
-  color highlight = #EFF03F;
-  color rect1 = 0;
-  color rect2 = 0;
-  color kleur = #FFFFFF;
-  float Check = 0, Time = 0;
+  boolean highlight1 = true;
+  boolean highlight2 = false;
+  final color NORMALL = 125;
+  final color RECT1 = 0;
+  final color RECT2 = 0;
+  final color kleur = #FFFFFF;
+  float Check = 0;
+  float Time = 0;
   boolean personalize = false;
-  PVector size = new PVector(275, 150);
+  final PVector size = new PVector(275, 150);
   float timer2 = 0;
-  PVector placeBS = new PVector(300, 150);
-  PVector sizeBS = new PVector(1, 1);
+  final PVector placeBS = new PVector(300, 150);
+  final PVector sizeBS = new PVector(1, 1);
   float timer3 = 0;
-  color Rgb = #FF0000;
-  color rGb = #00FF00;
-  color rgB = #0000FF;
-  color player = 255;
-  boolean highlight3 = true, highlight4 = false, highlight5 = false;
-  color rect3 = highlight;
-  color rect4 = 0;
-  color rect5 = 0;
+  final color player = 255;
   float Check2 = 0, Time2 = 0;
   boolean restart = false;
   PVector spawnP1 = new PVector(200, 250);
   PVector spawnP2 = new PVector(400, 250);
   PVector spawnP3 = new PVector(600, 250);
   PVector spawnBS = new PVector(width/2, height/2);
-  final PVector pressText = new PVector(425, 510);
-  final PVector titleAchievement = new PVector(400, 100);
-  final PVector press = new PVector(525, 500);
-  final PVector pressSize = new PVector(300, 50);
-  final PVector Rplacement1 = new PVector(150, 250);
-  final PVector Rplacement2 = new PVector(400, 250);
+  final PVector PRESSTEXT = new PVector(425, 510);
+  final PVector TITLEACHIEVEMENT = new PVector(400, 100);
+  final PVector PRES = new PVector(525, 500);
+  final PVector PRESSSIZE = new PVector(300, 50);
+  final PVector RPLACEMENT1 = new PVector(150, 250);
+  final PVector RPLACEMENT2 = new PVector(400, 250);
   final float textSize = 36;
   float Check3 = 0, Timer3 = 0;
-
-
+  final PVector TEXT1 = new PVector(133, 200);  
+  final int RECTCORRECTION1 = 175;
+  final int RECTCORRECTION2 = 10;
+  final float RECTCORRECTION3 = 1.5;
+  final int TEXTFONT1 = 50;
+  final int TEXTFONT2 = 40;
+  final int TEXTCORRECTION1 = 125;
 
 
   Menu() {
@@ -55,31 +57,31 @@ class Menu {
 
   void draw() {
     restart = false;    
-    stroke(rect1);
+    stroke(RECT1);
     rectMode(CORNER);
     //colorMode(rect1);
     //menu.highlight();
     fill(kleur);
     textSize(72);
     textAlign(CORNER, CORNER);
-    text("BOSS CLIMBER", placement1.x - 133, 200); 
+    text("BOSS CLIMBER", placement1.x - TEXT1.x, TEXT1.y); 
     fill(125);
-    rect(placement1.x - 175, placement1.y, size.x, size.y);
+    rect(placement1.x - RECTCORRECTION1, placement1.y, size.x, size.y);
     rect(placement2.x, placement2.y, size.x, size.y);
-    rect(placement3.x, placement3.y+size.y + 10, size.x, size.y/1.5);
-    rect(placement4.x, placement4.y, size.x, size.y/1.5);
+    rect(placement3.x, placement3.y + size.y + RECTCORRECTION2, size.x, size.y / RECTCORRECTION3);
+    rect(placement4.x, placement4.y, size.x, size.y / RECTCORRECTION3);
     rectMode(CENTER);
-    textFont(f, 50); //size of the texts
+    textFont(f, TEXTFONT1); //size of the texts
     fill(kleur); //color
-    textLeading(50);
-    text("Press A\n to start", placement1.x - 125, placement1.y + 65); //press A on pc
+    textLeading(TEXTFONT1);
+    text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + 65); //press A on pc
     text("Press Y for\ninstructions", placement1.x + 160, placement1.y + 65); //press D on pc
     textSize(textSize);
-    textLeading(40);
+    textLeading(TEXTFONT2);
     text("Press X for\n Highscore", placement3.x + size.x/5, placement3.y+(size.y*1.35)); // press X on pc
     textSize(72);
     textSize(textSize);
-    textLeading(50);
+    textLeading(TEXTFONT1);
     text("Press -> for\n Achievements", placement4.x + size.x/13, placement4.y + size.y/3.5);
     drawn = true;
 
@@ -329,8 +331,8 @@ class Menu {
       halfY = -1000;
       //Health.xBegin = -1000;
       //Health.yBegin = -1000;
-      placement1 = Rplacement1; 
-      placement2 = Rplacement2;
+      placement1 = RPLACEMENT1; 
+      placement2 = RPLACEMENT2;
       start = false;
       setup();
     }
