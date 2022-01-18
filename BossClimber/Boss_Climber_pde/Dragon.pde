@@ -1,4 +1,4 @@
-//Ömer, Tigo, Kian
+//Ömer, Tigo
 class Dragon {
   FireBallRain FireballRain;
   bossFight bossFight;
@@ -130,24 +130,17 @@ class Dragon {
       dragon.healthbarPos.x = -1000; 
       dragon.healthbarPos.y = -1000;
     }
-    while (player.posPlayer.y > 80) {
+    while (player.posPlayer.y > height/2) {
       //voer vlieg routine uit
-
-      //1. maak een timer van bvb 5 seconden
-
-      //2. als de timer voorbij is verander de x en y van de draak naar een van de voorgeprogameerde vlieg posities in de array vliegPatroon
-      //je kan de variablen in vliegpatronen bereiken door (voorbeeld): startx = vliegPatroon[1].x
-      //if(!FireballRain.fireBallRain) {
       if (bossFightRoom && !bossFightRoomFase2) { 
-        startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.1);
-        starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.1);
+        startx = lerp(startx, vliegPatroonBossFight[vliegen].x, 0.01);
+        starty = lerp(starty, vliegPatroonBossFight[vliegen].y, 0.01);
 
-        //mousepressed is een tijdelijke variabele, dit moet verandert worden door iets met wanneer dragon healt lager is dan...
         if (dragon.dragonHealth<=1) {
           bossFightRoomFase2 = true;
         }
       }
-      // hier moet komen dat de boss boven in de bossroom vliegt en dat er veel waterflesjes spawnen
+      
       if (bossFightRoomFase2) {
         if (d) {
           d=false;
@@ -170,8 +163,9 @@ class Dragon {
     //}
     //ga terug naar begin positie
     if (fireBallRain || player.posPlayer.y < height/2 && !fight) {
-      startx = lerp(startx, stageMovePatroon[0].x, 0.01);
-      starty = lerp(starty, stageMovePatroon[0].y, 0.01);
+      println("dragoon goes away");
+      startx = lerp(startx, stageMovePatroon[0].x, 0.1);
+      starty = lerp(starty, stageMovePatroon[0].y, 0.1);
     }
 
     if (platforms.moveAmount == 3 * fightAmount) {
