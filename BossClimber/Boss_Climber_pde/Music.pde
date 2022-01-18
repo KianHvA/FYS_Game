@@ -19,58 +19,60 @@ class Music {
 
 
   void update() {
-    if (menu.start) {
-      mainMenuMusic1.stop();
-    }
+    if (music) {
+      if (menu.start) {
+        mainMenuMusic1.stop();
+      }
 
-    if (!playingGame2) {
-      randomizerGame++;
-    }
-    if (randomizerGame >= 2) {
-      randomizerGame = 1;
-    }
-    timeDelayGame++;
-    if (timeDelayGame == 100) {
-      playingGame2 = true;
-      playingGame = false;
-    }
-    if (!bossFightRoom && playingGame2) {
-      if (randomizerGame == 1 && !playingGame) {
-        GameMusic1.play();
-        playingGame = true;
+      if (!playingGame2) {
+        randomizerGame++;
       }
-      if (randomizerGame == 1 && !GameMusic1.isPlaying()) {
-        timeDelayGame = 0;
-        playingGame2 = false;
+      if (randomizerGame >= 2) {
+        randomizerGame = 1;
       }
-    }
+      timeDelayGame++;
+      if (timeDelayGame == 100) {
+        playingGame2 = true;
+        playingGame = false;
+      }
+      if (!bossFightRoom && playingGame2) {
+        if (randomizerGame == 1 && !playingGame) {
+          GameMusic1.play();
+          playingGame = true;
+        }
+        if (randomizerGame == 1 && !GameMusic1.isPlaying()) {
+          timeDelayGame = 0;
+          playingGame2 = false;
+        }
+      }
 
-    if (!playingBossRoom2) {
-      randomizerBossRoom++;
-    }
-    if (randomizerBossRoom >= 2) {
-      randomizerBossRoom = 1;
-    }
-    if (bossFightRoom) {
-      GameMusic1.pause();
-      if (randomizerBossRoom == 1 && !playingBossRoom && !playingBossRoom2) {
-        bossFightMusic1.play(); 
-        playingBossRoom = true;
-        playingBossRoom2 = true;
+      if (!playingBossRoom2) {
+        randomizerBossRoom++;
       }
-      if (randomizerBossRoom == 1 && bossFightMusic1.isPlaying()) {
-        playingBossRoom = true;
+      if (randomizerBossRoom >= 2) {
+        randomizerBossRoom = 1;
       }
-      if (randomizerBossRoom == 1 && !bossFightMusic1.isPlaying()) {
-        playingBossRoom2 = false;
-        timeDelayBoss++;
+      if (bossFightRoom) {
+        GameMusic1.pause();
+        if (randomizerBossRoom == 1 && !playingBossRoom && !playingBossRoom2) {
+          bossFightMusic1.play(); 
+          playingBossRoom = true;
+          playingBossRoom2 = true;
+        }
+        if (randomizerBossRoom == 1 && bossFightMusic1.isPlaying()) {
+          playingBossRoom = true;
+        }
+        if (randomizerBossRoom == 1 && !bossFightMusic1.isPlaying()) {
+          playingBossRoom2 = false;
+          timeDelayBoss++;
+        }
+        if (timeDelayBoss >= 60) {
+          playingBossRoom = false;
+        }
       }
-      if (timeDelayBoss >= 60) {
-        playingBossRoom = false;
+      if (!bossFightRoom && playingBossRoom) {
+        bossFightMusic1.pause();
       }
-    }
-    if (!bossFightRoom && playingBossRoom) {
-      bossFightMusic1.pause();
     }
   }
 

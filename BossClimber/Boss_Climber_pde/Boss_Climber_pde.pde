@@ -342,7 +342,7 @@ void update()
       }
       fireballHitCount--;
     }
-    
+
     //Hit fireball is over
     if (fireballHitCount < endSeeHit) {
       seeHitFireball = false;
@@ -475,7 +475,7 @@ void update()
     achievementFireball = false;
   }
   //println();
-  
+
   //Extinguished 3 fireballs
   if (extinguishFireball >= achievementFireballComplete) {
     challenge.extinguishQuery = true;
@@ -504,10 +504,10 @@ void update()
   }
 
   //Achievement in game
-  if (platforms.moveAmount >= levelOne){
+  if (platforms.moveAmount >= levelOne) {
     challenge.gamePlayed = true;
   }
-  
+
   if (platforms.moveAmount >= 1) {
     challenge.gamePlayed = true;
   }
@@ -517,7 +517,7 @@ void update()
   player.movementUpdate();
   spawnPointsPUPS.update();
   platforms.bossAchievement();
-  
+
   //Challenge queries
   challenge.fireballQuery();
   challenge.reachBossQuery();
@@ -556,7 +556,7 @@ void draw() {
     inloggen.draw();
     inloggen.update();
   }
-  
+
   //Title screen
   if (!Highscore.ending && inloggen.loggedIn) {
     textSize(40);
@@ -570,180 +570,180 @@ void draw() {
       if (keysPressed['D']) {
         instruction.manual = true;
       }
-      
+
       if (keysPressed[RIGHT]) {
         showAchievement = true;
       }
-      
+
       //Achievement page
-      if (showAchievement){
+      if (showAchievement) {
         background(black);
 
-      if (keysPressed['V']) {
-        showAchievement = true;
+        if (keysPressed['V']) {
+          showAchievement = true;
+        }
+
+        if (showAchievement) {
+          background(0);
+          textSize(50);
+          text("Challenges", 400, 100);
+          challenge.showChallenges();
+          fill(gray);
+          rect(menu.press.x, menu.press.y, menu.pressSize.x, menu.pressSize.y);
+          fill(white);
+          textSize(30);
+          text("Press A to start", menu.pressText.x, menu.pressText.y);
+          textSize(50);
+          text("Challenges", menu.titleAchievement.x, menu.titleAchievement.y);
+        }
+
+        if (achievement.summary) {// Player 
+          //achievement.updateAchievements();
+          //achievement.draw();
+        }
+
+        //Instruction page
+        if (instruction.manual) {//Player reads instructions.
+          instruction.updateInstructions();
+          instruction.draw();
+
+          if (keysPressed['S']) {
+            instruction.powerExpl = true;
+          }
+
+          if (instruction.powerExpl) {
+            instruction.powerUpInstructions();
+          }
+        }
+        if (menu.displayHighscore) {
+          menu.HighscoreDraw();
+        }
       }
 
-      if (showAchievement) {
+      //Start game, have fun!
+      if (menu.start == true) {
         background(0);
-        textSize(50);
-        text("Challenges", 400, 100);
-        challenge.showChallenges();
-        fill(gray);
-        rect(menu.press.x, menu.press.y, menu.pressSize.x, menu.pressSize.y);
-        fill(white);
-        textSize(30);
-        text("Press A to start", menu.pressText.x, menu.pressText.y);
-        textSize(50);
-        text("Challenges", menu.titleAchievement.x, menu.titleAchievement.y);
-      }
+        update();
 
-      if (achievement.summary) {// Player 
-        //achievement.updateAchievements();
-        //achievement.draw();
-      }
-      
-      //Instruction page
-      if (instruction.manual) {//Player reads instructions.
-        instruction.updateInstructions();
-        instruction.draw();
+        dragon.bossFight.End();
+        level.draw();
+        wall();
 
-        if (keysPressed['S']) {
-          instruction.powerExpl = true;
+
+        instruction.sign();
+
+        if (On) {
+          flamethrower.draw();
+          platforms.draw();
+          player.draw();
+        }
+        if (platforms.drawBossRoom) {
+          player.draw();
+          Bossplatform();
         }
 
-        if (instruction.powerExpl) {
-          instruction.powerUpInstructions();
+        if (fire[0] == true) {//Level fireball!
+          fireballs[0].draw();
         }
-      }
-      if (menu.displayHighscore) {
-        menu.HighscoreDraw();
+        if (fire[1] == true) {//Level fireball!  
+          fireballs[1].draw();
+        }
+
+        if (fire[2] == true) {//Level fireball!  
+          fireballs[2].draw();
+        }
+
+        if (fire[3] == true) {//Level fireball!
+          fireballs[3].draw();
+        }
+
+        if (fire[4] == true) {//Level fireball!
+          fireballs[4].draw();
+        }
+
+        if (fire[5] == true) {//Level fireball!
+          fireballs[5].draw();
+        }
+
+        if (fire[6] == true) {//Boss fireball!
+          fireballs[6].bossOn = true;
+          fireballs[6].draw();
+        }
+
+        if (fire[7] == true) {//Boss fireball!
+          fireballs[7].bossOn = true;
+          fireballs[7].draw();
+        }
+
+        if (fire[8] == true) {//Boss fireball!
+          fireballs[8].bossOn = true;
+          fireballs[8].draw();
+        }
+
+        if (fire[9] == true) {//Boss fireball!
+          fireballs[9].bossOn = true;
+          fireballs[9].draw();
+        }
+
+        if (fire[10] == true) {//Boss fireball!
+          fireballs[10].bossOn = true;
+          fireballs[10].draw();
+        }
+
+        if (fire[11] == true) {//Boss fireball!
+          fireballs[11].bossOn = true;
+          fireballs[11].draw();
+        }
+
+        if (seeHitFireball && !schild.pickedUp) {
+          fill(white);
+          textSize(TEXT_SIZE);
+          text("Ouch!", player.posPlayer.x, player.posPlayer.y - schild.seeScoreDistance.y);
+        }
+
+        if (seeHitFireball && schild.pickedUp) {
+          fill(white);
+          textSize(TEXT_SIZE);
+          text("Protected!", player.posPlayer.x, player.posPlayer.y - schild.seeScoreDistance.y);
+        }
+
+        Doublejump.draw();
+        waterBottle.draw();
+        schild.draw();
+        dragon.draw();
+        sword.draw();
+        lava.draw();
+        healthbar.draw();
+        health.draw();
+
+
+        if (waterBottle.dropOn) {//Shooting
+          drops.draw();
+        }
+
+        //teken alle UI hier zodat het op de voorgrond komt
+        scoreHandler.draw();
+        inventory.draw();
+        Highscore.draw();
+
+        //game overscherm
+        //healthbar.draw();
+        //health.draw();
+        ps.addParticle();
+        ps.run();
       }
     }
-  
-    //Start game, have fun!
-    if (menu.start == true) {
-      background(0);
-      update();
 
-      dragon.bossFight.End();
-      level.draw();
-      wall();
-
-
-      instruction.sign();
-
-      if (On) {
-        flamethrower.draw();
-        platforms.draw();
-        player.draw();
+      //Game over and returning to title screen
+      if (Highscore.ending && keysPressed['D']) {
+        health.dead = false;
+        //Highscore.drawn = false;
+        //Highscore.ending = false;
+        menu.start = false;
+        restartGame();
       }
-      if (platforms.drawBossRoom) {
-        player.draw();
-        Bossplatform();
-      }
-
-      if (fire[0] == true) {//Level fireball!
-        fireballs[0].draw();
-      }
-      if (fire[1] == true) {//Level fireball!  
-        fireballs[1].draw();
-      }
-
-      if (fire[2] == true) {//Level fireball!  
-        fireballs[2].draw();
-      }
-
-      if (fire[3] == true) {//Level fireball!
-        fireballs[3].draw();
-      }
-
-      if (fire[4] == true) {//Level fireball!
-        fireballs[4].draw();
-      }
-
-      if (fire[5] == true) {//Level fireball!
-        fireballs[5].draw();
-      }
-
-      if (fire[6] == true) {//Boss fireball!
-        fireballs[6].bossOn = true;
-        fireballs[6].draw();
-      }
-
-      if (fire[7] == true) {//Boss fireball!
-        fireballs[7].bossOn = true;
-        fireballs[7].draw();
-      }
-
-      if (fire[8] == true) {//Boss fireball!
-        fireballs[8].bossOn = true;
-        fireballs[8].draw();
-      }
-
-      if (fire[9] == true) {//Boss fireball!
-        fireballs[9].bossOn = true;
-        fireballs[9].draw();
-      }
-
-      if (fire[10] == true) {//Boss fireball!
-        fireballs[10].bossOn = true;
-        fireballs[10].draw();
-      }
-
-      if (fire[11] == true) {//Boss fireball!
-        fireballs[11].bossOn = true;
-        fireballs[11].draw();
-      }
-
-      if (seeHitFireball && !schild.pickedUp) {
-        fill(white);
-        textSize(TEXT_SIZE);
-        text("Ouch!", player.posPlayer.x, player.posPlayer.y - schild.seeScoreDistance.y);
-      }
-
-      if (seeHitFireball && schild.pickedUp) {
-        fill(white);
-        textSize(TEXT_SIZE);
-        text("Protected!", player.posPlayer.x, player.posPlayer.y - schild.seeScoreDistance.y);
-      }
-
-      Doublejump.draw();
-      waterBottle.draw();
-      schild.draw();
-      dragon.draw();
-      sword.draw();
-      lava.draw();
-      healthbar.draw();
-      health.draw();
-
-
-      if (waterBottle.dropOn) {//Shooting
-        drops.draw();
-      }
-
-      //teken alle UI hier zodat het op de voorgrond komt
-      scoreHandler.draw();
-      inventory.draw();
-      Highscore.draw();
-
-      //game overscherm
-      //healthbar.draw();
-      //health.draw();
-      ps.addParticle();
-      ps.run();
-    }
-  }
-
-  //Game over and returning to title screen
-  if (Highscore.ending && keysPressed['D']) {
-    health.dead = false;
-    //Highscore.drawn = false;
-    //Highscore.ending = false;
-    menu.start = false;
-    restartGame();
   }
 }
-//}
 
 void keyPressed() {
   //we hebben een toets ingedrukt.
