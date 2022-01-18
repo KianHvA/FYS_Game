@@ -25,13 +25,13 @@ class Player {
   final float SPEED = 5;
   boolean jump = false;
   boolean jumped = false;
-  int jumpCooldown= 30;
+  final int JUMPCOOLDOWN= 30;
   float jumpTimer1 = 0;
   int jumpAmount = 0;
   float walkAmount = 0;
   boolean checkSound = false;
   boolean playSound = false;
-  float timerAnimations = 5;
+  final float TIMERANIMATIONS = 5;
   final int SIZESHIELD = 50;
   final int SHIELDCOORDINATES = 30;
   final color SHIELDCOLOR = #EBFA90;
@@ -158,32 +158,38 @@ class Player {
     }
     //Swapping between sprites and the small animations for them are done here.
     if (!schild.pickedUp && !sword.pickedUp && !waterBottle.pickedUp) {//With nothing equiped.
-      if (moveLeft && !moveRight) {
+      if (moveLeft && !moveRight) {//If the player moves left.
         Active = leftActive;
+        //Timer for animations.
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActive = left1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        //Timer for animations.
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActive = left2;
           timerLeft1 = 0;
           timerLeft2 = 0;
         }
       } 
 
-      if (moveRight && !moveLeft) {
+      if (moveRight && !moveLeft) {//If the player moves right.
         Active = rightActive;
+        //Timer for animations.
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActive = right1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        //Timer for animations.
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActive = right2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -195,31 +201,35 @@ class Player {
     }
 
     if (schild.pickedUp && !waterBottle.pickedUp && !sword.pickedUp) {//With the shield 
-      if (moveLeft && !moveRight) {
+      if (moveLeft && !moveRight) {//If the player moves left.
         Active = leftActiveS;
+        //Timer for animations.
         if (timerLeft2 ==0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveS = leftS1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveS = leftS2;
           timerLeft1 = 0;
           timerLeft2 = 0;
         }
       }
-      if (moveRight && !moveLeft) {
+      if (moveRight && !moveLeft) {//If the player moves right.
         Active = rightActiveS;
+        //Timer for animations.
         if (timerRight2 ==0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveS = rightS1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveS = rightS2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -231,31 +241,35 @@ class Player {
     }
 
     if (!schild.pickedUp && !sword.pickedUp && waterBottle.pickedUp) {//With the waterbottle
-      if (moveLeft && !moveRight) {
+      if (moveLeft && !moveRight) {//If the player moves left.
         Active = leftActiveW;
+        //Timer for animations.
         if (timerLeft2 == 0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveW = leftW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveW = leftW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
         }
       }
-      if (moveRight && !moveLeft) {
+      if (moveRight && !moveLeft) {//If the player moves right.
         Active = rightActiveW;
+        //Timer for animations.
         if (timerRight2 == 0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveW = rightW1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveW = rightW2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -266,32 +280,36 @@ class Player {
       }
     }
 
-    if (!schild.pickedUp && sword.pickedUp && !waterBottle.pickedUp) {
-      if (moveLeft && !moveRight && !sword.attacked) {
+    if (!schild.pickedUp && sword.pickedUp && !waterBottle.pickedUp) {//With the shield
+      if (moveLeft && !moveRight && !sword.attacked) {//If the player moves left.
         Active = leftActiveSW;
+        //Timer for animations.
         if (timerLeft2 == 0) {
           timerLeft1++;
         }
-        if (timerLeft1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerLeft1 >= TIMERANIMATIONS) {
           leftActiveSW = leftSW1;
           timerLeft2++;
         }
-        if (timerLeft2 >= timerAnimations) {
+        if (timerLeft2 >= TIMERANIMATIONS) {
           leftActiveSW = leftSW2;
           timerLeft1 = 0;
           timerLeft2 = 0;
         }
       }
-      if (moveRight && !moveLeft) {
+      if (moveRight && !moveLeft) {//If the player moves right.
         Active = rightActiveSW;
+        //Timer for animations.
         if (timerRight2 == 0) {
           timerRight1++;
         }
-        if (timerRight1 >= timerAnimations) {
+        //Timer for animations.
+        if (timerRight1 >= TIMERANIMATIONS) {
           rightActiveSW = rightSW1;
           timerRight2++;
         }
-        if (timerRight2 >= timerAnimations) {
+        if (timerRight2 >= TIMERANIMATIONS) {
           rightActiveSW = rightSW2;
           timerRight1 = 0;
           timerRight2 = 0;
@@ -306,7 +324,7 @@ class Player {
     }
 
 
-    //handle jump
+    //Handle jump
     if (hasCollision && (keysPressed[UP] || keysPressed['A'])  && !platforms.moveStage && jump && !jumped)
     {
       jumpAmount++;
@@ -319,26 +337,23 @@ class Player {
       moveUp = true;
       hasDoubleJumped = true;
     }
-    if (jumped) {
+    if (jumped) {//If the player jumps
       hasCollision = false;
       velocity.y = -jumpForce;
       moveUp = true;
       jump = false;
       jumped = false;
-      if (music.music) {
-        jumpSound.play();
-      }
     }
+    //A timer to make sure the player cannot keep jumping.
     if (!jump) {
       jumpTimer1++;
     }
-    if (jumpTimer1 == jumpCooldown) {
+    if (jumpTimer1 == JUMPCOOLDOWN) {
       jump = true;
       jumpTimer1 = 0;
     }
-
+    //More code for the shield
     if (healthbar.shieldDamage && schild.schildActivated && schild.schildLevens == 3) {
-      //ellipseMode(CENTER);
       fill(SHIELDCOLOR, SHIELD4);
       circle(player.posPlayer.x, player.posPlayer.y, SHIELDCOORDINATES);
       schild.schildLevens = 2;
@@ -360,7 +375,7 @@ class Player {
       healthbar.shieldDamage = false;
       schild.pickedUp = false;
     }
-    if (sword.pickedUp && keysPressed['A']) {
+    if (sword.pickedUp && keysPressed['A']) {//Attacking with the sword.
       sword.attack();
     }
 

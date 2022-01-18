@@ -34,6 +34,10 @@ class Schild {
   int scoreCountLess = 0;
   int scoreCount = 100;
   float Gravity = 0.98;
+  float levensReset = 1;
+  float posPlayerX = 10;
+  float posPlayerY = 40;
+  float schildinventoryco = 1.2;
 
   Schild() {
     GRAVITYSchild = Gravity;
@@ -42,47 +46,25 @@ class Schild {
   }
 
   void SchildEq() {
-    //if (schildOn && !schildActivated) {
-    //  timerSD.x++;
-    //}
-    //if (timerSD.x == 900) {
-    //  timerSD.x = 0;
-    //  schildOn = false;
-    //}
-    //if (!schildOn && !schildActivated) {
-    //  timerSD.y++;
-    //}
-    //if (timerSD.y == 900) {
-    //  reset();
-    //  timerSD.y = 0;
-    //}
+    
   }
 
   void update() {
-    //if(dragon.fight && !pickedUp && !fight) {
-    //schildPos = spawnPointsPUPS.fightR;
-    //fight = true;
-    //}
+   
 
     if (dragon.fight && !fight) {
       pickedUp = false;
       fight = true;
     }
 
-    if (waterBottle.pickedUp /*&& !ResetReset*/ && pickedUp /*|| Doublejump.pickedUp && !ResetReset */ || sword.pickedUp && /*!ResetReset &&*/ pickedUp) {
+    if (waterBottle.pickedUp && pickedUp  || sword.pickedUp &&  pickedUp) {
       healthbar.shieldDamage = false;
       pickedUp = false;
-      //reset = true;
       reset();
       schildActivated = false;
-      //timedReset = true;
       ResetReset = true;
     }
 
-    //if (!waterfles.pickedUp && !Doublejump.pickedUp && !sword.pickedUp) {
-    //  pickedUp = false;
-    //  ResetReset = false;
-    //}
 
     collisionHandler.checkCollisionPlayer(schildPos.x, schildPos.y, schildSize.y);
     
@@ -105,10 +87,7 @@ class Schild {
       livesSet = false;
     }
 
-    //if (schildSize.x == 0 && schildSize.y == 0 && keysPressed['S'] && !schildActivated) {
-    //  schildOn = false;
-    //  schildActivated = true;
-    //}
+  
     if (!FlamethrowerJumping) {
       schildSaveLevens = schildLevens;
     }
@@ -128,37 +107,28 @@ class Schild {
       }
     }
 
-    //if (reset) {
-    //  reset(); 
-    //  reset = false;
-    //}
+  
 
     if (platforms.moveAmount == LevelMoveAmountNext) {
       FlamethrowerJumping = false;
     }
     if (NewPos) {
-      //schildPos = spawnPointsPUPS.location;
-      //schildPos.x = random(100, 700);
-      //schildPos.y = random(0, 200);
+     
       NewPos = false;
     }
 
+     //wanneer je het schild oppakt dan wordt het schild geactiveerd
     if (schildActivated) {
       health.invincibleB = true;
     }
 
-    if (schildLevens == AantalLevensschild) { //|| reset && !pickedUp /*&& !Doublejump.pickedUp && !sword.pickedUp && !waterfles.pickedUp*/) {
+    //wanneer het schild kapot wordt gemaakt dan gaat het schild weg
+    if (schildLevens == AantalLevensschild) { 
       health.invincibleB = false;
       reset();
       timedReset = false;
     }
-    //if (timedReset) {
-    // delay (5000);
-    // reset();
-    // reset = false;
-    // fight = false;
-    // timedReset = false;
-    //}
+    
 
     if (seeScoreShield) {
       schildScoreCount--;
@@ -172,26 +142,21 @@ class Schild {
 
   void draw() {
     SchildEq();
-    //schildPos.y += GRAVITYSchild;
     fill(255, 0, 0);
     ellipseMode(CENTER);
-    //fill(255,255,0,240);
-    //ellipse(schildPos.x - 0.5, schildPos.y, schildSize.y * 1.2, schildSize.y * 1.2);
-    image(inventory.shieldOutline, schildPos.x, schildPos.y, schildSize.x * 1.2, schildSize.y  * 1.2);
+    image(inventory.shieldOutline, schildPos.x, schildPos.y, schildSize.x * schildinventoryco, schildSize.y  * schildinventoryco);
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
-    //rect(schildPos.x, schildPos.y, schildSize.x, schildSize.y);
-
     if (seeScoreShield) {
       fill(255);
       textSize(30);
-      text("+ 50", player.posPlayer.x - 10, player.posPlayer.y - 40);
+      text("+ 50", player.posPlayer.x - posPlayerX, player.posPlayer.y - posPlayerY);
     }
   }
 
   void reset() {
     ResetReset = false;
     NewPos = true;
-    schildLevens = 1;
+    schildLevens = levensReset;
     image(inventory.shieldF, schildPos.x, schildPos.y, schildSize.x, schildSize.y);
     schildPos = spawnPointsPUPS.location;
     FlamethrowerJumping = false;
