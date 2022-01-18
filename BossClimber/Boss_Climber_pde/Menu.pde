@@ -48,6 +48,9 @@ class Menu {
   final int TEXTFONT1 = 50;
   final int TEXTFONT2 = 40;
   final int TEXTCORRECTION1 = 125;
+  final int TEXTCORRECTION2 = 65;
+  final int TEXTCORRECTION3 = 160;
+  final int TEXTCORRECTION4 = 5;
 
 
   Menu() {
@@ -74,8 +77,8 @@ class Menu {
     textFont(f, TEXTFONT1); //size of the texts
     fill(kleur); //color
     textLeading(TEXTFONT1);
-    text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + 65); //press A on pc
-    text("Press Y for\ninstructions", placement1.x + 160, placement1.y + 65); //press D on pc
+    text("Press A\n to start", placement1.x - TEXTCORRECTION1, placement1.y + TEXTCORRECTION2); //press A on pc
+    text("Press Y for\ninstructions", placement1.x + TEXTCORRECTION3, placement1.y + TEXTCORRECTION2); //press D on pc
     textSize(textSize);
     textLeading(TEXTFONT2);
     text("Press X for\n Highscore", placement3.x + size.x/5, placement3.y+(size.y*1.35)); // press X on pc
