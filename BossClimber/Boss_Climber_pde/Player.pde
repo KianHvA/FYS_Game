@@ -308,6 +308,9 @@ class Player {
       moveUp = true;
       jump = false;
       jumped = false;
+      if (music.music) {
+        jumpSound.play();
+      }
     }
     if (!jump) {
       jumpTimer1++;

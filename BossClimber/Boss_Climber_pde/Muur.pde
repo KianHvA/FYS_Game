@@ -21,17 +21,17 @@ void wall() {
   for (int x=0; x<900; x=x+30) {
     strokeWeight(2);
     stroke(0);
-    line(wall, x, width/12-1, x); // rechterkant
-    //line(width-3*sGetal, x, width, x); //linkerkant
+    line(wall, x, width/12-1, x); // right side
+    //line(width-3*sGetal, x, width, x); //left side
     line(width/12*11+5,x,width,x);
   }
   //verticale lijnen
   for (int x=30; x<900; x=x+60) {
-    int y = x+lineCoordinate; //y coordinaat voor de linkerlijnen
-    int z = x-lineCoordinate; // y coordinaat voor de rechterlijnen
-    line(wallWidth/3*2, x, wallWidth/3*2, y); //linkerkant linker strepen
-    line(wallWidth/3, x, wallWidth/3, z); // linkerkant rechter strepen
-    line(width-sGetal, x, width-sGetal, z); //rechterkant rechter strepen
-    line(width-sGetal2, x, width-sGetal2, y); //rechterkant rechter strepen
+    int y = x+lineCoordinate; //y coordinate for the left stripes
+    int z = x-lineCoordinate; // y coordinate for the right stripes
+    line(wallWidth/3*2, x, wallWidth/3*2, y); //left side left stripes
+    line(wallWidth/3, x, wallWidth/3, z); // left side rigth stripes
+    line(width-sGetal, x, width-sGetal, z); //rigth side left stripes
+    line(width-sGetal2, x, width-sGetal2, y); //right side right stripes
   }
 }
