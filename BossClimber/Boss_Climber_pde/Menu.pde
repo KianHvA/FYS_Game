@@ -54,11 +54,12 @@ class Menu {
   final int TEXTCORRECTION2 = 65;
   final int TEXTCORRECTION3 = 160;
   final int TEXTCORRECTION4 = 5;
-  final float TEXTCORRECTION5 = 3.5;
+  final float TEXTCORRECTION5 = 1.35;
   final int TEXTCORRECTION6 = 13;
   final int TEXTCORRECTION7 = 2;
   final int TEXTCORRECTION8 = 100;
   final int TEXTCORRECTION9 = 10;
+  final float TEXTCORRECTION10 = 3.5;
   final int TEXTCOORDINATES1 = 500;
   final int TEXTCOORDINATES2 = 300;
   final int TEXTCOORDINATES3 = 80;
@@ -102,7 +103,7 @@ class Menu {
     textSize(TEXTFONT3);
     textSize(TEXTSIZE);
     textLeading(TEXTFONT1);
-    text("Press -> for\n Achievements", placement4.x + SIZE.x/TEXTCORRECTION6, placement4.y + SIZE.y/TEXTCORRECTION5);
+    text("Press -> for\n Achievements", placement4.x + SIZE.x/TEXTCORRECTION6, placement4.y + SIZE.y/TEXTCORRECTION10);
     drawn = true;
 
     if (keysPressed['A']) {
