@@ -188,8 +188,6 @@ void setup()
   fireballs[11].posFireball.x = dragon.startx;//Start locations of boss fireballs!
   fireballs[11].posFireball.y = dragon.starty;
 
-  music.setup();
-
   //if (platforms.moveAmount == 1) {
   //myConnection.updateQuery("INSERT INTO achievements (description, difficulty) VALUES ('Play a game of Boss Climber', 'COMPLETE')");
   //}
