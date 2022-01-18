@@ -30,7 +30,7 @@ class Particle {
   void display() {
     stroke(particleColour, lifespan);
     fill(particleColour, lifespan);
-    circle(position.x, position.y + 20, particleSize);
+    circle(position.x, position.y + lava.playerHeight, particleSize);
   }
 
   boolean Dead() {
@@ -50,6 +50,7 @@ class ParticleSystem {
     particles = new ArrayList<Particle>();
   }
 
+  //Create particles when player moves
   void addParticle() {
     if (player.moveLeft || player.moveRight) {
       if (player.hasCollision) {

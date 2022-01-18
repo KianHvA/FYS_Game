@@ -31,16 +31,18 @@ class Health {
 
 
   void update() {
-    
-    if (!dead) { //As long as the player is alive
+    //As long as the player is alive
+    if (!dead) { 
       if (healthbar.healthPlayer == 100) regen = false;
 
+      //This boolean refers to invincility
       if (hit) {
-        invincibleB = true; //This boolean refers to invincility
+        invincibleB = true; 
       }
 
+      //Invincible period
       if (invincibleB) {
-        invincible++; //Invincible period
+        invincible++; 
       }
       //Stop being invincible
       if (invincible > 300) {
@@ -84,7 +86,8 @@ class Health {
       amount0 = true;
     }
 
-    if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600 || amount0) { //Player is out of lives or walked out of the screen to die.
+    //Player is out of lives or walked out of the screen to die
+    if (healthbar.healthPlayer < 1 && amount <= 1 || player.posPlayer.y > 600 || amount0) { 
       halfX = xBegin;
       halfY = yBegin;
  
@@ -100,7 +103,8 @@ class Health {
 }
 
 class HealthBar {
-  boolean shieldDamage; //If the shield is equiped it takes the damage.
+  //If the shield is equiped it takes the damage
+  boolean shieldDamage; 
   float x, y, w, h;
   float healthPlayer = 1;
   HealthBar(float Tx, float Ty, float Tw, float Th ) {
@@ -114,11 +118,13 @@ class HealthBar {
 
   void doDamage(float damage) {
     if (!health.invincibleB) {
-      healthPlayer -= damage; // function to do damage.
+      // function to do damage
+      healthPlayer -= damage; 
     } else shieldDamage = true;
   }
   void draw() {
-    healthPlayer = constrain(healthPlayer, 0, 3); //Player has an maximum amount of health.
+    //Player has an maximum amount of health
+    healthPlayer = constrain(healthPlayer, 0, 3); 
   }
 }
 
@@ -133,9 +139,11 @@ class HealthBarDragon {
 
 
   void doDamageDragon(float damage) {
-      dragon.dragonHealth -= damage; //Function to do damage to the dragon.
+    //Function to do damage to the dragon
+      dragon.dragonHealth -= damage; 
   }
   void draw() {
+    //Healthbar
     noFill();
     stroke(255);
     float c = map(dragon.dragonHealth, 0, dragon.dragonHealthS, 0, w);
@@ -146,6 +154,7 @@ class HealthBarDragon {
     if (dragon.dragonHealth == 0) dragon.dragonHealth = 0;
 
     dragon.dragonHealth = constrain(dragon.dragonHealth, 0, dragon.dragonHealth);
+    //Edge of the Healthbar
     noFill();
     stroke(255);
     rectMode(CENTER);
