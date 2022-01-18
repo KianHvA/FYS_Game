@@ -124,7 +124,7 @@ class Dragon {
     }
   }
 
-
+  //hier zie je de healthbar van het draak
   void update() {
     if (!fight) {
       dragon.healthbarPos.x = -1000; 
