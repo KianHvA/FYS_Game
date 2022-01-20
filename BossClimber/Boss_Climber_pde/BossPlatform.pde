@@ -49,7 +49,7 @@ int minLava=0;
 int maxLava=10;
 int maxLavaLength = 100;
 float greyColor = 147; 
-int wallGetal = 12;
+int wallNumber = 12;
 float exclamationHeight = 200;
 float exclamationNumber = 8;
 float exclamationSize = 200;
@@ -156,7 +156,7 @@ void BossFightLava() {
 
   for (int i=0; i<bossfightlava.length; i++) {
 
-    bossfightlava[i] = width/wallGetal+(lavaNumber*i);
+    bossfightlava[i] = width/wallNumber+(lavaNumber*i);
     //println(bossfightlava[i]);
 
 
