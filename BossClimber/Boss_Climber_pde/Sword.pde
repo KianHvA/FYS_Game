@@ -83,6 +83,7 @@ class Sword {
       timedReset = true;
     }
 
+
     if (!schild.pickedUp) {
       if (collisionHandler.circleRect(player.posPlayer.x, player.posPlayer.y, player.sizePlayer.x, swordX, swordY, swordW, swordH)) {
         swordX = width * 2;
@@ -125,11 +126,13 @@ class Sword {
       swordY = spawnPointsPUPS.location.y;
       newPos = false;
     }
+    
     if (!doneDamage) {
       dragonX = dragon.startx;
       dragonY = dragon.starty;
       damageOpacity = damageNum;
     }
+    //hier wordt er damage gedaan aan de draak
     if (doneDamage) {
       fill(damage, sword.damageOpacity);
       text("-1000", sword.dragonX, sword.dragonY);
