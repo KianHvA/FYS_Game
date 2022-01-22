@@ -1,4 +1,4 @@
-//Ömer, Tigo
+//Tigo
 class Dragon {
   FireBallRain FireballRain;
   bossFight bossFight;
